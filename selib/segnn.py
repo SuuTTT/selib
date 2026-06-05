@@ -42,6 +42,24 @@ def soft_se2d(A, S, eps=1e-9):
     return term1 + term2
 
 
+def sinkhorn_head(logits, n_iter=15, tau=1.0):
+    """Balanced soft assignment via log-space Sinkhorn: rows sum to 1 (a
+    distribution per node) and column masses are pushed toward N/K (uniform
+    cluster sizes), which prevents the softmax head's cluster collapse.
+    Differentiable; hand-rolled so no ott-jax dependency. Ported in spirit from
+    the author's glass-jax src/glass/solvers/sinkhorn.py (uniform marginals)."""
+    import jax.numpy as jnp
+    from jax.scipy.special import logsumexp
+    N, K = logits.shape
+    logP = logits / tau
+    log_col_target = jnp.log(jnp.asarray(N / K, dtype=logits.dtype))
+    for _ in range(n_iter):
+        logP = logP - logsumexp(logP, axis=1, keepdims=True)               # rows -> 1
+        logP = logP - logsumexp(logP, axis=0, keepdims=True) + log_col_target  # cols -> N/K
+    logP = logP - logsumexp(logP, axis=1, keepdims=True)                   # final: rows -> 1
+    return jnp.exp(logP)
+
+
 def _normalize_adj(A):
     """Symmetric GCN normalization: A_hat = D^-1/2 (A + I) D^-1/2 (numpy)."""
     A = A + np.eye(A.shape[0], dtype=A.dtype)
@@ -50,7 +68,8 @@ def _normalize_adj(A):
     return (A * dinv[:, None]) * dinv[None, :]
 
 
-def se_gnn_fit(A, X, k, seed=0, hidden=64, iters=300, lr=0.01, layers=2):
+def se_gnn_fit(A, X, k, seed=0, hidden=64, iters=300, lr=0.01, layers=2,
+               head="softmax"):
     """Train the GCN (`layers` propagation steps over the normalized adjacency) to
     minimize soft H^2 of the ORIGINAL graph; return (labels, final_loss).
 
@@ -80,9 +99,13 @@ def se_gnn_fit(A, X, k, seed=0, hidden=64, iters=300, lr=0.01, layers=2):
                 h = jnp.maximum(h, 0.0)
         return h                                     # logits (N, k)
 
+    def assign(logits):
+        if head == "sinkhorn":
+            return sinkhorn_head(logits)
+        return jax.nn.softmax(logits, axis=-1)
+
     def loss_fn(p):
-        S = jax.nn.softmax(forward(p), axis=-1)
-        return soft_se2d(A_raw, S)
+        return soft_se2d(A_raw, assign(forward(p)))
 
     grad_fn = jax.jit(jax.value_and_grad(loss_fn))
     # hand-rolled Adam (keeps optax out of the deps)
@@ -98,11 +121,12 @@ def se_gnn_fit(A, X, k, seed=0, hidden=64, iters=300, lr=0.01, layers=2):
             mh = m[kk] / (1 - b1 ** t)
             vh = v[kk] / (1 - b2 ** t)
             params[kk] = params[kk] - lr * mh / (jnp.sqrt(vh) + ae)
-    labels = np.asarray(jax.numpy.argmax(forward(params), axis=-1))
+    labels = np.asarray(jax.numpy.argmax(assign(forward(params)), axis=-1))
     return labels, float(loss)
 
 
-def se_gnn(G, k=None, seed=0, hidden=64, iters=300, lr=0.01, layers=2, starts=3):
+def se_gnn(G, k=None, seed=0, hidden=64, iters=300, lr=0.01, layers=2, starts=3,
+           head=None):
     """Attribute-aware SE community detection. Features are read from
     G.graph["X"] (numpy array aligned with list(G.nodes())); identity features are
     used if absent (featureless mode = learnable per-node embedding).
@@ -118,10 +142,15 @@ def se_gnn(G, k=None, seed=0, hidden=64, iters=300, lr=0.01, layers=2, starts=3)
     X = np.asarray(X, dtype="float32")
     rs = X.sum(axis=1, keepdims=True)               # row-normalize features
     X = X / np.maximum(rs, 1e-12)
+    import os
+    # sinkhorn (balanced-assignment) is the default: it fixes the softmax head's
+    # cluster collapse and wins on every attributed metric (see benchmark page)
+    head = head or os.environ.get("SELIB_SEGNN_HEAD", "sinkhorn")
     best = None
     for s in range(starts):
         labels, loss = se_gnn_fit(A, X, int(k or 8), seed=seed * 100 + s,
-                                  hidden=hidden, iters=iters, lr=lr, layers=layers)
+                                  hidden=hidden, iters=iters, lr=lr, layers=layers,
+                                  head=head)
         if best is None or loss < best[0]:
             best = (loss, labels)
     return [int(x) for x in best[1]]

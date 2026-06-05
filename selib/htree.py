@@ -58,75 +58,94 @@ def _graph_arrays(G):
 
 # --------------------------- annotate + objective ----------------------------
 def annotate(root, deg, adj, vol):
-    """Set V (volume) and g (cut) for every node. g_a = V_a - 2*E_in(a),
-    computed via per-edge LCA walk (exact, O(m * height))."""
-    # post-order: volume + parent + per-leaf list
-    leaves_of = {}
+    """Set V (volume) and g (cut) for every node. g_a = V_a - 2*E_in(a).
 
-    def post(node, parent):
-        node.parent = parent
-        if node.is_leaf():
-            node.V = deg[node.vertex]
-            node.g = deg[node.vertex]      # singleton: all incident edges leave
-            leaves_of[id(node)] = [node.vertex]
-            return leaves_of[id(node)]
-        lv = []
-        node.V = 0.0
-        for c in node.children:
-            cl = post(c, node)
-            lv.extend(cl)
-            node.V += c.V
-        node.g = node.V                    # subtract 2*E_in below
-        leaves_of[id(node)] = lv
-        return lv
-
-    post(root, None)
-
-    # depth + ancestor chains for LCA
+    Exact and fast: per-edge LCA via binary lifting (O(m log h)), then a single
+    post-order pass accumulates E_in(a) = sum_child E_in + (edges whose LCA is a),
+    instead of walking every edge up to the root (O(m h))."""
+    # iterative post-order: V, parent, depth, node index, leaf map
+    order = []                       # post-order list of nodes
+    parent_of = {}
     depth = {}
-    def setdepth(node, d):
-        depth[id(node)] = d
-        for c in node.children:
-            setdepth(c, d + 1)
-    setdepth(root, 0)
-
-    # map vertex -> leaf node
     leafnode = {}
-    def collect(node):
+    stack = [(root, None, 0, False)]
+    while stack:
+        node, par, d, expanded = stack.pop()
+        if expanded:
+            order.append(node)
+            continue
+        node.parent = par
+        parent_of[id(node)] = par
+        depth[id(node)] = d
+        stack.append((node, par, d, True))
         if node.is_leaf():
             leafnode[node.vertex] = node
-        for c in node.children:
-            collect(c)
-    collect(root)
+        else:
+            for c in node.children:
+                stack.append((c, node, d + 1, False))
+    for node in order:               # volumes bottom-up
+        if node.is_leaf():
+            node.V = deg[node.vertex]
+        else:
+            node.V = sum(c.V for c in node.children)
 
-    def lca(a, b):
-        na, nb = leafnode[a], leafnode[b]
-        da, db = depth[id(na)], depth[id(nb)]
-        while da > db:
-            na = na.parent; da -= 1
-        while db > da:
-            nb = nb.parent; db -= 1
-        while na is not nb:
-            na = na.parent; nb = nb.parent
-        return na
+    # binary lifting tables
+    maxd = max(depth.values()) if depth else 0
+    LOG = max(1, maxd.bit_length())
+    up = [dict() for _ in range(LOG)]
+    all_nodes = list(depth.keys())
+    for nid in all_nodes:            # level 0 = parent
+        p = parent_of.get(nid)
+        up[0][nid] = id(p) if p is not None else None
+    for j in range(1, LOG):
+        prev = up[j - 1]
+        cur = up[j]
+        for nid in all_nodes:
+            mid = prev.get(nid)
+            cur[nid] = prev.get(mid) if mid is not None else None
 
-    # for each internal edge, subtract 2w from g of LCA and all its ancestors
+    def lca_id(a, b):
+        na, nb = id(leafnode[a]), id(leafnode[b])
+        da, db = depth[na], depth[nb]
+        if da < db:
+            na, nb = nb, na
+            da, db = db, da
+        diff = da - db
+        j = 0
+        while diff:
+            if diff & 1:
+                na = up[j][na]
+            diff >>= 1
+            j += 1
+        if na == nb:
+            return na
+        for j in range(LOG - 1, -1, -1):
+            ua, ub = up[j].get(na), up[j].get(nb)
+            if ua != ub:
+                na, nb = ua, ub
+        return up[0][na]
+
+    # per-edge: accumulate weight at the LCA node only
+    lca_w = {}
     n = len(deg)
     for u in range(n):
-        for v, w in adj[u].items():
+        au = adj[u]
+        for v, w in au.items():
             if v <= u:
                 continue
-            a = lca(u, v)
-            while a is not None:
-                a.g -= 2 * w
-                a = a.parent
-    # clean tiny negatives
-    def clean(node):
-        if node.g < 1e-9:
-            node.g = 0.0
-        for c in node.children:
-            clean(c)
-    clean(root)
+            l = lca_id(u, v)
+            lca_w[l] = lca_w.get(l, 0.0) + w
+
+    # single post-order pass: E_in = sum child E_in + lca_w; g = V - 2 E_in
+    e_in = {}
+    for node in order:
+        s = lca_w.get(id(node), 0.0)
+        if not node.is_leaf():
+            for c in node.children:
+                s += e_in[id(c)]
+        e_in[id(node)] = s
+        g = node.V - 2.0 * s
+        node.g = 0.0 if g < 1e-9 else g
     return root
 
 
@@ -247,9 +266,13 @@ def _all_paths(root):
 
 
 def _do_collapse(root, path):
-    """Return a copy with the node at `path` collapsed into its parent."""
+    """Return a copy with the node at `path` collapsed into its parent, or None if
+    the path (possibly stale) addresses a leaf — collapsing a leaf would delete a
+    vertex and corrupt the tree."""
     r = copy_tree(root)
     node = _get(r, path)
+    if node.is_leaf():
+        return None
     parent = _get(r, path[:-1])
     idx = path[-1]
     parent.children = parent.children[:idx] + node.children + parent.children[idx + 1:]
@@ -273,61 +296,108 @@ def _do_relocate(root, src_path, dst_path):
         return None
     r = copy_tree(root)
     target = _get(r, dst_path)                       # grab object BEFORE detaching
+    if target.is_leaf():                             # stale path may hit a leaf:
+        return None                                  # a leaf must never gain children
     src = _get(r, src_path)
     sp_parent = _get(r, src_path[:-1])
+    if sp_parent.is_leaf() or not sp_parent.children:
+        return None
     sp_parent.children.pop(src_path[-1])             # detach (object refs stay valid)
     target.children.append(src)
     return r
 
 
-def refine(root, deg, adj, vol, max_rounds=12, relocate=True):
+def _reloc_targets(root, sp):
+    """Local relocation targets for the subtree at path sp: internal siblings,
+    internal uncles, and the grandparent."""
+    targets = set()
+    parent_p = sp[:-1]
+    gp = sp[:-2] if len(sp) >= 2 else None
+    pnode = _get(root, parent_p)
+    for i, c in enumerate(pnode.children):
+        if i != sp[-1] and not c.is_leaf():
+            targets.add(parent_p + (i,))
+    if gp is not None:
+        targets.add(gp)
+        gpnode = _get(root, gp)
+        for i, c in enumerate(gpnode.children):
+            if i != parent_p[-1] and not c.is_leaf():
+                targets.add(gp + (i,))
+    return targets
+
+
+def refine(root, deg, adj, vol, max_rounds=12, relocate=True,
+           strategy="best", sample_cap=None, seed=0):
     """Greedy exact-guarded refinement: collapse a level, or relocate a subtree to a
     nearby module. Accept only strictly-H^T-decreasing moves. Result <= init.
-    `relocate=False` does collapse-only (fast) for large graphs."""
+
+    strategy="best": evaluate all candidates, apply the single best per round
+      (small graphs; deterministic).
+    strategy="first": shuffled first-improvement — apply every improving move as
+      soon as it is found (far fewer evaluations; for larger graphs). Each accepted
+      move is still verified by an exact full recompute, so the <=-init guarantee
+      is identical; only search completeness differs.
+    sample_cap: if set, at most this many relocation candidates per round."""
+    import random
+    rng = random.Random(seed)
     annotate(root, deg, adj, vol)
     cur = hd_se(root, vol)
     for _ in range(max_rounds):
+        improved = False
         best_root, best_h = None, cur
 
-        # collapse candidates
-        for path in _internal_paths(root):
-            r = _do_collapse(root, path)
+        # ---- candidate move list: (kind, payload) ----
+        moves = [("collapse", p) for p in _internal_paths(root)]
+        reloc = []
+        if relocate:
+            for sp in _all_paths(root):
+                if len(sp) < 1:
+                    continue
+                for tp in _reloc_targets(root, sp):
+                    reloc.append(("relocate", (sp, tp)))
+        if sample_cap is not None and len(reloc) > sample_cap:
+            reloc = rng.sample(reloc, sample_cap)
+        moves += reloc
+        if strategy == "first":
+            rng.shuffle(moves)
+
+        for kind, payload in moves:
+            if kind == "collapse":
+                # path may be stale after a first-improvement commit; guard
+                try:
+                    r = _do_collapse(root, payload)
+                except (IndexError, AttributeError):
+                    continue
+            else:
+                sp, tp = payload
+                try:
+                    r = _do_relocate(root, sp, tp)
+                except (IndexError, AttributeError):
+                    continue
+            if r is None:
+                continue
             annotate(r, deg, adj, vol)
             h = hd_se(r, vol)
-            if h < best_h - 1e-9:
-                best_h, best_root = h, r
-
-        # relocate candidates: move each subtree to a sibling / uncle / grandparent
-        for sp in (_all_paths(root) if relocate else []):
-            if len(sp) < 1:
-                continue
-            targets = set()
-            parent_p = sp[:-1]
-            gp = sp[:-2] if len(sp) >= 2 else None
-            pnode = _get(root, parent_p)
-            for i, c in enumerate(pnode.children):     # siblings (internal)
-                if i != sp[-1] and not c.is_leaf():
-                    targets.add(parent_p + (i,))
-            if gp is not None:
-                targets.add(gp)                        # grandparent
-                gpnode = _get(root, gp)
-                for i, c in enumerate(gpnode.children):  # uncles (internal)
-                    if i != parent_p[-1] and not c.is_leaf():
-                        targets.add(gp + (i,))
-            for tp in targets:
-                r = _do_relocate(root, sp, tp)
-                if r is None:
-                    continue
-                annotate(r, deg, adj, vol)
-                h = hd_se(r, vol)
+            if strategy == "first":
+                if h < cur - 1e-9:
+                    root = _prune_empty(r)
+                    annotate(root, deg, adj, vol)
+                    cur = h
+                    improved = True
+                    # note: remaining paths refer to the old tree; guards above
+                    # skip stale ones, the next round regenerates the move list
+            else:
                 if h < best_h - 1e-9:
                     best_h, best_root = h, r
 
-        if best_root is None:
+        if strategy == "best":
+            if best_root is None:
+                break
+            root = _prune_empty(best_root)
+            annotate(root, deg, adj, vol)
+            cur = best_h
+        elif not improved:
             break
-        root = _prune_empty(best_root)
-        annotate(root, deg, adj, vol)
-        cur = best_h
     return root
 
 
@@ -347,7 +417,14 @@ def encoding_tree(G, seed=0, starts=4, do_refine=True):
     pos = {u: i for i, u in enumerate(nodes)}
     Gi = nx.relabel_nodes(G, pos, copy=True)
 
-    reloc = (n <= 250)        # full subtree-relocation only on small/medium graphs
+    # small graphs: exhaustive best-move search (deterministic, stable numbers);
+    # larger graphs: shuffled first-improvement with a relocation sample cap —
+    # same exact-guarded accepts (result <= init), just a lighter search.
+    if n <= 250:
+        rkw = dict(relocate=True, strategy="best")
+    else:
+        rkw = dict(relocate=True, strategy="first", sample_cap=1500,
+                   max_rounds=8, seed=seed)
     cands = []
     # (a) binary SE dendrogram init
     try:
@@ -355,7 +432,7 @@ def encoding_tree(G, seed=0, starts=4, do_refine=True):
         t_bin = linkage_to_tree(Z, n)
         annotate(t_bin, deg, adj, vol)
         if do_refine:
-            t_bin = refine(t_bin, deg, adj, vol, relocate=reloc)
+            t_bin = refine(t_bin, deg, adj, vol, **rkw)
         cands.append(t_bin)
     except Exception:
         pass
@@ -364,7 +441,7 @@ def encoding_tree(G, seed=0, starts=4, do_refine=True):
         t_lv = build_tree(Gi, seed=seed, starts=starts)
         annotate(t_lv, deg, adj, vol)
         if do_refine:
-            t_lv = refine(t_lv, deg, adj, vol, relocate=reloc)
+            t_lv = refine(t_lv, deg, adj, vol, **rkw)
         cands.append(t_lv)
     except Exception:
         pass
@@ -374,7 +451,7 @@ def encoding_tree(G, seed=0, starts=4, do_refine=True):
         try:
             t = linkage_to_tree(mk, n); annotate(t, deg, adj, vol)
             if do_refine:
-                t = refine(t, deg, adj, vol, relocate=reloc)
+                t = refine(t, deg, adj, vol, **rkw)
             cands.append(t)
         except Exception:
             pass
