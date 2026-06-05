@@ -395,12 +395,13 @@ def main():
                 "numbers); the rest are run fresh by selib on the same standard Planetoid data.</p>"
                 "<h4>NMI</h4>" + a_nmi + "<h4>ARI</h4>" + a_ari +
                 "<p class='note'>Reading: feature-aware beats topology-only — DeSE leads, and "
-                "<code>se_gnn</code> (a single-layer GCN, ~150 gradient steps) already beats every "
-                "topology method on ARI/ACC at roughly the true number of communities (Cora ACC "
-                "0.51 vs ≤0.44), while modularity methods' higher NMI comes with ~100 communities "
-                "(NMI inflation). Topology-only <code>se_louvain</code> struggles here — Cora's "
-                "feature signal is essential. A deeper encoder (LSENet/DeSE-style) is the obvious "
-                "next step for <code>se_gnn</code>.</p>")
+                "<code>se_gnn</code> (a 2-layer GCN over the normalized adjacency, best-of-starts "
+                "selected by the SE objective itself) beats <b>every topology method on both ARI "
+                "and ACC, on both datasets</b>, while modularity methods' higher NMI comes with "
+                "100–470 communities (NMI inflation). Topology-only <code>se_louvain</code> "
+                "struggles here — the feature signal is essential. Known remaining gap to DeSE: "
+                "pure SE-minimization with a softmax head <i>under-segments</i> (k≈3 of 6–7 "
+                "classes); a balanced-assignment head (Sinkhorn) is the next step.</p>")
 
         # visualizations
         viz_html = ""

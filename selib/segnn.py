@@ -42,30 +42,47 @@ def soft_se2d(A, S, eps=1e-9):
     return term1 + term2
 
 
-def se_gnn_fit(A, X, k, seed=0, hidden=32, iters=150, lr=0.01):
-    """Train the GCN to minimize soft H^2; return (labels, final_loss)."""
+def _normalize_adj(A):
+    """Symmetric GCN normalization: A_hat = D^-1/2 (A + I) D^-1/2 (numpy)."""
+    A = A + np.eye(A.shape[0], dtype=A.dtype)
+    d = A.sum(axis=1)
+    dinv = 1.0 / np.sqrt(np.maximum(d, 1e-12))
+    return (A * dinv[:, None]) * dinv[None, :]
+
+
+def se_gnn_fit(A, X, k, seed=0, hidden=64, iters=300, lr=0.01, layers=2):
+    """Train the GCN (`layers` propagation steps over the normalized adjacency) to
+    minimize soft H^2 of the ORIGINAL graph; return (labels, final_loss).
+
+    The encoder sees A_hat (normalized, self-loops) — standard GCN practice — but
+    the loss is always the structural entropy of the raw A, so the objective stays
+    exactly the canonical one."""
     _require_jax()
     import jax
     import jax.numpy as jnp
-    A_ = jnp.asarray(A, dtype=jnp.float32)
+    A_raw = jnp.asarray(A, dtype=jnp.float32)
+    A_hat = jnp.asarray(_normalize_adj(np.asarray(A, dtype="float32")))
     X_ = jnp.asarray(X, dtype=jnp.float32)
     D = X_.shape[1]
     key = jax.random.PRNGKey(seed)
-    k1, k2 = jax.random.split(key)
-    params = {
-        "W1": jax.random.normal(k1, (D, hidden)) * jnp.sqrt(2.0 / D),
-        "b1": jnp.zeros(hidden),
-        "W2": jax.random.normal(k2, (hidden, k)) * jnp.sqrt(2.0 / hidden),
-        "b2": jnp.zeros(k),
-    }
+    dims = [D] + [hidden] * (layers - 1) + [k]
+    params = {}
+    for i in range(layers):
+        key, sub = jax.random.split(key)
+        params[f"W{i}"] = jax.random.normal(sub, (dims[i], dims[i + 1])) * jnp.sqrt(2.0 / dims[i])
+        params[f"b{i}"] = jnp.zeros(dims[i + 1])
 
     def forward(p):
-        h = jnp.maximum(jnp.dot(A_, jnp.dot(X_, p["W1"]) + p["b1"]), 0.0)
-        return jnp.dot(h, p["W2"]) + p["b2"]
+        h = X_
+        for i in range(layers):
+            h = jnp.dot(A_hat, jnp.dot(h, p[f"W{i}"]) + p[f"b{i}"])
+            if i < layers - 1:
+                h = jnp.maximum(h, 0.0)
+        return h                                     # logits (N, k)
 
     def loss_fn(p):
         S = jax.nn.softmax(forward(p), axis=-1)
-        return soft_se2d(A_, S)
+        return soft_se2d(A_raw, S)
 
     grad_fn = jax.jit(jax.value_and_grad(loss_fn))
     # hand-rolled Adam (keeps optax out of the deps)
@@ -85,20 +102,29 @@ def se_gnn_fit(A, X, k, seed=0, hidden=32, iters=150, lr=0.01):
     return labels, float(loss)
 
 
-def se_gnn(G, k=None, seed=0, hidden=32, iters=150, lr=0.01):
+def se_gnn(G, k=None, seed=0, hidden=64, iters=300, lr=0.01, layers=2, starts=3):
     """Attribute-aware SE community detection. Features are read from
     G.graph["X"] (numpy array aligned with list(G.nodes())); identity features are
     used if absent (featureless mode = learnable per-node embedding).
-    `k` is the number of communities (required in spirit; defaults to 8)."""
+    `k` is the number of communities (required in spirit; defaults to 8).
+    Runs `starts` restarts and keeps the lowest final soft-SE (objective-selected,
+    no label peeking)."""
     nodes = list(G.nodes())
     n = len(nodes)
     A = nx.to_numpy_array(G, nodelist=nodes, weight="weight").astype("float32")
     X = G.graph.get("X")
     if X is None:
         X = np.eye(n, dtype="float32")
-    labels, _ = se_gnn_fit(A, np.asarray(X, dtype="float32"), int(k or 8),
-                           seed=seed, hidden=hidden, iters=iters, lr=lr)
-    return [int(x) for x in labels]
+    X = np.asarray(X, dtype="float32")
+    rs = X.sum(axis=1, keepdims=True)               # row-normalize features
+    X = X / np.maximum(rs, 1e-12)
+    best = None
+    for s in range(starts):
+        labels, loss = se_gnn_fit(A, X, int(k or 8), seed=seed * 100 + s,
+                                  hidden=hidden, iters=iters, lr=lr, layers=layers)
+        if best is None or loss < best[0]:
+            best = (loss, labels)
+    return [int(x) for x in best[1]]
 
 
 # ----------------------------- self-tests -----------------------------------
