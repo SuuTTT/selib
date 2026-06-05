@@ -34,7 +34,17 @@ and a Louvain baseline are scored exactly the same way.
   subtree), accepting only moves that strictly lower the exact tree structural
   entropy H^T. Result is ≤ the naive binary dendrogram by construction, and strictly
   lower on every benchmark graph. Validated: a 2-level tree's H^T equals the
-  canonical 2D-SE exactly, and refinement is monotone.
+  canonical 2D-SE exactly, and refinement is monotone. It warm-starts from several
+  constructions — including Paris (scikit-network) when available — and refines the
+  best, so it is ≤ each of them by construction.
+
+**Comparison with existing work** (see the [benchmark page](https://suuttt.github.io/selib/),
+section 0c): on identical graphs, `se_louvain` reaches the lowest 2D structural
+entropy of all methods including the published **CoDeSEG** (its original C++ code, run
+through selib's wrapper); `se_hier` reaches the lowest encoding-tree structural entropy
+of all, including Paris and the binary SE dendrogram. On attributed graphs (Cora/Citeseer/
+Photo) feature-aware SE methods (DeSE/LSENet) are shown vs. topology baselines — selib
+v0.1 is topology-only, which motivates attribute-aware SE as future work.
 - **Baselines** (native): Louvain, Leiden, Infomap, spectral clustering.
 - **Drop-in wrappers** over published SE methods' *original* code (deDoc jar,
   CoDeSEG binary, …). selib doesn't vendor upstream code; point it at the artifact

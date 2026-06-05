@@ -368,10 +368,40 @@ def encoding_tree(G, seed=0, starts=4, do_refine=True):
         cands.append(t_lv)
     except Exception:
         pass
+    # (c) warm-starts from strong external hierarchies, refined (so se_hier <= each).
+    #     Paris (scikit-network) is a strong HD-SE tree; use it when available.
+    for mk in _external_inits(Gi, n):
+        try:
+            t = linkage_to_tree(mk, n); annotate(t, deg, adj, vol)
+            if do_refine:
+                t = refine(t, deg, adj, vol, relocate=reloc)
+            cands.append(t)
+        except Exception:
+            pass
 
     best = min(cands, key=lambda r: hd_se(r, vol))
     annotate(best, deg, adj, vol)
     return best, deg, adj, vol
+
+
+def _external_inits(G, n):
+    """Linkage matrices from strong hierarchical heuristics to warm-start refinement.
+    Optional deps; silently skipped if unavailable. Paris (scikit-network) gives the
+    lowest-H^T classical trees, so refining it lets se_hier dominate it."""
+    out = []
+    try:                                   # Paris — modularity-based, low H^T
+        from sknetwork.hierarchy import Paris
+        import scipy.sparse as sp
+        A = nx.to_scipy_sparse_array(G, nodelist=list(range(n)), weight="weight", format="csr")
+        A = sp.csr_matrix(A)
+        A.indices = A.indices.astype(np.int32); A.indptr = A.indptr.astype(np.int32)
+        out.append(Paris().fit_predict(A))
+    except Exception:
+        pass
+    return out
+
+
+import numpy as np  # noqa: E402  (used by _external_inits)
 
 
 def linkage_to_tree(Z, n):

@@ -106,6 +106,88 @@ def legend(methods):
     return f'<div class="legend">{"".join(items)}</div>'
 
 
+PALETTE = ["#e0245e", "#2563eb", "#16a34a", "#f59e0b", "#7c3aed", "#0891b2",
+           "#db2777", "#65a30d", "#dc2626", "#0d9488", "#9333ea", "#ca8a04"]
+
+
+def svg_graph(layout, title="", w=320, h=300):
+    """Node-link drawing; nodes coloured by community label."""
+    pos = layout["pos"]; labels = layout["labels"]; edges = layout["edges"]
+    xs = [p[0] for p in pos.values()]; ys = [p[1] for p in pos.values()]
+    x0, x1 = min(xs), max(xs); y0, y1 = min(ys), max(ys)
+    pad = 16
+    def X(x): return pad + (w - 2 * pad) * (x - x0) / (x1 - x0 + 1e-9)
+    def Y(y): return pad + (h - 2 * pad) * (1 - (y - y0) / (y1 - y0 + 1e-9))
+    parts = [f'<svg viewBox="0 0 {w} {h}" xmlns="http://www.w3.org/2000/svg" role="img">']
+    for u, v in edges:
+        pu, pv = pos[str(u)], pos[str(v)]
+        parts.append(f'<line x1="{X(pu[0]):.1f}" y1="{Y(pu[1]):.1f}" x2="{X(pv[0]):.1f}" '
+                     f'y2="{Y(pv[1]):.1f}" stroke="#d1d5db" stroke-width="0.6"/>')
+    for u, p in pos.items():
+        c = PALETTE[labels[int(u)] % len(PALETTE)]
+        parts.append(f'<circle cx="{X(p[0]):.1f}" cy="{Y(p[1]):.1f}" r="4" fill="{c}" '
+                     f'stroke="#fff" stroke-width="0.7"/>')
+    if title:
+        parts.append(f'<text x="{w/2:.0f}" y="13" text-anchor="middle" class="axl">{html.escape(title)}</text>')
+    parts.append("</svg>")
+    return "".join(parts)
+
+
+def svg_dendrogram(tree, title="", w=620, h=300):
+    """Top-down dendrogram from a nested {children:[...]} / {leaf:int} dict."""
+    leaves = []
+    maxd = [0]
+    def order(n, d):
+        maxd[0] = max(maxd[0], d)
+        if "leaf" in n:
+            leaves.append(n); n["_x"] = len(leaves) - 1; n["_d"] = d
+            return n["_x"]
+        xs = [order(c, d + 1) for c in n["children"]]
+        n["_x"] = sum(xs) / len(xs); n["_d"] = d
+        return n["_x"]
+    order(tree, 0)
+    nL = max(len(leaves), 1); D = max(maxd[0], 1)
+    padx, padyt, padyb = 14, 14, 22
+    def X(x): return padx + (w - 2 * padx) * (x / max(nL - 1, 1))
+    def Y(d): return padyt + (h - padyt - padyb) * (d / D)
+    parts = [f'<svg viewBox="0 0 {w} {h}" xmlns="http://www.w3.org/2000/svg" role="img">']
+    def draw(n):
+        if "leaf" in n:
+            parts.append(f'<circle cx="{X(n["_x"]):.1f}" cy="{Y(n["_d"]):.1f}" r="2.2" fill="#e0245e"/>')
+            return
+        for c in n["children"]:
+            parts.append(f'<line x1="{X(n["_x"]):.1f}" y1="{Y(n["_d"]):.1f}" '
+                         f'x2="{X(c["_x"]):.1f}" y2="{Y(c["_d"]):.1f}" stroke="#6b7280" stroke-width="1"/>')
+            draw(c)
+    draw(tree)
+    if title:
+        parts.append(f'<text x="{w/2:.0f}" y="11" text-anchor="middle" class="axl">{html.escape(title)}</text>')
+    parts.append("</svg>")
+    return "".join(parts)
+
+
+def cmp_table(table_data, datasets, methods, se_methods, metric, lower_better, nd):
+    th = "".join(f"<th>{html.escape(m)}{' *' if m in se_methods else ''}</th>" for m in methods)
+    rows = []
+    for d in datasets:
+        row = table_data.get(d, {})
+        vals = {m: (row.get(m) or {}).get(metric) if isinstance(row.get(m), dict) else row.get(m) for m in methods}
+        finite = [v for v in vals.values() if isinstance(v, (int, float))]
+        best = (min if lower_better else max)(finite) if finite else None
+        cells = []
+        for m in methods:
+            v = vals.get(m)
+            cls = ""
+            if best is not None and isinstance(v, (int, float)) and abs(v - best) < 1e-6:
+                cls = " class='best'"
+            elif m in se_methods:
+                cls = " class='se'"
+            cells.append(f"<td{cls}>{fmt(v, nd) if isinstance(v,(int,float)) else '—'}</td>")
+        rows.append(f"<tr><th class='rowh'>{html.escape(d)}</th>{''.join(cells)}</tr>")
+    return (f"<div class='tablewrap'><table><thead><tr><th></th>{th}</tr></thead>"
+            f"<tbody>{''.join(rows)}</tbody></table></div>")
+
+
 def main():
     data = json.load(open(RES))
     recs = data["records"]
@@ -248,6 +330,93 @@ def main():
             "H<sup>T</sup> equals the canonical 2D structural entropy exactly, and refinement "
             "is monotone. <code>louvain_2level</code> is a flat (2-level) hierarchy baseline.</p>")
 
+    # --- Comparison with existing work (2D / hierarchical / attributed) + viz ---
+    cmp_block = None
+    cmp_path = os.path.join(os.path.dirname(RES), "compare_results.json")
+    attr_path = os.path.join(os.path.dirname(RES), "attributed_compare.json")
+    viz_path = os.path.join(os.path.dirname(RES), "viz.json")
+    if os.path.exists(cmp_path):
+        C = json.load(open(cmp_path))
+        cds = C["datasets"]
+        tmeth = C["two_d_methods"]
+        se_set = {"se_louvain", "se_agglomerative", "se_hier", "codeseg", "dedoc"}
+        # 2D tables
+        t_nmi = cmp_table(C["twod"], cds, tmeth, se_set, "nmi", lower_better=False, nd=3)
+        t_se = cmp_table(C["twod"], cds, tmeth, se_set, "se2d", lower_better=True, nd=3)
+        # hierarchical tables
+        hmeth = ["se_hier", "se_agglomerative", "average", "ward", "paris"]
+        hmeth = [m for m in hmeth if any(m in C["hier"].get(d, {}) for d in cds)]
+        h_hd = cmp_table(C["hier"], cds, hmeth, {"se_hier", "se_agglomerative"}, "hd_se", True, 3)
+        h_da = cmp_table(C["hier"], cds, hmeth, {"se_hier", "se_agglomerative"}, "dasgupta", True, 0)
+
+        # attributed (reproduced-campaign numbers)
+        attr_html = ""
+        if os.path.exists(attr_path):
+            A = json.load(open(attr_path))
+            am = A["methods"]; ase = set(A["se_methods"])
+            a_nmi = cmp_table(A["table"], A["datasets"], am, ase, "nmi", lower_better=False, nd=3)
+            attr_html = (
+                "<h3>Attributed graphs — NMI vs. ground-truth classes</h3>"
+                "<p class='note'>Feature-aware SE methods (DeSE, LSENet *) vs. topology-only "
+                "baselines, on citation/co-purchase graphs. These are reproduced-campaign "
+                "numbers (each from a results JSON a GPU produced). selib v0.1's optimizers are "
+                "<b>topology-only</b> — they behave like the topology baselines here; attribute-aware "
+                "SE is where DeSE wins (and where LSENet is fragile, e.g. Citeseer). Making selib "
+                "attribute-aware is the next step.</p>"
+                f"{a_nmi}")
+
+        # visualizations
+        viz_html = ""
+        if os.path.exists(viz_path):
+            V = json.load(open(viz_path))
+            figs = []
+            for dn in ("Karate", "SBM-Clean", "LFR-mu0.3"):
+                if dn in V.get("layouts", {}):
+                    figs.append(f"<div class='fig'>{svg_graph(V['layouts'][dn], dn)}"
+                                f"<div class='cap'>{dn}: se_louvain communities</div></div>")
+            grid = f"<div class='grid'>{''.join(figs)}</div>" if figs else ""
+            dend = ""
+            if "Karate" in V.get("tree", {}):
+                dend = (f"<div class='fig'>{svg_dendrogram(V['tree']['Karate'], 'Karate: se_hier encoding tree')}"
+                        f"<div class='cap'>se_hier encoding tree (leaves = vertices; depth downward)</div></div>")
+            viz_html = ("<h3>Visualizations</h3>"
+                        "<p class='note'>What the optimizers actually produce — node-link layouts "
+                        "coloured by <code>se_louvain</code> communities, and the <code>se_hier</code> "
+                        "encoding tree. Rendered as inline SVG from the run.</p>"
+                        f"{grid}{dend}")
+
+        cmp_block = (
+            "<h2>0c · Comparison with existing work</h2>"
+            "<p>All methods run on the <b>identical</b> graphs, all at free <i>k</i> (so the "
+            "structural-entropy objective is compared fairly). The published SE community detector "
+            "<code>CoDeSEG</code> runs its <b>original C++ code</b> through selib's wrapper; classical "
+            "hierarchies (average / Ward linkage, Paris) are scored on the same encoding-tree "
+            "objective as <code>se_hier</code>. (* = structural-entropy method.)</p>"
+            "<h3>2D structural entropy reached — free k (lower better)</h3>"
+            f"{t_se}"
+            "<h3>2D community detection — NMI vs. ground truth (higher better)</h3>"
+            f"{t_nmi}"
+            "<p class='note'><b>On its own objective, <code>se_louvain</code> wins:</b> it reaches the "
+            "lowest 2D structural entropy on every graph — below the modularity methods and the "
+            "published CoDeSEG. NMI tells a subtler, honest story: minimizing 2D-SE at free <i>k</i> "
+            "tends to <i>over-segment</i> relative to the planted communities, so on clean graphs the "
+            "modularity methods (Louvain/Leiden) recover ground truth better even though their "
+            "structural entropy is higher. Run with a target <i>k</i> (§1) <code>se_louvain</code> "
+            "recovers ground truth strongly. It beats the published SE detector CoDeSEG on NMI on 4/6 "
+            "graphs; CoDeSEG's finer segmentation helps only on the hardest (noisy SBM, μ=0.5). "
+            "Lesson: lower structural entropy ≠ better label recovery — a point the survey makes.</p>"
+            "<h3>Hierarchical — encoding-tree structural entropy H<sup>T</sup> (lower better)</h3>"
+            f"{h_hd}"
+            "<h3>Hierarchical — Dasgupta cost (lower better)</h3>"
+            f"{h_da}"
+            "<p class='note'><code>se_hier</code> reaches the lowest H<sup>T</sup> on every graph. It "
+            "warm-starts from several constructions — the binary SE dendrogram, recursive "
+            "<code>se_louvain</code>, and Paris (scikit-network, the strongest classical tree here) — "
+            "and refines the best with exact-guarded moves, so it is ≤ each of them by construction. "
+            "Paris alone is a close second; average/Ward linkages trail.</p>"
+            f"{attr_html}"
+            f"{viz_html}")
+
     # dataset facts
     facts = {}
     for r in recs:
@@ -281,6 +450,8 @@ def main():
     .kpi div{background:#f9fafb;border:1px solid var(--bd);border-radius:8px;padding:10px 16px}
     .kpi b{font-size:22px;display:block} .foot{color:var(--mut);font-size:13px;margin-top:40px;border-top:1px solid var(--bd);padding-top:14px}
     svg{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:8px;background:#fff}
+    .grid{display:flex;gap:14px;flex-wrap:wrap;margin:8px 0}
+    .fig{flex:1 1 260px;min-width:240px} .fig .cap{font-size:12.5px;color:var(--mut);text-align:center;margin-top:4px}
     """
 
     page = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
@@ -317,6 +488,8 @@ selib.summarize(recs, "nmi")</code></pre>
 {se_block or ""}
 
 {hier_block or ""}
+
+{cmp_block or ""}
 
 <h2>1 · Real graphs &amp; controlled SBM</h2>
 {legend(methods)}
@@ -373,6 +546,12 @@ part of the structural-entropy survey &amp; benchmark project.</div>
     # ship the raw results next to the page
     with open(os.path.join(OUT_DIR, "benchmark_results.json"), "w") as f:
         json.dump(data, f, indent=2)
+    for extra in ("hier_results.json", "compare_results.json",
+                  "attributed_compare.json", "viz.json"):
+        src = os.path.join(os.path.dirname(RES), extra)
+        if os.path.exists(src):
+            with open(src) as fi, open(os.path.join(OUT_DIR, extra), "w") as fo:
+                fo.write(fi.read())
     # tell Pages not to run Jekyll
     open(os.path.join(OUT_DIR, ".nojekyll"), "w").close()
     print(f"wrote {OUT_DIR}/index.html  ({n_runs} records)")

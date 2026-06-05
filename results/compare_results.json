@@ -1,0 +1,377 @@
+{
+  "two_d_methods": [
+    "louvain",
+    "leiden",
+    "infomap",
+    "codeseg",
+    "se_louvain"
+  ],
+  "datasets": [
+    "Karate",
+    "SBM-Clean",
+    "SBM-Noisy",
+    "LFR-mu0.1",
+    "LFR-mu0.3",
+    "LFR-mu0.5"
+  ],
+  "twod": {
+    "Karate": {
+      "louvain": {
+        "nmi": 0.596,
+        "ari": 0.4941,
+        "se2d": 3.3113,
+        "k": 4.0
+      },
+      "leiden": {
+        "nmi": 0.5878,
+        "ari": 0.4646,
+        "se2d": 3.2788,
+        "k": 4.0
+      },
+      "infomap": {
+        "nmi": 0.5684,
+        "ari": 0.5906,
+        "se2d": 3.4963,
+        "k": 3.0
+      },
+      "codeseg": {
+        "nmi": 0.4408,
+        "ari": 0.1853,
+        "se2d": 3.4284,
+        "k": 9.0
+      },
+      "se_louvain": {
+        "nmi": 0.4988,
+        "ari": 0.2943,
+        "se2d": 3.2287,
+        "k": 6.0
+      }
+    },
+    "SBM-Clean": {
+      "louvain": {
+        "nmi": 1.0,
+        "ari": 1.0,
+        "se2d": 6.0304,
+        "k": 3.0
+      },
+      "leiden": {
+        "nmi": 1.0,
+        "ari": 1.0,
+        "se2d": 6.0304,
+        "k": 3.0
+      },
+      "infomap": {
+        "nmi": 1.0,
+        "ari": 1.0,
+        "se2d": 6.0304,
+        "k": 3.0
+      },
+      "codeseg": {
+        "nmi": 0.4179,
+        "ari": 0.1624,
+        "se2d": 6.3158,
+        "k": 28.0
+      },
+      "se_louvain": {
+        "nmi": 0.7657,
+        "ari": 0.6004,
+        "se2d": 5.9778,
+        "k": 6.0
+      }
+    },
+    "SBM-Noisy": {
+      "louvain": {
+        "nmi": 0.1072,
+        "ari": 0.0381,
+        "se2d": 6.1961,
+        "k": 9.0
+      },
+      "leiden": {
+        "nmi": 0.0886,
+        "ari": 0.0366,
+        "se2d": 6.1998,
+        "k": 7.3333
+      },
+      "infomap": {
+        "nmi": 0.0,
+        "ari": 0.0,
+        "se2d": 7.1827,
+        "k": 1.0
+      },
+      "codeseg": {
+        "nmi": 0.2272,
+        "ari": 0.0082,
+        "se2d": 6.545,
+        "k": 61.0
+      },
+      "se_louvain": {
+        "nmi": 0.1338,
+        "ari": 0.0364,
+        "se2d": 6.1776,
+        "k": 13.6667
+      }
+    },
+    "LFR-mu0.1": {
+      "louvain": {
+        "nmi": 1.0,
+        "ari": 1.0,
+        "se2d": 5.0671,
+        "k": 7.0
+      },
+      "leiden": {
+        "nmi": 1.0,
+        "ari": 1.0,
+        "se2d": 5.0671,
+        "k": 7.0
+      },
+      "infomap": {
+        "nmi": 1.0,
+        "ari": 1.0,
+        "se2d": 5.0671,
+        "k": 7.0
+      },
+      "codeseg": {
+        "nmi": 0.8303,
+        "ari": 0.7055,
+        "se2d": 5.5327,
+        "k": 26.0
+      },
+      "se_louvain": {
+        "nmi": 1.0,
+        "ari": 1.0,
+        "se2d": 5.0671,
+        "k": 7.0
+      }
+    },
+    "LFR-mu0.3": {
+      "louvain": {
+        "nmi": 0.9391,
+        "ari": 0.9298,
+        "se2d": 5.736,
+        "k": 7.0
+      },
+      "leiden": {
+        "nmi": 0.9442,
+        "ari": 0.9356,
+        "se2d": 5.7437,
+        "k": 7.0
+      },
+      "infomap": {
+        "nmi": 0.9026,
+        "ari": 0.8131,
+        "se2d": 5.8228,
+        "k": 6.3333
+      },
+      "codeseg": {
+        "nmi": 0.6446,
+        "ari": 0.4376,
+        "se2d": 6.1066,
+        "k": 36.0
+      },
+      "se_louvain": {
+        "nmi": 0.8768,
+        "ari": 0.7408,
+        "se2d": 5.728,
+        "k": 9.0
+      }
+    },
+    "LFR-mu0.5": {
+      "louvain": {
+        "nmi": 0.268,
+        "ari": 0.1192,
+        "se2d": 6.1631,
+        "k": 7.0
+      },
+      "leiden": {
+        "nmi": 0.2836,
+        "ari": 0.1277,
+        "se2d": 6.1217,
+        "k": 7.0
+      },
+      "infomap": {
+        "nmi": 0.0,
+        "ari": 0.0,
+        "se2d": 7.1414,
+        "k": 1.0
+      },
+      "codeseg": {
+        "nmi": 0.3944,
+        "ari": 0.0607,
+        "se2d": 6.4243,
+        "k": 48.0
+      },
+      "se_louvain": {
+        "nmi": 0.3085,
+        "ari": 0.1228,
+        "se2d": 6.129,
+        "k": 12.0
+      }
+    }
+  },
+  "hier": {
+    "Karate": {
+      "se_hier": {
+        "hd_se": 2.4856,
+        "dasgupta": 2625.0
+      },
+      "se_agglomerative": {
+        "hd_se": 2.6932,
+        "dasgupta": 2304.0
+      },
+      "average": {
+        "hd_se": 2.7948,
+        "dasgupta": 2802.0
+      },
+      "ward": {
+        "hd_se": 2.7908,
+        "dasgupta": 2829.0
+      },
+      "paris": {
+        "hd_se": 2.4856,
+        "dasgupta": 2625.0
+      }
+    },
+    "SBM-Clean": {
+      "se_hier": {
+        "hd_se": 5.0286,
+        "dasgupta": 85440.0
+      },
+      "se_agglomerative": {
+        "hd_se": 5.3071,
+        "dasgupta": 81858.0
+      },
+      "average": {
+        "hd_se": 5.1299,
+        "dasgupta": 89480.0
+      },
+      "ward": {
+        "hd_se": 5.2882,
+        "dasgupta": 98563.0
+      },
+      "paris": {
+        "hd_se": 5.0324,
+        "dasgupta": 85409.0
+      }
+    },
+    "SBM-Noisy": {
+      "se_hier": {
+        "hd_se": 5.3495,
+        "dasgupta": 93041.0
+      },
+      "se_agglomerative": {
+        "hd_se": 5.4496,
+        "dasgupta": 93208.0
+      },
+      "average": {
+        "hd_se": 5.4739,
+        "dasgupta": 93134.0
+      },
+      "ward": {
+        "hd_se": 5.4732,
+        "dasgupta": 95586.0
+      },
+      "paris": {
+        "hd_se": 5.3495,
+        "dasgupta": 93041.0
+      }
+    },
+    "LFR-mu0.1": {
+      "se_hier": {
+        "hd_se": 4.1184,
+        "dasgupta": 40673.0
+      },
+      "se_agglomerative": {
+        "hd_se": 4.3636,
+        "dasgupta": 39778.0
+      },
+      "average": {
+        "hd_se": 4.3452,
+        "dasgupta": 46512.0
+      },
+      "ward": {
+        "hd_se": 4.2727,
+        "dasgupta": 46067.0
+      },
+      "paris": {
+        "hd_se": 4.124,
+        "dasgupta": 40600.0
+      }
+    },
+    "LFR-mu0.3": {
+      "se_hier": {
+        "hd_se": 5.0343,
+        "dasgupta": 84418.0
+      },
+      "se_agglomerative": {
+        "hd_se": 5.099,
+        "dasgupta": 80040.0
+      },
+      "average": {
+        "hd_se": 5.2826,
+        "dasgupta": 91787.0
+      },
+      "ward": {
+        "hd_se": 5.2899,
+        "dasgupta": 94429.0
+      },
+      "paris": {
+        "hd_se": 5.0594,
+        "dasgupta": 86852.0
+      }
+    },
+    "LFR-mu0.5": {
+      "se_hier": {
+        "hd_se": 5.3532,
+        "dasgupta": 100689.0
+      },
+      "se_agglomerative": {
+        "hd_se": 5.4456,
+        "dasgupta": 99638.0
+      },
+      "average": {
+        "hd_se": 5.4587,
+        "dasgupta": 100106.0
+      },
+      "ward": {
+        "hd_se": 5.5025,
+        "dasgupta": 104012.0
+      },
+      "paris": {
+        "hd_se": 5.3532,
+        "dasgupta": 100689.0
+      }
+    }
+  },
+  "facts": {
+    "Karate": {
+      "n": 34,
+      "m": 78,
+      "k_true": 2
+    },
+    "SBM-Clean": {
+      "n": 150,
+      "m": 1419,
+      "k_true": 3
+    },
+    "SBM-Noisy": {
+      "n": 150,
+      "m": 1185,
+      "k_true": 3
+    },
+    "LFR-mu0.1": {
+      "n": 150,
+      "m": 1203,
+      "k_true": 7
+    },
+    "LFR-mu0.3": {
+      "n": 150,
+      "m": 1285,
+      "k_true": 7
+    },
+    "LFR-mu0.5": {
+      "n": 150,
+      "m": 1274,
+      "k_true": 7
+    }
+  }
+}
