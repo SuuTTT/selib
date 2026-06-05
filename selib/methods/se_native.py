@@ -24,3 +24,13 @@ def se_agglom(G, k=None, seed=0):
     n = G.number_of_nodes()
     Z = se_agglomerative(G)
     return _cut_linkage(Z, n, k or 2)
+
+
+@method("se_louvain", family="community_detection", is_se=True, native=True,
+        paper="Li & Pan 2016 (2D-SE); this lib's multilevel optimizer",
+        note="native: Louvain-style multilevel 2D-SE minimization (local node moves + "
+             "community aggregation + multistart); merges down to k if k given. "
+             "Strong replacement for the merge-only se_agglomerative.")
+def se_louvain(G, k=None, seed=0):
+    from ..seopt import se_optimize
+    return se_optimize(G, k=k, seed=seed)

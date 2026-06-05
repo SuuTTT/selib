@@ -14,7 +14,7 @@ import json, os, time
 import selib
 from selib import datasets as D, metrics as M, get
 
-METHODS = ["louvain", "leiden", "infomap", "spectral", "se_agglomerative"]
+METHODS = ["louvain", "leiden", "infomap", "spectral", "se_agglomerative", "se_louvain"]
 
 
 def datasets_block():

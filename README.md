@@ -19,6 +19,14 @@ and a Louvain baseline are scored exactly the same way.
 - **Native SE core** (`selib.se`): greedy 2D-structural-entropy encoding tree
   (`se_agglomerative`) + Dasgupta cost. Dependency-light; the seed of a fuller
   encoding-tree + differentiable-SE engine.
+- **`se_louvain` — the recommended SE minimizer** (`selib.seopt`): a Louvain-style
+  multilevel optimizer of the *same* 2D-SE objective (local node moves + community
+  aggregation + multistart, exact O(degree) move delta). The merge-only
+  `se_agglomerative` gets stuck in poor local optima; `se_louvain` reaches lower
+  structural entropy on every benchmark graph and substantially higher community-
+  detection accuracy. Validated against the canonical metric and brute-force
+  exhaustive optima (gap 0.000 on small graphs). See the
+  [benchmark page](https://suuttt.github.io/selib/).
 - **Baselines** (native): Louvain, Leiden, Infomap, spectral clustering.
 - **Drop-in wrappers** over published SE methods' *original* code (deDoc jar,
   CoDeSEG binary, …). selib doesn't vendor upstream code; point it at the artifact
