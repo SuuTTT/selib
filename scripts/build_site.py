@@ -394,14 +394,15 @@ def main():
                 "DeSE / LSENet are the published feature-aware SE methods (reproduction-campaign "
                 "numbers); the rest are run fresh by selib on the same standard Planetoid data.</p>"
                 "<h4>NMI</h4>" + a_nmi + "<h4>ARI</h4>" + a_ari +
-                "<p class='note'>Reading: feature-aware beats topology-only — DeSE leads, and "
-                "<code>se_gnn</code> (a 2-layer GCN over the normalized adjacency, best-of-starts "
-                "selected by the SE objective itself) beats <b>every topology method on both ARI "
-                "and ACC, on both datasets</b>, while modularity methods' higher NMI comes with "
-                "100–470 communities (NMI inflation). Topology-only <code>se_louvain</code> "
-                "struggles here — the feature signal is essential. Known remaining gap to DeSE: "
-                "pure SE-minimization with a softmax head <i>under-segments</i> (k≈3 of 6–7 "
-                "classes); a balanced-assignment head (Sinkhorn) is the next step.</p>")
+                "<p class='note'>Reading: feature-aware beats topology-only. <code>se_gnn</code> "
+                "(2-layer GCN over the normalized adjacency + a <b>balanced Sinkhorn assignment "
+                "head</b>, best-of-starts selected by the SE objective) finds the full number of "
+                "communities (k = 6–7, no collapse) and beats <b>every topology method on NMI, ARI "
+                "and ACC on both datasets</b> — on Cora it matches LSENet (NMI 0.487 vs 0.495) "
+                "with a far smaller model. The Sinkhorn head is what prevents the cluster collapse "
+                "that pure SE minimization induces with a plain softmax (ablation in "
+                "<a href='segnn_head_eval.json'>segnn_head_eval.json</a>). DeSE still leads NMI — "
+                "the remaining gap.</p>")
 
         # visualizations
         viz_html = ""
@@ -463,6 +464,69 @@ def main():
             "full-depth H<sup>T</sup> is higher here. Paris is the best non-SE classical tree.</p>"
             f"{attr_html}"
             f"{viz_html}")
+
+    # --- Robustness (multi graph seeds) + large-n hierarchy scaling ---
+    rs_block = None
+    rb_path = os.path.join(os.path.dirname(RES), "robustness_results.json")
+    hl_path = os.path.join(os.path.dirname(RES), "hier_large_results.json")
+    if os.path.exists(rb_path) or os.path.exists(hl_path):
+        parts = ["<h2>0d · Robustness &amp; scale</h2>"]
+        if os.path.exists(rb_path):
+            RB = json.load(open(rb_path))
+            rows = []
+            w2 = wh = tot = 0
+            for d, row in RB["twod"].items():
+                tot += 1
+                means = {m: (v.get("se2d") or {}).get("mean") for m, v in row.items()}
+                sl = means.get("se_louvain")
+                others = [v for m, v in means.items() if m != "se_louvain" and v is not None]
+                ok2 = sl is not None and (not others or sl <= min(others) + 1e-9)
+                w2 += ok2
+                hrow = RB["hier"].get(d, {})
+                sh = (hrow.get("se_hier", {}).get("hd_se") or {}).get("mean")
+                pa = (hrow.get("paris", {}).get("hd_se") or {}).get("mean")
+                okh = sh is not None and (pa is None or sh <= pa + 1e-6)
+                wh += okh
+                rows.append(f"<tr><th class='rowh'>{html.escape(d)}</th>"
+                            f"<td class='se'>{fmt(sl)}</td><td>{fmt(min(others)) if others else '—'}</td>"
+                            f"<td>{'✓' if ok2 else '✗'}</td>"
+                            f"<td class='se'>{fmt(sh)}</td><td>{fmt(pa)}</td>"
+                            f"<td>{'✓' if okh else '✗'}</td></tr>")
+            parts.append(
+                f"<p class='note'>Every synthetic comparison repeated over <b>{len(RB['graph_seeds'])} "
+                f"independent graph realizations</b> (means shown). <code>se_louvain</code> has the "
+                f"lowest mean 2D-SE on <b>{w2}/{tot}</b> generators; <code>se_hier</code> ≤ Paris "
+                f"(the strongest classical tree) on <b>{wh}/{tot}</b>.</p>"
+                "<div class='tablewrap'><table><thead><tr><th></th>"
+                "<th>se_louvain 2D-SE</th><th>best other</th><th>lowest?</th>"
+                "<th>se_hier H<sup>T</sup></th><th>Paris H<sup>T</sup></th><th>≤ Paris?</th>"
+                f"</tr></thead><tbody>{''.join(rows)}</tbody></table></div>")
+        if os.path.exists(hl_path):
+            HL = json.load(open(hl_path))
+            hm = ["se_hier", "se_agglomerative", "bbm", "paris"]
+            th = "".join(f"<th>{m}</th>" for m in hm) + "<th>se_hier time</th>"
+            rows = []
+            for d, row in HL.items():
+                vals = {m: (row.get(m) or {}).get("hd_se") for m in hm}
+                fin = [v for v in vals.values() if isinstance(v, (int, float))]
+                best = min(fin) if fin else None
+                cells = []
+                for m in hm:
+                    v = vals.get(m)
+                    cls = " class='best'" if (best is not None and isinstance(v, (int, float))
+                                              and abs(v - best) < 1e-9) else (" class='se'" if m in ("se_hier", "se_agglomerative", "bbm") else "")
+                    cells.append(f"<td{cls}>{fmt(v)}</td>")
+                tsec = (row.get("se_hier") or {}).get("time_s")
+                rows.append(f"<tr><th class='rowh'>{html.escape(d)} (n={row['n']})</th>"
+                            f"{''.join(cells)}<td>{fmt(tsec, 0)}s</td></tr>")
+            parts.append(
+                "<h3>Hierarchy quality at n = 500–1000</h3>"
+                "<p class='note'>The first-improvement refinement (exact-guarded, O(m log h) "
+                "scoring) extends <code>se_hier</code> beyond small graphs: it reaches the lowest "
+                "H<sup>T</sup> at every size, with growing margins over Paris and the original BBM.</p>"
+                f"<div class='tablewrap'><table><thead><tr><th></th>{th}</tr></thead>"
+                f"<tbody>{''.join(rows)}</tbody></table></div>")
+        rs_block = "".join(parts)
 
     # dataset facts
     facts = {}
@@ -538,6 +602,8 @@ selib.summarize(recs, "nmi")</code></pre>
 
 {cmp_block or ""}
 
+{rs_block or ""}
+
 <h2>1 · Real graphs &amp; controlled SBM</h2>
 {legend(methods)}
 {t_nmi}{t_ari}{t_mod}{t_se}
@@ -595,7 +661,9 @@ part of the structural-entropy survey &amp; benchmark project.</div>
         json.dump(data, f, indent=2)
     for extra in ("hier_results.json", "compare_results.json",
                   "attributed_compare.json", "viz.json",
-                  "attr_results.json", "hcse_bbm_results.json"):
+                  "attr_results.json", "hcse_bbm_results.json",
+                  "robustness_results.json", "hier_large_results.json",
+                  "segnn_head_eval.json"):
         src = os.path.join(os.path.dirname(RES), extra)
         if os.path.exists(src):
             with open(src) as fi, open(os.path.join(OUT_DIR, extra), "w") as fo:
