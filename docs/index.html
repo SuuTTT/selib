@@ -1,0 +1,104 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>selib — structural-entropy benchmark</title>
+<meta name="description" content="selib: a standardized library for structural entropy. Benchmark of SE methods vs. classical community-detection baselines, scored uniformly.">
+<style>
+    :root{--fg:#1f2937;--mut:#6b7280;--se:#e0245e;--bg:#fff;--bd:#e5e7eb}
+    *{box-sizing:border-box}
+    body{font:16px/1.6 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+         color:var(--fg);max-width:980px;margin:0 auto;padding:32px 20px 80px;background:var(--bg)}
+    h1{font-size:30px;margin:0 0 4px} h2{font-size:22px;margin:42px 0 8px;border-bottom:2px solid var(--bd);padding-bottom:6px}
+    h3{font-size:17px;margin:22px 0 4px} a{color:#2563eb}
+    .sub{color:var(--mut);margin:0 0 6px} .note{color:var(--mut);font-size:14px;margin:2px 0 10px}
+    code{background:#f3f4f6;padding:2px 6px;border-radius:5px;font-size:14px}
+    pre{background:#0f172a;color:#e2e8f0;padding:16px;border-radius:8px;overflow:auto;font-size:13.5px;line-height:1.5}
+    pre code{background:none;color:inherit;padding:0}
+    .badges span{display:inline-block;background:#f3f4f6;border:1px solid var(--bd);border-radius:20px;
+                 padding:3px 12px;margin:3px 6px 3px 0;font-size:13px;color:var(--mut)}
+    .tablewrap{overflow-x:auto} table{border-collapse:collapse;width:100%;margin:6px 0 4px;font-size:14px}
+    th,td{border:1px solid var(--bd);padding:6px 10px;text-align:right} thead th{background:#f9fafb;text-align:right}
+    th.rowh,td:first-child{text-align:left} .rowh{background:#f9fafb;font-weight:600}
+    td.best{background:#fff0f5;color:var(--se);font-weight:700} td.se{color:var(--se)}
+    .legend{margin:6px 0 2px} .lg{display:inline-block;margin-right:14px;font-size:13px;color:var(--mut)}
+    .sw{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:middle}
+    .axt{font-size:11px;fill:#9ca3af} .axl{font-size:12px;fill:#6b7280}
+    .card{border:1px solid var(--bd);border-radius:10px;padding:14px 18px;margin:14px 0;background:#fff}
+    .kpi{display:flex;gap:24px;flex-wrap:wrap;margin:10px 0}
+    .kpi div{background:#f9fafb;border:1px solid var(--bd);border-radius:8px;padding:10px 16px}
+    .kpi b{font-size:22px;display:block} .foot{color:var(--mut);font-size:13px;margin-top:40px;border-top:1px solid var(--bd);padding-top:14px}
+    svg{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:8px;background:#fff}
+    </style></head><body>
+
+<h1>selib</h1>
+<p class="sub">A standardized library for <b>structural entropy</b> — compute it, optimize it,
+and benchmark SE methods against classical baselines under one API.</p>
+<div class="badges"><span>v0.1.0</span>
+<span>241 benchmark runs</span><span>5 methods</span>
+<span>13 datasets</span><span>MIT</span></div>
+<p><a href="https://github.com/SuuTTT/selib">GitHub repo</a> ·
+<a href="benchmark_results.json">raw results JSON</a> ·
+<a href="https://github.com/SuuTTT/structural-entropy-benchmark">reproduction benchmark</a> ·
+<a href="https://github.com/SuuTTT/structural-entropy-survey-paper">survey paper</a></p>
+
+<h2>What this is</h2>
+<p>Every SE paper ships its own loader, metric, and (often unmaintained) code, so
+"does structural entropy actually help?" is hard to answer on equal footing.
+<code>selib</code> fixes the interface: one <code>Method.fit_predict(G, k, seed)</code>
+contract, a native 2D-structural-entropy encoding-tree core, shared datasets and
+metrics, and a one-call benchmark — so an SE method and a Louvain baseline are
+scored exactly the same way. The tables below are produced by that benchmark; the
+headline takeaway matches the survey's <i>regime-dependent</i> verdict.</p>
+
+<pre><code>import selib
+recs = selib.benchmark(["louvain", "leiden", "se_agglomerative"],
+                       ["Karate", "SBM-Clean", "SBM-Noisy"])
+selib.summarize(recs, "nmi")</code></pre>
+
+<h2>1 · Real graphs &amp; controlled SBM</h2>
+<div class="legend"><span class="lg"><span class="sw" style="background:#6b7280"></span>louvain</span><span class="lg"><span class="sw" style="background:#9ca3af"></span>leiden</span><span class="lg"><span class="sw" style="background:#a8a29e"></span>infomap</span><span class="lg"><span class="sw" style="background:#60a5fa"></span>spectral</span><span class="lg"><span class="sw" style="background:#e0245e"></span>se_agglomerative (SE)</span></div>
+<h3>Accuracy — NMI vs. ground truth</h3><p class='note'>Higher is better; best per row in red.</p><div class='tablewrap'><table><thead><tr><th></th><th>louvain</th><th>leiden</th><th>infomap</th><th>spectral</th><th>se_agglomerative</th></tr></thead><tbody><tr><th class='rowh'>Karate</th><td>0.616</td><td>0.588</td><td>0.568</td><td class="best">0.837</td><td class="best">0.837</td></tr><tr><th class='rowh'>SBM-Clean</th><td class="best">1.000</td><td class="best">1.000</td><td class="best">1.000</td><td class="best">1.000</td><td class="se">0.970</td></tr><tr><th class='rowh'>SBM-Noisy</th><td class="best">0.102</td><td>0.099</td><td>0.000</td><td>0.073</td><td class="se">0.027</td></tr></tbody></table></div><h3>Accuracy — ARI vs. ground truth</h3><p class='note'>Higher is better.</p><div class='tablewrap'><table><thead><tr><th></th><th>louvain</th><th>leiden</th><th>infomap</th><th>spectral</th><th>se_agglomerative</th></tr></thead><tbody><tr><th class='rowh'>Karate</th><td>0.535</td><td>0.465</td><td>0.591</td><td class="best">0.882</td><td class="best">0.882</td></tr><tr><th class='rowh'>SBM-Clean</th><td class="best">1.000</td><td class="best">1.000</td><td class="best">1.000</td><td class="best">1.000</td><td class="se">0.980</td></tr><tr><th class='rowh'>SBM-Noisy</th><td>0.037</td><td>0.049</td><td>0.000</td><td class="best">0.053</td><td class="se">0.015</td></tr></tbody></table></div><h3>Cross-objective — modularity</h3><p class='note'>Higher = more modular partition.</p><div class='tablewrap'><table><thead><tr><th></th><th>louvain</th><th>leiden</th><th>infomap</th><th>spectral</th><th>se_agglomerative</th></tr></thead><tbody><tr><th class='rowh'>Karate</th><td>0.442</td><td class="best">0.445</td><td>0.432</td><td>0.404</td><td class="se">0.404</td></tr><tr><th class='rowh'>SBM-Clean</th><td class="best">0.405</td><td class="best">0.405</td><td class="best">0.405</td><td class="best">0.405</td><td class="se">0.402</td></tr><tr><th class='rowh'>SBM-Noisy</th><td class="best">0.206</td><td>0.093</td><td>0.000</td><td>0.171</td><td class="se">0.152</td></tr></tbody></table></div><h3>Cross-objective — 2D structural entropy</h3><p class='note'>Lower = more structure captured by the partition.</p><div class='tablewrap'><table><thead><tr><th></th><th>louvain</th><th>leiden</th><th>infomap</th><th>spectral</th><th>se_agglomerative</th></tr></thead><tbody><tr><th class='rowh'>Karate</th><td>3.351</td><td class="best">3.279</td><td>3.496</td><td>3.731</td><td class="se">3.731</td></tr><tr><th class='rowh'>SBM-Clean</th><td class="best">6.030</td><td class="best">6.030</td><td class="best">6.030</td><td class="best">6.030</td><td class="se">6.035</td></tr><tr><th class='rowh'>SBM-Noisy</th><td class="best">6.192</td><td>6.518</td><td>7.183</td><td>6.404</td><td class="se">6.419</td></tr></tbody></table></div>
+<p class="note">SE (<span style="color:var(--se)">se_agglomerative</span>, the native greedy
+2D-SE encoding tree) matches the baselines on clean, well-separated structure and on
+Karate, but does not rescue performance once the planted signal is weak — the same
+fragility the survey reports for unsupervised community detection.</p>
+
+<h2>2 · LFR difficulty sweep</h2>
+<p class="note">LFR graphs (n=500), mixing parameter μ on the x-axis: higher μ = more
+inter-community edges = harder. Mean NMI over 5 seeds.</p>
+<div class="legend"><span class="lg"><span class="sw" style="background:#6b7280"></span>louvain</span><span class="lg"><span class="sw" style="background:#9ca3af"></span>leiden</span><span class="lg"><span class="sw" style="background:#a8a29e"></span>infomap</span><span class="lg"><span class="sw" style="background:#60a5fa"></span>spectral</span><span class="lg"><span class="sw" style="background:#e0245e"></span>se_agglomerative (SE)</span></div>
+<svg viewBox="0 0 720 320" xmlns="http://www.w3.org/2000/svg" role="img"><line x1="52" y1="280.0" x2="704" y2="280.0" stroke="#eee"/><text x="44" y="284.0" text-anchor="end" class="axt">0.00</text><line x1="52" y1="214.0" x2="704" y2="214.0" stroke="#eee"/><text x="44" y="218.0" text-anchor="end" class="axt">0.25</text><line x1="52" y1="148.0" x2="704" y2="148.0" stroke="#eee"/><text x="44" y="152.0" text-anchor="end" class="axt">0.50</text><line x1="52" y1="82.0" x2="704" y2="82.0" stroke="#eee"/><text x="44" y="86.0" text-anchor="end" class="axt">0.75</text><line x1="52" y1="16.0" x2="704" y2="16.0" stroke="#eee"/><text x="44" y="20.0" text-anchor="end" class="axt">1.00</text><text x="52.0" y="298" text-anchor="middle" class="axt">0.1</text><text x="182.4" y="298" text-anchor="middle" class="axt">0.2</text><text x="312.8" y="298" text-anchor="middle" class="axt">0.3</text><text x="443.2" y="298" text-anchor="middle" class="axt">0.4</text><text x="573.6" y="298" text-anchor="middle" class="axt">0.5</text><text x="704.0" y="298" text-anchor="middle" class="axt">0.6</text><text x="14" y="148.0" transform="rotate(-90 14 148.0)" text-anchor="middle" class="axl">mean NMI</text><polyline points="52.0,16.0 182.4,16.0 312.8,19.2 443.2,57.7 573.6,158.8 704.0,248.5" fill="none" stroke="#6b7280" stroke-width="2"/><circle cx="52.0" cy="16.0" r="2.5" fill="#6b7280"/><circle cx="182.4" cy="16.0" r="2.5" fill="#6b7280"/><circle cx="312.8" cy="19.2" r="2.5" fill="#6b7280"/><circle cx="443.2" cy="57.7" r="2.5" fill="#6b7280"/><circle cx="573.6" cy="158.8" r="2.5" fill="#6b7280"/><circle cx="704.0" cy="248.5" r="2.5" fill="#6b7280"/><polyline points="52.0,16.0 182.4,16.0 312.8,18.1 443.2,51.0 573.6,159.7 704.0,248.9" fill="none" stroke="#9ca3af" stroke-width="2"/><circle cx="52.0" cy="16.0" r="2.5" fill="#9ca3af"/><circle cx="182.4" cy="16.0" r="2.5" fill="#9ca3af"/><circle cx="312.8" cy="18.1" r="2.5" fill="#9ca3af"/><circle cx="443.2" cy="51.0" r="2.5" fill="#9ca3af"/><circle cx="573.6" cy="159.7" r="2.5" fill="#9ca3af"/><circle cx="704.0" cy="248.9" r="2.5" fill="#9ca3af"/><polyline points="52.0,16.0 182.4,16.0 312.8,17.2 443.2,280.0 573.6,280.0 704.0,280.0" fill="none" stroke="#a8a29e" stroke-width="2"/><circle cx="52.0" cy="16.0" r="2.5" fill="#a8a29e"/><circle cx="182.4" cy="16.0" r="2.5" fill="#a8a29e"/><circle cx="312.8" cy="17.2" r="2.5" fill="#a8a29e"/><circle cx="443.2" cy="280.0" r="2.5" fill="#a8a29e"/><circle cx="573.6" cy="280.0" r="2.5" fill="#a8a29e"/><circle cx="704.0" cy="280.0" r="2.5" fill="#a8a29e"/><polyline points="52.0,16.0 182.4,16.0 312.8,16.0 443.2,39.6 573.6,143.6 704.0,241.0" fill="none" stroke="#60a5fa" stroke-width="2"/><circle cx="52.0" cy="16.0" r="2.5" fill="#60a5fa"/><circle cx="182.4" cy="16.0" r="2.5" fill="#60a5fa"/><circle cx="312.8" cy="16.0" r="2.5" fill="#60a5fa"/><circle cx="443.2" cy="39.6" r="2.5" fill="#60a5fa"/><circle cx="573.6" cy="143.6" r="2.5" fill="#60a5fa"/><circle cx="704.0" cy="241.0" r="2.5" fill="#60a5fa"/><polyline points="52.0,18.0 182.4,19.2 312.8,41.5 443.2,111.0 573.6,209.2 704.0,247.0" fill="none" stroke="#e0245e" stroke-width="3"/><circle cx="52.0" cy="18.0" r="3.5" fill="#e0245e"/><circle cx="182.4" cy="19.2" r="3.5" fill="#e0245e"/><circle cx="312.8" cy="41.5" r="3.5" fill="#e0245e"/><circle cx="443.2" cy="111.0" r="3.5" fill="#e0245e"/><circle cx="573.6" cy="209.2" r="3.5" fill="#e0245e"/><circle cx="704.0" cy="247.0" r="3.5" fill="#e0245e"/></svg>
+<p class="note">All methods — SE and baselines alike — degrade together as μ rises and
+collapse past the detectability threshold; no method's curve is rescued by the SE
+objective. This is the core empirical message, now reproducible in one call.</p>
+
+<h2>3 · Scalability</h2>
+<p class="note">SBM with per-node community signal held constant as N grows
+(k=10 blocks). Left: wall-clock per run; right table: NMI stays high, so runtime is
+measured on a task every method can solve.</p>
+<div class="legend"><span class="lg"><span class="sw" style="background:#6b7280"></span>louvain</span><span class="lg"><span class="sw" style="background:#9ca3af"></span>leiden</span><span class="lg"><span class="sw" style="background:#a8a29e"></span>infomap</span><span class="lg"><span class="sw" style="background:#60a5fa"></span>spectral</span><span class="lg"><span class="sw" style="background:#e0245e"></span>se_agglomerative (SE)</span></div>
+<svg viewBox="0 0 720 320" xmlns="http://www.w3.org/2000/svg" role="img"><line x1="52" y1="280.0" x2="704" y2="280.0" stroke="#eee"/><text x="44" y="284.0" text-anchor="end" class="axt">0.00</text><line x1="52" y1="214.0" x2="704" y2="214.0" stroke="#eee"/><text x="44" y="218.0" text-anchor="end" class="axt">10.14</text><line x1="52" y1="148.0" x2="704" y2="148.0" stroke="#eee"/><text x="44" y="152.0" text-anchor="end" class="axt">20.27</text><line x1="52" y1="82.0" x2="704" y2="82.0" stroke="#eee"/><text x="44" y="86.0" text-anchor="end" class="axt">30.41</text><line x1="52" y1="16.0" x2="704" y2="16.0" stroke="#eee"/><text x="44" y="20.0" text-anchor="end" class="axt">40.54</text><text x="52.0" y="298" text-anchor="middle" class="axt">200</text><text x="269.3" y="298" text-anchor="middle" class="axt">500</text><text x="486.7" y="298" text-anchor="middle" class="axt">1000</text><text x="704.0" y="298" text-anchor="middle" class="axt">2000</text><text x="14" y="148.0" transform="rotate(-90 14 148.0)" text-anchor="middle" class="axl">wall-clock (s)</text><polyline points="52.0,279.9 269.3,279.8 486.7,279.3 704.0,278.6" fill="none" stroke="#6b7280" stroke-width="2"/><circle cx="52.0" cy="279.9" r="2.5" fill="#6b7280"/><circle cx="269.3" cy="279.8" r="2.5" fill="#6b7280"/><circle cx="486.7" cy="279.3" r="2.5" fill="#6b7280"/><circle cx="704.0" cy="278.6" r="2.5" fill="#6b7280"/><polyline points="52.0,279.9 269.3,279.8 486.7,279.6 704.0,279.0" fill="none" stroke="#9ca3af" stroke-width="2"/><circle cx="52.0" cy="279.9" r="2.5" fill="#9ca3af"/><circle cx="269.3" cy="279.8" r="2.5" fill="#9ca3af"/><circle cx="486.7" cy="279.6" r="2.5" fill="#9ca3af"/><circle cx="704.0" cy="279.0" r="2.5" fill="#9ca3af"/><polyline points="52.0,279.2 269.3,279.3 486.7,278.3 704.0,276.0" fill="none" stroke="#a8a29e" stroke-width="2"/><circle cx="52.0" cy="279.2" r="2.5" fill="#a8a29e"/><circle cx="269.3" cy="279.3" r="2.5" fill="#a8a29e"/><circle cx="486.7" cy="278.3" r="2.5" fill="#a8a29e"/><circle cx="704.0" cy="276.0" r="2.5" fill="#a8a29e"/><polyline points="52.0,277.1 269.3,274.0 486.7,268.5 704.0,265.6" fill="none" stroke="#60a5fa" stroke-width="2"/><circle cx="52.0" cy="277.1" r="2.5" fill="#60a5fa"/><circle cx="269.3" cy="274.0" r="2.5" fill="#60a5fa"/><circle cx="486.7" cy="268.5" r="2.5" fill="#60a5fa"/><circle cx="704.0" cy="265.6" r="2.5" fill="#60a5fa"/><polyline points="52.0,277.5 269.3,265.5 486.7,215.4 704.0,28.6" fill="none" stroke="#e0245e" stroke-width="3"/><circle cx="52.0" cy="277.5" r="3.5" fill="#e0245e"/><circle cx="269.3" cy="265.5" r="3.5" fill="#e0245e"/><circle cx="486.7" cy="215.4" r="3.5" fill="#e0245e"/><circle cx="704.0" cy="28.6" r="3.5" fill="#e0245e"/></svg>
+<h3>Scalability — NMI</h3><p class='note'>Per-node community signal held constant as N grows.</p><div class='tablewrap'><table><thead><tr><th></th><th>louvain</th><th>leiden</th><th>infomap</th><th>spectral</th><th>se_agglomerative</th></tr></thead><tbody><tr><th class='rowh'>SBM-scale-N200</th><td class="best">1.000</td><td class="best">1.000</td><td class="best">1.000</td><td class="best">1.000</td><td class="best">1.000</td></tr><tr><th class='rowh'>SBM-scale-N500</th><td class="best">1.000</td><td class="best">1.000</td><td class="best">1.000</td><td class="best">1.000</td><td class="se">0.984</td></tr><tr><th class='rowh'>SBM-scale-N1000</th><td class="best">1.000</td><td class="best">1.000</td><td class="best">1.000</td><td class="best">1.000</td><td class="se">0.995</td></tr><tr><th class='rowh'>SBM-scale-N2000</th><td class="best">1.000</td><td class="best">1.000</td><td class="best">1.000</td><td class="best">1.000</td><td class="se">0.997</td></tr></tbody></table></div>
+<p class="note">The native <span style="color:var(--se)">se_agglomerative</span> core is a
+pure-Python greedy merge; the optimized C/igraph baselines (Louvain/Leiden/Infomap)
+are faster, while spectral clustering's dense eigendecomposition scales worst. These
+are wall-clock facts from the run, not claims.</p>
+
+<h2>Datasets</h2>
+<div class="tablewrap"><table><thead><tr><th>dataset</th><th>nodes</th><th>edges</th><th>k (true)</th></tr></thead>
+<tbody><tr><td>Karate</td><td>34</td><td>78</td><td>2</td></tr><tr><td>LFR-mu0.1</td><td>500</td><td>7017</td><td>11</td></tr><tr><td>LFR-mu0.2</td><td>500</td><td>7162</td><td>11</td></tr><tr><td>LFR-mu0.3</td><td>500</td><td>7332</td><td>11</td></tr><tr><td>LFR-mu0.4</td><td>500</td><td>7514</td><td>11</td></tr><tr><td>LFR-mu0.5</td><td>500</td><td>7505</td><td>11</td></tr><tr><td>LFR-mu0.6</td><td>500</td><td>7550</td><td>11</td></tr><tr><td>SBM-Clean</td><td>150</td><td>1419</td><td>3</td></tr><tr><td>SBM-Noisy</td><td>150</td><td>1185</td><td>3</td></tr><tr><td>SBM-scale-N1000</td><td>1000</td><td>8999</td><td>10</td></tr><tr><td>SBM-scale-N200</td><td>200</td><td>1793</td><td>10</td></tr><tr><td>SBM-scale-N2000</td><td>2000</td><td>18202</td><td>10</td></tr><tr><td>SBM-scale-N500</td><td>500</td><td>4498</td><td>10</td></tr></tbody></table></div>
+
+<h2>Reproduce</h2>
+<pre><code>git clone https://github.com/SuuTTT/selib && cd selib
+pip install -e ".[extra]"
+python3 scripts/run_full_benchmark.py     # writes results/benchmark_results.json
+python3 scripts/build_site.py             # regenerates this page from that JSON</code></pre>
+<p class="note">All numbers on this page are read directly from
+<a href="benchmark_results.json"><code>results/benchmark_results.json</code></a>
+produced by the run above on an RTX 3070 box. Methods that wrap a paper's original
+code (deDoc, CoDeSEG) are available through the same API once their upstream artifact
+is configured; the runs shown here use the native methods + classical baselines.</p>
+
+<div class="foot">Generated from 241 benchmark records ·
+selib v0.1.0 ·
+part of the structural-entropy survey &amp; benchmark project.</div>
+</body></html>
