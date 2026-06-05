@@ -22,6 +22,7 @@ dependencies = [
 # classical baselines that ship their own optimized solvers
 extra = ["python-louvain>=0.16", "leidenalg>=0.9", "python-igraph>=0.10", "infomap>=2.6",
          "scikit-network>=0.31"]  # scikit-network enables the Paris warm-start in se_hier
+gnn = ["jax", "numpy<2"]          # enables the attribute-aware se_gnn method
 dev = ["pytest>=7", "matplotlib>=3.5"]
 
 [project.urls]

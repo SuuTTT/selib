@@ -36,6 +36,16 @@ def se_louvain(G, k=None, seed=0):
     return se_optimize(G, k=k, seed=seed)
 
 
+@method("se_gnn", family="community_detection", is_se=True, native=True,
+        paper="this lib (ported from the author's glass-jax prototype)",
+        note="attribute-aware: tiny GCN trained to minimize a differentiable soft "
+             "2D structural entropy (needs jax; features from G.graph['X'], "
+             "identity features if absent). k = number of communities.")
+def se_gnn_method(G, k=None, seed=0):
+    from ..segnn import se_gnn
+    return se_gnn(G, k=k, seed=seed)
+
+
 @method("se_hier", family="community_detection", is_se=True, native=True,
         paper="Li & Pan 2016 (hierarchical/encoding-tree SE); this lib's optimizer",
         note="native: encoding-tree (hierarchical) structural-entropy optimizer "

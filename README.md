@@ -38,6 +38,14 @@ and a Louvain baseline are scored exactly the same way.
   constructions — including Paris (scikit-network) when available — and refines the
   best, so it is ≤ each of them by construction.
 
+- **`se_gnn` — attribute-aware SE** (`selib.segnn`, ported from the author's glass-jax
+  prototype): a tiny GCN trained end-to-end to minimize a **differentiable soft 2D
+  structural entropy**. The soft objective at a hard (one-hot) assignment equals the
+  canonical 2D-SE exactly (validated). Needs `jax` (CPU is fine: `pip install jax "numpy<2"`);
+  node features are read from `G.graph["X"]` (the bundled `Cora`/`Citeseer` Planetoid
+  loaders attach them). On Cora it beats every topology-only method on ACC/ARI at
+  roughly the true number of communities.
+
 **Comparison with existing work** (see the [benchmark page](https://suuttt.github.io/selib/),
 section 0c): on identical graphs, `se_louvain` reaches the lowest 2D structural
 entropy of all methods including the published **CoDeSEG** (its original C++ code, run

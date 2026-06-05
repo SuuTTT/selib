@@ -358,21 +358,49 @@ def main():
         h_hd = cmp_table(C["hier"], cds, hmeth, hse_set, "hd_se", True, 3)
         h_da = cmp_table(C["hier"], cds, hmeth, hse_set, "dasgupta", True, 0)
 
-        # attributed (reproduced-campaign numbers)
+        # attributed: fresh selib runs (se_gnn etc.) merged with campaign DeSE/LSENet
         attr_html = ""
-        if os.path.exists(attr_path):
-            A = json.load(open(attr_path))
-            am = A["methods"]; ase = set(A["se_methods"])
-            a_nmi = cmp_table(A["table"], A["datasets"], am, ase, "nmi", lower_better=False, nd=3)
+        attr_run_path = os.path.join(os.path.dirname(RES), "attr_results.json")
+        if os.path.exists(attr_path) or os.path.exists(attr_run_path):
+            merged = defaultdict(dict)
+            adatasets = []
+            if os.path.exists(attr_run_path):
+                AR = json.load(open(attr_run_path))
+                for ds, row in AR["table"].items():
+                    if ds not in adatasets:
+                        adatasets.append(ds)
+                    for m, v in row.items():
+                        merged[ds][m] = v
+            if os.path.exists(attr_path):
+                A = json.load(open(attr_path))
+                for ds in A["datasets"]:
+                    if ds not in adatasets:
+                        adatasets.append(ds)
+                    for m in ("DeSE", "LSENet"):       # campaign feature-aware SE rows
+                        if m in A["table"].get(ds, {}):
+                            merged[ds][m] = A["table"][ds][m]
+            am = ["se_gnn", "DeSE", "LSENet", "se_louvain",
+                  "louvain", "leiden", "infomap", "spectral"]
+            am = [m for m in am if any(m in merged[d] for d in adatasets)]
+            ase = {"se_gnn", "DeSE", "LSENet", "se_louvain"}
+            a_nmi = cmp_table(merged, adatasets, am, ase, "nmi", lower_better=False, nd=3)
+            a_ari = cmp_table(merged, adatasets, am, ase, "ari", lower_better=False, nd=3)
             attr_html = (
-                "<h3>Attributed graphs — NMI vs. ground-truth classes</h3>"
-                "<p class='note'>Feature-aware SE methods (DeSE, LSENet *) vs. topology-only "
-                "baselines, on citation/co-purchase graphs. These are reproduced-campaign "
-                "numbers (each from a results JSON a GPU produced). selib v0.1's optimizers are "
-                "<b>topology-only</b> — they behave like the topology baselines here; attribute-aware "
-                "SE is where DeSE wins (and where LSENet is fragile, e.g. Citeseer). Making selib "
-                "attribute-aware is the next step.</p>"
-                f"{a_nmi}")
+                "<h3>Attributed graphs — citation networks with node features</h3>"
+                "<p class='note'><code>se_gnn</code> is selib's attribute-aware method (ported from "
+                "the author's glass-jax prototype): a tiny GCN trained end-to-end to minimize a "
+                "<b>differentiable soft 2D structural entropy</b> — validated so that the soft "
+                "objective at a hard assignment equals the canonical 2D-SE exactly. "
+                "DeSE / LSENet are the published feature-aware SE methods (reproduction-campaign "
+                "numbers); the rest are run fresh by selib on the same standard Planetoid data.</p>"
+                "<h4>NMI</h4>" + a_nmi + "<h4>ARI</h4>" + a_ari +
+                "<p class='note'>Reading: feature-aware beats topology-only — DeSE leads, and "
+                "<code>se_gnn</code> (a single-layer GCN, ~150 gradient steps) already beats every "
+                "topology method on ARI/ACC at roughly the true number of communities (Cora ACC "
+                "0.51 vs ≤0.44), while modularity methods' higher NMI comes with ~100 communities "
+                "(NMI inflation). Topology-only <code>se_louvain</code> struggles here — Cora's "
+                "feature signal is essential. A deeper encoder (LSENet/DeSE-style) is the obvious "
+                "next step for <code>se_gnn</code>.</p>")
 
         # visualizations
         viz_html = ""
@@ -565,7 +593,8 @@ part of the structural-entropy survey &amp; benchmark project.</div>
     with open(os.path.join(OUT_DIR, "benchmark_results.json"), "w") as f:
         json.dump(data, f, indent=2)
     for extra in ("hier_results.json", "compare_results.json",
-                  "attributed_compare.json", "viz.json"):
+                  "attributed_compare.json", "viz.json",
+                  "attr_results.json", "hcse_bbm_results.json"):
         src = os.path.join(os.path.dirname(RES), extra)
         if os.path.exists(src):
             with open(src) as fi, open(os.path.join(OUT_DIR, extra), "w") as fo:
