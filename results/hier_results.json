@@ -1,0 +1,160 @@
+{
+  "methods": [
+    "se_agglomerative",
+    "louvain_2level",
+    "se_hier"
+  ],
+  "objective": "encoding-tree structural entropy (H^T) and Dasgupta cost; lower better",
+  "records": [
+    {
+      "method": "se_agglomerative",
+      "dataset": "Karate",
+      "hd_se": 2.693222,
+      "dasgupta": 2304.0,
+      "n": 34,
+      "m": 78
+    },
+    {
+      "method": "louvain_2level",
+      "dataset": "Karate",
+      "hd_se": 3.327489,
+      "dasgupta": 3746.0,
+      "n": 34,
+      "m": 78
+    },
+    {
+      "method": "se_hier",
+      "dataset": "Karate",
+      "hd_se": 2.523263,
+      "dasgupta": 2540.0,
+      "time_s": 1.26,
+      "n": 34,
+      "m": 78
+    },
+    {
+      "method": "se_agglomerative",
+      "dataset": "SBM-Clean",
+      "hd_se": 5.307108,
+      "dasgupta": 81858.0,
+      "n": 150,
+      "m": 1419
+    },
+    {
+      "method": "louvain_2level",
+      "dataset": "SBM-Clean",
+      "hd_se": 6.030354,
+      "dasgupta": 108050.0,
+      "n": 150,
+      "m": 1419
+    },
+    {
+      "method": "se_hier",
+      "dataset": "SBM-Clean",
+      "hd_se": 5.071427,
+      "dasgupta": 85939.0,
+      "time_s": 85.758,
+      "n": 150,
+      "m": 1419
+    },
+    {
+      "method": "se_agglomerative",
+      "dataset": "SBM-Noisy",
+      "hd_se": 5.449616,
+      "dasgupta": 93208.0,
+      "n": 150,
+      "m": 1185
+    },
+    {
+      "method": "louvain_2level",
+      "dataset": "SBM-Noisy",
+      "hd_se": 6.174659,
+      "dasgupta": 127962.0,
+      "n": 150,
+      "m": 1185
+    },
+    {
+      "method": "se_hier",
+      "dataset": "SBM-Noisy",
+      "hd_se": 5.448308,
+      "dasgupta": 93203.0,
+      "time_s": 72.015,
+      "n": 150,
+      "m": 1185
+    },
+    {
+      "method": "se_agglomerative",
+      "dataset": "LFR-mu0.1",
+      "hd_se": 4.36357,
+      "dasgupta": 39778.0,
+      "n": 150,
+      "m": 1203
+    },
+    {
+      "method": "louvain_2level",
+      "dataset": "LFR-mu0.1",
+      "hd_se": 5.067058,
+      "dasgupta": 56416.0,
+      "n": 150,
+      "m": 1203
+    },
+    {
+      "method": "se_hier",
+      "dataset": "LFR-mu0.1",
+      "hd_se": 4.201415,
+      "dasgupta": 45599.0,
+      "time_s": 50.506,
+      "n": 150,
+      "m": 1203
+    },
+    {
+      "method": "se_agglomerative",
+      "dataset": "LFR-mu0.3",
+      "hd_se": 5.098988,
+      "dasgupta": 80040.0,
+      "n": 150,
+      "m": 1285
+    },
+    {
+      "method": "louvain_2level",
+      "dataset": "LFR-mu0.3",
+      "hd_se": 5.736032,
+      "dasgupta": 104988.0,
+      "n": 150,
+      "m": 1285
+    },
+    {
+      "method": "se_hier",
+      "dataset": "LFR-mu0.3",
+      "hd_se": 5.034349,
+      "dasgupta": 84418.0,
+      "time_s": 55.663,
+      "n": 150,
+      "m": 1285
+    },
+    {
+      "method": "se_agglomerative",
+      "dataset": "LFR-mu0.5",
+      "hd_se": 5.445578,
+      "dasgupta": 99638.0,
+      "n": 150,
+      "m": 1274
+    },
+    {
+      "method": "louvain_2level",
+      "dataset": "LFR-mu0.5",
+      "hd_se": 6.165339,
+      "dasgupta": 131146.0,
+      "n": 150,
+      "m": 1274
+    },
+    {
+      "method": "se_hier",
+      "dataset": "LFR-mu0.5",
+      "hd_se": 5.443183,
+      "dasgupta": 99644.0,
+      "time_s": 78.636,
+      "n": 150,
+      "m": 1274
+    }
+  ]
+}

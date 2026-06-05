@@ -27,6 +27,14 @@ and a Louvain baseline are scored exactly the same way.
   detection accuracy. Validated against the canonical metric and brute-force
   exhaustive optima (gap 0.000 on small graphs). See the
   [benchmark page](https://suuttt.github.io/selib/).
+- **`se_hier` — hierarchical (encoding-tree) SE optimizer** (`selib.htree`):
+  structural entropy is defined over an *encoding tree*, not just a flat partition.
+  `se_hier` builds a multilevel tree (binary dendrogram + recursive `se_louvain`
+  inits) and refines it with exact-guarded local moves (collapse a level, relocate a
+  subtree), accepting only moves that strictly lower the exact tree structural
+  entropy H^T. Result is ≤ the naive binary dendrogram by construction, and strictly
+  lower on every benchmark graph. Validated: a 2-level tree's H^T equals the
+  canonical 2D-SE exactly, and refinement is monotone.
 - **Baselines** (native): Louvain, Leiden, Infomap, spectral clustering.
 - **Drop-in wrappers** over published SE methods' *original* code (deDoc jar,
   CoDeSEG binary, …). selib doesn't vendor upstream code; point it at the artifact

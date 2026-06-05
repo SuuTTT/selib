@@ -186,6 +186,68 @@ def main():
             f"naive merger. se_louvain wins on <b>{wins}/{total}</b> graphs.</p>"
             f"{legend(se_pair)}{se_table}")
 
+    # --- Hierarchical (encoding-tree) optimizer: HD-SE + Dasgupta ---
+    hier_block = None
+    hier_path = os.path.join(os.path.dirname(RES), "hier_results.json")
+    if os.path.exists(hier_path):
+        hd = json.load(open(hier_path))
+        hmethods = hd["methods"]                       # [se_agglomerative, louvain_2level, se_hier]
+        hrecs = hd["records"]
+        hds = []
+        for r in hrecs:
+            if r["dataset"] not in hds:
+                hds.append(r["dataset"])
+
+        def hagg(metric):
+            d = defaultdict(dict)
+            for r in hrecs:
+                d[r["dataset"]][r["method"]] = r.get(metric)
+            return d
+        hse, hda = hagg("hd_se"), hagg("dasgupta")
+
+        def htable(table_data, nd):
+            th = "".join(f"<th>{m}</th>" for m in hmethods) + "<th>Δ vs naive</th>"
+            rows = []
+            for d in hds:
+                row = table_data.get(d, {})
+                finite = [row.get(m) for m in hmethods if isinstance(row.get(m), (int, float))]
+                best = min(finite) if finite else None
+                cells = []
+                for m in hmethods:
+                    v = row.get(m)
+                    cls = " class='best'" if (best is not None and isinstance(v, (int, float)) and abs(v - best) < 1e-6) else (" class='se'" if m in SE_METHODS else "")
+                    cells.append(f"<td{cls}>{fmt(v, nd)}</td>")
+                ag = row.get("se_agglomerative"); hi = row.get("se_hier")
+                if isinstance(ag, (int, float)) and isinstance(hi, (int, float)) and ag:
+                    delta = f"{100.0*(ag-hi)/ag:+.1f}%"
+                else:
+                    delta = "—"
+                rows.append(f"<tr><th class='rowh'>{html.escape(d)}</th>{''.join(cells)}<td>{delta}</td></tr>")
+            return (f"<div class='tablewrap'><table><thead><tr><th></th>{th}</tr></thead>"
+                    f"<tbody>{''.join(rows)}</tbody></table></div>")
+
+        hwins = sum(1 for d in hds if isinstance(hse[d].get("se_hier"), (int, float))
+                    and isinstance(hse[d].get("se_agglomerative"), (int, float))
+                    and hse[d]["se_hier"] < hse[d]["se_agglomerative"] - 1e-9)
+        hier_block = (
+            "<h2>0b · The library's hierarchical SE optimizer</h2>"
+            "<p>Structural entropy is defined over an <b>encoding tree</b>, not just a flat "
+            "partition. <code>se_hier</code> builds a multilevel tree (binary "
+            "<code>se_agglomerative</code> dendrogram + recursive <code>se_louvain</code> "
+            "inits) and refines it with exact-guarded local moves — collapse a redundant "
+            "level, relocate a subtree — accepting a move only when it strictly lowers the "
+            "<b>exact tree structural entropy</b> H<sup>T</sup>. Because refinement starts "
+            "from the naive dendrogram and only takes improving moves, the result is "
+            f"<b>≤</b> the naive dendrogram by construction; it is strictly lower on "
+            f"<b>{hwins}/{len(hds)}</b> graphs.</p>"
+            "<h3>Encoding-tree structural entropy H<sup>T</sup> (lower better)</h3>"
+            f"{htable(hse, 4)}"
+            "<h3>Dasgupta cost of the hierarchy (lower better)</h3>"
+            f"{htable(hda, 1)}"
+            "<p class='note'>Validated in <code>selib.htree</code>: a 2-level tree's "
+            "H<sup>T</sup> equals the canonical 2D structural entropy exactly, and refinement "
+            "is monotone. <code>louvain_2level</code> is a flat (2-level) hierarchy baseline.</p>")
+
     # dataset facts
     facts = {}
     for r in recs:
@@ -253,6 +315,8 @@ recs = selib.benchmark(["louvain", "leiden", "se_agglomerative"],
 selib.summarize(recs, "nmi")</code></pre>
 
 {se_block or ""}
+
+{hier_block or ""}
 
 <h2>1 · Real graphs &amp; controlled SBM</h2>
 {legend(methods)}

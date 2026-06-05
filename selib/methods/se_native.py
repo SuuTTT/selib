@@ -34,3 +34,19 @@ def se_agglom(G, k=None, seed=0):
 def se_louvain(G, k=None, seed=0):
     from ..seopt import se_optimize
     return se_optimize(G, k=k, seed=seed)
+
+
+@method("se_hier", family="community_detection", is_se=True, native=True,
+        paper="Li & Pan 2016 (hierarchical/encoding-tree SE); this lib's optimizer",
+        note="native: encoding-tree (hierarchical) structural-entropy optimizer "
+             "(binary + Louvain init, exact-guarded collapse/relocate refinement). "
+             "Flat label = top level of the tree, merged down to k if given.")
+def se_hier(G, k=None, seed=0):
+    from ..htree import encoding_tree, top_level_labels
+    from ..seopt import _merge_down_to_k
+    root, deg, adj, vol = encoding_tree(G, seed=seed)
+    n = G.number_of_nodes()
+    labels = top_level_labels(root, n)
+    if k is not None and len(set(labels)) > k:
+        labels = _merge_down_to_k(G, labels, k, seed=seed)
+    return labels
