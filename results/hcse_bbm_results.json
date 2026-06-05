@@ -1,0 +1,74 @@
+{
+  "methods": [
+    "hcse",
+    "bbm"
+  ],
+  "records": {
+    "Karate": {
+      "hcse": {
+        "hd_se": 2.6836,
+        "dasgupta": 2796.0,
+        "height": 6
+      },
+      "bbm": {
+        "hd_se": 3.2337,
+        "dasgupta": 3479.0
+      }
+    },
+    "SBM-Clean": {
+      "hcse": {
+        "hd_se": 6.6556,
+        "dasgupta": 171938.0,
+        "height": 6
+      },
+      "bbm": {
+        "hd_se": 5.35,
+        "dasgupta": 86112.0
+      }
+    },
+    "SBM-Noisy": {
+      "hcse": {
+        "hd_se": 6.6706,
+        "dasgupta": 138163.0,
+        "height": 6
+      },
+      "bbm": {
+        "hd_se": 5.7946,
+        "dasgupta": 97293.0
+      }
+    },
+    "LFR-mu0.1": {
+      "hcse": {
+        "hd_se": 4.7423,
+        "dasgupta": 52376.0,
+        "height": 6
+      },
+      "bbm": {
+        "hd_se": 4.3085,
+        "dasgupta": 41443.0
+      }
+    },
+    "LFR-mu0.3": {
+      "hcse": {
+        "hd_se": 6.5604,
+        "dasgupta": 144122.0,
+        "height": 6
+      },
+      "bbm": {
+        "hd_se": 5.5205,
+        "dasgupta": 96605.0
+      }
+    },
+    "LFR-mu0.5": {
+      "hcse": {
+        "hd_se": 6.5829,
+        "dasgupta": 144936.0,
+        "height": 6
+      },
+      "bbm": {
+        "hd_se": 5.6972,
+        "dasgupta": 104408.0
+      }
+    }
+  }
+}

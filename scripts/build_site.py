@@ -343,11 +343,20 @@ def main():
         # 2D tables
         t_nmi = cmp_table(C["twod"], cds, tmeth, se_set, "nmi", lower_better=False, nd=3)
         t_se = cmp_table(C["twod"], cds, tmeth, se_set, "se2d", lower_better=True, nd=3)
-        # hierarchical tables
-        hmeth = ["se_hier", "se_agglomerative", "average", "ward", "paris"]
+        # hierarchical tables — merge in the original HCSE / BBM code if available
+        hb_path = os.path.join(os.path.dirname(RES), "hcse_bbm_results.json")
+        if os.path.exists(hb_path):
+            HB = json.load(open(hb_path))["records"]
+            for d in cds:
+                C["hier"].setdefault(d, {})
+                for m in ("hcse", "bbm"):
+                    if m in HB.get(d, {}):
+                        C["hier"][d][m] = HB[d][m]
+        hmeth = ["se_hier", "se_agglomerative", "bbm", "hcse", "paris", "average", "ward"]
         hmeth = [m for m in hmeth if any(m in C["hier"].get(d, {}) for d in cds)]
-        h_hd = cmp_table(C["hier"], cds, hmeth, {"se_hier", "se_agglomerative"}, "hd_se", True, 3)
-        h_da = cmp_table(C["hier"], cds, hmeth, {"se_hier", "se_agglomerative"}, "dasgupta", True, 0)
+        hse_set = {"se_hier", "se_agglomerative", "bbm", "hcse"}
+        h_hd = cmp_table(C["hier"], cds, hmeth, hse_set, "hd_se", True, 3)
+        h_da = cmp_table(C["hier"], cds, hmeth, hse_set, "dasgupta", True, 0)
 
         # attributed (reproduced-campaign numbers)
         attr_html = ""
@@ -388,10 +397,13 @@ def main():
         cmp_block = (
             "<h2>0c · Comparison with existing work</h2>"
             "<p>All methods run on the <b>identical</b> graphs, all at free <i>k</i> (so the "
-            "structural-entropy objective is compared fairly). The published SE community detector "
-            "<code>CoDeSEG</code> runs its <b>original C++ code</b> through selib's wrapper; classical "
-            "hierarchies (average / Ward linkage, Paris) are scored on the same encoding-tree "
-            "objective as <code>se_hier</code>. (* = structural-entropy method.)</p>"
+            "structural-entropy objective is compared fairly). The published SE community detectors "
+            "<code>CoDeSEG</code> (original C++) and <code>deDoc</code> (original Java, the founding "
+            "SE algorithm) run their real implementations through selib's wrappers. For the "
+            "hierarchical comparison the original <code>HCSE</code> and <code>BBM</code> code "
+            "(github.com/Hardict/HCSE) build the trees, and classical hierarchies (Paris, average / "
+            "Ward linkage) are included — all scored on the <b>same</b> encoding-tree objective as "
+            "<code>se_hier</code>. (* = structural-entropy method.)</p>"
             "<h3>2D structural entropy reached — free k (lower better)</h3>"
             f"{t_se}"
             "<h3>2D community detection — NMI vs. ground truth (higher better)</h3>"
@@ -404,16 +416,22 @@ def main():
             "structural entropy is higher. Run with a target <i>k</i> (§1) <code>se_louvain</code> "
             "recovers ground truth strongly. It beats the published SE detector CoDeSEG on NMI on 4/6 "
             "graphs; CoDeSEG's finer segmentation helps only on the hardest (noisy SBM, μ=0.5). "
-            "Lesson: lower structural entropy ≠ better label recovery — a point the survey makes.</p>"
+            "Lesson: lower structural entropy ≠ better label recovery — a point the survey makes. "
+            "<code>deDoc</code> (the founding SE algorithm, original Java) recovers the clean SBM "
+            "almost perfectly (NMI 0.985) but degenerates to near-singletons on sparse Karate/LFR — "
+            "it was designed for dense weighted Hi-C matrices; this exactly reproduces the "
+            "survey campaign's numbers.</p>"
             "<h3>Hierarchical — encoding-tree structural entropy H<sup>T</sup> (lower better)</h3>"
             f"{h_hd}"
             "<h3>Hierarchical — Dasgupta cost (lower better)</h3>"
             f"{h_da}"
-            "<p class='note'><code>se_hier</code> reaches the lowest H<sup>T</sup> on every graph. It "
-            "warm-starts from several constructions — the binary SE dendrogram, recursive "
-            "<code>se_louvain</code>, and Paris (scikit-network, the strongest classical tree here) — "
-            "and refines the best with exact-guarded moves, so it is ≤ each of them by construction. "
-            "Paris alone is a close second; average/Ward linkages trail.</p>"
+            "<p class='note'><code>se_hier</code> reaches the lowest H<sup>T</sup> on every graph — "
+            "below the original <code>BBM</code> and <code>HCSE</code> code, Paris, and the linkage "
+            "baselines. It warm-starts from several constructions (binary SE dendrogram, recursive "
+            "<code>se_louvain</code>, Paris) and refines the best with exact-guarded moves, so it is "
+            "≤ each by construction. <code>BBM</code> (deep binary merge) is the strongest original "
+            "SE tree; <code>HCSE</code> targets a <i>height-constrained</i> hierarchy, so its "
+            "full-depth H<sup>T</sup> is higher here. Paris is the best non-SE classical tree.</p>"
             f"{attr_html}"
             f"{viz_html}")
 

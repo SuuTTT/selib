@@ -21,7 +21,7 @@ from selib.htree import (encoding_tree, linkage_to_tree, annotate, hd_se,
 # 2D-SE minimization is inherently free-k, so compare all methods at free k
 # (k=None). se_agglomerative is a dendrogram method -> it appears in the
 # hierarchical comparison, not here.
-TWO_D = ["louvain", "leiden", "infomap", "codeseg", "se_louvain"]
+TWO_D = ["louvain", "leiden", "infomap", "codeseg", "dedoc", "se_louvain"]
 STOCH = {"louvain", "leiden", "infomap", "se_louvain"}
 
 
