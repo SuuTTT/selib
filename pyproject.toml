@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "selib"
+version = "0.1.0"
+description = "A standardized library for structural entropy: compute it, optimize it, and benchmark SE methods against baselines under one API."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "SuuTTT" }]
+keywords = ["structural entropy", "community detection", "graph learning", "encoding tree", "benchmark"]
+dependencies = [
+    "networkx>=2.8",
+    "numpy>=1.21",
+    "scipy>=1.8",
+    "scikit-learn>=1.0",
+]
+
+[project.optional-dependencies]
+# classical baselines that ship their own optimized solvers
+extra = ["python-louvain>=0.16", "leidenalg>=0.9", "python-igraph>=0.10", "infomap>=2.6"]
+dev = ["pytest>=7", "matplotlib>=3.5"]
+
+[project.urls]
+Homepage = "https://github.com/SuuTTT/selib"
+Benchmark = "https://github.com/SuuTTT/structural-entropy-benchmark"
+Paper = "https://github.com/SuuTTT/structural-entropy-survey-paper"
+
+[tool.setuptools.packages.find]
+include = ["selib*"]
