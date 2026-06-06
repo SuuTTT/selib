@@ -4,13 +4,19 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "selib"
-version = "0.1.0"
+version = "0.2.0"
 description = "A standardized library for structural entropy: compute it, optimize it, and benchmark SE methods against baselines under one API."
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
 authors = [{ name = "SuuTTT" }]
 keywords = ["structural entropy", "community detection", "graph learning", "encoding tree", "benchmark"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
 dependencies = [
     "networkx>=2.8",
     "numpy>=1.21",
@@ -32,3 +38,7 @@ Paper = "https://github.com/SuuTTT/structural-entropy-survey-paper"
 
 [tool.setuptools.packages.find]
 include = ["selib*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

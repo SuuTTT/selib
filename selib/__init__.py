@@ -19,4 +19,4 @@ from .base import (Method, get, info, register, method,               # noqa: F4
 from .benchmark import benchmark, summarize                           # noqa: F401
 from . import methods                                                 # noqa: F401  (self-registers algorithms)
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"

@@ -69,13 +69,13 @@ def _normalize_adj(A):
 
 
 def se_gnn_fit(A, X, k, seed=0, hidden=64, iters=300, lr=0.01, layers=2,
-               head="softmax"):
+               head="softmax", dropout=0.0):
     """Train the GCN (`layers` propagation steps over the normalized adjacency) to
     minimize soft H^2 of the ORIGINAL graph; return (labels, final_loss).
 
     The encoder sees A_hat (normalized, self-loops) — standard GCN practice — but
     the loss is always the structural entropy of the raw A, so the objective stays
-    exactly the canonical one."""
+    exactly the canonical one. `dropout` masks input features during training only."""
     _require_jax()
     import jax
     import jax.numpy as jnp
@@ -91,9 +91,11 @@ def se_gnn_fit(A, X, k, seed=0, hidden=64, iters=300, lr=0.01, layers=2,
         params[f"W{i}"] = jax.random.normal(sub, (dims[i], dims[i + 1])) * jnp.sqrt(2.0 / dims[i])
         params[f"b{i}"] = jnp.zeros(dims[i + 1])
 
-    def forward(p):
-        h = X_
+    def forward(p, h, dkey):
         for i in range(layers):
+            if dropout > 0 and dkey is not None and i == 0:
+                mask = (jax.random.uniform(dkey, h.shape) > dropout).astype(h.dtype)
+                h = h * mask / (1.0 - dropout)
             h = jnp.dot(A_hat, jnp.dot(h, p[f"W{i}"]) + p[f"b{i}"])
             if i < layers - 1:
                 h = jnp.maximum(h, 0.0)
@@ -104,8 +106,8 @@ def se_gnn_fit(A, X, k, seed=0, hidden=64, iters=300, lr=0.01, layers=2,
             return sinkhorn_head(logits)
         return jax.nn.softmax(logits, axis=-1)
 
-    def loss_fn(p):
-        return soft_se2d(A_raw, assign(forward(p)))
+    def loss_fn(p, dkey):
+        return soft_se2d(A_raw, assign(forward(p, X_, dkey)))
 
     grad_fn = jax.jit(jax.value_and_grad(loss_fn))
     # hand-rolled Adam (keeps optax out of the deps)
@@ -114,19 +116,22 @@ def se_gnn_fit(A, X, k, seed=0, hidden=64, iters=300, lr=0.01, layers=2,
     b1, b2, ae = 0.9, 0.999, 1e-8
     loss = None
     for t in range(1, iters + 1):
-        loss, g = grad_fn(params)
+        dkey = None
+        if dropout > 0:
+            key, dkey = jax.random.split(key)
+        loss, g = grad_fn(params, dkey)
         for kk in params:
             m[kk] = b1 * m[kk] + (1 - b1) * g[kk]
             v[kk] = b2 * v[kk] + (1 - b2) * g[kk] ** 2
             mh = m[kk] / (1 - b1 ** t)
             vh = v[kk] / (1 - b2 ** t)
             params[kk] = params[kk] - lr * mh / (jnp.sqrt(vh) + ae)
-    labels = np.asarray(jax.numpy.argmax(assign(forward(params)), axis=-1))
+    labels = np.asarray(jax.numpy.argmax(assign(forward(params, X_, None)), axis=-1))
     return labels, float(loss)
 
 
 def se_gnn(G, k=None, seed=0, hidden=64, iters=300, lr=0.01, layers=2, starts=3,
-           head=None):
+           head=None, dropout=0.0):
     """Attribute-aware SE community detection. Features are read from
     G.graph["X"] (numpy array aligned with list(G.nodes())); identity features are
     used if absent (featureless mode = learnable per-node embedding).
@@ -150,7 +155,7 @@ def se_gnn(G, k=None, seed=0, hidden=64, iters=300, lr=0.01, layers=2, starts=3,
     for s in range(starts):
         labels, loss = se_gnn_fit(A, X, int(k or 8), seed=seed * 100 + s,
                                   hidden=hidden, iters=iters, lr=lr, layers=layers,
-                                  head=head)
+                                  head=head, dropout=dropout)
         if best is None or loss < best[0]:
             best = (loss, labels)
     return [int(x) for x in best[1]]

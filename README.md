@@ -46,7 +46,11 @@ and a Louvain baseline are scored exactly the same way.
   (validated). Needs `jax` (CPU is fine: `pip install jax "numpy<2"`); node features are
   read from `G.graph["X"]` (the bundled `Cora`/`Citeseer` Planetoid loaders attach them).
   Cora: NMI 0.487 / ARI 0.387 / ACC 0.592 at k = 7 — beats every topology-only method on
-  all three metrics and matches LSENet, with a far smaller model.
+  all three metrics and matches LSENet, with a far smaller model. A config sweep
+  (`scripts/sweep_segnn.py`) shows the default (2-layer, hidden 64) is best on Cora;
+  width + feature `dropout` helps the sparser-feature Citeseer (NMI 0.262→0.316). The
+  residual gap to DeSE (0.579 on Cora) is architectural — deeper/hyperbolic encoders —
+  not a matter of tuning; `dropout=`/`layers=`/`hidden=` are exposed for experimentation.
 
 **Comparison with existing work** (see the [benchmark page](https://suuttt.github.io/selib/),
 section 0c): on identical graphs, `se_louvain` reaches the lowest 2D structural

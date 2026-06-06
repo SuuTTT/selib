@@ -1,0 +1,86 @@
+{
+  "Cora": [
+    {
+      "layers": 2,
+      "hidden": 64,
+      "dropout": 0.0,
+      "lr": 0.01,
+      "iters": 300,
+      "nmi": 0.4869,
+      "ari": 0.387,
+      "acc": 0.5916
+    },
+    {
+      "layers": 2,
+      "hidden": 128,
+      "dropout": 0.5,
+      "lr": 0.01,
+      "iters": 400,
+      "nmi": 0.4831,
+      "ari": 0.3846,
+      "acc": 0.5871
+    },
+    {
+      "layers": 3,
+      "hidden": 128,
+      "dropout": 0.5,
+      "lr": 0.005,
+      "iters": 500,
+      "nmi": 0.434,
+      "ari": 0.321,
+      "acc": 0.5286
+    },
+    {
+      "layers": 2,
+      "hidden": 256,
+      "dropout": 0.6,
+      "lr": 0.01,
+      "iters": 400,
+      "nmi": 0.4583,
+      "ari": 0.3642,
+      "acc": 0.5745
+    }
+  ],
+  "Citeseer": [
+    {
+      "layers": 2,
+      "hidden": 64,
+      "dropout": 0.0,
+      "lr": 0.01,
+      "iters": 300,
+      "nmi": 0.2618,
+      "ari": 0.2132,
+      "acc": 0.4556
+    },
+    {
+      "layers": 2,
+      "hidden": 128,
+      "dropout": 0.5,
+      "lr": 0.01,
+      "iters": 400,
+      "nmi": 0.299,
+      "ari": 0.2549,
+      "acc": 0.4887
+    },
+    {
+      "layers": 3,
+      "hidden": 128,
+      "dropout": 0.5,
+      "lr": 0.005,
+      "iters": 500,
+      "nmi": 0.2602,
+      "ari": 0.2118,
+      "acc": 0.4633
+    },
+    {
+      "layers": 2,
+      "hidden": 256,
+      "dropout": 0.6,
+      "lr": 0.01,
+      "iters": 400,
+      "nmi": 0.3163,
+      "ari": 0.2821,
+      "acc": 0.5439
+    }
+  ]
+}
