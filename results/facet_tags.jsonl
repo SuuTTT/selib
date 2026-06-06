@@ -1,0 +1,836 @@
+{"key": "Li2016", "facet": "task", "value": "community_detection", "confidence": "high", "evidence": "category=theory/foundation", "source": "metadata", "verified": false}
+{"key": "Li2016", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "Li2016", "facet": "year", "value": "2016", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "Li2016", "facet": "graph_type", "value": "dynamic", "confidence": "high", "evidence": "keyword: \\bdynamic|temporal|incremental|stream|evolving|time[- ]series", "source": "title", "verified": false}
+{"key": "Li2016", "facet": "optimization", "value": "incremental", "confidence": "low", "evidence": "keyword: incremental|stream|online|dynamic", "source": "inferred", "verified": false}
+{"key": "Li2016", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
+{"key": "Li2016", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "Li2016", "facet": "output", "value": "partition", "confidence": "med", "evidence": "typical output of community_detection", "source": "inferred", "verified": false}
+{"key": "Li2016", "facet": "output", "value": "score", "confidence": "med", "evidence": "SE used as a scalar score", "source": "title", "verified": false}
+{"key": "Li2016", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "Li2018", "facet": "task", "value": "community_detection", "confidence": "high", "evidence": "category=theory/foundation", "source": "metadata", "verified": false}
+{"key": "Li2018", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "Li2018", "facet": "year", "value": "2018", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "Li2018", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "Li2018", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
+{"key": "Li2018", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "Li2018", "facet": "output", "value": "partition", "confidence": "med", "evidence": "typical output of community_detection", "source": "inferred", "verified": false}
+{"key": "Li2018", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "li2024book", "facet": "task", "value": "community_detection", "confidence": "high", "evidence": "category=theory/foundation", "source": "metadata", "verified": false}
+{"key": "li2024book", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "li2024book", "facet": "year", "value": "2024", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "li2024book", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "li2024book", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
+{"key": "li2024book", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "li2024book", "facet": "output", "value": "partition", "confidence": "med", "evidence": "typical output of community_detection", "source": "inferred", "verified": false}
+{"key": "li2024book", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "li2015strategiesForsecurity", "facet": "task", "value": "community_detection", "confidence": "high", "evidence": "category=theory/foundation", "source": "metadata", "verified": false}
+{"key": "li2015strategiesForsecurity", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "li2015strategiesForsecurity", "facet": "year", "value": "2015", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "li2015strategiesForsecurity", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "li2015strategiesForsecurity", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
+{"key": "li2015strategiesForsecurity", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "li2015strategiesForsecurity", "facet": "output", "value": "partition", "confidence": "med", "evidence": "typical output of community_detection", "source": "inferred", "verified": false}
+{"key": "li2015strategiesForsecurity", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "li2016securitytheory", "facet": "task", "value": "community_detection", "confidence": "high", "evidence": "category=theory/foundation", "source": "metadata", "verified": false}
+{"key": "li2016securitytheory", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "li2016securitytheory", "facet": "year", "value": "2016", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "li2016securitytheory", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "li2016securitytheory", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
+{"key": "li2016securitytheory", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "li2016securitytheory", "facet": "output", "value": "partition", "confidence": "med", "evidence": "typical output of community_detection", "source": "inferred", "verified": false}
+{"key": "li2016securitytheory", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "yang2024incremental", "facet": "task", "value": "theory", "confidence": "high", "evidence": "category=theory/extension", "source": "metadata", "verified": false}
+{"key": "yang2024incremental", "facet": "year", "value": "2024", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "yang2024incremental", "facet": "graph_type", "value": "dynamic", "confidence": "high", "evidence": "abstract: \u2026dynamic\u2026", "source": "abstract", "verified": true}
+{"key": "yang2024incremental", "facet": "optimization", "value": "incremental", "confidence": "high", "evidence": "abstract: \u2026incremental\u2026", "source": "abstract", "verified": true}
+{"key": "yang2024incremental", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
+{"key": "yang2024incremental", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "yang2024incremental", "facet": "output", "value": "score", "confidence": "med", "evidence": "typical output of theory", "source": "inferred", "verified": false}
+{"key": "yang2024incremental", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "cao2024multi", "facet": "task", "value": "theory", "confidence": "high", "evidence": "category=theory/extension", "source": "metadata", "verified": false}
+{"key": "cao2024multi", "facet": "year", "value": "2024", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "cao2024multi", "facet": "graph_type", "value": "heterogeneous", "confidence": "high", "evidence": "keyword: heterogen|multi-relational|multiplex|knowledge graph|multi-view|multi-layer|multilayer", "source": "title", "verified": false}
+{"key": "cao2024multi", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
+{"key": "cao2024multi", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "cao2024multi", "facet": "output", "value": "score", "confidence": "med", "evidence": "typical output of theory", "source": "inferred", "verified": false}
+{"key": "cao2024multi", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "yaopan2019flowDirected", "facet": "task", "value": "theory", "confidence": "high", "evidence": "category=theory/extension", "source": "metadata", "verified": false}
+{"key": "yaopan2019flowDirected", "facet": "year", "value": "2019", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "yaopan2019flowDirected", "facet": "graph_type", "value": "directed", "confidence": "high", "evidence": "keyword: \\bdirected\\b|digraph", "source": "title", "verified": false}
+{"key": "yaopan2019flowDirected", "facet": "se_representation", "value": "2D", "confidence": "low", "evidence": "keyword: community|cluster|2d|two-dimensional|partition", "source": "inferred", "verified": false}
+{"key": "yaopan2019flowDirected", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
+{"key": "yaopan2019flowDirected", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "yaopan2019flowDirected", "facet": "output", "value": "score", "confidence": "med", "evidence": "typical output of theory", "source": "inferred", "verified": false}
+{"key": "yaopan2019flowDirected", "facet": "pi", "value": "pagerank", "confidence": "med", "evidence": "directed -> PageRank/flow stationary", "source": "inferred", "verified": false}
+{"key": "wxb2024rwedirected", "facet": "task", "value": "theory", "confidence": "high", "evidence": "category=theory/extension", "source": "metadata", "verified": false}
+{"key": "wxb2024rwedirected", "facet": "year", "value": "2024", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "wxb2024rwedirected", "facet": "graph_type", "value": "directed", "confidence": "high", "evidence": "abstract: \u2026directed\u2026", "source": "abstract", "verified": true}
+{"key": "wxb2024rwedirected", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
+{"key": "wxb2024rwedirected", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "wxb2024rwedirected", "facet": "output", "value": "score", "confidence": "med", "evidence": "typical output of theory", "source": "inferred", "verified": false}
+{"key": "wxb2024rwedirected", "facet": "pi", "value": "pagerank", "confidence": "med", "evidence": "directed -> PageRank/flow stationary", "source": "inferred", "verified": false}
+{"key": "wxb2023findingThesource", "facet": "task", "value": "theory", "confidence": "high", "evidence": "category=theory/extension", "source": "metadata", "verified": false}
+{"key": "wxb2023findingThesource", "facet": "year", "value": "2023", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "wxb2023findingThesource", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "wxb2023findingThesource", "facet": "se_representation", "value": "kD_tree", "confidence": "low", "evidence": "keyword: hierarch|encoding tree|coding tree|partition tree|deDoc|TAD|tree", "source": "inferred", "verified": false}
+{"key": "wxb2023findingThesource", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
+{"key": "wxb2023findingThesource", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "wxb2023findingThesource", "facet": "output", "value": "score", "confidence": "med", "evidence": "typical output of theory", "source": "inferred", "verified": false}
+{"key": "wxb2023findingThesource", "facet": "output", "value": "tree", "confidence": "med", "evidence": "hierarchical/tree output", "source": "title", "verified": false}
+{"key": "wxb2023findingThesource", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "huang2024structuralProbCoding", "facet": "task", "value": "theory", "confidence": "high", "evidence": "category=theory/extension", "source": "metadata", "verified": false}
+{"key": "huang2024structuralProbCoding", "facet": "year", "value": "2025", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "huang2024structuralProbCoding", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "huang2024structuralProbCoding", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
+{"key": "huang2024structuralProbCoding", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "huang2024structuralProbCoding", "facet": "output", "value": "score", "confidence": "high", "evidence": "abstract: \u2026uncertainty\u2026", "source": "abstract", "verified": true}
+{"key": "huang2024structuralProbCoding", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "liu2022similaritygap", "facet": "task", "value": "theory", "confidence": "high", "evidence": "category=theory/extension", "source": "metadata", "verified": false}
+{"key": "liu2022similaritygap", "facet": "year", "value": "2022", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "liu2022similaritygap", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "liu2022similaritygap", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
+{"key": "liu2022similaritygap", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "liu2022similaritygap", "facet": "output", "value": "score", "confidence": "med", "evidence": "typical output of theory", "source": "inferred", "verified": false}
+{"key": "liu2022similaritygap", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "ljm2021improvingTogetherness", "facet": "task", "value": "theory", "confidence": "high", "evidence": "category=theory/extension", "source": "metadata", "verified": false}
+{"key": "ljm2021improvingTogetherness", "facet": "year", "value": "2021", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "ljm2021improvingTogetherness", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "ljm2021improvingTogetherness", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
+{"key": "ljm2021improvingTogetherness", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "ljm2021improvingTogetherness", "facet": "output", "value": "score", "confidence": "med", "evidence": "typical output of theory", "source": "inferred", "verified": false}
+{"key": "ljm2021improvingTogetherness", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "li2018dedoc", "facet": "task", "value": "community_detection", "confidence": "high", "evidence": "category=algorithms/combinatorial", "source": "metadata", "verified": false}
+{"key": "li2018dedoc", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "li2018dedoc", "facet": "year", "value": "2018", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "li2018dedoc", "facet": "graph_type", "value": "weighted", "confidence": "high", "evidence": "keyword: weighted|hi-c|contact map|chromat", "source": "title", "verified": false}
+{"key": "li2018dedoc", "facet": "se_representation", "value": "kD_tree", "confidence": "low", "evidence": "keyword: hierarch|encoding tree|coding tree|partition tree|deDoc|TAD|tree", "source": "inferred", "verified": false}
+{"key": "li2018dedoc", "facet": "optimization", "value": "greedy_agglomerative", "confidence": "low", "evidence": "keyword: agglomerat|deDoc|merge", "source": "inferred", "verified": false}
+{"key": "li2018dedoc", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
+{"key": "li2018dedoc", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "li2018dedoc", "facet": "output", "value": "partition", "confidence": "med", "evidence": "typical output of community_detection", "source": "inferred", "verified": false}
+{"key": "li2018dedoc", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "li2023dedoc2", "facet": "task", "value": "community_detection", "confidence": "high", "evidence": "category=algorithms/combinatorial", "source": "metadata", "verified": false}
+{"key": "li2023dedoc2", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "li2023dedoc2", "facet": "year", "value": "2023", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "li2023dedoc2", "facet": "graph_type", "value": "dynamic", "confidence": "high", "evidence": "keyword: \\bdynamic|temporal|incremental|stream|evolving|time[- ]series", "source": "title", "verified": false}
+{"key": "li2023dedoc2", "facet": "graph_type", "value": "weighted", "confidence": "high", "evidence": "keyword: weighted|hi-c|contact map|chromat", "source": "title", "verified": false}
+{"key": "li2023dedoc2", "facet": "se_representation", "value": "kD_tree", "confidence": "low", "evidence": "keyword: hierarch|encoding tree|coding tree|partition tree|deDoc|TAD|tree", "source": "inferred", "verified": false}
+{"key": "li2023dedoc2", "facet": "optimization", "value": "incremental", "confidence": "low", "evidence": "keyword: incremental|stream|online|dynamic", "source": "inferred", "verified": false}
+{"key": "li2023dedoc2", "facet": "optimization", "value": "greedy_agglomerative", "confidence": "low", "evidence": "keyword: agglomerat|deDoc|merge", "source": "inferred", "verified": false}
+{"key": "li2023dedoc2", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
+{"key": "li2023dedoc2", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "li2023dedoc2", "facet": "output", "value": "partition", "confidence": "med", "evidence": "typical output of community_detection", "source": "inferred", "verified": false}
+{"key": "li2023dedoc2", "facet": "output", "value": "tree", "confidence": "med", "evidence": "hierarchical/tree output", "source": "title", "verified": false}
+{"key": "li2023dedoc2", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "pan2021information", "facet": "task", "value": "community_detection", "confidence": "high", "evidence": "category=algorithms/combinatorial", "source": "metadata", "verified": false}
+{"key": "pan2021information", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "pan2021information", "facet": "year", "value": "2021", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "pan2021information", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "pan2021information", "facet": "se_representation", "value": "kD_tree", "confidence": "low", "evidence": "keyword: hierarch|encoding tree|coding tree|partition tree|deDoc|TAD|tree", "source": "inferred", "verified": false}
+{"key": "pan2021information", "facet": "se_representation", "value": "2D", "confidence": "low", "evidence": "keyword: community|cluster|2d|two-dimensional|partition", "source": "inferred", "verified": false}
+{"key": "pan2021information", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
+{"key": "pan2021information", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "pan2021information", "facet": "output", "value": "partition", "confidence": "med", "evidence": "typical output of community_detection", "source": "inferred", "verified": false}
+{"key": "pan2021information", "facet": "output", "value": "tree", "confidence": "med", "evidence": "hierarchical/tree output", "source": "title", "verified": false}
+{"key": "pan2021information", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "wu2022pooling", "facet": "task", "value": "graph_pooling", "confidence": "high", "evidence": "category=graph-learning/pooling", "source": "metadata", "verified": false}
+{"key": "wu2022pooling", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "wu2022pooling", "facet": "year", "value": "2022", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "wu2022pooling", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "wu2022pooling", "facet": "se_representation", "value": "kD_tree", "confidence": "low", "evidence": "keyword: hierarch|encoding tree|coding tree|partition tree|deDoc|TAD|tree", "source": "inferred", "verified": false}
+{"key": "wu2022pooling", "facet": "se_representation", "value": "continuous", "confidence": "low", "evidence": "keyword: differentiab|gradient|neural|gnn|pooling|deep|relax", "source": "inferred", "verified": false}
+{"key": "wu2022pooling", "facet": "optimization", "value": "differentiable", "confidence": "low", "evidence": "keyword: differentiab|gradient|neural|gnn|deep|pooling", "source": "inferred", "verified": false}
+{"key": "wu2022pooling", "facet": "se_role", "value": "prior", "confidence": "low", "evidence": "deep/RL -> SE as inductive prior", "source": "inferred", "verified": false}
+{"key": "wu2022pooling", "facet": "supervision", "value": "supervised", "confidence": "low", "evidence": "downstream-supervised default", "source": "inferred", "verified": false}
+{"key": "wu2022pooling", "facet": "output", "value": "pooled_graph", "confidence": "med", "evidence": "typical output of graph_pooling", "source": "inferred", "verified": false}
+{"key": "wu2022pooling", "facet": "output", "value": "tree", "confidence": "med", "evidence": "hierarchical/tree output", "source": "title", "verified": false}
+{"key": "wu2022pooling", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "pan2025hcsegraphs", "facet": "task", "value": "graph_pooling", "confidence": "high", "evidence": "category=graph-learning/pooling", "source": "metadata", "verified": false}
+{"key": "pan2025hcsegraphs", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "pan2025hcsegraphs", "facet": "year", "value": "2025", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "pan2025hcsegraphs", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "pan2025hcsegraphs", "facet": "se_representation", "value": "kD_tree", "confidence": "low", "evidence": "keyword: hierarch|encoding tree|coding tree|partition tree|deDoc|TAD|tree", "source": "inferred", "verified": false}
+{"key": "pan2025hcsegraphs", "facet": "se_representation", "value": "2D", "confidence": "low", "evidence": "keyword: community|cluster|2d|two-dimensional|partition", "source": "inferred", "verified": false}
+{"key": "pan2025hcsegraphs", "facet": "se_role", "value": "prior", "confidence": "low", "evidence": "deep/RL -> SE as inductive prior", "source": "inferred", "verified": false}
+{"key": "pan2025hcsegraphs", "facet": "supervision", "value": "supervised", "confidence": "low", "evidence": "downstream-supervised default", "source": "inferred", "verified": false}
+{"key": "pan2025hcsegraphs", "facet": "output", "value": "pooled_graph", "confidence": "med", "evidence": "typical output of graph_pooling", "source": "inferred", "verified": false}
+{"key": "pan2025hcsegraphs", "facet": "output", "value": "tree", "confidence": "med", "evidence": "hierarchical/tree output", "source": "title", "verified": false}
+{"key": "pan2025hcsegraphs", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "huang2024sec", "facet": "task", "value": "community_detection", "confidence": "high", "evidence": "category=algorithms/combinatorial", "source": "metadata", "verified": false}
+{"key": "huang2024sec", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "huang2024sec", "facet": "year", "value": "2024", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "huang2024sec", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "huang2024sec", "facet": "se_representation", "value": "2D", "confidence": "low", "evidence": "keyword: community|cluster|2d|two-dimensional|partition", "source": "inferred", "verified": false}
+{"key": "huang2024sec", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
+{"key": "huang2024sec", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "huang2024sec", "facet": "output", "value": "partition", "confidence": "med", "evidence": "typical output of community_detection", "source": "inferred", "verified": false}
+{"key": "huang2024sec", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "zeng2024semiSSE", "facet": "task", "value": "community_detection", "confidence": "high", "evidence": "category=algorithms/constrained", "source": "metadata", "verified": false}
+{"key": "zeng2024semiSSE", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "zeng2024semiSSE", "facet": "year", "value": "2024", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "zeng2024semiSSE", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "zeng2024semiSSE", "facet": "se_representation", "value": "2D", "confidence": "low", "evidence": "keyword: community|cluster|2d|two-dimensional|partition", "source": "inferred", "verified": false}
+{"key": "zeng2024semiSSE", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
+{"key": "zeng2024semiSSE", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "zeng2024semiSSE", "facet": "output", "value": "partition", "confidence": "high", "evidence": "abstract: \u2026cluster\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2024semiSSE", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "zeng2024scalableSSSE", "facet": "task", "value": "community_detection", "confidence": "high", "evidence": "category=algorithms/constrained", "source": "metadata", "verified": false}
+{"key": "zeng2024scalableSSSE", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "zeng2024scalableSSSE", "facet": "year", "value": "2025", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "zeng2024scalableSSSE", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "zeng2024scalableSSSE", "facet": "se_representation", "value": "2D", "confidence": "low", "evidence": "keyword: community|cluster|2d|two-dimensional|partition", "source": "inferred", "verified": false}
+{"key": "zeng2024scalableSSSE", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
+{"key": "zeng2024scalableSSSE", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "zeng2024scalableSSSE", "facet": "output", "value": "partition", "confidence": "med", "evidence": "typical output of community_detection", "source": "inferred", "verified": false}
+{"key": "zeng2024scalableSSSE", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "zhang2021supertad", "facet": "task", "value": "community_detection", "confidence": "high", "evidence": "category=algorithms/constrained", "source": "metadata", "verified": false}
+{"key": "zhang2021supertad", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "zhang2021supertad", "facet": "year", "value": "2021", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "zhang2021supertad", "facet": "graph_type", "value": "weighted", "confidence": "high", "evidence": "abstract: \u2026Hi-C\u2026", "source": "abstract", "verified": true}
+{"key": "zhang2021supertad", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026coding tree\u2026", "source": "abstract", "verified": true}
+{"key": "zhang2021supertad", "facet": "optimization", "value": "dynamic_programming", "confidence": "low", "evidence": "keyword: dynamic programming|\\bDP\\b|SuperTAD", "source": "inferred", "verified": false}
+{"key": "zhang2021supertad", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
+{"key": "zhang2021supertad", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "zhang2021supertad", "facet": "output", "value": "partition", "confidence": "med", "evidence": "typical output of community_detection", "source": "inferred", "verified": false}
+{"key": "zhang2021supertad", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026hierarch\u2026", "source": "abstract", "verified": true}
+{"key": "zhang2021supertad", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "ling2024supertad2", "facet": "task", "value": "community_detection", "confidence": "high", "evidence": "category=algorithms/constrained", "source": "metadata", "verified": false}
+{"key": "ling2024supertad2", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "ling2024supertad2", "facet": "year", "value": "2024", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "ling2024supertad2", "facet": "graph_type", "value": "weighted", "confidence": "high", "evidence": "abstract: \u2026Hi-C\u2026", "source": "abstract", "verified": true}
+{"key": "ling2024supertad2", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026hierarchic\u2026", "source": "abstract", "verified": true}
+{"key": "ling2024supertad2", "facet": "optimization", "value": "dynamic_programming", "confidence": "high", "evidence": "abstract: \u2026dynamic programming\u2026", "source": "abstract", "verified": true}
+{"key": "ling2024supertad2", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
+{"key": "ling2024supertad2", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "ling2024supertad2", "facet": "output", "value": "partition", "confidence": "med", "evidence": "typical output of community_detection", "source": "inferred", "verified": false}
+{"key": "ling2024supertad2", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "chen2022pyseat", "facet": "task", "value": "community_detection", "confidence": "high", "evidence": "category=algorithms/constrained", "source": "metadata", "verified": false}
+{"key": "chen2022pyseat", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "chen2022pyseat", "facet": "year", "value": "2022", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "chen2022pyseat", "facet": "graph_type", "value": "weighted", "confidence": "high", "evidence": "abstract: \u2026Hi-C\u2026", "source": "abstract", "verified": true}
+{"key": "chen2022pyseat", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026hierarchic\u2026", "source": "abstract", "verified": true}
+{"key": "chen2022pyseat", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
+{"key": "chen2022pyseat", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "chen2022pyseat", "facet": "output", "value": "partition", "confidence": "high", "evidence": "abstract: \u2026cluster\u2026", "source": "abstract", "verified": true}
+{"key": "chen2022pyseat", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026hierarch\u2026", "source": "abstract", "verified": true}
+{"key": "chen2022pyseat", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "sun2024lsenet", "facet": "task", "value": "community_detection", "confidence": "high", "evidence": "category=algorithms/neural", "source": "metadata", "verified": false}
+{"key": "sun2024lsenet", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "sun2024lsenet", "facet": "year", "value": "2024", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "sun2024lsenet", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "sun2024lsenet", "facet": "se_representation", "value": "2D", "confidence": "low", "evidence": "keyword: community|cluster|2d|two-dimensional|partition", "source": "inferred", "verified": false}
+{"key": "sun2024lsenet", "facet": "se_representation", "value": "continuous", "confidence": "low", "evidence": "keyword: differentiab|gradient|neural|gnn|pooling|deep|relax", "source": "inferred", "verified": false}
+{"key": "sun2024lsenet", "facet": "optimization", "value": "differentiable", "confidence": "low", "evidence": "keyword: differentiab|gradient|neural|gnn|deep|pooling", "source": "inferred", "verified": false}
+{"key": "sun2024lsenet", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
+{"key": "sun2024lsenet", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "sun2024lsenet", "facet": "output", "value": "partition", "confidence": "med", "evidence": "typical output of community_detection", "source": "inferred", "verified": false}
+{"key": "sun2024lsenet", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "zhang2025dese", "facet": "task", "value": "community_detection", "confidence": "high", "evidence": "category=algorithms/neural", "source": "metadata", "verified": false}
+{"key": "zhang2025dese", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "zhang2025dese", "facet": "year", "value": "2025", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "zhang2025dese", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "zhang2025dese", "facet": "se_representation", "value": "2D", "confidence": "low", "evidence": "keyword: community|cluster|2d|two-dimensional|partition", "source": "inferred", "verified": false}
+{"key": "zhang2025dese", "facet": "se_representation", "value": "continuous", "confidence": "low", "evidence": "keyword: differentiab|gradient|neural|gnn|pooling|deep|relax", "source": "inferred", "verified": false}
+{"key": "zhang2025dese", "facet": "optimization", "value": "differentiable", "confidence": "low", "evidence": "keyword: differentiab|gradient|neural|gnn|deep|pooling", "source": "inferred", "verified": false}
+{"key": "zhang2025dese", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
+{"key": "zhang2025dese", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "zhang2025dese", "facet": "output", "value": "partition", "confidence": "med", "evidence": "typical output of community_detection", "source": "inferred", "verified": false}
+{"key": "zhang2025dese", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "xian2025communitySEGame", "facet": "task", "value": "community_detection", "confidence": "high", "evidence": "category=algorithms/constrained", "source": "metadata", "verified": false}
+{"key": "xian2025communitySEGame", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "xian2025communitySEGame", "facet": "year", "value": "2025", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "xian2025communitySEGame", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "xian2025communitySEGame", "facet": "se_representation", "value": "2D", "confidence": "low", "evidence": "keyword: community|cluster|2d|two-dimensional|partition", "source": "inferred", "verified": false}
+{"key": "xian2025communitySEGame", "facet": "optimization", "value": "game_localmove", "confidence": "low", "evidence": "keyword: game|local move|leiden|louvain", "source": "inferred", "verified": false}
+{"key": "xian2025communitySEGame", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
+{"key": "xian2025communitySEGame", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "xian2025communitySEGame", "facet": "output", "value": "partition", "confidence": "med", "evidence": "typical output of community_detection", "source": "inferred", "verified": false}
+{"key": "xian2025communitySEGame", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "zeng2026hypcse", "facet": "task", "value": "community_detection", "confidence": "high", "evidence": "category=algorithms/neural", "source": "metadata", "verified": false}
+{"key": "zeng2026hypcse", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "zeng2026hypcse", "facet": "year", "value": "2026", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "zeng2026hypcse", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "zeng2026hypcse", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026Hierarchic\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2026hypcse", "facet": "se_representation", "value": "2D", "confidence": "low", "evidence": "keyword: community|cluster|2d|two-dimensional|partition", "source": "inferred", "verified": false}
+{"key": "zeng2026hypcse", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
+{"key": "zeng2026hypcse", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "zeng2026hypcse", "facet": "output", "value": "partition", "confidence": "high", "evidence": "abstract: \u2026cluster\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2026hypcse", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026Hierarch\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2026hypcse", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "wu2023sega", "facet": "task", "value": "contrastive_ssl", "confidence": "high", "evidence": "category=graph-learning/contrastive", "source": "metadata", "verified": false}
+{"key": "wu2023sega", "facet": "year", "value": "2023", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "wu2023sega", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "wu2023sega", "facet": "se_role", "value": "prior", "confidence": "low", "evidence": "deep/RL -> SE as inductive prior", "source": "inferred", "verified": false}
+{"key": "wu2023sega", "facet": "supervision", "value": "self_supervised", "confidence": "med", "evidence": "contrastive", "source": "title", "verified": false}
+{"key": "wu2023sega", "facet": "output", "value": "embedding", "confidence": "med", "evidence": "typical output of contrastive_ssl", "source": "inferred", "verified": false}
+{"key": "wu2023sega", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "zou2023segsl", "facet": "task", "value": "structure_learning", "confidence": "high", "evidence": "category=graph-learning/structure-learning", "source": "metadata", "verified": false}
+{"key": "zou2023segsl", "facet": "year", "value": "2023", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "zou2023segsl", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "zou2023segsl", "facet": "se_role", "value": "prior", "confidence": "low", "evidence": "deep/RL -> SE as inductive prior", "source": "inferred", "verified": false}
+{"key": "zou2023segsl", "facet": "supervision", "value": "supervised", "confidence": "low", "evidence": "downstream-supervised default", "source": "inferred", "verified": false}
+{"key": "zou2023segsl", "facet": "output", "value": "rewired", "confidence": "med", "evidence": "typical output of structure_learning", "source": "inferred", "verified": false}
+{"key": "zou2023segsl", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "duan2024structuralGSL", "facet": "task", "value": "structure_learning", "confidence": "high", "evidence": "category=graph-learning/structure-learning", "source": "metadata", "verified": false}
+{"key": "duan2024structuralGSL", "facet": "year", "value": "2024", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "duan2024structuralGSL", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "duan2024structuralGSL", "facet": "se_role", "value": "prior", "confidence": "low", "evidence": "deep/RL -> SE as inductive prior", "source": "inferred", "verified": false}
+{"key": "duan2024structuralGSL", "facet": "supervision", "value": "supervised", "confidence": "low", "evidence": "downstream-supervised default", "source": "inferred", "verified": false}
+{"key": "duan2024structuralGSL", "facet": "output", "value": "rewired", "confidence": "med", "evidence": "typical output of structure_learning", "source": "inferred", "verified": false}
+{"key": "duan2024structuralGSL", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "wxb2024hi-part", "facet": "task", "value": "graph_pooling", "confidence": "high", "evidence": "category=graph-learning/pooling", "source": "metadata", "verified": false}
+{"key": "wxb2024hi-part", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "wxb2024hi-part", "facet": "year", "value": "2024", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "wxb2024hi-part", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "wxb2024hi-part", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026Hierarchic\u2026", "source": "abstract", "verified": true}
+{"key": "wxb2024hi-part", "facet": "se_representation", "value": "2D", "confidence": "low", "evidence": "keyword: community|cluster|2d|two-dimensional|partition", "source": "inferred", "verified": false}
+{"key": "wxb2024hi-part", "facet": "se_representation", "value": "continuous", "confidence": "high", "evidence": "abstract: \u2026graph neural\u2026", "source": "abstract", "verified": true}
+{"key": "wxb2024hi-part", "facet": "optimization", "value": "differentiable", "confidence": "high", "evidence": "abstract: \u2026neural\u2026", "source": "abstract", "verified": true}
+{"key": "wxb2024hi-part", "facet": "se_role", "value": "prior", "confidence": "low", "evidence": "deep/RL -> SE as inductive prior", "source": "inferred", "verified": false}
+{"key": "wxb2024hi-part", "facet": "supervision", "value": "supervised", "confidence": "low", "evidence": "downstream-supervised default", "source": "inferred", "verified": false}
+{"key": "wxb2024hi-part", "facet": "output", "value": "pooled_graph", "confidence": "high", "evidence": "abstract: \u2026pool\u2026", "source": "abstract", "verified": true}
+{"key": "wxb2024hi-part", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026Hierarch\u2026", "source": "abstract", "verified": true}
+{"key": "wxb2024hi-part", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "wang2023user", "facet": "task", "value": "structure_learning", "confidence": "high", "evidence": "category=graph-learning/structure-learning", "source": "metadata", "verified": false}
+{"key": "wang2023user", "facet": "year", "value": "2023", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "wang2023user", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "wang2023user", "facet": "se_representation", "value": "continuous", "confidence": "low", "evidence": "keyword: differentiab|gradient|neural|gnn|pooling|deep|relax", "source": "inferred", "verified": false}
+{"key": "wang2023user", "facet": "optimization", "value": "differentiable", "confidence": "low", "evidence": "keyword: differentiab|gradient|neural|gnn|deep|pooling", "source": "inferred", "verified": false}
+{"key": "wang2023user", "facet": "se_role", "value": "prior", "confidence": "low", "evidence": "deep/RL -> SE as inductive prior", "source": "inferred", "verified": false}
+{"key": "wang2023user", "facet": "supervision", "value": "supervised", "confidence": "low", "evidence": "downstream-supervised default", "source": "inferred", "verified": false}
+{"key": "wang2023user", "facet": "output", "value": "rewired", "confidence": "med", "evidence": "typical output of structure_learning", "source": "inferred", "verified": false}
+{"key": "wang2023user", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "zhu2023HiTIN", "facet": "task", "value": "structure_learning", "confidence": "med", "evidence": "graph-learning/hierarchical-text: SE guides the learner", "source": "metadata", "verified": false}
+{"key": "zhu2023HiTIN", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "zhu2023HiTIN", "facet": "year", "value": "2023", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "zhu2023HiTIN", "facet": "domain", "value": "nlp", "confidence": "high", "evidence": "subcategory=hierarchical-text", "source": "metadata", "verified": false}
+{"key": "zhu2023HiTIN", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "zhu2023HiTIN", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026Hierarchic\u2026", "source": "abstract", "verified": true}
+{"key": "zhu2023HiTIN", "facet": "se_role", "value": "prior", "confidence": "high", "evidence": "abstract: \u2026prior\u2026", "source": "abstract", "verified": true}
+{"key": "zhu2023HiTIN", "facet": "supervision", "value": "supervised", "confidence": "low", "evidence": "downstream-supervised default", "source": "inferred", "verified": false}
+{"key": "zhu2023HiTIN", "facet": "output", "value": "rewired", "confidence": "med", "evidence": "typical output of structure_learning", "source": "inferred", "verified": false}
+{"key": "zhu2023HiTIN", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026Hierarch\u2026", "source": "abstract", "verified": true}
+{"key": "zhu2023HiTIN", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "yang2024graphkernal", "facet": "task", "value": "structure_learning", "confidence": "high", "evidence": "category=graph-learning/structure-learning", "source": "metadata", "verified": false}
+{"key": "yang2024graphkernal", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "yang2024graphkernal", "facet": "year", "value": "2024", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "yang2024graphkernal", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "yang2024graphkernal", "facet": "se_representation", "value": "kD_tree", "confidence": "low", "evidence": "keyword: hierarch|encoding tree|coding tree|partition tree|deDoc|TAD|tree", "source": "inferred", "verified": false}
+{"key": "yang2024graphkernal", "facet": "se_role", "value": "prior", "confidence": "low", "evidence": "deep/RL -> SE as inductive prior", "source": "inferred", "verified": false}
+{"key": "yang2024graphkernal", "facet": "supervision", "value": "supervised", "confidence": "low", "evidence": "downstream-supervised default", "source": "inferred", "verified": false}
+{"key": "yang2024graphkernal", "facet": "output", "value": "rewired", "confidence": "med", "evidence": "typical output of structure_learning", "source": "inferred", "verified": false}
+{"key": "yang2024graphkernal", "facet": "output", "value": "tree", "confidence": "med", "evidence": "hierarchical/tree output", "source": "title", "verified": false}
+{"key": "yang2024graphkernal", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "hou2025sego", "facet": "task", "value": "structure_learning", "confidence": "med", "evidence": "graph-learning/ood: SE guides the learner", "source": "metadata", "verified": false}
+{"key": "hou2025sego", "facet": "year", "value": "2025", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "hou2025sego", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "hou2025sego", "facet": "se_role", "value": "prior", "confidence": "low", "evidence": "deep/RL -> SE as inductive prior", "source": "inferred", "verified": false}
+{"key": "hou2025sego", "facet": "supervision", "value": "supervised", "confidence": "low", "evidence": "downstream-supervised default", "source": "inferred", "verified": false}
+{"key": "hou2025sego", "facet": "output", "value": "rewired", "confidence": "med", "evidence": "typical output of structure_learning", "source": "inferred", "verified": false}
+{"key": "hou2025sego", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "liu2025sihtc", "facet": "task", "value": "structure_learning", "confidence": "med", "evidence": "graph-learning/hierarchical-text: SE guides the learner", "source": "metadata", "verified": false}
+{"key": "liu2025sihtc", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "liu2025sihtc", "facet": "year", "value": "2025", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "liu2025sihtc", "facet": "domain", "value": "nlp", "confidence": "high", "evidence": "subcategory=hierarchical-text", "source": "metadata", "verified": false}
+{"key": "liu2025sihtc", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "liu2025sihtc", "facet": "se_representation", "value": "kD_tree", "confidence": "low", "evidence": "keyword: hierarch|encoding tree|coding tree|partition tree|deDoc|TAD|tree", "source": "inferred", "verified": false}
+{"key": "liu2025sihtc", "facet": "se_role", "value": "prior", "confidence": "low", "evidence": "deep/RL -> SE as inductive prior", "source": "inferred", "verified": false}
+{"key": "liu2025sihtc", "facet": "supervision", "value": "supervised", "confidence": "low", "evidence": "downstream-supervised default", "source": "inferred", "verified": false}
+{"key": "liu2025sihtc", "facet": "output", "value": "rewired", "confidence": "med", "evidence": "typical output of structure_learning", "source": "inferred", "verified": false}
+{"key": "liu2025sihtc", "facet": "output", "value": "tree", "confidence": "med", "evidence": "hierarchical/tree output", "source": "title", "verified": false}
+{"key": "liu2025sihtc", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "chen2026semeta", "facet": "task", "value": "structure_learning", "confidence": "med", "evidence": "graph-learning/classification: SE guides the learner", "source": "metadata", "verified": false}
+{"key": "chen2026semeta", "facet": "year", "value": "2026", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "chen2026semeta", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "chen2026semeta", "facet": "se_role", "value": "prior", "confidence": "low", "evidence": "deep/RL -> SE as inductive prior", "source": "inferred", "verified": false}
+{"key": "chen2026semeta", "facet": "supervision", "value": "supervised", "confidence": "low", "evidence": "downstream-supervised default", "source": "inferred", "verified": false}
+{"key": "chen2026semeta", "facet": "output", "value": "rewired", "confidence": "med", "evidence": "typical output of structure_learning", "source": "inferred", "verified": false}
+{"key": "chen2026semeta", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "xie2025ses", "facet": "task", "value": "structure_learning", "confidence": "med", "evidence": "graph-learning/sample-selection: SE guides the learner", "source": "metadata", "verified": false}
+{"key": "xie2025ses", "facet": "year", "value": "2025", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "xie2025ses", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "xie2025ses", "facet": "se_role", "value": "prior", "confidence": "low", "evidence": "deep/RL -> SE as inductive prior", "source": "inferred", "verified": false}
+{"key": "xie2025ses", "facet": "supervision", "value": "supervised", "confidence": "low", "evidence": "downstream-supervised default", "source": "inferred", "verified": false}
+{"key": "xie2025ses", "facet": "output", "value": "rewired", "confidence": "med", "evidence": "typical output of structure_learning", "source": "inferred", "verified": false}
+{"key": "xie2025ses", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "zeng2023effective", "facet": "task", "value": "rl_abstraction", "confidence": "high", "evidence": "category=rl/marl", "source": "metadata", "verified": false}
+{"key": "zeng2023effective", "facet": "year", "value": "2023", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "zeng2023effective", "facet": "domain", "value": "rl_agents", "confidence": "high", "evidence": "subcategory=marl", "source": "metadata", "verified": false}
+{"key": "zeng2023effective", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "zeng2023effective", "facet": "se_role", "value": "prior", "confidence": "low", "evidence": "deep/RL -> SE as inductive prior", "source": "inferred", "verified": false}
+{"key": "zeng2023effective", "facet": "output", "value": "policy", "confidence": "med", "evidence": "typical output of rl_abstraction", "source": "inferred", "verified": false}
+{"key": "zeng2023effective", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "zeng2023hierarchicalSISA", "facet": "task", "value": "rl_abstraction", "confidence": "high", "evidence": "category=rl/decision-making", "source": "metadata", "verified": false}
+{"key": "zeng2023hierarchicalSISA", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "zeng2023hierarchicalSISA", "facet": "year", "value": "2023", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "zeng2023hierarchicalSISA", "facet": "domain", "value": "rl_agents", "confidence": "high", "evidence": "subcategory=decision-making", "source": "metadata", "verified": false}
+{"key": "zeng2023hierarchicalSISA", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "zeng2023hierarchicalSISA", "facet": "se_representation", "value": "kD_tree", "confidence": "low", "evidence": "keyword: hierarch|encoding tree|coding tree|partition tree|deDoc|TAD|tree", "source": "inferred", "verified": false}
+{"key": "zeng2023hierarchicalSISA", "facet": "se_role", "value": "prior", "confidence": "low", "evidence": "deep/RL -> SE as inductive prior", "source": "inferred", "verified": false}
+{"key": "zeng2023hierarchicalSISA", "facet": "output", "value": "policy", "confidence": "med", "evidence": "typical output of rl_abstraction", "source": "inferred", "verified": false}
+{"key": "zeng2023hierarchicalSISA", "facet": "output", "value": "tree", "confidence": "med", "evidence": "hierarchical/tree output", "source": "title", "verified": false}
+{"key": "zeng2023hierarchicalSISA", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "zeng2024effectiveSI2E", "facet": "task", "value": "rl_abstraction", "confidence": "high", "evidence": "category=rl/exploration", "source": "metadata", "verified": false}
+{"key": "zeng2024effectiveSI2E", "facet": "year", "value": "2024", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "zeng2024effectiveSI2E", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "zeng2024effectiveSI2E", "facet": "se_role", "value": "prior", "confidence": "low", "evidence": "deep/RL -> SE as inductive prior", "source": "inferred", "verified": false}
+{"key": "zeng2024effectiveSI2E", "facet": "output", "value": "policy", "confidence": "high", "evidence": "abstract: \u2026Reinforcement\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2024effectiveSI2E", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "su2025emergencecollab", "facet": "task", "value": "rl_abstraction", "confidence": "high", "evidence": "category=rl/marl", "source": "metadata", "verified": false}
+{"key": "su2025emergencecollab", "facet": "year", "value": "2025", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "su2025emergencecollab", "facet": "domain", "value": "rl_agents", "confidence": "high", "evidence": "subcategory=marl", "source": "metadata", "verified": false}
+{"key": "su2025emergencecollab", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "su2025emergencecollab", "facet": "optimization", "value": "greedy_agglomerative", "confidence": "low", "evidence": "keyword: agglomerat|deDoc|merge", "source": "inferred", "verified": false}
+{"key": "su2025emergencecollab", "facet": "se_role", "value": "prior", "confidence": "low", "evidence": "deep/RL -> SE as inductive prior", "source": "inferred", "verified": false}
+{"key": "su2025emergencecollab", "facet": "output", "value": "policy", "confidence": "med", "evidence": "typical output of rl_abstraction", "source": "inferred", "verified": false}
+{"key": "su2025emergencecollab", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "zeng2025sidmJMLR", "facet": "task", "value": "rl_abstraction", "confidence": "high", "evidence": "category=rl/decision-making", "source": "metadata", "verified": false}
+{"key": "zeng2025sidmJMLR", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "zeng2025sidmJMLR", "facet": "year", "value": "2025", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "zeng2025sidmJMLR", "facet": "domain", "value": "rl_agents", "confidence": "high", "evidence": "subcategory=decision-making", "source": "metadata", "verified": false}
+{"key": "zeng2025sidmJMLR", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "zeng2025sidmJMLR", "facet": "se_representation", "value": "kD_tree", "confidence": "low", "evidence": "keyword: hierarch|encoding tree|coding tree|partition tree|deDoc|TAD|tree", "source": "inferred", "verified": false}
+{"key": "zeng2025sidmJMLR", "facet": "se_role", "value": "prior", "confidence": "low", "evidence": "deep/RL -> SE as inductive prior", "source": "inferred", "verified": false}
+{"key": "zeng2025sidmJMLR", "facet": "output", "value": "policy", "confidence": "med", "evidence": "typical output of rl_abstraction", "source": "inferred", "verified": false}
+{"key": "zeng2025sidmJMLR", "facet": "output", "value": "tree", "confidence": "med", "evidence": "hierarchical/tree output", "source": "title", "verified": false}
+{"key": "zeng2025sidmJMLR", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "zeng2025si2af", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/social-bot", "source": "metadata", "verified": false}
+{"key": "zeng2025si2af", "facet": "year", "value": "2025", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "zeng2025si2af", "facet": "domain", "value": "social", "confidence": "high", "evidence": "subcategory=social-bot", "source": "metadata", "verified": false}
+{"key": "zeng2025si2af", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "zeng2025si2af", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "zeng2025si2af", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "huang2025MASGCN", "facet": "task", "value": "rl_abstraction", "confidence": "high", "evidence": "category=rl/marl", "source": "metadata", "verified": false}
+{"key": "huang2025MASGCN", "facet": "year", "value": "2025", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "huang2025MASGCN", "facet": "domain", "value": "rl_agents", "confidence": "high", "evidence": "subcategory=marl", "source": "metadata", "verified": false}
+{"key": "huang2025MASGCN", "facet": "graph_type", "value": "heterogeneous", "confidence": "high", "evidence": "abstract: \u2026multi-view\u2026", "source": "abstract", "verified": true}
+{"key": "huang2025MASGCN", "facet": "se_role", "value": "prior", "confidence": "low", "evidence": "deep/RL -> SE as inductive prior", "source": "inferred", "verified": false}
+{"key": "huang2025MASGCN", "facet": "output", "value": "policy", "confidence": "med", "evidence": "typical output of rl_abstraction", "source": "inferred", "verified": false}
+{"key": "huang2025MASGCN", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "zeng2025sihd", "facet": "task", "value": "rl_abstraction", "confidence": "high", "evidence": "category=rl/offline", "source": "metadata", "verified": false}
+{"key": "zeng2025sihd", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "zeng2025sihd", "facet": "year", "value": "2025", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "zeng2025sihd", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "zeng2025sihd", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026hierarchic\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2025sihd", "facet": "se_role", "value": "prior", "confidence": "low", "evidence": "deep/RL -> SE as inductive prior", "source": "inferred", "verified": false}
+{"key": "zeng2025sihd", "facet": "output", "value": "policy", "confidence": "high", "evidence": "abstract: \u2026reinforcement\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2025sihd", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026hierarch\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2025sihd", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "zeng2026siamd", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/social-bot", "source": "metadata", "verified": false}
+{"key": "zeng2026siamd", "facet": "year", "value": "2026", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "zeng2026siamd", "facet": "domain", "value": "social", "confidence": "high", "evidence": "subcategory=social-bot", "source": "metadata", "verified": false}
+{"key": "zeng2026siamd", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "zeng2026siamd", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "zeng2026siamd", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "yang2024sebot", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/social-bot", "source": "metadata", "verified": false}
+{"key": "yang2024sebot", "facet": "year", "value": "2024", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "yang2024sebot", "facet": "domain", "value": "social", "confidence": "high", "evidence": "subcategory=social-bot", "source": "metadata", "verified": false}
+{"key": "yang2024sebot", "facet": "graph_type", "value": "heterogeneous", "confidence": "high", "evidence": "abstract: \u2026multi-view\u2026", "source": "abstract", "verified": true}
+{"key": "yang2024sebot", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "yang2024sebot", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "peng2024zjyun", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/social-bot", "source": "metadata", "verified": false}
+{"key": "peng2024zjyun", "facet": "year", "value": "2024", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "peng2024zjyun", "facet": "domain", "value": "social", "confidence": "high", "evidence": "subcategory=social-bot", "source": "metadata", "verified": false}
+{"key": "peng2024zjyun", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "peng2024zjyun", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "peng2024zjyun", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "zeng2024socialbots", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/social-bot", "source": "metadata", "verified": false}
+{"key": "zeng2024socialbots", "facet": "year", "value": "2024", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "zeng2024socialbots", "facet": "domain", "value": "social", "confidence": "high", "evidence": "subcategory=social-bot", "source": "metadata", "verified": false}
+{"key": "zeng2024socialbots", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "zeng2024socialbots", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "zeng2024socialbots", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "yang2023MGEDE", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/event-detection", "source": "metadata", "verified": false}
+{"key": "yang2023MGEDE", "facet": "year", "value": "2023", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "yang2023MGEDE", "facet": "domain", "value": "social", "confidence": "high", "evidence": "subcategory=event-detection", "source": "metadata", "verified": false}
+{"key": "yang2023MGEDE", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "yang2023MGEDE", "facet": "se_representation", "value": "continuous", "confidence": "low", "evidence": "keyword: differentiab|gradient|neural|gnn|pooling|deep|relax", "source": "inferred", "verified": false}
+{"key": "yang2023MGEDE", "facet": "optimization", "value": "differentiable", "confidence": "low", "evidence": "keyword: differentiab|gradient|neural|gnn|deep|pooling", "source": "inferred", "verified": false}
+{"key": "yang2023MGEDE", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "yang2023MGEDE", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "yang2024eventdetect", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/event-detection", "source": "metadata", "verified": false}
+{"key": "yang2024eventdetect", "facet": "year", "value": "2024", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "yang2024eventdetect", "facet": "domain", "value": "social", "confidence": "high", "evidence": "subcategory=event-detection", "source": "metadata", "verified": false}
+{"key": "yang2024eventdetect", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "yang2024eventdetect", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "yang2024eventdetect", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "cao2024socialevent", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/event-detection", "source": "metadata", "verified": false}
+{"key": "cao2024socialevent", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "cao2024socialevent", "facet": "year", "value": "2024", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "cao2024socialevent", "facet": "domain", "value": "social", "confidence": "high", "evidence": "subcategory=event-detection", "source": "metadata", "verified": false}
+{"key": "cao2024socialevent", "facet": "graph_type", "value": "dynamic", "confidence": "high", "evidence": "keyword: \\bdynamic|temporal|incremental|stream|evolving|time[- ]series", "source": "title", "verified": false}
+{"key": "cao2024socialevent", "facet": "se_representation", "value": "kD_tree", "confidence": "low", "evidence": "keyword: hierarch|encoding tree|coding tree|partition tree|deDoc|TAD|tree", "source": "inferred", "verified": false}
+{"key": "cao2024socialevent", "facet": "optimization", "value": "incremental", "confidence": "low", "evidence": "keyword: incremental|stream|online|dynamic", "source": "inferred", "verified": false}
+{"key": "cao2024socialevent", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "cao2024socialevent", "facet": "output", "value": "tree", "confidence": "med", "evidence": "hierarchical/tree output", "source": "title", "verified": false}
+{"key": "cao2024socialevent", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "yu2024hyperSED", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/event-detection", "source": "metadata", "verified": false}
+{"key": "yu2024hyperSED", "facet": "year", "value": "2024", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "yu2024hyperSED", "facet": "domain", "value": "social", "confidence": "high", "evidence": "subcategory=event-detection", "source": "metadata", "verified": false}
+{"key": "yu2024hyperSED", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "yu2024hyperSED", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "yu2024hyperSED", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "zou2024hierrecGAD", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/anomaly-detection", "source": "metadata", "verified": false}
+{"key": "zou2024hierrecGAD", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "zou2024hierrecGAD", "facet": "year", "value": "2024", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "zou2024hierrecGAD", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "zou2024hierrecGAD", "facet": "se_representation", "value": "kD_tree", "confidence": "low", "evidence": "keyword: hierarch|encoding tree|coding tree|partition tree|deDoc|TAD|tree", "source": "inferred", "verified": false}
+{"key": "zou2024hierrecGAD", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "zou2024hierrecGAD", "facet": "output", "value": "tree", "confidence": "med", "evidence": "hierarchical/tree output", "source": "title", "verified": false}
+{"key": "zou2024hierrecGAD", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "yang2026seinevent", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/event-detection", "source": "metadata", "verified": false}
+{"key": "yang2026seinevent", "facet": "year", "value": "2026", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "yang2026seinevent", "facet": "domain", "value": "social", "confidence": "high", "evidence": "subcategory=event-detection", "source": "metadata", "verified": false}
+{"key": "yang2026seinevent", "facet": "graph_type", "value": "dynamic", "confidence": "high", "evidence": "keyword: \\bdynamic|temporal|incremental|stream|evolving|time[- ]series", "source": "title", "verified": false}
+{"key": "yang2026seinevent", "facet": "optimization", "value": "incremental", "confidence": "low", "evidence": "keyword: incremental|stream|online|dynamic", "source": "inferred", "verified": false}
+{"key": "yang2026seinevent", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "yang2026seinevent", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "liu2026ragsede", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/event-detection", "source": "metadata", "verified": false}
+{"key": "liu2026ragsede", "facet": "year", "value": "2026", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "liu2026ragsede", "facet": "domain", "value": "social", "confidence": "high", "evidence": "subcategory=event-detection", "source": "metadata", "verified": false}
+{"key": "liu2026ragsede", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "liu2026ragsede", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "liu2026ragsede", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "li2021detoki", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/bioinformatics", "source": "metadata", "verified": false}
+{"key": "li2021detoki", "facet": "year", "value": "2021", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "li2021detoki", "facet": "domain", "value": "bioinformatics", "confidence": "high", "evidence": "subcategory=bioinformatics", "source": "metadata", "verified": false}
+{"key": "li2021detoki", "facet": "graph_type", "value": "dynamic", "confidence": "high", "evidence": "keyword: \\bdynamic|temporal|incremental|stream|evolving|time[- ]series", "source": "title", "verified": false}
+{"key": "li2021detoki", "facet": "graph_type", "value": "weighted", "confidence": "high", "evidence": "keyword: weighted|hi-c|contact map|chromat", "source": "title", "verified": false}
+{"key": "li2021detoki", "facet": "se_representation", "value": "kD_tree", "confidence": "low", "evidence": "keyword: hierarch|encoding tree|coding tree|partition tree|deDoc|TAD|tree", "source": "inferred", "verified": false}
+{"key": "li2021detoki", "facet": "optimization", "value": "incremental", "confidence": "low", "evidence": "keyword: incremental|stream|online|dynamic", "source": "inferred", "verified": false}
+{"key": "li2021detoki", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "li2021detoki", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "li2016cancer", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/bioinformatics", "source": "metadata", "verified": false}
+{"key": "li2016cancer", "facet": "year", "value": "2016", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "li2016cancer", "facet": "domain", "value": "bioinformatics", "confidence": "high", "evidence": "subcategory=bioinformatics", "source": "metadata", "verified": false}
+{"key": "li2016cancer", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "li2016cancer", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "li2016cancer", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "zeng2023lesion", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/bioinformatics", "source": "metadata", "verified": false}
+{"key": "zeng2023lesion", "facet": "year", "value": "2023", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "zeng2023lesion", "facet": "domain", "value": "bioinformatics", "confidence": "high", "evidence": "subcategory=bioinformatics", "source": "metadata", "verified": false}
+{"key": "zeng2023lesion", "facet": "domain", "value": "vision", "confidence": "med", "evidence": "keyword: image|vision|superpixel|segmentation", "source": "title", "verified": false}
+{"key": "zeng2023lesion", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "zeng2023lesion", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "zeng2023lesion", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "xie2025superpixel", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/bioinformatics", "source": "metadata", "verified": false}
+{"key": "xie2025superpixel", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "xie2025superpixel", "facet": "year", "value": "2025", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "xie2025superpixel", "facet": "domain", "value": "bioinformatics", "confidence": "high", "evidence": "subcategory=bioinformatics", "source": "metadata", "verified": false}
+{"key": "xie2025superpixel", "facet": "domain", "value": "vision", "confidence": "med", "evidence": "keyword: image|vision|superpixel|segmentation", "source": "title", "verified": false}
+{"key": "xie2025superpixel", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "xie2025superpixel", "facet": "se_representation", "value": "kD_tree", "confidence": "low", "evidence": "keyword: hierarch|encoding tree|coding tree|partition tree|deDoc|TAD|tree", "source": "inferred", "verified": false}
+{"key": "xie2025superpixel", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "xie2025superpixel", "facet": "output", "value": "tree", "confidence": "med", "evidence": "hierarchical/tree output", "source": "title", "verified": false}
+{"key": "xie2025superpixel", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "wang2024secodecSpeech", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/speech", "source": "metadata", "verified": false}
+{"key": "wang2024secodecSpeech", "facet": "year", "value": "2024", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "wang2024secodecSpeech", "facet": "domain", "value": "speech", "confidence": "high", "evidence": "subcategory=speech", "source": "metadata", "verified": false}
+{"key": "wang2024secodecSpeech", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "wang2024secodecSpeech", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "wang2024secodecSpeech", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "wang2025voice", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/speech", "source": "metadata", "verified": false}
+{"key": "wang2025voice", "facet": "year", "value": "2025", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "wang2025voice", "facet": "domain", "value": "speech", "confidence": "high", "evidence": "subcategory=speech", "source": "metadata", "verified": false}
+{"key": "wang2025voice", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "wang2025voice", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "wang2025voice", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "wxb2022scientificxray", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/knowledge", "source": "metadata", "verified": false}
+{"key": "wxb2022scientificxray", "facet": "year", "value": "2022", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "wxb2022scientificxray", "facet": "domain", "value": "kg", "confidence": "high", "evidence": "subcategory=knowledge", "source": "metadata", "verified": false}
+{"key": "wxb2022scientificxray", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "wxb2022scientificxray", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "wxb2022scientificxray", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "wang2023quantifyingKnowledge", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/knowledge", "source": "metadata", "verified": false}
+{"key": "wang2023quantifyingKnowledge", "facet": "year", "value": "2023", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "wang2023quantifyingKnowledge", "facet": "domain", "value": "kg", "confidence": "high", "evidence": "subcategory=knowledge", "source": "metadata", "verified": false}
+{"key": "wang2023quantifyingKnowledge", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "wang2023quantifyingKnowledge", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "wang2023quantifyingKnowledge", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "zhao2025sese", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/llm", "source": "metadata", "verified": false}
+{"key": "zhao2025sese", "facet": "year", "value": "2025", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "zhao2025sese", "facet": "domain", "value": "llm", "confidence": "med", "evidence": "keyword: \\bLLM|language model|hallucinat|retrieval|GraphRAG", "source": "title", "verified": false}
+{"key": "zhao2025sese", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "zhao2025sese", "facet": "se_role", "value": "metric", "confidence": "high", "evidence": "abstract: \u2026uncertainty\u2026", "source": "abstract", "verified": true}
+{"key": "zhao2025sese", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "zhao2025sese", "facet": "output", "value": "score", "confidence": "high", "evidence": "abstract: \u2026uncertainty\u2026", "source": "abstract", "verified": true}
+{"key": "zhao2025sese", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "ye2026fairgse", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/fairness", "source": "metadata", "verified": false}
+{"key": "ye2026fairgse", "facet": "year", "value": "2026", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "ye2026fairgse", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "ye2026fairgse", "facet": "se_representation", "value": "2D", "confidence": "high", "evidence": "abstract: \u2026two-dimensional\u2026", "source": "abstract", "verified": true}
+{"key": "ye2026fairgse", "facet": "se_representation", "value": "continuous", "confidence": "high", "evidence": "abstract: \u2026Graph neural\u2026", "source": "abstract", "verified": true}
+{"key": "ye2026fairgse", "facet": "optimization", "value": "differentiable", "confidence": "high", "evidence": "abstract: \u2026neural\u2026", "source": "abstract", "verified": true}
+{"key": "ye2026fairgse", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "ye2026fairgse", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "zou2024transformer", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/timeseries", "source": "metadata", "verified": false}
+{"key": "zou2024transformer", "facet": "year", "value": "2024", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "zou2024transformer", "facet": "domain", "value": "timeseries", "confidence": "high", "evidence": "subcategory=timeseries", "source": "metadata", "verified": false}
+{"key": "zou2024transformer", "facet": "graph_type", "value": "dynamic", "confidence": "high", "evidence": "keyword: \\bdynamic|temporal|incremental|stream|evolving|time[- ]series", "source": "title", "verified": false}
+{"key": "zou2024transformer", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "zou2024transformer", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "Zhang2021", "facet": "task", "value": "theory", "confidence": "high", "evidence": "category=theory/extension", "source": "metadata", "verified": false}
+{"key": "Zhang2021", "facet": "year", "value": "2021", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "Zhang2021", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "Zhang2021", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
+{"key": "Zhang2021", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "Zhang2021", "facet": "output", "value": "score", "confidence": "med", "evidence": "typical output of theory", "source": "inferred", "verified": false}
+{"key": "Zhang2021", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "li2025eden", "facet": "task", "value": "structure_learning", "confidence": "high", "evidence": "category=graph-learning/structure-learning", "source": "metadata", "verified": false}
+{"key": "li2025eden", "facet": "year", "value": "2025", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "li2025eden", "facet": "graph_type", "value": "directed", "confidence": "high", "evidence": "keyword: \\bdirected\\b|digraph", "source": "title", "verified": false}
+{"key": "li2025eden", "facet": "se_role", "value": "prior", "confidence": "low", "evidence": "deep/RL -> SE as inductive prior", "source": "inferred", "verified": false}
+{"key": "li2025eden", "facet": "supervision", "value": "supervised", "confidence": "low", "evidence": "downstream-supervised default", "source": "inferred", "verified": false}
+{"key": "li2025eden", "facet": "output", "value": "rewired", "confidence": "med", "evidence": "typical output of structure_learning", "source": "inferred", "verified": false}
+{"key": "li2025eden", "facet": "pi", "value": "pagerank", "confidence": "med", "evidence": "directed -> PageRank/flow stationary", "source": "inferred", "verified": false}
+{"key": "isosel2025", "facet": "task", "value": "community_detection", "confidence": "high", "evidence": "category=algorithms/neural", "source": "metadata", "verified": false}
+{"key": "isosel2025", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "isosel2025", "facet": "year", "value": "2025", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "isosel2025", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "isosel2025", "facet": "se_representation", "value": "2D", "confidence": "low", "evidence": "keyword: community|cluster|2d|two-dimensional|partition", "source": "inferred", "verified": false}
+{"key": "isosel2025", "facet": "se_representation", "value": "continuous", "confidence": "high", "evidence": "abstract: \u2026differentiab\u2026", "source": "abstract", "verified": true}
+{"key": "isosel2025", "facet": "optimization", "value": "differentiable", "confidence": "high", "evidence": "abstract: \u2026differentiab\u2026", "source": "abstract", "verified": true}
+{"key": "isosel2025", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
+{"key": "isosel2025", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "isosel2025", "facet": "output", "value": "partition", "confidence": "high", "evidence": "abstract: \u2026cluster\u2026", "source": "abstract", "verified": true}
+{"key": "isosel2025", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "lancet2025", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/llm", "source": "metadata", "verified": false}
+{"key": "lancet2025", "facet": "year", "value": "2026", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "lancet2025", "facet": "domain", "value": "llm", "confidence": "med", "evidence": "keyword: \\bLLM|language model|hallucinat|retrieval|GraphRAG", "source": "title", "verified": false}
+{"key": "lancet2025", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "lancet2025", "facet": "se_representation", "value": "continuous", "confidence": "high", "evidence": "abstract: \u2026neural\u2026", "source": "abstract", "verified": true}
+{"key": "lancet2025", "facet": "optimization", "value": "differentiable", "confidence": "high", "evidence": "abstract: \u2026neural\u2026", "source": "abstract", "verified": true}
+{"key": "lancet2025", "facet": "se_role", "value": "metric", "confidence": "med", "evidence": "uncertainty/hallucination -> SE as metric", "source": "title", "verified": false}
+{"key": "lancet2025", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "lancet2025", "facet": "output", "value": "score", "confidence": "med", "evidence": "SE used as a scalar score", "source": "title", "verified": false}
+{"key": "lancet2025", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "sehfs2025", "facet": "task", "value": "structure_learning", "confidence": "high", "evidence": "category=graph-learning/structure-learning", "source": "metadata", "verified": false}
+{"key": "sehfs2025", "facet": "year", "value": "2026", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "sehfs2025", "facet": "graph_type", "value": "heterogeneous", "confidence": "high", "evidence": "abstract: \u2026multi-view\u2026", "source": "abstract", "verified": true}
+{"key": "sehfs2025", "facet": "graph_type", "value": "attributed", "confidence": "high", "evidence": "keyword: attribut|node feature|feature", "source": "title", "verified": false}
+{"key": "sehfs2025", "facet": "se_role", "value": "prior", "confidence": "high", "evidence": "abstract: \u2026Guide\u2026", "source": "abstract", "verified": true}
+{"key": "sehfs2025", "facet": "supervision", "value": "supervised", "confidence": "low", "evidence": "downstream-supervised default", "source": "inferred", "verified": false}
+{"key": "sehfs2025", "facet": "output", "value": "rewired", "confidence": "med", "evidence": "typical output of structure_learning", "source": "inferred", "verified": false}
+{"key": "sehfs2025", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "se_dialogue_sentiment2025", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/nlp", "source": "metadata", "verified": false}
+{"key": "se_dialogue_sentiment2025", "facet": "year", "value": "2025", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "se_dialogue_sentiment2025", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "se_dialogue_sentiment2025", "facet": "se_representation", "value": "2D", "confidence": "low", "evidence": "keyword: community|cluster|2d|two-dimensional|partition", "source": "inferred", "verified": false}
+{"key": "se_dialogue_sentiment2025", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "se_dialogue_sentiment2025", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "se_contrastive_nc2024", "facet": "task", "value": "contrastive_ssl", "confidence": "high", "evidence": "category=graph-learning/contrastive", "source": "metadata", "verified": false}
+{"key": "se_contrastive_nc2024", "facet": "year", "value": "2025", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "se_contrastive_nc2024", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "se_contrastive_nc2024", "facet": "se_role", "value": "prior", "confidence": "low", "evidence": "deep/RL -> SE as inductive prior", "source": "inferred", "verified": false}
+{"key": "se_contrastive_nc2024", "facet": "supervision", "value": "self_supervised", "confidence": "med", "evidence": "contrastive", "source": "title", "verified": false}
+{"key": "se_contrastive_nc2024", "facet": "output", "value": "embedding", "confidence": "med", "evidence": "typical output of contrastive_ssl", "source": "inferred", "verified": false}
+{"key": "se_contrastive_nc2024", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "se_relation_extraction2025", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/nlp", "source": "metadata", "verified": false}
+{"key": "se_relation_extraction2025", "facet": "year", "value": "2026", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "se_relation_extraction2025", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "se_relation_extraction2025", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "se_relation_extraction2025", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "se_hypergraph_rec2025", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/recommendation", "source": "metadata", "verified": false}
+{"key": "se_hypergraph_rec2025", "facet": "year", "value": "2025", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "se_hypergraph_rec2025", "facet": "domain", "value": "recsys", "confidence": "high", "evidence": "subcategory=recommendation", "source": "metadata", "verified": false}
+{"key": "se_hypergraph_rec2025", "facet": "graph_type", "value": "hypergraph", "confidence": "high", "evidence": "abstract: \u2026Hypergraph\u2026", "source": "abstract", "verified": true}
+{"key": "se_hypergraph_rec2025", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "se_hypergraph_rec2025", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "se_timeseries2025", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/timeseries", "source": "metadata", "verified": false}
+{"key": "se_timeseries2025", "facet": "year", "value": "2025", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "se_timeseries2025", "facet": "domain", "value": "timeseries", "confidence": "high", "evidence": "subcategory=timeseries", "source": "metadata", "verified": false}
+{"key": "se_timeseries2025", "facet": "graph_type", "value": "dynamic", "confidence": "high", "evidence": "keyword: \\bdynamic|temporal|incremental|stream|evolving|time[- ]series", "source": "title", "verified": false}
+{"key": "se_timeseries2025", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "se_timeseries2025", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "se_infrared2025", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/vision", "source": "metadata", "verified": false}
+{"key": "se_infrared2025", "facet": "year", "value": "2026", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "se_infrared2025", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "se_infrared2025", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "se_infrared2025", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "se_marl_hierarchical2025", "facet": "task", "value": "rl_abstraction", "confidence": "high", "evidence": "category=rl/marl", "source": "metadata", "verified": false}
+{"key": "se_marl_hierarchical2025", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
+{"key": "se_marl_hierarchical2025", "facet": "year", "value": "2026", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "se_marl_hierarchical2025", "facet": "domain", "value": "rl_agents", "confidence": "high", "evidence": "subcategory=marl", "source": "metadata", "verified": false}
+{"key": "se_marl_hierarchical2025", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
+{"key": "se_marl_hierarchical2025", "facet": "se_representation", "value": "kD_tree", "confidence": "low", "evidence": "keyword: hierarch|encoding tree|coding tree|partition tree|deDoc|TAD|tree", "source": "inferred", "verified": false}
+{"key": "se_marl_hierarchical2025", "facet": "se_role", "value": "prior", "confidence": "low", "evidence": "deep/RL -> SE as inductive prior", "source": "inferred", "verified": false}
+{"key": "se_marl_hierarchical2025", "facet": "output", "value": "policy", "confidence": "med", "evidence": "typical output of rl_abstraction", "source": "inferred", "verified": false}
+{"key": "se_marl_hierarchical2025", "facet": "output", "value": "tree", "confidence": "med", "evidence": "hierarchical/tree output", "source": "title", "verified": false}
+{"key": "se_marl_hierarchical2025", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "Li2016", "facet": "se_role", "value": "metric", "confidence": "low", "evidence": "title: Complexity", "source": "inferred", "verified": false}
+{"key": "li2024book", "facet": "graph_type", "value": "dynamic", "confidence": "high", "evidence": "abstract: \u2026dynamic\u2026", "source": "abstract", "verified": true}
+{"key": "yang2024incremental", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026hierarchic\u2026", "source": "abstract", "verified": true}
+{"key": "yang2024incremental", "facet": "se_representation", "value": "2D", "confidence": "high", "evidence": "abstract: \u2026community\u2026", "source": "abstract", "verified": true}
+{"key": "yang2024incremental", "facet": "se_role", "value": "metric", "confidence": "high", "evidence": "abstract: \u2026measure\u2026", "source": "abstract", "verified": true}
+{"key": "yang2024incremental", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026hierarch\u2026", "source": "abstract", "verified": true}
+{"key": "yang2024incremental", "facet": "output", "value": "rewired", "confidence": "high", "evidence": "abstract: \u2026graph structure\u2026", "source": "abstract", "verified": true}
+{"key": "yang2024incremental", "facet": "output", "value": "partition", "confidence": "high", "evidence": "abstract: \u2026communit\u2026", "source": "abstract", "verified": true}
+{"key": "yaopan2019flowDirected", "facet": "output", "value": "partition", "confidence": "low", "evidence": "title: cluster", "source": "inferred", "verified": false}
+{"key": "wxb2024rwedirected", "facet": "se_representation", "value": "2D", "confidence": "high", "evidence": "abstract: \u2026community\u2026", "source": "abstract", "verified": true}
+{"key": "wxb2024rwedirected", "facet": "se_representation", "value": "1D", "confidence": "high", "evidence": "abstract: \u2026one-dimensional\u2026", "source": "abstract", "verified": true}
+{"key": "wxb2024rwedirected", "facet": "se_role", "value": "metric", "confidence": "high", "evidence": "abstract: \u2026measure\u2026", "source": "abstract", "verified": true}
+{"key": "wxb2024rwedirected", "facet": "output", "value": "policy", "confidence": "high", "evidence": "abstract: \u2026action\u2026", "source": "abstract", "verified": true}
+{"key": "wxb2024rwedirected", "facet": "output", "value": "partition", "confidence": "high", "evidence": "abstract: \u2026communit\u2026", "source": "abstract", "verified": true}
+{"key": "huang2024structuralProbCoding", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026encoding tree\u2026", "source": "abstract", "verified": true}
+{"key": "huang2024structuralProbCoding", "facet": "se_role", "value": "regularizer", "confidence": "high", "evidence": "abstract: \u2026regulariz\u2026", "source": "abstract", "verified": true}
+{"key": "huang2024structuralProbCoding", "facet": "se_role", "value": "prior", "confidence": "high", "evidence": "abstract: \u2026guide\u2026", "source": "abstract", "verified": true}
+{"key": "huang2024structuralProbCoding", "facet": "se_role", "value": "metric", "confidence": "high", "evidence": "abstract: \u2026uncertainty\u2026", "source": "abstract", "verified": true}
+{"key": "huang2024structuralProbCoding", "facet": "se_role", "value": "feature", "confidence": "high", "evidence": "abstract: \u2026embedding\u2026", "source": "abstract", "verified": true}
+{"key": "huang2024structuralProbCoding", "facet": "se_role", "value": "robustness", "confidence": "high", "evidence": "abstract: \u2026uncertainty\u2026", "source": "abstract", "verified": true}
+{"key": "huang2024structuralProbCoding", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026encoding tree\u2026", "source": "abstract", "verified": true}
+{"key": "huang2024structuralProbCoding", "facet": "output", "value": "embedding", "confidence": "high", "evidence": "abstract: \u2026embedding\u2026", "source": "abstract", "verified": true}
+{"key": "liu2022similaritygap", "facet": "graph_type", "value": "weighted", "confidence": "high", "evidence": "abstract: \u2026weighted graph\u2026", "source": "abstract", "verified": true}
+{"key": "liu2022similaritygap", "facet": "se_representation", "value": "2D", "confidence": "high", "evidence": "abstract: \u2026community\u2026", "source": "abstract", "verified": true}
+{"key": "liu2022similaritygap", "facet": "optimization", "value": "spectral", "confidence": "high", "evidence": "abstract: \u2026spectral\u2026", "source": "abstract", "verified": true}
+{"key": "liu2022similaritygap", "facet": "se_role", "value": "prior", "confidence": "high", "evidence": "abstract: \u2026structural information, defined as the Shannon entropy of th\u2026", "source": "abstract", "verified": true}
+{"key": "liu2022similaritygap", "facet": "se_role", "value": "metric", "confidence": "high", "evidence": "abstract: \u2026measure\u2026", "source": "abstract", "verified": true}
+{"key": "liu2022similaritygap", "facet": "output", "value": "partition", "confidence": "high", "evidence": "abstract: \u2026communit\u2026", "source": "abstract", "verified": true}
+{"key": "pan2025hcsegraphs", "facet": "output", "value": "partition", "confidence": "low", "evidence": "title: Cluster", "source": "inferred", "verified": false}
+{"key": "zeng2024semiSSE", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026hierarchic\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2024semiSSE", "facet": "se_role", "value": "prior", "confidence": "high", "evidence": "abstract: \u2026prior\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2024semiSSE", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026hierarch\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2024semiSSE", "facet": "supervision", "value": "semi_supervised", "confidence": "high", "evidence": "abstract: \u2026Semi-supervised\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2024scalableSSSE", "facet": "supervision", "value": "semi_supervised", "confidence": "low", "evidence": "title: Semi-Supervised", "source": "inferred", "verified": false}
+{"key": "zhang2021supertad", "facet": "se_role", "value": "robustness", "confidence": "high", "evidence": "abstract: \u2026robust\u2026", "source": "abstract", "verified": true}
+{"key": "ling2024supertad2", "facet": "graph_type", "value": "dynamic", "confidence": "high", "evidence": "abstract: \u2026dynamic\u2026", "source": "abstract", "verified": true}
+{"key": "ling2024supertad2", "facet": "se_role", "value": "metric", "confidence": "high", "evidence": "abstract: \u2026complexity\u2026", "source": "abstract", "verified": true}
+{"key": "ling2024supertad2", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026hierarch\u2026", "source": "abstract", "verified": true}
+{"key": "ling2024supertad2", "facet": "output", "value": "policy", "confidence": "high", "evidence": "abstract: \u2026action\u2026", "source": "abstract", "verified": true}
+{"key": "chen2022pyseat", "facet": "optimization", "value": "incremental", "confidence": "high", "evidence": "abstract: \u2026online\u2026", "source": "abstract", "verified": true}
+{"key": "chen2022pyseat", "facet": "se_role", "value": "prior", "confidence": "high", "evidence": "abstract: \u2026prior\u2026", "source": "abstract", "verified": true}
+{"key": "chen2022pyseat", "facet": "se_role", "value": "metric", "confidence": "high", "evidence": "abstract: \u2026uncertainty\u2026", "source": "abstract", "verified": true}
+{"key": "chen2022pyseat", "facet": "se_role", "value": "robustness", "confidence": "high", "evidence": "abstract: \u2026uncertainty\u2026", "source": "abstract", "verified": true}
+{"key": "chen2022pyseat", "facet": "output", "value": "score", "confidence": "high", "evidence": "abstract: \u2026uncertainty\u2026", "source": "abstract", "verified": true}
+{"key": "zhang2025dese", "facet": "supervision", "value": "supervised", "confidence": "low", "evidence": "title: supervised", "source": "inferred", "verified": false}
+{"key": "zeng2026hypcse", "facet": "se_representation", "value": "continuous", "confidence": "high", "evidence": "abstract: \u2026neural\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2026hypcse", "facet": "optimization", "value": "differentiable", "confidence": "high", "evidence": "abstract: \u2026neural\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2026hypcse", "facet": "se_role", "value": "feature", "confidence": "high", "evidence": "abstract: \u2026embedding\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2026hypcse", "facet": "output", "value": "embedding", "confidence": "high", "evidence": "abstract: \u2026embedding\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2026hypcse", "facet": "output", "value": "rewired", "confidence": "high", "evidence": "abstract: \u2026graph structure\u2026", "source": "abstract", "verified": true}
+{"key": "wxb2024hi-part", "facet": "graph_type", "value": "attributed", "confidence": "high", "evidence": "abstract: \u2026node feature\u2026", "source": "abstract", "verified": true}
+{"key": "wxb2024hi-part", "facet": "se_role", "value": "metric", "confidence": "high", "evidence": "abstract: \u2026quantif\u2026", "source": "abstract", "verified": true}
+{"key": "wxb2024hi-part", "facet": "se_role", "value": "feature", "confidence": "high", "evidence": "abstract: \u2026representation\u2026", "source": "abstract", "verified": true}
+{"key": "wxb2024hi-part", "facet": "output", "value": "embedding", "confidence": "high", "evidence": "abstract: \u2026representation learning\u2026", "source": "abstract", "verified": true}
+{"key": "wxb2024hi-part", "facet": "output", "value": "rewired", "confidence": "high", "evidence": "abstract: \u2026graph structure\u2026", "source": "abstract", "verified": true}
+{"key": "wxb2024hi-part", "facet": "output", "value": "partition", "confidence": "high", "evidence": "abstract: \u2026Partition\u2026", "source": "abstract", "verified": true}
+{"key": "wang2023user", "facet": "se_role", "value": "robustness", "confidence": "low", "evidence": "title: Robust", "source": "inferred", "verified": false}
+{"key": "zhu2023HiTIN", "facet": "graph_type", "value": "heterogeneous", "confidence": "high", "evidence": "abstract: \u2026multi-layer\u2026", "source": "abstract", "verified": true}
+{"key": "zhu2023HiTIN", "facet": "se_role", "value": "feature", "confidence": "high", "evidence": "abstract: \u2026representation\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2024effectiveSI2E", "facet": "graph_type", "value": "dynamic", "confidence": "high", "evidence": "abstract: \u2026dynamic\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2024effectiveSI2E", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026hierarchic\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2024effectiveSI2E", "facet": "se_role", "value": "objective", "confidence": "high", "evidence": "abstract: \u2026minimizes structural entropy\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2024effectiveSI2E", "facet": "se_role", "value": "metric", "confidence": "high", "evidence": "abstract: \u2026uncertainty\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2024effectiveSI2E", "facet": "se_role", "value": "feature", "confidence": "high", "evidence": "abstract: \u2026representation\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2024effectiveSI2E", "facet": "se_role", "value": "robustness", "confidence": "high", "evidence": "abstract: \u2026uncertainty\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2024effectiveSI2E", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026hierarch\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2024effectiveSI2E", "facet": "output", "value": "embedding", "confidence": "high", "evidence": "abstract: \u2026representation learning\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2024effectiveSI2E", "facet": "output", "value": "score", "confidence": "high", "evidence": "abstract: \u2026uncertainty\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2025si2af", "facet": "graph_type", "value": "dynamic", "confidence": "high", "evidence": "abstract: \u2026dynamic\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2025si2af", "facet": "se_representation", "value": "continuous", "confidence": "high", "evidence": "abstract: \u2026Graph Neural\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2025si2af", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026hierarchic\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2025si2af", "facet": "optimization", "value": "differentiable", "confidence": "high", "evidence": "abstract: \u2026Neural\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2025si2af", "facet": "se_role", "value": "prior", "confidence": "high", "evidence": "abstract: \u2026Structural Information principles-guide\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2025si2af", "facet": "se_role", "value": "metric", "confidence": "high", "evidence": "abstract: \u2026quantif\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2025si2af", "facet": "se_role", "value": "robustness", "confidence": "high", "evidence": "abstract: \u2026adversarial\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2025si2af", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026hierarch\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2025si2af", "facet": "output", "value": "policy", "confidence": "high", "evidence": "abstract: \u2026action\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2025si2af", "facet": "output", "value": "partition", "confidence": "high", "evidence": "abstract: \u2026communit\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2025si2af", "facet": "output", "value": "score", "confidence": "high", "evidence": "abstract: \u2026uncertainty\u2026", "source": "abstract", "verified": true}
+{"key": "huang2025MASGCN", "facet": "se_representation", "value": "continuous", "confidence": "high", "evidence": "abstract: \u2026graph neural\u2026", "source": "abstract", "verified": true}
+{"key": "huang2025MASGCN", "facet": "optimization", "value": "differentiable", "confidence": "high", "evidence": "abstract: \u2026neural\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2025sihd", "facet": "graph_type", "value": "dynamic", "confidence": "high", "evidence": "abstract: \u2026temporal\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2025sihd", "facet": "se_representation", "value": "2D", "confidence": "high", "evidence": "abstract: \u2026community\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2025sihd", "facet": "se_role", "value": "regularizer", "confidence": "high", "evidence": "abstract: \u2026regulariz\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2025sihd", "facet": "se_role", "value": "metric", "confidence": "high", "evidence": "abstract: \u2026quantif\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2025sihd", "facet": "output", "value": "partition", "confidence": "high", "evidence": "abstract: \u2026communit\u2026", "source": "abstract", "verified": true}
+{"key": "yang2024sebot", "facet": "se_representation", "value": "continuous", "confidence": "high", "evidence": "abstract: \u2026Graph Neural\u2026", "source": "abstract", "verified": true}
+{"key": "yang2024sebot", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026hierarchic\u2026", "source": "abstract", "verified": true}
+{"key": "yang2024sebot", "facet": "se_representation", "value": "2D", "confidence": "high", "evidence": "abstract: \u2026community\u2026", "source": "abstract", "verified": true}
+{"key": "yang2024sebot", "facet": "optimization", "value": "differentiable", "confidence": "high", "evidence": "abstract: \u2026Neural\u2026", "source": "abstract", "verified": true}
+{"key": "yang2024sebot", "facet": "se_role", "value": "prior", "confidence": "high", "evidence": "abstract: \u2026Guide\u2026", "source": "abstract", "verified": true}
+{"key": "yang2024sebot", "facet": "se_role", "value": "metric", "confidence": "high", "evidence": "abstract: \u2026uncertainty\u2026", "source": "abstract", "verified": true}
+{"key": "yang2024sebot", "facet": "se_role", "value": "feature", "confidence": "high", "evidence": "abstract: \u2026representation\u2026", "source": "abstract", "verified": true}
+{"key": "yang2024sebot", "facet": "se_role", "value": "robustness", "confidence": "high", "evidence": "abstract: \u2026adversarial\u2026", "source": "abstract", "verified": true}
+{"key": "yang2024sebot", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026hierarch\u2026", "source": "abstract", "verified": true}
+{"key": "yang2024sebot", "facet": "output", "value": "policy", "confidence": "high", "evidence": "abstract: \u2026action\u2026", "source": "abstract", "verified": true}
+{"key": "yang2024sebot", "facet": "output", "value": "partition", "confidence": "high", "evidence": "abstract: \u2026communit\u2026", "source": "abstract", "verified": true}
+{"key": "yang2024sebot", "facet": "output", "value": "score", "confidence": "high", "evidence": "abstract: \u2026uncertainty\u2026", "source": "abstract", "verified": true}
+{"key": "yang2024sebot", "facet": "supervision", "value": "self_supervised", "confidence": "high", "evidence": "abstract: \u2026contrastive\u2026", "source": "abstract", "verified": true}
+{"key": "peng2024zjyun", "facet": "graph_type", "value": "heterogeneous", "confidence": "high", "evidence": "abstract: \u2026multi-relational\u2026", "source": "abstract", "verified": true}
+{"key": "peng2024zjyun", "facet": "se_representation", "value": "continuous", "confidence": "high", "evidence": "abstract: \u2026neural\u2026", "source": "abstract", "verified": true}
+{"key": "peng2024zjyun", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026encoding tree\u2026", "source": "abstract", "verified": true}
+{"key": "peng2024zjyun", "facet": "se_representation", "value": "2D", "confidence": "high", "evidence": "abstract: \u2026two-dimensional\u2026", "source": "abstract", "verified": true}
+{"key": "peng2024zjyun", "facet": "optimization", "value": "differentiable", "confidence": "high", "evidence": "abstract: \u2026neural\u2026", "source": "abstract", "verified": true}
+{"key": "peng2024zjyun", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026encoding tree\u2026", "source": "abstract", "verified": true}
+{"key": "peng2024zjyun", "facet": "output", "value": "policy", "confidence": "high", "evidence": "abstract: \u2026action\u2026", "source": "abstract", "verified": true}
+{"key": "peng2024zjyun", "facet": "output", "value": "partition", "confidence": "high", "evidence": "abstract: \u2026cluster\u2026", "source": "abstract", "verified": true}
+{"key": "peng2024zjyun", "facet": "supervision", "value": "supervised", "confidence": "high", "evidence": "abstract: \u2026supervised\u2026", "source": "abstract", "verified": true}
+{"key": "zeng2024socialbots", "facet": "se_role", "value": "robustness", "confidence": "low", "evidence": "title: Adversarial", "source": "inferred", "verified": false}
+{"key": "yang2023MGEDE", "facet": "se_role", "value": "prior", "confidence": "low", "evidence": "title: Guide", "source": "inferred", "verified": false}
+{"key": "yang2024eventdetect", "facet": "se_role", "value": "objective", "confidence": "low", "evidence": "title: Structural Entropy Minimization", "source": "inferred", "verified": false}
+{"key": "yang2024eventdetect", "facet": "supervision", "value": "supervised", "confidence": "low", "evidence": "title: supervised", "source": "inferred", "verified": false}
+{"key": "cao2024socialevent", "facet": "se_role", "value": "objective", "confidence": "low", "evidence": "title: Structural Entropy Minimization", "source": "inferred", "verified": false}
+{"key": "cao2024socialevent", "facet": "supervision", "value": "supervised", "confidence": "low", "evidence": "title: supervised", "source": "inferred", "verified": false}
+{"key": "yu2024hyperSED", "facet": "supervision", "value": "supervised", "confidence": "low", "evidence": "title: supervised", "source": "inferred", "verified": false}
+{"key": "zou2024hierrecGAD", "facet": "se_role", "value": "prior", "confidence": "low", "evidence": "title: Structural Information Guide", "source": "inferred", "verified": false}
+{"key": "yang2026seinevent", "facet": "se_role", "value": "prior", "confidence": "low", "evidence": "title: Guide", "source": "inferred", "verified": false}
+{"key": "liu2026ragsede", "facet": "graph_type", "value": "dynamic", "confidence": "high", "evidence": "abstract: \u2026temporal\u2026", "source": "abstract", "verified": true}
+{"key": "liu2026ragsede", "facet": "se_representation", "value": "continuous", "confidence": "high", "evidence": "abstract: \u2026Graph neural\u2026", "source": "abstract", "verified": true}
+{"key": "liu2026ragsede", "facet": "optimization", "value": "differentiable", "confidence": "high", "evidence": "abstract: \u2026neural\u2026", "source": "abstract", "verified": true}
+{"key": "liu2026ragsede", "facet": "se_role", "value": "robustness", "confidence": "high", "evidence": "abstract: \u2026noise\u2026", "source": "abstract", "verified": true}
+{"key": "liu2026ragsede", "facet": "supervision", "value": "self_supervised", "confidence": "high", "evidence": "abstract: \u2026pre-train\u2026", "source": "abstract", "verified": true}
+{"key": "li2016cancer", "facet": "se_role", "value": "objective", "confidence": "low", "evidence": "title: Structural entropy minimization", "source": "inferred", "verified": false}
+{"key": "zeng2023lesion", "facet": "supervision", "value": "supervised", "confidence": "low", "evidence": "title: supervised", "source": "inferred", "verified": false}
+{"key": "wang2024secodecSpeech", "facet": "se_role", "value": "feature", "confidence": "low", "evidence": "title: Representation", "source": "inferred", "verified": false}
+{"key": "wxb2022scientificxray", "facet": "se_role", "value": "metric", "confidence": "low", "evidence": "title: quantif", "source": "inferred", "verified": false}
+{"key": "wang2023quantifyingKnowledge", "facet": "se_role", "value": "metric", "confidence": "low", "evidence": "title: Quantif", "source": "inferred", "verified": false}
+{"key": "zhao2025sese", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026hierarchic\u2026", "source": "abstract", "verified": true}
+{"key": "zhao2025sese", "facet": "se_role", "value": "robustness", "confidence": "high", "evidence": "abstract: \u2026uncertainty\u2026", "source": "abstract", "verified": true}
+{"key": "zhao2025sese", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026hierarch\u2026", "source": "abstract", "verified": true}
+{"key": "zhao2025sese", "facet": "output", "value": "policy", "confidence": "high", "evidence": "abstract: \u2026action\u2026", "source": "abstract", "verified": true}
+{"key": "ye2026fairgse", "facet": "se_role", "value": "feature", "confidence": "high", "evidence": "abstract: \u2026representation\u2026", "source": "abstract", "verified": true}
+{"key": "ye2026fairgse", "facet": "output", "value": "embedding", "confidence": "high", "evidence": "abstract: \u2026representation learning\u2026", "source": "abstract", "verified": true}
+{"key": "zou2024transformer", "facet": "se_role", "value": "regularizer", "confidence": "low", "evidence": "title: regulariz", "source": "inferred", "verified": false}
+{"key": "Zhang2021", "facet": "optimization", "value": "game_localmove", "confidence": "high", "evidence": "abstract: \u2026local search\u2026", "source": "abstract", "verified": true}
+{"key": "Zhang2021", "facet": "se_role", "value": "metric", "confidence": "high", "evidence": "abstract: \u2026measure\u2026", "source": "abstract", "verified": true}
+{"key": "Zhang2021", "facet": "output", "value": "partition", "confidence": "high", "evidence": "abstract: \u2026communit\u2026", "source": "abstract", "verified": true}
+{"key": "isosel2025", "facet": "graph_type", "value": "attributed", "confidence": "high", "evidence": "abstract: \u2026attribute\u2026", "source": "abstract", "verified": true}
+{"key": "isosel2025", "facet": "se_role", "value": "metric", "confidence": "high", "evidence": "abstract: \u2026complexity\u2026", "source": "abstract", "verified": true}
+{"key": "isosel2025", "facet": "se_role", "value": "feature", "confidence": "high", "evidence": "abstract: \u2026representation\u2026", "source": "abstract", "verified": true}
+{"key": "isosel2025", "facet": "supervision", "value": "self_supervised", "confidence": "high", "evidence": "abstract: \u2026contrastive\u2026", "source": "abstract", "verified": true}
+{"key": "lancet2025", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026hierarchic\u2026", "source": "abstract", "verified": true}
+{"key": "lancet2025", "facet": "se_role", "value": "objective", "confidence": "high", "evidence": "abstract: \u2026minimizing structural entropy\u2026", "source": "abstract", "verified": true}
+{"key": "lancet2025", "facet": "se_role", "value": "robustness", "confidence": "high", "evidence": "abstract: \u2026hallucinat\u2026", "source": "abstract", "verified": true}
+{"key": "lancet2025", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026hierarch\u2026", "source": "abstract", "verified": true}
+{"key": "lancet2025", "facet": "supervision", "value": "self_supervised", "confidence": "high", "evidence": "abstract: \u2026contrastive\u2026", "source": "abstract", "verified": true}
+{"key": "sehfs2025", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026encoding tree\u2026", "source": "abstract", "verified": true}
+{"key": "sehfs2025", "facet": "optimization", "value": "incremental", "confidence": "high", "evidence": "abstract: \u2026online\u2026", "source": "abstract", "verified": true}
+{"key": "sehfs2025", "facet": "se_role", "value": "metric", "confidence": "high", "evidence": "abstract: \u2026quantif\u2026", "source": "abstract", "verified": true}
+{"key": "sehfs2025", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026encoding tree\u2026", "source": "abstract", "verified": true}
+{"key": "sehfs2025", "facet": "output", "value": "partition", "confidence": "high", "evidence": "abstract: \u2026cluster\u2026", "source": "abstract", "verified": true}
+{"key": "se_dialogue_sentiment2025", "facet": "se_role", "value": "objective", "confidence": "high", "evidence": "abstract: \u2026structural entropy minimization\u2026", "source": "abstract", "verified": true}
+{"key": "se_dialogue_sentiment2025", "facet": "se_role", "value": "robustness", "confidence": "high", "evidence": "abstract: \u2026noise\u2026", "source": "abstract", "verified": true}
+{"key": "se_dialogue_sentiment2025", "facet": "output", "value": "policy", "confidence": "high", "evidence": "abstract: \u2026action\u2026", "source": "abstract", "verified": true}
+{"key": "se_dialogue_sentiment2025", "facet": "output", "value": "partition", "confidence": "high", "evidence": "abstract: \u2026partition\u2026", "source": "abstract", "verified": true}
+{"key": "se_contrastive_nc2024", "facet": "output", "value": "score", "confidence": "low", "evidence": "title: index", "source": "inferred", "verified": false}
+{"key": "se_relation_extraction2025", "facet": "se_role", "value": "prior", "confidence": "low", "evidence": "title: Guide", "source": "inferred", "verified": false}
+{"key": "se_relation_extraction2025", "facet": "output", "value": "rewired", "confidence": "low", "evidence": "title: Graph Structure", "source": "inferred", "verified": false}
+{"key": "se_relation_extraction2025", "facet": "output", "value": "policy", "confidence": "low", "evidence": "title: action", "source": "inferred", "verified": false}
+{"key": "se_hypergraph_rec2025", "facet": "graph_type", "value": "heterogeneous", "confidence": "high", "evidence": "abstract: \u2026heterogen\u2026", "source": "abstract", "verified": true}
+{"key": "se_hypergraph_rec2025", "facet": "graph_type", "value": "bipartite", "confidence": "high", "evidence": "abstract: \u2026bipartite\u2026", "source": "abstract", "verified": true}
+{"key": "se_hypergraph_rec2025", "facet": "se_representation", "value": "continuous", "confidence": "high", "evidence": "abstract: \u2026GNN\u2026", "source": "abstract", "verified": true}
+{"key": "se_hypergraph_rec2025", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026encoding tree\u2026", "source": "abstract", "verified": true}
+{"key": "se_hypergraph_rec2025", "facet": "se_representation", "value": "2D", "confidence": "high", "evidence": "abstract: \u2026community\u2026", "source": "abstract", "verified": true}
+{"key": "se_hypergraph_rec2025", "facet": "se_role", "value": "feature", "confidence": "high", "evidence": "abstract: \u2026embedding\u2026", "source": "abstract", "verified": true}
+{"key": "se_hypergraph_rec2025", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026encoding tree\u2026", "source": "abstract", "verified": true}
+{"key": "se_hypergraph_rec2025", "facet": "output", "value": "pooled_graph", "confidence": "high", "evidence": "abstract: \u2026pool\u2026", "source": "abstract", "verified": true}
+{"key": "se_hypergraph_rec2025", "facet": "output", "value": "embedding", "confidence": "high", "evidence": "abstract: \u2026embedding\u2026", "source": "abstract", "verified": true}
+{"key": "se_hypergraph_rec2025", "facet": "output", "value": "rewired", "confidence": "high", "evidence": "abstract: \u2026graph structure\u2026", "source": "abstract", "verified": true}
+{"key": "se_hypergraph_rec2025", "facet": "output", "value": "policy", "confidence": "high", "evidence": "abstract: \u2026action\u2026", "source": "abstract", "verified": true}
+{"key": "se_hypergraph_rec2025", "facet": "output", "value": "partition", "confidence": "high", "evidence": "abstract: \u2026cluster\u2026", "source": "abstract", "verified": true}
+{"key": "se_hypergraph_rec2025", "facet": "supervision", "value": "self_supervised", "confidence": "high", "evidence": "abstract: \u2026Pre-train\u2026", "source": "abstract", "verified": true}
+{"key": "se_infrared2025", "facet": "se_representation", "value": "continuous", "confidence": "high", "evidence": "abstract: \u2026gradient\u2026", "source": "abstract", "verified": true}
+{"key": "se_infrared2025", "facet": "optimization", "value": "differentiable", "confidence": "high", "evidence": "abstract: \u2026gradient\u2026", "source": "abstract", "verified": true}
+{"key": "se_infrared2025", "facet": "se_role", "value": "prior", "confidence": "high", "evidence": "abstract: \u2026Guide\u2026", "source": "abstract", "verified": true}
+{"key": "se_infrared2025", "facet": "se_role", "value": "feature", "confidence": "high", "evidence": "abstract: \u2026representation\u2026", "source": "abstract", "verified": true}

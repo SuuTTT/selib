@@ -1,0 +1,17 @@
+{
+  "_about": "Controlled vocabulary for tagging structural-entropy survey papers. Tags live in facet_tags.jsonl as tidy rows (key,facet,value,confidence,evidence,source,verified). A paper may have multiple values per multi-valued facet; absence of a row = untagged for that facet. New facets are added here and tagged by appending rows — no migration.",
+  "facets": {
+    "graph_type":     {"multi": true,  "values": ["simple","weighted","directed","signed","bipartite","attributed","heterogeneous","hypergraph","dynamic"], "desc": "structure of the input graph"},
+    "task":           {"multi": true,  "values": ["theory","community_detection","hierarchical_clustering","graph_pooling","structure_learning","contrastive_ssl","rl_abstraction","application"], "desc": "research direction"},
+    "se_representation":{"multi": true,"values": ["1D","2D","kD_tree","continuous"], "desc": "form of SE used"},
+    "optimization":   {"multi": true,  "values": ["greedy_agglomerative","game_localmove","dynamic_programming","hierarchical_merge","differentiable","incremental","spectral","other"], "desc": "how SE is optimized/computed"},
+    "se_role":        {"multi": true,  "values": ["objective","regularizer","prior","metric","feature","robustness"], "desc": "role SE plays in the pipeline"},
+    "supervision":    {"multi": false, "values": ["unsupervised","self_supervised","supervised","semi_supervised"], "desc": "learning setting"},
+    "output":         {"multi": true,  "values": ["partition","tree","pooled_graph","embedding","rewired","policy","score"], "desc": "what the method produces"},
+    "domain":         {"multi": true,  "values": ["bioinformatics","social","nlp","speech","vision","recsys","kg","timeseries","rl_agents","llm","general"], "desc": "application domain"},
+    "pi":             {"multi": false, "values": ["degree","pagerank","given","other"], "desc": "node distribution used by the SE objective"},
+    "year":           {"numeric": true, "desc": "publication year"}
+  },
+  "confidence_levels": ["high","med","low"],
+  "sources": ["metadata","title","notes","abstract","fulltext"]
+}

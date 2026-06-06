@@ -1,0 +1,569 @@
+[
+  {
+    "key": "Li2016",
+    "title": "Structural Information and Dynamical Complexity of Networks",
+    "year": "2016",
+    "venue": "IEEE Trans. Inf. Theory",
+    "summary": "Structural Information and Dynamical Complexity of Networks. Seminal SE paper"
+  },
+  {
+    "key": "Li2018",
+    "title": "Structure Entropy and Resistor Graphs",
+    "year": "2018",
+    "venue": "arXiv",
+    "summary": "Structure Entropy and Resistor Graphs."
+  },
+  {
+    "key": "li2024book",
+    "title": "Science of Artificial Intelligence: Mathematical Principles",
+    "year": "2024",
+    "venue": "(Book)",
+    "summary": "Science of Artificial Intelligence: Mathematical Principles. ISPAI book"
+  },
+  {
+    "key": "li2015strategiesForsecurity",
+    "title": "Strategies for network security",
+    "year": "2015",
+    "venue": "Science China Inf. Sci.",
+    "summary": "Strategies for network security."
+  },
+  {
+    "key": "li2016securitytheory",
+    "title": "A theory of network security: Principles of natural selection",
+    "year": "2016",
+    "venue": "Internet Mathematics",
+    "summary": "A theory of network security: Principles of natural selection."
+  },
+  {
+    "key": "yang2024incremental",
+    "title": "Incremental measurement of structural entropy for dynamic graphs",
+    "year": "2024",
+    "venue": "Artificial Intelligence",
+    "summary": "Incremental measurement of structural entropy for dynamic graphs. Dynamic graph incremental SE"
+  },
+  {
+    "key": "cao2024multi",
+    "title": "Multi-Relational Structural Entropy",
+    "year": "2024",
+    "venue": "UAI",
+    "summary": "Multi-Relational Structural Entropy. Multi-relational extension"
+  },
+  {
+    "key": "yaopan2019flowDirected",
+    "title": "Flow-based clustering on directed graphs: A structural entropy approach",
+    "year": "2019",
+    "venue": "IEEE Access",
+    "summary": "Flow-based clustering on directed graphs: A structural entropy approach. Directed SE"
+  },
+  {
+    "key": "wxb2024rwedirected",
+    "title": "RWE: A Random Walk Based Graph Entropy for Structural Complexity",
+    "year": "2024",
+    "venue": "IEEE TNSE",
+    "summary": "RWE: A Random Walk Based Graph Entropy for Structural Complexity. Directed SE; connection to VNE"
+  },
+  {
+    "key": "wxb2023findingThesource",
+    "title": "Finding the source in networks: an approach based on structural information (ITE)",
+    "year": "2023",
+    "venue": "ACM TOIT",
+    "summary": "Finding the source in networks: an approach based on structural information (ITE). Infected-tree entropy"
+  },
+  {
+    "key": "huang2024structuralProbCoding",
+    "title": "Structural Entropy Guided Probabilistic Coding",
+    "year": "2025",
+    "venue": "AAAI",
+    "summary": "Structural Entropy Guided Probabilistic Coding. key year=2024; AAAI 2025"
+  },
+  {
+    "key": "liu2022similaritygap",
+    "title": "On the similarity between von Neumann graph entropy and structural entropy",
+    "year": "2022",
+    "venue": "IEEE Trans. Inf. Theory",
+    "summary": "On the similarity between von Neumann graph entropy and structural entropy. VNE\u2013SE gap theorem"
+  },
+  {
+    "key": "ljm2021improvingTogetherness",
+    "title": "Improving togetherness using structural entropy",
+    "year": "2021",
+    "venue": "MobiCASE",
+    "summary": "Improving togetherness using structural entropy. Togetherness metric"
+  },
+  {
+    "key": "li2018dedoc",
+    "title": "Decoding topologically associating domains with ultra-low resolution Hi-C data (deDoc)",
+    "year": "2018",
+    "venue": "Nature Communications",
+    "summary": "Decoding topologically associating domains with ultra-low resolution Hi-C data (deDoc). Java; O(N log^2 N); founding SE algorithm"
+  },
+  {
+    "key": "li2023dedoc2",
+    "title": "DeDoc2 Identifies and Characterizes the Hierarchy and Dynamics of Chromatin",
+    "year": "2023",
+    "venue": "Advanced Science",
+    "summary": "DeDoc2 Identifies and Characterizes the Hierarchy and Dynamics of Chromatin. Java"
+  },
+  {
+    "key": "pan2021information",
+    "title": "An Information-theoretic Perspective of Hierarchical Clustering (HCSE)",
+    "year": "2021",
+    "venue": "arXiv",
+    "summary": "An Information-theoretic Perspective of Hierarchical Clustering (HCSE). Early HCSE preprint; code released with SEP"
+  },
+  {
+    "key": "wu2022pooling",
+    "title": "Structural Entropy Guided Graph Hierarchical Pooling (SEP)",
+    "year": "2022",
+    "venue": "ICML",
+    "summary": "Structural Entropy Guided Graph Hierarchical Pooling (SEP). Global structural-entropy-guided graph pooling"
+  },
+  {
+    "key": "pan2025hcsegraphs",
+    "title": "An Information-theoretic Perspective of Hierarchical Clustering on Graphs",
+    "year": "2025",
+    "venue": "UAI",
+    "summary": "An Information-theoretic Perspective of Hierarchical Clustering on Graphs. Latest public graph version of HCSE with OpenReview discussion and LaTeX source"
+  },
+  {
+    "key": "huang2024sec",
+    "title": "SEC: More Accurate Clustering Algorithm via Structural Entropy",
+    "year": "2024",
+    "venue": "AAAI",
+    "summary": "SEC: More Accurate Clustering Algorithm via Structural Entropy. AAAI 2024"
+  },
+  {
+    "key": "zeng2024semiSSE",
+    "title": "Semi-Supervised Clustering via Structural Entropy with Pairwise Constraints (SSE)",
+    "year": "2024",
+    "venue": "SDM",
+    "summary": "Semi-Supervised Clustering via Structural Entropy with Pairwise Constraints (SSE). Requires labels; excluded from unsupervised benchmark"
+  },
+  {
+    "key": "zeng2024scalableSSSE",
+    "title": "Scalable Semi-Supervised Clustering Via Structural Entropy (SSSE)",
+    "year": "2025",
+    "venue": "IEEE TKDE",
+    "summary": "Scalable Semi-Supervised Clustering Via Structural Entropy (SSSE). Requires labels"
+  },
+  {
+    "key": "zhang2021supertad",
+    "title": "SuperTAD: robust detection of hierarchically topologically associating domains",
+    "year": "2021",
+    "venue": "Genome Biology",
+    "summary": "SuperTAD: robust detection of hierarchically topologically associating domains. Hi-C contiguity constraint"
+  },
+  {
+    "key": "ling2024supertad2",
+    "title": "SuperTAD-Fast: Accelerating Topologically Associating Domain Identification",
+    "year": "2024",
+    "venue": "J. Computational Biology",
+    "summary": "SuperTAD-Fast: Accelerating Topologically Associating Domain Identification. Hi-C contiguity"
+  },
+  {
+    "key": "chen2022pyseat",
+    "title": "Incorporating cell hierarchy to decipher the functional diversity of single cells (PYSEAT)",
+    "year": "2022",
+    "venue": "Nucleic Acids Research",
+    "summary": "Incorporating cell hierarchy to decipher the functional diversity of single cells (PYSEAT). Single-cell; Hi-C contiguity"
+  },
+  {
+    "key": "sun2024lsenet",
+    "title": "LSEnet: Lorentz Structural Entropy Neural Network for Deep Graph Clustering",
+    "year": "2024",
+    "venue": "ICML",
+    "summary": "LSEnet: Lorentz Structural Entropy Neural Network for Deep Graph Clustering. Differentiable SE; hyperbolic"
+  },
+  {
+    "key": "zhang2025dese",
+    "title": "Unsupervised Graph Clustering with Deep Structural Entropy (DeSE)",
+    "year": "2025",
+    "venue": "KDD",
+    "summary": "Unsupervised Graph Clustering with Deep Structural Entropy (DeSE). No public code at submission"
+  },
+  {
+    "key": "xian2025communitySEGame",
+    "title": "Community Detection in Large-Scale Complex Networks via SE Game (CoDeSEG)",
+    "year": "2025",
+    "venue": "WWW",
+    "summary": "Community Detection in Large-Scale Complex Networks via SE Game (CoDeSEG). Overlapping communities; excluded from disjoint benchmark"
+  },
+  {
+    "key": "zeng2026hypcse",
+    "title": "Hyperbolic Continuous Structural Entropy for Hierarchical Clustering",
+    "year": "2026",
+    "venue": "AAAI",
+    "summary": "Hyperbolic Continuous Structural Entropy for Hierarchical Clustering. AAAI 2026"
+  },
+  {
+    "key": "wu2023sega",
+    "title": "SEGA: Structural Entropy Guided Anchor View for Graph Contrastive Learning",
+    "year": "2023",
+    "venue": "ICML",
+    "summary": "SEGA: Structural Entropy Guided Anchor View for Graph Contrastive Learning."
+  },
+  {
+    "key": "zou2023segsl",
+    "title": "SE-GSL: A General and Effective Graph Structure Learning Framework via SE",
+    "year": "2023",
+    "venue": "WWW",
+    "summary": "SE-GSL: A General and Effective Graph Structure Learning Framework via SE."
+  },
+  {
+    "key": "duan2024structuralGSL",
+    "title": "Structural Entropy Based Graph Structure Learning for Node Classification",
+    "year": "2024",
+    "venue": "AAAI",
+    "summary": "Structural Entropy Based Graph Structure Learning for Node Classification."
+  },
+  {
+    "key": "wxb2024hi-part",
+    "title": "Hi-PART: Going Beyond Graph Pooling with Hierarchical Partition Tree for Graph-Level RL",
+    "year": "2024",
+    "venue": "ACM TKDD",
+    "summary": "Hi-PART: Going Beyond Graph Pooling with Hierarchical Partition Tree for Graph-Level RL. Core is SE-based hierarchical partition tree"
+  },
+  {
+    "key": "wang2023user",
+    "title": "USER: Unsupervised Structural Entropy-based Robust Graph Neural Network",
+    "year": "2023",
+    "venue": "AAAI",
+    "summary": "USER: Unsupervised Structural Entropy-based Robust Graph Neural Network."
+  },
+  {
+    "key": "zhu2023HiTIN",
+    "title": "HiTIN: Hierarchy-aware Tree Isomorphism Network for Hierarchical Text Classification",
+    "year": "2023",
+    "venue": "ACL",
+    "summary": "HiTIN: Hierarchy-aware Tree Isomorphism Network for Hierarchical Text Classification."
+  },
+  {
+    "key": "yang2024graphkernal",
+    "title": "Hierarchical Abstracting Graph Kernel",
+    "year": "2024",
+    "venue": "IEEE TKDE",
+    "summary": "Hierarchical Abstracting Graph Kernel."
+  },
+  {
+    "key": "hou2025sego",
+    "title": "Structural Entropy Guided Unsupervised Graph Out-Of-Distribution Detection",
+    "year": "2025",
+    "venue": "AAAI",
+    "summary": "Structural Entropy Guided Unsupervised Graph Out-Of-Distribution Detection. AAAI 2025"
+  },
+  {
+    "key": "liu2025sihtc",
+    "title": "Hierarchical Text Classification Optimization via Structural Entropy and Singular Smoothing",
+    "year": "2025",
+    "venue": "IEEE TKDE",
+    "summary": "Hierarchical Text Classification Optimization via Structural Entropy and Singular Smoothing. TKDE 2025"
+  },
+  {
+    "key": "chen2026semeta",
+    "title": "Structural Entropy Guided Meta-Learning for Few-Shot Node Classification",
+    "year": "2026",
+    "venue": "IEEE TKDE",
+    "summary": "Structural Entropy Guided Meta-Learning for Few-Shot Node Classification. TKDE 2026"
+  },
+  {
+    "key": "xie2025ses",
+    "title": "Structural-Entropy-Based Sample Selection for Efficient and Effective Learning",
+    "year": "2025",
+    "venue": "ICLR",
+    "summary": "Structural-Entropy-Based Sample Selection for Efficient and Effective Learning. ICLR 2025"
+  },
+  {
+    "key": "zeng2023effective",
+    "title": "Effective and stable role-based multi-agent collaboration via structural information",
+    "year": "2023",
+    "venue": "AAAI",
+    "summary": "Effective and stable role-based multi-agent collaboration via structural information."
+  },
+  {
+    "key": "zeng2023hierarchicalSISA",
+    "title": "Hierarchical state abstraction based on structural information principles (SISA)",
+    "year": "2023",
+    "venue": "IJCAI",
+    "summary": "Hierarchical state abstraction based on structural information principles (SISA)."
+  },
+  {
+    "key": "zeng2024effectiveSI2E",
+    "title": "Effective Exploration Based on the Structural Information Principle (SI2E)",
+    "year": "2024",
+    "venue": "NeurIPS",
+    "summary": "Effective Exploration Based on the Structural Information Principle (SI2E)."
+  },
+  {
+    "key": "su2025emergencecollab",
+    "title": "Emergence of Cooperation in Multi-Agent Reinforcement Learning via Structural Entropy",
+    "year": "2025",
+    "venue": "SDM",
+    "summary": "Emergence of Cooperation in Multi-Agent Reinforcement Learning via Structural Entropy."
+  },
+  {
+    "key": "zeng2025sidmJMLR",
+    "title": "Hierarchical Decision Making Based on Structural Information Principles (SIDM)",
+    "year": "2025",
+    "venue": "JMLR",
+    "summary": "Hierarchical Decision Making Based on Structural Information Principles (SIDM)."
+  },
+  {
+    "key": "zeng2025si2af",
+    "title": "Structural Information-based Adversarial Framework for Graph News Detection (SI2AF)",
+    "year": "2025",
+    "venue": "KDD",
+    "summary": "Structural Information-based Adversarial Framework for Graph News Detection (SI2AF). News detection; adversarial robustness"
+  },
+  {
+    "key": "huang2025MASGCN",
+    "title": "Multi-View Attention Syntactic Enhanced GCN for Sentiment Analysis (MASGCN)",
+    "year": "2025",
+    "venue": "DASFAA",
+    "summary": "Multi-View Attention Syntactic Enhanced GCN for Sentiment Analysis (MASGCN)."
+  },
+  {
+    "key": "zeng2025sihd",
+    "title": "Structural Information-based Hierarchical Diffusion for Offline Reinforcement Learning",
+    "year": "2025",
+    "venue": "NeurIPS",
+    "summary": "Structural Information-based Hierarchical Diffusion for Offline Reinforcement Learning. NeurIPS 2025"
+  },
+  {
+    "key": "zeng2026siamd",
+    "title": "Proactive Bot Detection Based on Structural Information Principles",
+    "year": "2026",
+    "venue": "IEEE TPAMI",
+    "summary": "Proactive Bot Detection Based on Structural Information Principles. TPAMI 2026 SIAMD journal version with code"
+  },
+  {
+    "key": "yang2024sebot",
+    "title": "SeBot: Structural Entropy Guided Multi-View Contrastive Learning for Social Bot Detection",
+    "year": "2024",
+    "venue": "KDD",
+    "summary": "SeBot: Structural Entropy Guided Multi-View Contrastive Learning for Social Bot Detection."
+  },
+  {
+    "key": "peng2024zjyun",
+    "title": "Unsupervised Social Bot Detection via Structural Information Theory (UnDBot)",
+    "year": "2024",
+    "venue": "ACM TOIS",
+    "summary": "Unsupervised Social Bot Detection via Structural Information Theory (UnDBot). key = peng2024zjyun in bib"
+  },
+  {
+    "key": "zeng2024socialbots",
+    "title": "Adversarial Socialbots Modeling Based on Structural Information Principles",
+    "year": "2024",
+    "venue": "AAAI",
+    "summary": "Adversarial Socialbots Modeling Based on Structural Information Principles."
+  },
+  {
+    "key": "yang2023MGEDE",
+    "title": "Minimum Entropy Principle Guided Graph Neural Networks for Event Detection",
+    "year": "2023",
+    "venue": "WSDM",
+    "summary": "Minimum Entropy Principle Guided Graph Neural Networks for Event Detection."
+  },
+  {
+    "key": "yang2024eventdetect",
+    "title": "Adaptive Differentially Private Structural Entropy Minimization for Unsupervised Social Event Detection",
+    "year": "2024",
+    "venue": "CIKM",
+    "summary": "Adaptive Differentially Private Structural Entropy Minimization for Unsupervised Social Event Detection. ADP-SEMEvent"
+  },
+  {
+    "key": "cao2024socialevent",
+    "title": "Hierarchical and Incremental Structural Entropy Minimization for Unsupervised Social Event Detection",
+    "year": "2024",
+    "venue": "AAAI",
+    "summary": "Hierarchical and Incremental Structural Entropy Minimization for Unsupervised Social Event Detection."
+  },
+  {
+    "key": "yu2024hyperSED",
+    "title": "Towards Effective Efficient and Unsupervised Social Event Detection (HyperSED)",
+    "year": "2024",
+    "venue": "AAAI 2025",
+    "summary": "Towards Effective Efficient and Unsupervised Social Event Detection (HyperSED). key year=2024; AAAI 2025"
+  },
+  {
+    "key": "zou2024hierrecGAD",
+    "title": "A Structural Information Guided Hierarchical Reconstruction for Graph Anomaly Detection",
+    "year": "2024",
+    "venue": "CIKM",
+    "summary": "A Structural Information Guided Hierarchical Reconstruction for Graph Anomaly Detection. CIKM 2024"
+  },
+  {
+    "key": "yang2026seinevent",
+    "title": "Structural Entropy Guided Incremental Learning for Open-World Multimodal Social Event Detection",
+    "year": "2026",
+    "venue": "AAAI",
+    "summary": "Structural Entropy Guided Incremental Learning for Open-World Multimodal Social Event Detection. AAAI 2026"
+  },
+  {
+    "key": "liu2026ragsede",
+    "title": "Effective and Unsupervised Social Event Detection and Evolution via RAG and Structural Entropy",
+    "year": "2026",
+    "venue": "arXiv",
+    "summary": "Effective and Unsupervised Social Event Detection and Evolution via RAG and Structural Entropy. Currently available as arXiv preprint"
+  },
+  {
+    "key": "li2021detoki",
+    "title": "DeTOKI identifies and characterizes the dynamics of chromatin TADs",
+    "year": "2021",
+    "venue": "Genome Biology",
+    "summary": "DeTOKI identifies and characterizes the dynamics of chromatin TADs."
+  },
+  {
+    "key": "li2016cancer",
+    "title": "Three-dimensional gene map of cancer cell types: Structural entropy minimization",
+    "year": "2016",
+    "venue": "Scientific Reports",
+    "summary": "Three-dimensional gene map of cancer cell types: Structural entropy minimization."
+  },
+  {
+    "key": "zeng2023lesion",
+    "title": "Unsupervised skin lesion segmentation via structural entropy optimization",
+    "year": "2023",
+    "venue": "ICDM",
+    "summary": "Unsupervised skin lesion segmentation via structural entropy optimization."
+  },
+  {
+    "key": "xie2025superpixel",
+    "title": "Hierarchical Superpixel Segmentation via Structural Information Theory (SIT-HSS)",
+    "year": "2025",
+    "venue": "SDM",
+    "summary": "Hierarchical Superpixel Segmentation via Structural Information Theory (SIT-HSS)."
+  },
+  {
+    "key": "wang2024secodecSpeech",
+    "title": "SECodec: Structural Entropy-based Compressive Speech Representation Codec",
+    "year": "2024",
+    "venue": "AAAI 2025",
+    "summary": "SECodec: Structural Entropy-based Compressive Speech Representation Codec. key year=2024; AAAI 2025"
+  },
+  {
+    "key": "wang2025voice",
+    "title": "Voice Conversion via Structural Entropy",
+    "year": "2025",
+    "venue": "ICASSP",
+    "summary": "Voice Conversion via Structural Entropy."
+  },
+  {
+    "key": "wxb2022scientificxray",
+    "title": "Scientific X-ray: Scanning and quantifying the idea evolution in scientific papers",
+    "year": "2022",
+    "venue": "PLoS ONE",
+    "summary": "Scientific X-ray: Scanning and quantifying the idea evolution in scientific papers."
+  },
+  {
+    "key": "wang2023quantifyingKnowledge",
+    "title": "Quantifying knowledge from the perspective of information structure",
+    "year": "2023",
+    "venue": "PLoS ONE",
+    "summary": "Quantifying knowledge from the perspective of information structure."
+  },
+  {
+    "key": "zhao2025sese",
+    "title": "SeSE: Black-Box Uncertainty Quantification for Large Language Models Based on Structural Information Theory",
+    "year": "2025",
+    "venue": "arXiv",
+    "summary": "SeSE: Black-Box Uncertainty Quantification for Large Language Models Based on Structural Information Theory. Currently available as arXiv preprint"
+  },
+  {
+    "key": "ye2026fairgse",
+    "title": "FairGSE: Fairness-Aware Graph Neural Network Without High False Positive Rates",
+    "year": "2026",
+    "venue": "AAAI",
+    "summary": "FairGSE: Fairness-Aware Graph Neural Network Without High False Positive Rates. Maximizes 2D-SE for fairness-FPR trade-off"
+  },
+  {
+    "key": "zou2024transformer",
+    "title": "MultiSPANS: A Multi-range Spatial-temporal Transformer Network for Traffic Forecast",
+    "year": "2024",
+    "venue": "WSDM",
+    "summary": "MultiSPANS: A Multi-range Spatial-temporal Transformer Network for Traffic Forecast. Traffic forecasting via structural-entropy-regularized spatio-temporal modeling"
+  },
+  {
+    "key": "Zhang2021",
+    "title": "A Structural Entropy Measurement Principle of Propositional Formulas in Conjunctive Normal Form",
+    "year": "2021",
+    "venue": "Entropy",
+    "summary": "A Structural Entropy Measurement Principle of Propositional Formulas in Conjunctive Normal Form. SE applied to logic/SAT formulas"
+  },
+  {
+    "key": "li2025eden",
+    "title": "Toward Data-centric Directed Graph Learning: An Entropy-driven Approach (EDEN)",
+    "year": "2025",
+    "venue": "ICML",
+    "summary": "Toward Data-centric Directed Graph Learning: An Entropy-driven Approach (EDEN). Directed graph; entropy-driven data-centric approach"
+  },
+  {
+    "key": "isosel2025",
+    "title": "IsoSEL: Isometric Structural Entropy Learning for Deep Graph Clustering in Hyperbolic Space",
+    "year": "2025",
+    "venue": "arXiv",
+    "summary": "IsoSEL: Isometric Structural Entropy Learning for Deep Graph Clustering in Hyperbolic Space. Currently available as arXiv preprint"
+  },
+  {
+    "key": "lancet2025",
+    "title": "LANCET: Neural Intervention via Structural Entropy for Mitigating Faithfulness Hallucinations in LLMs",
+    "year": "2026",
+    "venue": "arXiv",
+    "summary": "LANCET: Neural Intervention via Structural Entropy for Mitigating Faithfulness Hallucinations in LLMs. Currently available as arXiv preprint"
+  },
+  {
+    "key": "sehfs2025",
+    "title": "SEHFS: Structural Entropy-Guided High-Order Correlation Learning for Multi-View Multi-Label Feature Selection",
+    "year": "2026",
+    "venue": "arXiv",
+    "summary": "SEHFS: Structural Entropy-Guided High-Order Correlation Learning for Multi-View Multi-Label Feature Selection. Currently available as arXiv preprint"
+  },
+  {
+    "key": "se_dialogue_sentiment2025",
+    "title": "Dialogues Aspect-Based Sentiment Quadruple Extraction via Structural Entropy Minimization Partitioning",
+    "year": "2025",
+    "venue": "arXiv",
+    "summary": "Dialogues Aspect-Based Sentiment Quadruple Extraction via Structural Entropy Minimization Partitioning. Currently available as arXiv preprint"
+  },
+  {
+    "key": "se_contrastive_nc2024",
+    "title": "Structural Entropy Based Graph Contrastive Learning for Node Classification",
+    "year": "2025",
+    "venue": "Adaptive Behavior",
+    "summary": "Structural Entropy Based Graph Contrastive Learning for Node Classification. Journal version indexed in 2025"
+  },
+  {
+    "key": "se_relation_extraction2025",
+    "title": "Structural Entropy Guided Relation Extraction on Adaptive Graph Structure",
+    "year": "2026",
+    "venue": "Pattern Recognition",
+    "summary": "Structural Entropy Guided Relation Extraction on Adaptive Graph Structure. Pattern Recognition 2026"
+  },
+  {
+    "key": "se_hypergraph_rec2025",
+    "title": "Enhanced Pre-Training for Recommendation via Hypergraph Structural Entropy",
+    "year": "2025",
+    "venue": "ACM Trans. Inf. Syst.",
+    "summary": "Enhanced Pre-Training for Recommendation via Hypergraph Structural Entropy. TOIS 2025"
+  },
+  {
+    "key": "se_timeseries2025",
+    "title": "Structural Entropy Based Spatio-Temporal Sequence Forecasting",
+    "year": "2025",
+    "venue": "DASFAA",
+    "summary": "Structural Entropy Based Spatio-Temporal Sequence Forecasting. DASFAA 2025"
+  },
+  {
+    "key": "se_infrared2025",
+    "title": "Breaking Degradation Coupling: A Structural Entropy Guided Decoupled Framework and Benchmark for Infrared Enhancement",
+    "year": "2026",
+    "venue": "arXiv",
+    "summary": "Breaking Degradation Coupling: A Structural Entropy Guided Decoupled Framework and Benchmark for Infrared Enhancement. Currently available as arXiv preprint"
+  },
+  {
+    "key": "se_marl_hierarchical2025",
+    "title": "Structural Entropy Guided Hierarchical Symmetric Multi-Agent Reinforcement Learning",
+    "year": "2026",
+    "venue": "Expert Syst. Appl.",
+    "summary": "Structural Entropy Guided Hierarchical Symmetric Multi-Agent Reinforcement Learning. Expert Systems with Applications 2026"
+  }
+]
