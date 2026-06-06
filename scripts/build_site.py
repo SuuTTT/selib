@@ -581,6 +581,7 @@ and benchmark SE methods against classical baselines under one API.</p>
 <span>{n_runs} benchmark runs</span><span>{len(methods)} methods</span>
 <span>{len(datasets_all)} datasets</span><span>MIT</span></div>
 <p><a href="https://github.com/SuuTTT/selib">GitHub repo</a> ·
+<a href="gallery.html"><b>SE gallery</b></a> ·
 <a href="benchmark_results.json">raw results JSON</a> ·
 <a href="https://github.com/SuuTTT/structural-entropy-benchmark">reproduction benchmark</a> ·
 <a href="https://github.com/SuuTTT/structural-entropy-survey-paper">survey paper</a></p>

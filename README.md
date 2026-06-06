@@ -12,6 +12,25 @@ on equal footing. `selib` fixes the *interface*: one `Method.fit_predict(G, k, s
 contract, shared datasets and metrics, and a one-call benchmark — so an SE method
 and a Louvain baseline are scored exactly the same way.
 
+## SE calculator
+
+A first-class entry point for *computing* structural entropy (separate from the
+optimizers), plus a [gallery](https://suuttt.github.io/selib/gallery.html) of
+SE-optimal partitions on classical graphs:
+
+```python
+import selib, networkx as nx
+G = nx.karate_club_graph()
+
+selib.se_report(G)                     # {n, m, se_1d, se_2d_optimal, num_communities, se_tree_optimal, ...}
+selib.structural_entropy(G, dim=1)     # 1D structural entropy (partition-free upper bound)
+selib.structural_entropy(G)            # optimal 2D structural entropy (minimized over partitions)
+labels, h2 = selib.optimal_2d(G)       # the SE-optimal partition and its 2D-SE
+selib.structural_entropy(G, labels)    # 2D-SE of any given partition
+tree, hT = selib.optimal_tree(G)       # the SE-optimal encoding tree and its H^T
+selib.structural_entropy(G, tree=tree) # H^T of any encoding tree
+```
+
 ## What's in v0.1
 
 - **Uniform method registry.** Every algorithm — SE or baseline — is a `Method`

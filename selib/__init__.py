@@ -13,10 +13,16 @@ Quick start:
     recs = selib.benchmark(["louvain", "se_agglomerative"], ["Karate", "SBM-Clean"])
     selib.summarize(recs, "nmi")
 """
-from . import metrics, datasets, se                                   # noqa: F401
+from . import metrics, datasets, se, calc                             # noqa: F401
 from .base import (Method, get, info, register, method,               # noqa: F401
                    methods as list_methods, ExternalNotConfigured)
 from .benchmark import benchmark, summarize                           # noqa: F401
+from .calc import (structural_entropy, one_dimensional, two_dimensional,  # noqa: F401
+                   tree_entropy, optimal_2d, optimal_tree, se_report)
 from . import methods                                                 # noqa: F401  (self-registers algorithms)
+
+# friendly aliases for the SE calculator
+se1d = one_dimensional
+se2d = two_dimensional
 
 __version__ = "0.2.0"

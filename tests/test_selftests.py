@@ -4,6 +4,11 @@ import importlib
 import pytest
 
 
+def test_calc_selftest():
+    from selib import calc
+    calc._selftest()
+
+
 def test_seopt_selftest():
     from selib import seopt
     seopt._selftest()
