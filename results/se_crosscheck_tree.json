@@ -1,0 +1,143 @@
+{
+  "max_abs_diff": 3.552713678800501e-15,
+  "n_trees": 20,
+  "records": [
+    {
+      "graph": "Karate",
+      "n": 34,
+      "se_hier": {
+        "selib": 2.48563059,
+        "beat_hcse": 2.48563059,
+        "diff": 4.440892098500626e-16
+      },
+      "se_agglom": {
+        "selib": 2.6932223,
+        "beat_hcse": 2.6932223,
+        "diff": 8.881784197001252e-16
+      },
+      "bbm": {
+        "selib": 3.22468875,
+        "beat_hcse": 3.22468875,
+        "diff": 4.440892098500626e-16
+      },
+      "hcse": {
+        "selib": 2.80016178,
+        "beat_hcse": 2.80016178,
+        "diff": 0.0
+      }
+    },
+    {
+      "graph": "SBM-Clean",
+      "n": 90,
+      "se_hier": {
+        "selib": 4.34235016,
+        "beat_hcse": 4.34235016,
+        "diff": 8.881784197001252e-16
+      },
+      "se_agglom": {
+        "selib": 4.40415885,
+        "beat_hcse": 4.40415885,
+        "diff": 8.881784197001252e-16
+      },
+      "bbm": {
+        "selib": 4.57045763,
+        "beat_hcse": 4.57045763,
+        "diff": 8.881784197001252e-16
+      },
+      "hcse": {
+        "selib": 5.83828028,
+        "beat_hcse": 5.83828028,
+        "diff": 1.7763568394002505e-15
+      }
+    },
+    {
+      "graph": "LFR-mu0.2",
+      "n": 90,
+      "se_hier": {
+        "selib": 4.12328916,
+        "beat_hcse": 4.12328916,
+        "diff": 3.552713678800501e-15
+      },
+      "se_agglom": {
+        "selib": 4.23497231,
+        "beat_hcse": 4.23497231,
+        "diff": 0.0
+      },
+      "bbm": {
+        "selib": 4.35862333,
+        "beat_hcse": 4.35862333,
+        "diff": 1.7763568394002505e-15
+      },
+      "hcse": {
+        "selib": 5.09469022,
+        "beat_hcse": 5.09469022,
+        "diff": 8.881784197001252e-16
+      }
+    },
+    {
+      "graph": "disconnected-3",
+      "n": 36,
+      "se_hier": {
+        "selib": 2.15386059,
+        "beat_hcse": 2.15386059,
+        "diff": 4.440892098500626e-16
+      },
+      "se_agglom": {
+        "selib": 2.18195463,
+        "beat_hcse": 2.18195463,
+        "diff": 1.3322676295501878e-15
+      },
+      "bbm": {
+        "skipped": "graph not connected"
+      },
+      "hcse": {
+        "skipped": "graph not connected"
+      }
+    },
+    {
+      "graph": "weighted",
+      "n": 30,
+      "se_hier": {
+        "selib": 3.03643303,
+        "beat_hcse": 3.03643303,
+        "diff": 4.440892098500626e-16
+      },
+      "se_agglom": {
+        "selib": 3.16438484,
+        "beat_hcse": 3.16438484,
+        "diff": 4.440892098500626e-16
+      },
+      "bbm": {
+        "selib": 3.81977064,
+        "beat_hcse": 3.81977064,
+        "diff": 4.440892098500626e-16
+      },
+      "hcse": {
+        "selib": 3.69638672,
+        "beat_hcse": 3.69638672,
+        "diff": 8.881784197001252e-16
+      }
+    },
+    {
+      "graph": "isolated-node",
+      "n": 21,
+      "se_hier": {
+        "selib": 2.88129924,
+        "beat_hcse": 2.88129924,
+        "diff": 4.440892098500626e-16
+      },
+      "se_agglom": {
+        "selib": 2.8943416,
+        "beat_hcse": 2.8943416,
+        "diff": 0.0
+      },
+      "bbm": {
+        "skipped": "graph not connected"
+      },
+      "hcse": {
+        "skipped": "graph not connected"
+      }
+    }
+  ],
+  "note": "selib.hd_se (H^T) vs beat-hcse tree_entropy (independent Li-group formula), on se_hier / se_agglom / BBM / HCSE trees over connected, disconnected and weighted graphs."
+}

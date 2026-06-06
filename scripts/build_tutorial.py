@@ -69,6 +69,18 @@ def crosscheck_html():
             f"<i>disconnected</i>, and <i>weighted</i> — the maximum absolute difference from "
             f"<code>selib</code> is <b>{gj['max_abs_diff']:.1e}</b> bits, i.e. floating-point "
             f"machine precision. The definitions are identical.</li>")
+    # encoding-tree H^T cross-check (selib vs beat-hcse on se_hier/BBM/HCSE trees)
+    tp = os.path.join(os.path.dirname(RES), "se_crosscheck_tree.json")
+    if os.path.exists(tp):
+        xt = json.load(open(tp))
+        parts.append(
+            f"<li><b>Encoding-tree H<sup>T</sup>:</b> selib's hierarchical structural entropy "
+            f"matches an independent implementation (beat-hcse's <code>tree_entropy</code>, the "
+            f"Angsheng-Li-group formula) to <b>{xt['max_abs_diff']:.1e}</b> bits, scoring the trees "
+            f"built by selib's <code>se_hier</code> <i>and the original <b>BBM</b> and <b>HCSE</b> "
+            f"code</i> (github.com/Hardict/HCSE), over connected, disconnected, weighted and "
+            f"isolated-node graphs. (HCSE/BBM's own code is only defined for connected graphs; "
+            f"selib handles all cases.)</li>")
     dd = x.get("dedoc", {})
     if dd.get("available") and dd.get("records"):
         ex = dd["records"][0]

@@ -37,11 +37,23 @@ def se_agglomerative(G):
         return x * math.log2(x) if x > 0 else 0.0
 
     def delta(a, b, wab):
+        # SE change from merging clusters a, b. Every log2 is guarded against a
+        # zero-volume cluster (isolated nodes / disconnected components): the limit
+        # of V*log2(.../V) as V->0 is 0, so a volume-0 cluster contributes nothing.
         Va, Vb, Vab = V[a], V[b], V[a] + V[b]
         ga, gb = g[a], g[b]; gab = ga + gb - 2 * wab
-        dW = (Va / m2) * math.log2(Vab / Va) + (Vb / m2) * math.log2(Vab / Vb)
-        dM = (-(gab / m2) * math.log2(Vab / m2) + (ga / m2) * math.log2(Va / m2)
-              + (gb / m2) * math.log2(Vb / m2)) if Vab > 0 else 0.0
+        dW = 0.0
+        if Va > 0 and Vab > 0:
+            dW += (Va / m2) * math.log2(Vab / Va)
+        if Vb > 0 and Vab > 0:
+            dW += (Vb / m2) * math.log2(Vab / Vb)
+        dM = 0.0
+        if Vab > 0:
+            dM -= (gab / m2) * math.log2(Vab / m2)
+            if Va > 0:
+                dM += (ga / m2) * math.log2(Va / m2)
+            if Vb > 0:
+                dM += (gb / m2) * math.log2(Vb / m2)
         return dW + dM
 
     Z = []; next_id = n; node_id = {i: i for i in range(n)}; size = {i: 1 for i in range(n)}
