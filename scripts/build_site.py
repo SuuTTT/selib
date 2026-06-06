@@ -584,6 +584,7 @@ and benchmark SE methods against classical baselines under one API.</p>
 <a href="gallery.html"><b>SE gallery</b></a> ·
 <a href="tutorial.html"><b>SE tutorial</b></a> ·
 <a href="recursive.html"><b>recursive structures</b></a> ·
+<a href="periodic.html"><b>periodic table</b></a> ·
 <a href="benchmark_results.json">raw results JSON</a> ·
 <a href="https://github.com/SuuTTT/structural-entropy-benchmark">reproduction benchmark</a> ·
 <a href="https://github.com/SuuTTT/structural-entropy-survey-paper">survey paper</a></p>

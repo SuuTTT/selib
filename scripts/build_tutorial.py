@@ -158,13 +158,19 @@ Concretely:</p>
 Li &amp; Pan (2016), <i>not</i> normalized by 1D-SE or by log&#8202;n.</li>
 <li><b>Weights:</b> an edge attribute <code>weight</code> (default 1); the degree
 d<sub>v</sub> is the weighted degree and 2m = &Sigma;<sub>v</sub> d<sub>v</sub>.</li>
-<li><b>Disconnected / "discrete" graphs:</b> no connectivity is required. A graph
-that splits into pieces (like <i>Four disjoint edges</i> above) just has several
-communities with cut g<sub>j</sub>=0; their volumes still enter the sums. The
-random-walk picture is then per-component, but the entropy <i>value</i> is
-unambiguous — we treat d<sub>v</sub>/2m as the node weights exactly as in the
-connected case. This is the same convention used by deDoc, CoDeSEG, and the
-glass-jax discrete scorer (verified — see below).</li>
+<li><b>What d<sub>v</sub>/2m really is (and why disconnected graphs are fine):</b>
+the random-walk story (π = d<sub>v</sub>/2m is the walk's stationary distribution)
+needs a connected graph. But the robust reading that survives <i>any</i> graph is:
+<i>pick a uniformly random edge-endpoint; d<sub>v</sub>/2m is the probability it
+lands on v</i> — a valid distribution (it sums to 1) whether or not the graph is
+connected. So SE is the expected code length under that distribution, and needs no
+connectivity. A disconnected graph (like <i>Four disjoint edges</i> above) just has
+components as top-level modules with cut g<sub>j</sub>=0; their volumes still enter
+the sums, and the encoding tree's root simply sits above the components. Same
+convention as deDoc, CoDeSEG, and the glass-jax discrete scorer (verified below).
+One caveat: when all cross-component cuts are 0, the optimal <i>partition</i> is
+well-defined but the tree <i>above</i> the components is not unique (nothing to
+compress between them).</li>
 <li><b>Isolated nodes</b> (degree 0) contribute nothing: the d&#8202;log&#8202;d terms
 vanish. <b>Self-loops</b> count twice in the degree (NetworkX convention) and are
 always internal to their community.</li>
