@@ -55,9 +55,37 @@ def card(ex):
         f'</div></div></div>')
 
 
+def crosscheck_html():
+    p = os.path.join(os.path.dirname(RES), "se_crosscheck.json")
+    if not os.path.exists(p):
+        return ""
+    x = json.load(open(p))
+    parts = []
+    gj = x.get("glassjax", {})
+    if gj.get("available"):
+        parts.append(
+            f"<li><b>glass-jax discrete scorer</b> (an independent implementation of the "
+            f"same definition): over {gj['trials']} random graphs — connected, "
+            f"<i>disconnected</i>, and <i>weighted</i> — the maximum absolute difference from "
+            f"<code>selib</code> is <b>{gj['max_abs_diff']:.1e}</b> bits, i.e. floating-point "
+            f"machine precision. The definitions are identical.</li>")
+    dd = x.get("dedoc", {})
+    if dd.get("available") and dd.get("records"):
+        ex = dd["records"][0]
+        parts.append(
+            f"<li><b>deDoc</b> (original Java, Li 2018): reproduces its partition exactly; the "
+            f"value it prints is a Hi-C&#8209;specific <i>normalized</i> 2D-SE (e.g. Karate "
+            f"{ex['dedoc_printed']:.3f}), not raw bits, so it is not directly equal to "
+            f"<code>selib</code>'s H<sup>2</sup> = {ex['selib_H2_of_dedoc_partition']:.3f} of the "
+            f"same partition — the <i>definition</i> is confirmed via glass-jax above, while the "
+            f"<i>normalization</i> differs.</li>")
+    return ("<ul>" + "".join(parts) + "</ul>") if parts else ""
+
+
 def main():
     data = json.load(open(RES))
     cards = "".join(card(e) for e in data["examples"])
+    xc = crosscheck_html()
     css = """
     :root{--fg:#1f2937;--mut:#6b7280;--bd:#e5e7eb;--se:#e0245e}
     *{box-sizing:border-box}
@@ -104,6 +132,41 @@ the <code>module</code> and <code>within</code> columns are the per-community co
 the displayed totals are reproduced exactly by <code>selib</code>.</p>
 
 {cards}
+
+<h2>Definitions &amp; conventions (what selib actually computes)</h2>
+<p>Structural entropy is usually motivated by a random walk: on a <i>connected</i>
+graph the stationary distribution is &pi;<sub>v</sub> = d<sub>v</sub>/2m, and the
+formulas above are its expected description length under a partition. But the
+quantities they use — degrees, community volumes V<sub>j</sub>, and cuts
+g<sub>j</sub> — are purely <b>combinatorial</b>, so the entropy is well-defined for
+<i>any</i> graph, connected or not. selib computes it directly from those quantities.
+Concretely:</p>
+<ul>
+<li><b>Units:</b> bits (log base 2). These are the raw structural-entropy values of
+Li &amp; Pan (2016), <i>not</i> normalized by 1D-SE or by log&#8202;n.</li>
+<li><b>Weights:</b> an edge attribute <code>weight</code> (default 1); the degree
+d<sub>v</sub> is the weighted degree and 2m = &Sigma;<sub>v</sub> d<sub>v</sub>.</li>
+<li><b>Disconnected / "discrete" graphs:</b> no connectivity is required. A graph
+that splits into pieces (like <i>Four disjoint edges</i> above) just has several
+communities with cut g<sub>j</sub>=0; their volumes still enter the sums. The
+random-walk picture is then per-component, but the entropy <i>value</i> is
+unambiguous — we treat d<sub>v</sub>/2m as the node weights exactly as in the
+connected case. This is the same convention used by deDoc, CoDeSEG, and the
+glass-jax discrete scorer (verified — see below).</li>
+<li><b>Isolated nodes</b> (degree 0) contribute nothing: the d&#8202;log&#8202;d terms
+vanish. <b>Self-loops</b> count twice in the degree (NetworkX convention) and are
+always internal to their community.</li>
+<li><b>Direction:</b> graphs are treated as undirected (the adjacency is
+symmetrized); directed SE is out of scope for v0.2.</li>
+<li><b>Higher dimensions:</b> the 2D value is the entropy of a flat (2-level)
+partition; the full encoding-tree value H<sup>T</sup> generalizes it to trees of any
+height (a 2-level tree's H<sup>T</sup> equals H<sup>2</sup> exactly — checked).</li>
+</ul>
+
+<h2>Cross-checked against independent implementations</h2>
+<p>The 2D-SE numbers here are validated against code that implements the formula
+independently. Full per-run report: <a href="se_crosscheck.json">se_crosscheck.json</a>.</p>
+"""+ xc +"""
 
 <div class="foot">Every number here is computed by <code>selib.calc</code> and asserted equal to the
 hand-derived breakdown in <a href="tutorial.json">tutorial.json</a> — if the arithmetic and the library

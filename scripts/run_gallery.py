@@ -53,7 +53,11 @@ def _graphs():
     add("Caveman (4×6)", nx.connected_caveman_graph(4, 6), note="planted near-cliques")
     add("Petersen", nx.petersen_graph(), note="vertex-transitive — no community structure")
     add("Balanced tree (b2,d4)", nx.balanced_tree(2, 4), note="pure hierarchy")
-    add("Grid 6×6", nx.grid_2d_graph(6, 6), note="lattice — weak structure")
+    # grid keeps its true lattice geometry (community layout would hide the lattice)
+    Ggrid = nx.grid_2d_graph(6, 6)
+    grid_pos = {i: [float(x), float(y)] for i, (x, y) in enumerate(Ggrid.nodes())}
+    add("Grid 6×6", nx.convert_node_labels_to_integers(Ggrid), pos=grid_pos,
+        note="lattice — geometric layout kept; weak community structure")
     add("SBM 3-block", D.sbm(150, 3, 0.30, 0.05)[0], note="planted blocks (clean)")
     add("LFR μ=0.2", D.lfr(n=150, mu=0.2, seed=0, avg_deg=12, max_deg=30,
                           min_comm=10, max_comm=40)[0], note="LFR benchmark, easy regime")
@@ -68,7 +72,8 @@ def main():
         n = G.number_of_nodes()
         labels, se2 = calc.optimal_2d(G)
         rep = calc.se_report(G)
-        pos = community_layout(G, labels)        # same-label nodes cluster together
+        # geometric graphs (grid) keep their layout; everything else clusters by community
+        pos = pos if pos is not None else community_layout(G, labels)
         out["graphs"].append({
             "name": name, "note": note,
             "n": n, "m": G.number_of_edges(),

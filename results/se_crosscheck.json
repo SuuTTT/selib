@@ -1,0 +1,48 @@
+{
+  "glassjax": {
+    "available": true,
+    "trials": 58,
+    "max_abs_diff": 1.7763568394002505e-15,
+    "worst": {
+      "kind": "gnp",
+      "n": 32,
+      "selib": 4.519190775,
+      "glassjax": 4.519190775
+    }
+  },
+  "dedoc": {
+    "available": true,
+    "records": [
+      {
+        "dataset": "Karate",
+        "dedoc_printed": 0.6246463044411473,
+        "selib_H2_of_dedoc_partition": 4.482596,
+        "selib_H1": 4.634008,
+        "ratio_printed_over_H2": 0.1393
+      },
+      {
+        "dataset": "SBM-Clean",
+        "dedoc_printed": 0.7478323343991937,
+        "selib_H2_of_dedoc_partition": 6.492922,
+        "selib_H1": 6.870853,
+        "ratio_printed_over_H2": 0.1152
+      }
+    ],
+    "note": "deDoc prints a 2D structural-entropy value for ITS partition; we recompute selib's H2 of the same partition to confirm the definition matches (up to deDoc's normalization)."
+  },
+  "codeseg": {
+    "available": true,
+    "records": [
+      {
+        "dataset": "Karate",
+        "codeseg_printed_entropy": null,
+        "selib_H2_of_codeseg_partition": 3.428422
+      },
+      {
+        "dataset": "SBM-Clean",
+        "codeseg_printed_entropy": null,
+        "selib_H2_of_codeseg_partition": 6.059261
+      }
+    ]
+  }
+}
