@@ -4,8 +4,41 @@ the SE statistics (1D, optimal 2D, optimal H^T, #communities). Output:
 results/gallery.json — consumed by scripts/build_gallery.py.
 """
 import json, os
+import numpy as np
 import networkx as nx
 from selib import calc, datasets as D
+
+
+def community_layout(G, labels, seed=7, scale=0.26):
+    """Two-level layout: lay out the *community graph* to place each community,
+    then spring-lay-out each community locally around its centre — so nodes of the
+    same label end up geometrically close."""
+    comms = {}
+    for v, l in enumerate(labels):
+        comms.setdefault(l, []).append(v)
+    CG = nx.Graph(); CG.add_nodes_from(comms)
+    for u, v in G.edges():
+        a, b = labels[u], labels[v]
+        if a != b:
+            CG.add_edge(a, b, weight=CG.get_edge_data(a, b, {}).get("weight", 0) + 1)
+    if CG.number_of_nodes() == 1:
+        centers = {next(iter(comms)): np.array([0.0, 0.0])}
+    elif CG.number_of_edges() > 0:
+        centers = nx.spring_layout(CG, seed=seed, k=2.0, weight="weight", iterations=200)
+    else:
+        centers = nx.circular_layout(CG)
+    pos = {}
+    for l, members in comms.items():
+        sub = G.subgraph(members)
+        if len(members) > 1:
+            sp = nx.spring_layout(sub, seed=seed, k=0.9, iterations=120)
+        else:
+            sp = {members[0]: np.array([0.0, 0.0])}
+        cx, cy = centers[l]
+        for v in members:
+            pos[v] = [round(float(cx + scale * sp[v][0]), 4),
+                      round(float(cy + scale * sp[v][1]), 4)]
+    return pos
 
 
 def _graphs():
@@ -20,10 +53,7 @@ def _graphs():
     add("Caveman (4×6)", nx.connected_caveman_graph(4, 6), note="planted near-cliques")
     add("Petersen", nx.petersen_graph(), note="vertex-transitive — no community structure")
     add("Balanced tree (b2,d4)", nx.balanced_tree(2, 4), note="pure hierarchy")
-    # 2D grid keeps its geometric layout
-    G = nx.grid_2d_graph(6, 6)
-    pos = {i: [float(x), float(y)] for i, (x, y) in enumerate(G.nodes())}
-    add("Grid 6×6", nx.convert_node_labels_to_integers(G), pos=pos, note="lattice — weak structure")
+    add("Grid 6×6", nx.grid_2d_graph(6, 6), note="lattice — weak structure")
     add("SBM 3-block", D.sbm(150, 3, 0.30, 0.05)[0], note="planted blocks (clean)")
     add("LFR μ=0.2", D.lfr(n=150, mu=0.2, seed=0, avg_deg=12, max_deg=30,
                           min_comm=10, max_comm=40)[0], note="LFR benchmark, easy regime")
@@ -38,9 +68,7 @@ def main():
         n = G.number_of_nodes()
         labels, se2 = calc.optimal_2d(G)
         rep = calc.se_report(G)
-        if pos is None:
-            p = nx.spring_layout(G, seed=7, k=1.3 / (n ** 0.5))
-            pos = {int(u): [round(float(v[0]), 4), round(float(v[1]), 4)] for u, v in p.items()}
+        pos = community_layout(G, labels)        # same-label nodes cluster together
         out["graphs"].append({
             "name": name, "note": note,
             "n": n, "m": G.number_of_edges(),

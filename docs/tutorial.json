@@ -1,0 +1,361 @@
+{
+  "examples": [
+    {
+      "name": "Single edge",
+      "note": "Two nodes, one edge. Whatever the partition, both H\u00b9 and H\u00b2 equal exactly <b>1 bit</b>: one bit to locate a random walker on one of two symmetric endpoints.",
+      "n": 2,
+      "m": 1,
+      "labels": [
+        0,
+        0
+      ],
+      "se_1d": 1.0,
+      "se_2d": 1.0,
+      "se_2d_selib": 1.0,
+      "breakdown": {
+        "two_m": 2.0,
+        "rows": [
+          {
+            "comm": 0,
+            "members": [
+              0,
+              1
+            ],
+            "V": 2.0,
+            "g": 0.0,
+            "module_term": 0.0,
+            "within_term": 1.0
+          }
+        ],
+        "module_total": 0.0,
+        "within_total": 1.0,
+        "H2": 1.0
+      },
+      "pos": {
+        "0": [
+          -0.34,
+          0.053
+        ],
+        "1": [
+          0.34,
+          -0.053
+        ]
+      },
+      "edges": [
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "Four disjoint edges",
+      "note": "Eight nodes in four independent pairs. The partition-free 1D entropy is log\u20828 = <b>3 bits</b>; describing each pair as its own community drives it down to exactly <b>1 bit</b> \u2014 the cut term vanishes (no edges leave a pair, g=0) and only the within-pair bit remains.",
+      "n": 8,
+      "m": 4,
+      "labels": [
+        0,
+        0,
+        1,
+        1,
+        2,
+        2,
+        3,
+        3
+      ],
+      "se_1d": 3.0,
+      "se_2d": 1.0,
+      "se_2d_selib": 1.0,
+      "breakdown": {
+        "two_m": 8.0,
+        "rows": [
+          {
+            "comm": 0,
+            "members": [
+              0,
+              1
+            ],
+            "V": 2.0,
+            "g": 0.0,
+            "module_term": 0.0,
+            "within_term": 0.25
+          },
+          {
+            "comm": 1,
+            "members": [
+              2,
+              3
+            ],
+            "V": 2.0,
+            "g": 0.0,
+            "module_term": 0.0,
+            "within_term": 0.25
+          },
+          {
+            "comm": 2,
+            "members": [
+              4,
+              5
+            ],
+            "V": 2.0,
+            "g": 0.0,
+            "module_term": 0.0,
+            "within_term": 0.25
+          },
+          {
+            "comm": 3,
+            "members": [
+              6,
+              7
+            ],
+            "V": 2.0,
+            "g": 0.0,
+            "module_term": 0.0,
+            "within_term": 0.25
+          }
+        ],
+        "module_total": 0.0,
+        "within_total": 1.0,
+        "H2": 1.0
+      },
+      "pos": {
+        "0": [
+          0.66,
+          0.053
+        ],
+        "1": [
+          1.34,
+          -0.053
+        ],
+        "2": [
+          -0.34,
+          1.053
+        ],
+        "3": [
+          0.34,
+          0.947
+        ],
+        "4": [
+          -1.34,
+          0.053
+        ],
+        "5": [
+          -0.66,
+          -0.053
+        ],
+        "6": [
+          -0.34,
+          -0.947
+        ],
+        "7": [
+          0.34,
+          -1.053
+        ]
+      },
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          6,
+          7
+        ]
+      ]
+    },
+    {
+      "name": "4-cycle, split in two",
+      "note": "A 4-cycle has 1D entropy log\u20824 = 2 bits. Cutting it into two adjacent pairs costs a half-bit of cut entropy but saves a full bit inside the communities \u2192 H\u00b2 = <b>1.5 bits</b>.",
+      "n": 4,
+      "m": 4,
+      "labels": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "se_1d": 2.0,
+      "se_2d": 1.5,
+      "se_2d_selib": 1.5,
+      "breakdown": {
+        "two_m": 8.0,
+        "rows": [
+          {
+            "comm": 0,
+            "members": [
+              0,
+              1
+            ],
+            "V": 4.0,
+            "g": 2.0,
+            "module_term": 0.25,
+            "within_term": 0.5
+          },
+          {
+            "comm": 1,
+            "members": [
+              2,
+              3
+            ],
+            "V": 4.0,
+            "g": 2.0,
+            "module_term": 0.25,
+            "within_term": 0.5
+          }
+        ],
+        "module_total": 0.5,
+        "within_total": 1.0,
+        "H2": 1.5
+      },
+      "pos": {
+        "0": [
+          -1.34,
+          0.2089
+        ],
+        "1": [
+          -0.66,
+          0.1029
+        ],
+        "2": [
+          0.66,
+          -0.1029
+        ],
+        "3": [
+          1.34,
+          -0.2089
+        ]
+      },
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    {
+      "name": "Two triangles + bridge",
+      "note": "Two triangles joined by a single bridge edge. The SE-optimal partition is the two triangles; the lone bridge is the only cut, so the module term is tiny and H\u00b2 \u2248 <b>1.70 bits</b> \u2014 the textbook case where SE recovers the obvious two communities.",
+      "n": 6,
+      "m": 7,
+      "labels": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "se_1d": 2.556657,
+      "se_2d": 1.699514,
+      "se_2d_selib": 1.699514,
+      "breakdown": {
+        "two_m": 14.0,
+        "rows": [
+          {
+            "comm": 0,
+            "members": [
+              0,
+              1,
+              2
+            ],
+            "V": 7.0,
+            "g": 1.0,
+            "module_term": 0.071429,
+            "within_term": 0.778328
+          },
+          {
+            "comm": 1,
+            "members": [
+              3,
+              4,
+              5
+            ],
+            "V": 7.0,
+            "g": 1.0,
+            "module_term": 0.071429,
+            "within_term": 0.778328
+          }
+        ],
+        "module_total": 0.142857,
+        "within_total": 1.556657,
+        "H2": 1.699514
+      },
+      "pos": {
+        "0": [
+          -1.34,
+          0.0686
+        ],
+        "1": [
+          -0.9056,
+          0.494
+        ],
+        "2": [
+          -0.7544,
+          -0.0949
+        ],
+        "3": [
+          0.66,
+          -0.2432
+        ],
+        "4": [
+          1.0944,
+          0.1822
+        ],
+        "5": [
+          1.2456,
+          -0.4067
+        ]
+      },
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ]
+    }
+  ]
+}

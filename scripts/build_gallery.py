@@ -79,7 +79,7 @@ def main():
 <h1>Gallery: optimal structural-entropy partitions</h1>
 <p class="sub">The SE-optimal flat partition (minimizing 2D structural entropy at free
 <i>k</i>, via <code>selib.optimal_2d</code>) on classical graphs. Node colour = community.
-<a href="index.html">← back to the benchmark</a> · <a href="https://github.com/SuuTTT/selib">repo</a></p>
+<a href="index.html">← benchmark</a> · <a href="tutorial.html">SE tutorial</a> · <a href="https://github.com/SuuTTT/selib">repo</a></p>
 
 <p>Each graph is partitioned by <b>minimizing its structural entropy</b> — no target
 number of clusters is given; the resolution is chosen by the objective. The
