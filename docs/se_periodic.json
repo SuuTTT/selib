@@ -1,66 +1,161 @@
 {
   "_about": "A periodic table of structural-entropy methods: graph type x research direction. Cells list representative methods catalogued in the structural-entropy survey (104 papers); an empty cell = no work found in the survey = an open direction. Curated, not exhaustive.",
-  "directions": ["Theory / definition", "Community detection", "Hierarchy (encoding tree)", "Graph pooling (deep)", "Structure learning", "Self-supervised / contrastive", "RL state abstraction", "Applications"],
+  "directions": [
+    "Theory / definition",
+    "Community detection",
+    "Hierarchy (encoding tree)",
+    "Graph pooling (deep)",
+    "Structure learning",
+    "Self-supervised / contrastive",
+    "RL state abstraction",
+    "Applications"
+  ],
   "graph_types": [
-    {"name": "Simple (undirected, unweighted)", "pi": "d_v / 2m",
-     "cells": {
-       "Theory / definition": ["Li & Pan 2016 (k-D SE)"],
-       "Community detection": ["deDoc", "CoDeSEG", "DeSE", "se_louvain (this lib)"],
-       "Hierarchy (encoding tree)": ["HCSE", "BBM", "se_hier (this lib)"],
-       "Graph pooling (deep)": ["SEP"],
-       "Structure learning": ["SE-GSL"],
-       "Self-supervised / contrastive": ["SEGA"],
-       "RL state abstraction": ["SI2E", "SIDM"],
-       "Applications": ["UnDBot (social bot)"]
-     }},
-    {"name": "Weighted", "pi": "weighted degree / 2W",
-     "cells": {
-       "Theory / definition": ["Li & Pan 2016 (general weights)"],
-       "Community detection": ["deDoc(E/M)"],
-       "Hierarchy (encoding tree)": ["deDoc", "SuperTAD", "deTOKI"],
-       "Applications": ["deDoc2 (Hi-C TADs)", "SuperTAD2", "pySEAT (single-cell)"]
-     }},
-    {"name": "Directed", "pi": "PageRank / flow stationary",
-     "cells": {
-       "Theory / definition": ["Flow-based directed SE (Pan 2019)", "RWE (2024)"],
-       "Structure learning": ["EDEN (ICML 2025)"]
-     }},
-    {"name": "Bipartite", "pi": "d_v / 2m (two-sided)",
-     "cells": {}},
-    {"name": "Signed (+/- edges)", "pi": "?",
-     "cells": {}},
-    {"name": "Attributed (node features)", "pi": "d_v / 2m + features",
-     "cells": {
-       "Community detection": ["LSENet", "DeSE"],
-       "Structure learning": ["SEHFS (high-order)"],
-       "Self-supervised / contrastive": ["se_gnn (this lib, soft 2D-SE + GCN)"]
-     }},
-    {"name": "Heterogeneous / multi-relational", "pi": "per-relation degree",
-     "cells": {
-       "Theory / definition": ["Multi-Relational SE (UAI 2024)"],
-       "Applications": ["MASGCN (sentiment)"]
-     }},
-    {"name": "Hypergraph", "pi": "hyperedge-incidence degree",
-     "cells": {
-       "Applications": ["Hypergraph-SE recommendation (TOIS 2025)"]
-     }},
-    {"name": "Dynamic / temporal", "pi": "time-varying d_v / 2m",
-     "cells": {
-       "Theory / definition": ["Incremental SE for dynamic graphs (AIJ 2024)"],
-       "Community detection": ["Hierarchical+Incremental SE events (AAAI 2024)"],
-       "Applications": ["SEIN open-world events (AAAI 2026)", "Spatio-temporal SE forecasting"]
-     }}
+    {
+      "name": "Simple (undirected, unweighted)",
+      "pi": "d_v / 2m",
+      "cells": {
+        "Theory / definition": [
+          "Li & Pan 2016 (k-D SE)"
+        ],
+        "Community detection": [
+          "deDoc",
+          "CoDeSEG",
+          "DeSE",
+          "se_louvain (this lib)"
+        ],
+        "Hierarchy (encoding tree)": [
+          "HCSE",
+          "BBM",
+          "se_hier (this lib)"
+        ],
+        "Graph pooling (deep)": [
+          "SEP"
+        ],
+        "Structure learning": [
+          "SE-GSL"
+        ],
+        "Self-supervised / contrastive": [
+          "SEGA"
+        ],
+        "RL state abstraction": [
+          "SI2E",
+          "SIDM"
+        ],
+        "Applications": [
+          "UnDBot (social bot)"
+        ]
+      }
+    },
+    {
+      "name": "Weighted",
+      "pi": "weighted degree / 2W",
+      "cells": {
+        "Theory / definition": [
+          "Li & Pan 2016 (general weights)"
+        ],
+        "Community detection": [
+          "deDoc(E/M)"
+        ],
+        "Hierarchy (encoding tree)": [
+          "deDoc",
+          "SuperTAD",
+          "deTOKI"
+        ],
+        "Applications": [
+          "deDoc2 (Hi-C TADs)",
+          "SuperTAD2",
+          "pySEAT (single-cell)"
+        ]
+      }
+    },
+    {
+      "name": "Directed",
+      "pi": "PageRank / flow stationary",
+      "cells": {
+        "Theory / definition": [
+          "Flow-based directed SE (Pan 2019)",
+          "RWE (2024)"
+        ],
+        "Structure learning": [
+          "EDEN (ICML 2025)"
+        ]
+      }
+    },
+    {
+      "name": "Bipartite",
+      "pi": "d_v / 2m (two-sided)",
+      "cells": {}
+    },
+    {
+      "name": "Signed (+/- edges)",
+      "pi": "?",
+      "cells": {}
+    },
+    {
+      "name": "Attributed (node features)",
+      "pi": "d_v / 2m + features",
+      "cells": {
+        "Community detection": [
+          "LSENet",
+          "DeSE"
+        ],
+        "Structure learning": [
+          "SEHFS (high-order)"
+        ],
+        "Self-supervised / contrastive": [
+          "se_gnn (this lib, soft 2D-SE + GCN)"
+        ]
+      }
+    },
+    {
+      "name": "Heterogeneous / multi-relational",
+      "pi": "per-relation degree",
+      "cells": {
+        "Theory / definition": [
+          "Multi-Relational SE (UAI 2024)"
+        ],
+        "Applications": [
+          "MASGCN (sentiment)"
+        ]
+      }
+    },
+    {
+      "name": "Hypergraph",
+      "pi": "hyperedge-incidence degree",
+      "cells": {
+        "Applications": [
+          "Hypergraph-SE recommendation (TOIS 2025)"
+        ]
+      }
+    },
+    {
+      "name": "Dynamic / temporal",
+      "pi": "time-varying d_v / 2m",
+      "cells": {
+        "Theory / definition": [
+          "Incremental SE for dynamic graphs (AIJ 2024)"
+        ],
+        "Community detection": [
+          "Hierarchical+Incremental SE events (AAAI 2024)"
+        ],
+        "Applications": [
+          "SEIN open-world events (AAAI 2026)",
+          "Spatio-temporal SE forecasting"
+        ]
+      }
+    }
   ],
   "open_directions": [
-    "Signed-graph structural entropy: no work found — the +/- semantics need a sign-aware cut/volume (e.g. frustration-weighted).",
-    "Bipartite structural entropy: no dedicated definition — two-sided volumes and co-clustering encoding trees are unexplored.",
-    "Hypergraph SE beyond recommendation: community detection, pooling and RL on hypergraphs are open.",
+    "Signed-graph structural entropy: no work found \u2014 the +/- semantics need a sign-aware cut/volume (e.g. frustration-weighted).",
+    "Bipartite structural entropy: touched only implicitly (a hypergraph-SE recommender on the user-item bipartite graph) \u2014 no dedicated two-sided volume / co-clustering encoding-tree definition.",
+    "Hypergraph SE beyond a single recommendation application: community detection, pooling and RL on hypergraphs are open.",
     "Directed SE for deep learning: pooling / structure-learning / RL on directed graphs barely touched (only EDEN).",
     "Dynamic SE for graph learning / RL: incremental SE exists for detection, not yet as a differentiable pooling or exploration signal.",
     "EXOGENOUS node distribution pi: SE almost always fixes pi = d_v/2m (or PageRank for directed). Letting pi be a GIVEN importance/query distribution unrelated to edge weight is essentially unexplored (see note)."
   ],
   "pi_note": {
-    "title": "Generalizing the node distribution π (a realized open direction)",
-    "body": "Structural entropy is the expected code length of a random walker localized by an encoding tree. Standard SE hard-codes the walker's stationary distribution as π_v = d_v/2m (degree, or PageRank for directed graphs). A natural, mostly-unexplored generalization is to let π be GIVEN exogenously (a query/importance/prior distribution unrelated to edge weights). Interpretation: it IS meaningful exactly when π is the stationary distribution of SOME walk on the graph — e.g. a teleporting / personalized-PageRank walk with teleport vector p, or a Metropolis–Hastings walk engineered to have stationary π. Then SE = bits to encode that p-biased walker, giving 'query-biased / personalized structural entropy'. An arbitrary π with no underlying process loses the code-length reading but remains a well-defined importance-weighted partition functional (a rate-distortion / non-uniform-source view). Directed-graph SE already does a special case of this (π = PageRank ≠ degree); the general 'bring-your-own-π' SE is the open frontier."
+    "title": "Generalizing the node distribution \u03c0 (a realized open direction)",
+    "body": "Structural entropy is the expected code length of a random walker localized by an encoding tree. Standard SE hard-codes the walker's stationary distribution as \u03c0_v = d_v/2m (degree, or PageRank for directed graphs). A natural, mostly-unexplored generalization is to let \u03c0 be GIVEN exogenously (a query/importance/prior distribution unrelated to edge weights). Interpretation: it IS meaningful exactly when \u03c0 is the stationary distribution of SOME walk on the graph \u2014 e.g. a teleporting / personalized-PageRank walk with teleport vector p, or a Metropolis\u2013Hastings walk engineered to have stationary \u03c0. Then SE = bits to encode that p-biased walker, giving 'query-biased / personalized structural entropy'. An arbitrary \u03c0 with no underlying process loses the code-length reading but remains a well-defined importance-weighted partition functional (a rate-distortion / non-uniform-source view). Directed-graph SE already does a special case of this (\u03c0 = PageRank \u2260 degree); the general 'bring-your-own-\u03c0' SE is the open frontier."
   }
 }
