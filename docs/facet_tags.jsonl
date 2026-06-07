@@ -4,7 +4,7 @@
 {"key": "Li2016", "facet": "graph_type", "value": "dynamic", "confidence": "high", "evidence": "abstract: \u2026Dynamic\u2026", "source": "abstract", "verified": true}
 {"key": "Li2016", "facet": "optimization", "value": "incremental", "confidence": "high", "evidence": "abstract: \u2026incremental\u2026", "source": "abstract", "verified": true}
 {"key": "Li2016", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
-{"key": "Li2016", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "Li2016", "facet": "supervision", "value": "unsupervised", "confidence": "high", "evidence": "fulltext: minimizes the K-dimensional structure entropy ... detecting the natural or true structures", "source": "deep_pass", "verified": true}
 {"key": "Li2016", "facet": "output", "value": "partition", "confidence": "high", "evidence": "abstract: \u2026cluster\u2026", "source": "abstract", "verified": true}
 {"key": "Li2016", "facet": "output", "value": "score", "confidence": "high", "evidence": "abstract: \u2026Index\u2026", "source": "abstract", "verified": true}
 {"key": "Li2016", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
@@ -12,12 +12,13 @@
 {"key": "Li2018", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
 {"key": "Li2018", "facet": "year", "value": "2018", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
 {"key": "Li2018", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
-{"key": "Li2018", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "Li2018", "facet": "supervision", "value": "unsupervised", "confidence": "high", "evidence": "fulltext: defines resistance R(G)=H1(G)-H2(G); pure theory, no labels/training", "source": "deep_pass", "verified": true}
 {"key": "Li2018", "facet": "output", "value": "partition", "confidence": "med", "evidence": "typical output of community_detection", "source": "inferred", "verified": false}
 {"key": "Li2018", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
 {"key": "li2024book", "facet": "task", "value": "community_detection", "confidence": "high", "evidence": "category=theory/foundation", "source": "metadata", "verified": false}
 {"key": "li2024book", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
 {"key": "li2024book", "facet": "year", "value": "2024", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
+{"key": "li2024book", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
 {"key": "li2024book", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
 {"key": "li2024book", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
 {"key": "li2024book", "facet": "output", "value": "partition", "confidence": "med", "evidence": "typical output of community_detection", "source": "inferred", "verified": false}
@@ -27,14 +28,14 @@
 {"key": "li2015strategiesForsecurity", "facet": "year", "value": "2015", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
 {"key": "li2015strategiesForsecurity", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
 {"key": "li2015strategiesForsecurity", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
-{"key": "li2015strategiesForsecurity", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "li2015strategiesForsecurity", "facet": "supervision", "value": "unsupervised", "confidence": "high", "evidence": "fulltext: network-security model/theory, 'provably secure networks'; no labels or training", "source": "deep_pass", "verified": true}
 {"key": "li2015strategiesForsecurity", "facet": "output", "value": "partition", "confidence": "med", "evidence": "typical output of community_detection", "source": "inferred", "verified": false}
 {"key": "li2015strategiesForsecurity", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
 {"key": "li2016securitytheory", "facet": "task", "value": "community_detection", "confidence": "high", "evidence": "category=theory/foundation", "source": "metadata", "verified": false}
 {"key": "li2016securitytheory", "facet": "task", "value": "hierarchical_clustering", "confidence": "med", "evidence": "algorithms/hierarchical signal", "source": "title", "verified": false}
 {"key": "li2016securitytheory", "facet": "year", "value": "2016", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
 {"key": "li2016securitytheory", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
-{"key": "li2016securitytheory", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "li2016securitytheory", "facet": "supervision", "value": "unsupervised", "confidence": "med", "evidence": "fulltext: \u2026greedy algorithm minimizing the structure entropy\u2026identifies natural communities\u2026", "source": "deep_pass", "verified": true}
 {"key": "li2016securitytheory", "facet": "output", "value": "partition", "confidence": "high", "evidence": "abstract: \u2026cluster\u2026", "source": "abstract", "verified": true}
 {"key": "li2016securitytheory", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
 {"key": "yang2024incremental", "facet": "task", "value": "theory", "confidence": "high", "evidence": "category=theory/extension", "source": "metadata", "verified": false}
@@ -42,7 +43,7 @@
 {"key": "yang2024incremental", "facet": "graph_type", "value": "dynamic", "confidence": "high", "evidence": "abstract: \u2026dynamic\u2026", "source": "abstract", "verified": true}
 {"key": "yang2024incremental", "facet": "optimization", "value": "incremental", "confidence": "high", "evidence": "abstract: \u2026incremental\u2026", "source": "abstract", "verified": true}
 {"key": "yang2024incremental", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
-{"key": "yang2024incremental", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "yang2024incremental", "facet": "supervision", "value": "unsupervised", "confidence": "high", "evidence": "fulltext: incrementally optimize community partitioning towards a lower structural entropy", "source": "deep_pass", "verified": true}
 {"key": "yang2024incremental", "facet": "output", "value": "score", "confidence": "med", "evidence": "typical output of theory", "source": "inferred", "verified": false}
 {"key": "yang2024incremental", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
 {"key": "cao2024multi", "facet": "task", "value": "theory", "confidence": "high", "evidence": "category=theory/extension", "source": "metadata", "verified": false}
@@ -57,22 +58,22 @@
 {"key": "yaopan2019flowDirected", "facet": "graph_type", "value": "directed", "confidence": "high", "evidence": "abstract: \u2026Directed\u2026", "source": "abstract", "verified": true}
 {"key": "yaopan2019flowDirected", "facet": "se_representation", "value": "2D", "confidence": "high", "evidence": "abstract: \u2026two-dimensional\u2026", "source": "abstract", "verified": true}
 {"key": "yaopan2019flowDirected", "facet": "se_role", "value": "objective", "confidence": "high", "evidence": "abstract: \u2026Structural Entropy Minimization\u2026", "source": "abstract", "verified": true}
-{"key": "yaopan2019flowDirected", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "yaopan2019flowDirected", "facet": "supervision", "value": "unsupervised", "confidence": "high", "evidence": "fulltext: local structural entropy minimization algorithm for detecting the flow-based community structure", "source": "deep_pass", "verified": true}
 {"key": "yaopan2019flowDirected", "facet": "output", "value": "score", "confidence": "high", "evidence": "abstract: \u2026INDEX\u2026", "source": "abstract", "verified": true}
 {"key": "yaopan2019flowDirected", "facet": "pi", "value": "pagerank", "confidence": "med", "evidence": "directed -> PageRank/flow stationary", "source": "inferred", "verified": false}
 {"key": "wxb2024rwedirected", "facet": "task", "value": "theory", "confidence": "high", "evidence": "category=theory/extension", "source": "metadata", "verified": false}
 {"key": "wxb2024rwedirected", "facet": "year", "value": "2024", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
 {"key": "wxb2024rwedirected", "facet": "graph_type", "value": "directed", "confidence": "high", "evidence": "abstract: \u2026directed\u2026", "source": "abstract", "verified": true}
 {"key": "wxb2024rwedirected", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
-{"key": "wxb2024rwedirected", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "wxb2024rwedirected", "facet": "supervision", "value": "unsupervised", "confidence": "high", "evidence": "fulltext: entropy measure + greedy community detection; no labels", "source": "deep_pass", "verified": true}
 {"key": "wxb2024rwedirected", "facet": "output", "value": "score", "confidence": "med", "evidence": "typical output of theory", "source": "inferred", "verified": false}
 {"key": "wxb2024rwedirected", "facet": "pi", "value": "pagerank", "confidence": "med", "evidence": "directed -> PageRank/flow stationary", "source": "inferred", "verified": false}
 {"key": "wxb2023findingThesource", "facet": "task", "value": "theory", "confidence": "high", "evidence": "category=theory/extension", "source": "metadata", "verified": false}
 {"key": "wxb2023findingThesource", "facet": "year", "value": "2023", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
 {"key": "wxb2023findingThesource", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
-{"key": "wxb2023findingThesource", "facet": "se_representation", "value": "kD_tree", "confidence": "low", "evidence": "keyword: hierarch|encoding tree|coding tree|partition tree|deDoc|TAD|tree", "source": "inferred", "verified": false}
+{"key": "wxb2023findingThesource", "facet": "se_representation", "value": "kD_tree", "confidence": "med", "evidence": "fulltext: \u2026infected tree entropy (ITE)\u2026minimize the coding of network partitions brought by the infected tree\u2026", "source": "deep_pass", "verified": true}
 {"key": "wxb2023findingThesource", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
-{"key": "wxb2023findingThesource", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "wxb2023findingThesource", "facet": "supervision", "value": "unsupervised", "confidence": "high", "evidence": "fulltext: \u2026ITE based estimator\u2026infer the source node\u2026minimize the coding of network partitions\u2026", "source": "deep_pass", "verified": true}
 {"key": "wxb2023findingThesource", "facet": "output", "value": "score", "confidence": "med", "evidence": "typical output of theory", "source": "inferred", "verified": false}
 {"key": "wxb2023findingThesource", "facet": "output", "value": "tree", "confidence": "med", "evidence": "hierarchical/tree output", "source": "title", "verified": false}
 {"key": "wxb2023findingThesource", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
@@ -86,13 +87,13 @@
 {"key": "liu2022similaritygap", "facet": "task", "value": "theory", "confidence": "high", "evidence": "category=theory/extension", "source": "metadata", "verified": false}
 {"key": "liu2022similaritygap", "facet": "year", "value": "2022", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
 {"key": "liu2022similaritygap", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
-{"key": "liu2022similaritygap", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "liu2022similaritygap", "facet": "supervision", "value": "unsupervised", "confidence": "high", "evidence": "fulltext: 'structural information, defined as the Shannon entropy of the normalized degree sequence' as metric; no training", "source": "deep_pass", "verified": true}
 {"key": "liu2022similaritygap", "facet": "output", "value": "score", "confidence": "med", "evidence": "typical output of theory", "source": "inferred", "verified": false}
 {"key": "liu2022similaritygap", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
 {"key": "ljm2021improvingTogetherness", "facet": "task", "value": "theory", "confidence": "high", "evidence": "category=theory/extension", "source": "metadata", "verified": false}
 {"key": "ljm2021improvingTogetherness", "facet": "year", "value": "2021", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
 {"key": "ljm2021improvingTogetherness", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
-{"key": "ljm2021improvingTogetherness", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "ljm2021improvingTogetherness", "facet": "supervision", "value": "unsupervised", "confidence": "high", "evidence": "fulltext: identifying the edge to establish which will maximize the information of the combined community", "source": "deep_pass", "verified": true}
 {"key": "ljm2021improvingTogetherness", "facet": "output", "value": "score", "confidence": "med", "evidence": "typical output of theory", "source": "inferred", "verified": false}
 {"key": "ljm2021improvingTogetherness", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
 {"key": "li2018dedoc", "facet": "task", "value": "community_detection", "confidence": "high", "evidence": "category=algorithms/combinatorial", "source": "metadata", "verified": false}
@@ -102,7 +103,7 @@
 {"key": "li2018dedoc", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026hierarchic\u2026", "source": "abstract", "verified": true}
 {"key": "li2018dedoc", "facet": "optimization", "value": "greedy_agglomerative", "confidence": "low", "evidence": "keyword: agglomerat|deDoc|merge", "source": "inferred", "verified": false}
 {"key": "li2018dedoc", "facet": "se_role", "value": "objective", "confidence": "high", "evidence": "abstract: \u2026minimize the structural entropy\u2026", "source": "abstract", "verified": true}
-{"key": "li2018dedoc", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "li2018dedoc", "facet": "supervision", "value": "unsupervised", "confidence": "high", "evidence": "fulltext: deDoc partitions the graph into segments with minimal structural entropy", "source": "deep_pass", "verified": true}
 {"key": "li2018dedoc", "facet": "output", "value": "partition", "confidence": "high", "evidence": "abstract: \u2026partition\u2026", "source": "abstract", "verified": true}
 {"key": "li2018dedoc", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
 {"key": "li2023dedoc2", "facet": "task", "value": "community_detection", "confidence": "high", "evidence": "category=algorithms/combinatorial", "source": "metadata", "verified": false}
@@ -114,7 +115,7 @@
 {"key": "li2023dedoc2", "facet": "optimization", "value": "incremental", "confidence": "low", "evidence": "keyword: incremental|stream|online|dynamic", "source": "inferred", "verified": false}
 {"key": "li2023dedoc2", "facet": "optimization", "value": "greedy_agglomerative", "confidence": "low", "evidence": "keyword: agglomerat|deDoc|merge", "source": "inferred", "verified": false}
 {"key": "li2023dedoc2", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
-{"key": "li2023dedoc2", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "li2023dedoc2", "facet": "supervision", "value": "unsupervised", "confidence": "high", "evidence": "fulltext: deDoc2 seeks genome partitions with global minimal structure entropy", "source": "deep_pass", "verified": true}
 {"key": "li2023dedoc2", "facet": "output", "value": "partition", "confidence": "high", "evidence": "abstract: \u2026partition\u2026", "source": "abstract", "verified": true}
 {"key": "li2023dedoc2", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026Hierarch\u2026", "source": "abstract", "verified": true}
 {"key": "li2023dedoc2", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
@@ -125,7 +126,7 @@
 {"key": "pan2021information", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026Hierarchic\u2026", "source": "abstract", "verified": true}
 {"key": "pan2021information", "facet": "se_representation", "value": "2D", "confidence": "high", "evidence": "abstract: \u2026community\u2026", "source": "abstract", "verified": true}
 {"key": "pan2021information", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
-{"key": "pan2021information", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "pan2021information", "facet": "supervision", "value": "unsupervised", "confidence": "high", "evidence": "fulltext: 'Hierarchical clustering ... HCSE outputs a k-level cluster tree ... without any hyper-parameter'", "source": "deep_pass", "verified": true}
 {"key": "pan2021information", "facet": "output", "value": "partition", "confidence": "high", "evidence": "abstract: \u2026Cluster\u2026", "source": "abstract", "verified": true}
 {"key": "pan2021information", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026Hierarch\u2026", "source": "abstract", "verified": true}
 {"key": "pan2021information", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
@@ -136,7 +137,7 @@
 {"key": "wu2022pooling", "facet": "se_representation", "value": "continuous", "confidence": "high", "evidence": "abstract: \u2026neural\u2026", "source": "abstract", "verified": true}
 {"key": "wu2022pooling", "facet": "optimization", "value": "differentiable", "confidence": "high", "evidence": "abstract: \u2026neural\u2026", "source": "abstract", "verified": true}
 {"key": "wu2022pooling", "facet": "se_role", "value": "prior", "confidence": "high", "evidence": "abstract: \u2026Guide\u2026", "source": "abstract", "verified": true}
-{"key": "wu2022pooling", "facet": "supervision", "value": "supervised", "confidence": "low", "evidence": "downstream-supervised default", "source": "inferred", "verified": false}
+{"key": "wu2022pooling", "facet": "supervision", "value": "supervised", "confidence": "high", "evidence": "fulltext: 'SEP-G and SEP-N for graph classification and node classification' trained with labels", "source": "deep_pass", "verified": true}
 {"key": "wu2022pooling", "facet": "output", "value": "pooled_graph", "confidence": "high", "evidence": "abstract: \u2026Pool\u2026", "source": "abstract", "verified": true}
 {"key": "wu2022pooling", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026Hierarch\u2026", "source": "abstract", "verified": true}
 {"key": "wu2022pooling", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
@@ -182,9 +183,9 @@
 {"key": "zhang2021supertad", "facet": "year", "value": "2021", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
 {"key": "zhang2021supertad", "facet": "graph_type", "value": "weighted", "confidence": "high", "evidence": "abstract: \u2026Hi-C\u2026", "source": "abstract", "verified": true}
 {"key": "zhang2021supertad", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026coding tree\u2026", "source": "abstract", "verified": true}
-{"key": "zhang2021supertad", "facet": "optimization", "value": "dynamic_programming", "confidence": "low", "evidence": "keyword: dynamic programming|\\bDP\\b|SuperTAD", "source": "inferred", "verified": false}
+{"key": "zhang2021supertad", "facet": "optimization", "value": "dynamic_programming", "confidence": "high", "evidence": "fulltext: 'the current method for computing coding trees is not optimal. ... we propose optimal algorithms'", "source": "deep_pass", "verified": true}
 {"key": "zhang2021supertad", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
-{"key": "zhang2021supertad", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "zhang2021supertad", "facet": "supervision", "value": "unsupervised", "confidence": "high", "evidence": "fulltext: 'TAD hierarchies can be inferred from Hi-C data through coding trees'; no labels", "source": "deep_pass", "verified": true}
 {"key": "zhang2021supertad", "facet": "output", "value": "partition", "confidence": "med", "evidence": "typical output of community_detection", "source": "inferred", "verified": false}
 {"key": "zhang2021supertad", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026hierarch\u2026", "source": "abstract", "verified": true}
 {"key": "zhang2021supertad", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
@@ -195,7 +196,7 @@
 {"key": "ling2024supertad2", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026hierarchic\u2026", "source": "abstract", "verified": true}
 {"key": "ling2024supertad2", "facet": "optimization", "value": "dynamic_programming", "confidence": "high", "evidence": "abstract: \u2026dynamic programming\u2026", "source": "abstract", "verified": true}
 {"key": "ling2024supertad2", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
-{"key": "ling2024supertad2", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "ling2024supertad2", "facet": "supervision", "value": "unsupervised", "confidence": "high", "evidence": "fulltext: find the TAD hierarchy with minimal structural entropy", "source": "deep_pass", "verified": true}
 {"key": "ling2024supertad2", "facet": "output", "value": "partition", "confidence": "med", "evidence": "typical output of community_detection", "source": "inferred", "verified": false}
 {"key": "ling2024supertad2", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
 {"key": "chen2022pyseat", "facet": "task", "value": "community_detection", "confidence": "high", "evidence": "category=algorithms/constrained", "source": "metadata", "verified": false}
@@ -204,7 +205,7 @@
 {"key": "chen2022pyseat", "facet": "graph_type", "value": "weighted", "confidence": "high", "evidence": "abstract: \u2026Hi-C\u2026", "source": "abstract", "verified": true}
 {"key": "chen2022pyseat", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026hierarchic\u2026", "source": "abstract", "verified": true}
 {"key": "chen2022pyseat", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
-{"key": "chen2022pyseat", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "chen2022pyseat", "facet": "supervision", "value": "unsupervised", "confidence": "high", "evidence": "fulltext: construct cell hierarchies utilizing structure entropy by minimizing the global uncertainty", "source": "deep_pass", "verified": true}
 {"key": "chen2022pyseat", "facet": "output", "value": "partition", "confidence": "high", "evidence": "abstract: \u2026cluster\u2026", "source": "abstract", "verified": true}
 {"key": "chen2022pyseat", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026hierarch\u2026", "source": "abstract", "verified": true}
 {"key": "chen2022pyseat", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
@@ -215,7 +216,7 @@
 {"key": "sun2024lsenet", "facet": "se_representation", "value": "continuous", "confidence": "high", "evidence": "abstract: \u2026Neural\u2026", "source": "abstract", "verified": true}
 {"key": "sun2024lsenet", "facet": "optimization", "value": "differentiable", "confidence": "high", "evidence": "abstract: \u2026Neural\u2026", "source": "abstract", "verified": true}
 {"key": "sun2024lsenet", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
-{"key": "sun2024lsenet", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "sun2024lsenet", "facet": "supervision", "value": "unsupervised", "confidence": "high", "evidence": "fulltext: \u2026graph clustering with unknown cluster number\u2026DSI emerges as a new graph clustering objective\u2026", "source": "deep_pass", "verified": true}
 {"key": "sun2024lsenet", "facet": "output", "value": "partition", "confidence": "high", "evidence": "abstract: \u2026Cluster\u2026", "source": "abstract", "verified": true}
 {"key": "sun2024lsenet", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
 {"key": "zhang2025dese", "facet": "task", "value": "community_detection", "confidence": "high", "evidence": "category=algorithms/neural", "source": "metadata", "verified": false}
@@ -234,7 +235,7 @@
 {"key": "xian2025communitySEGame", "facet": "se_representation", "value": "2D", "confidence": "high", "evidence": "abstract: \u2026Community\u2026", "source": "abstract", "verified": true}
 {"key": "xian2025communitySEGame", "facet": "optimization", "value": "game_localmove", "confidence": "high", "evidence": "abstract: \u2026game-theoret\u2026", "source": "abstract", "verified": true}
 {"key": "xian2025communitySEGame", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
-{"key": "xian2025communitySEGame", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "xian2025communitySEGame", "facet": "supervision", "value": "unsupervised", "confidence": "high", "evidence": "fulltext: minimizing the two-dimensional (2D) structural entropy ... within a potential game framework", "source": "deep_pass", "verified": true}
 {"key": "xian2025communitySEGame", "facet": "output", "value": "partition", "confidence": "high", "evidence": "abstract: \u2026Communit\u2026", "source": "abstract", "verified": true}
 {"key": "xian2025communitySEGame", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
 {"key": "zeng2026hypcse", "facet": "task", "value": "community_detection", "confidence": "high", "evidence": "category=algorithms/neural", "source": "metadata", "verified": false}
@@ -244,7 +245,7 @@
 {"key": "zeng2026hypcse", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026Hierarchic\u2026", "source": "abstract", "verified": true}
 {"key": "zeng2026hypcse", "facet": "se_representation", "value": "2D", "confidence": "low", "evidence": "keyword: community|cluster|2d|two-dimensional|partition", "source": "inferred", "verified": false}
 {"key": "zeng2026hypcse", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
-{"key": "zeng2026hypcse", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "zeng2026hypcse", "facet": "supervision", "value": "unsupervised", "confidence": "high", "evidence": "fulltext: Hierarchical clustering ... minimize the relaxed continuous structural entropy", "source": "deep_pass", "verified": true}
 {"key": "zeng2026hypcse", "facet": "output", "value": "partition", "confidence": "high", "evidence": "abstract: \u2026cluster\u2026", "source": "abstract", "verified": true}
 {"key": "zeng2026hypcse", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026Hierarch\u2026", "source": "abstract", "verified": true}
 {"key": "zeng2026hypcse", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
@@ -258,13 +259,13 @@
 {"key": "zou2023segsl", "facet": "task", "value": "structure_learning", "confidence": "high", "evidence": "category=graph-learning/structure-learning", "source": "metadata", "verified": false}
 {"key": "zou2023segsl", "facet": "year", "value": "2023", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
 {"key": "zou2023segsl", "facet": "se_role", "value": "prior", "confidence": "high", "evidence": "abstract: \u2026prior\u2026", "source": "abstract", "verified": true}
-{"key": "zou2023segsl", "facet": "supervision", "value": "supervised", "confidence": "low", "evidence": "downstream-supervised default", "source": "inferred", "verified": false}
+{"key": "zou2023segsl", "facet": "supervision", "value": "supervised", "confidence": "med", "evidence": "fulltext: enhances ... node representation learning ... node classification", "source": "deep_pass", "verified": true}
 {"key": "zou2023segsl", "facet": "output", "value": "rewired", "confidence": "high", "evidence": "abstract: \u2026Graph Structure\u2026", "source": "abstract", "verified": true}
 {"key": "zou2023segsl", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
 {"key": "duan2024structuralGSL", "facet": "task", "value": "structure_learning", "confidence": "high", "evidence": "category=graph-learning/structure-learning", "source": "metadata", "verified": false}
 {"key": "duan2024structuralGSL", "facet": "year", "value": "2024", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
 {"key": "duan2024structuralGSL", "facet": "se_role", "value": "prior", "confidence": "high", "evidence": "abstract: \u2026structural information and theoretical analy- sis on what is\u2026", "source": "abstract", "verified": true}
-{"key": "duan2024structuralGSL", "facet": "supervision", "value": "supervised", "confidence": "low", "evidence": "downstream-supervised default", "source": "inferred", "verified": false}
+{"key": "duan2024structuralGSL", "facet": "supervision", "value": "supervised", "confidence": "high", "evidence": "fulltext: 'graph structure learning (GSL) ... fine-tune the GNN parameters for better classification'", "source": "deep_pass", "verified": true}
 {"key": "duan2024structuralGSL", "facet": "output", "value": "rewired", "confidence": "high", "evidence": "abstract: \u2026Graph Structure\u2026", "source": "abstract", "verified": true}
 {"key": "duan2024structuralGSL", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
 {"key": "wxb2024hi-part", "facet": "task", "value": "graph_pooling", "confidence": "high", "evidence": "category=graph-learning/pooling", "source": "metadata", "verified": false}
@@ -275,7 +276,7 @@
 {"key": "wxb2024hi-part", "facet": "se_representation", "value": "continuous", "confidence": "high", "evidence": "abstract: \u2026graph neural\u2026", "source": "abstract", "verified": true}
 {"key": "wxb2024hi-part", "facet": "optimization", "value": "differentiable", "confidence": "high", "evidence": "abstract: \u2026neural\u2026", "source": "abstract", "verified": true}
 {"key": "wxb2024hi-part", "facet": "se_role", "value": "prior", "confidence": "low", "evidence": "deep/RL -> SE as inductive prior", "source": "inferred", "verified": false}
-{"key": "wxb2024hi-part", "facet": "supervision", "value": "supervised", "confidence": "low", "evidence": "downstream-supervised default", "source": "inferred", "verified": false}
+{"key": "wxb2024hi-part", "facet": "supervision", "value": "supervised", "confidence": "high", "evidence": "fulltext: validate ... on graph classification benchmarks", "source": "deep_pass", "verified": true}
 {"key": "wxb2024hi-part", "facet": "output", "value": "pooled_graph", "confidence": "high", "evidence": "abstract: \u2026pool\u2026", "source": "abstract", "verified": true}
 {"key": "wxb2024hi-part", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026Hierarch\u2026", "source": "abstract", "verified": true}
 {"key": "wxb2024hi-part", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
@@ -294,7 +295,7 @@
 {"key": "zhu2023HiTIN", "facet": "domain", "value": "nlp", "confidence": "high", "evidence": "subcategory=hierarchical-text", "source": "metadata", "verified": false}
 {"key": "zhu2023HiTIN", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026Hierarchic\u2026", "source": "abstract", "verified": true}
 {"key": "zhu2023HiTIN", "facet": "se_role", "value": "prior", "confidence": "high", "evidence": "abstract: \u2026prior\u2026", "source": "abstract", "verified": true}
-{"key": "zhu2023HiTIN", "facet": "supervision", "value": "supervised", "confidence": "low", "evidence": "downstream-supervised default", "source": "inferred", "verified": false}
+{"key": "zhu2023HiTIN", "facet": "supervision", "value": "supervised", "confidence": "high", "evidence": "fulltext: \u2026Hierarchical text classification (HTC)\u2026multi-label classification\u2026boost the performance of HTC\u2026", "source": "deep_pass", "verified": true}
 {"key": "zhu2023HiTIN", "facet": "output", "value": "rewired", "confidence": "med", "evidence": "typical output of structure_learning", "source": "inferred", "verified": false}
 {"key": "zhu2023HiTIN", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026Hierarch\u2026", "source": "abstract", "verified": true}
 {"key": "zhu2023HiTIN", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
@@ -304,7 +305,7 @@
 {"key": "yang2024graphkernal", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
 {"key": "yang2024graphkernal", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026Hierarchic\u2026", "source": "abstract", "verified": true}
 {"key": "yang2024graphkernal", "facet": "se_role", "value": "prior", "confidence": "high", "evidence": "abstract: \u2026Prior\u2026", "source": "abstract", "verified": true}
-{"key": "yang2024graphkernal", "facet": "supervision", "value": "supervised", "confidence": "low", "evidence": "downstream-supervised default", "source": "inferred", "verified": false}
+{"key": "yang2024graphkernal", "facet": "supervision", "value": "supervised", "confidence": "high", "evidence": "fulltext: graph kernels fed to 'SVM ... PCA' for 'Graph Classification'", "source": "deep_pass", "verified": true}
 {"key": "yang2024graphkernal", "facet": "output", "value": "rewired", "confidence": "high", "evidence": "abstract: \u2026Optimal Matching (LOM) and Priority Ordering Matching (POM),\u2026", "source": "abstract", "verified": true}
 {"key": "yang2024graphkernal", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026Hierarch\u2026", "source": "abstract", "verified": true}
 {"key": "yang2024graphkernal", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
@@ -363,7 +364,7 @@
 {"key": "su2025emergencecollab", "facet": "task", "value": "rl_abstraction", "confidence": "high", "evidence": "category=rl/marl", "source": "metadata", "verified": false}
 {"key": "su2025emergencecollab", "facet": "year", "value": "2025", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
 {"key": "su2025emergencecollab", "facet": "domain", "value": "rl_agents", "confidence": "high", "evidence": "subcategory=marl", "source": "metadata", "verified": false}
-{"key": "su2025emergencecollab", "facet": "optimization", "value": "greedy_agglomerative", "confidence": "low", "evidence": "keyword: agglomerat|deDoc|merge", "source": "inferred", "verified": false}
+{"key": "su2025emergencecollab", "facet": "optimization", "value": "greedy_agglomerative", "confidence": "med", "evidence": "fulltext: structural entropy ... successfully applied in community detection", "source": "deep_pass", "verified": true}
 {"key": "su2025emergencecollab", "facet": "se_role", "value": "prior", "confidence": "low", "evidence": "deep/RL -> SE as inductive prior", "source": "inferred", "verified": false}
 {"key": "su2025emergencecollab", "facet": "output", "value": "policy", "confidence": "high", "evidence": "abstract: \u2026Reinforcement\u2026", "source": "abstract", "verified": true}
 {"key": "su2025emergencecollab", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
@@ -470,12 +471,12 @@
 {"key": "li2021detoki", "facet": "graph_type", "value": "weighted", "confidence": "high", "evidence": "abstract: \u2026chromatin\u2026", "source": "abstract", "verified": true}
 {"key": "li2021detoki", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026hierarchic\u2026", "source": "abstract", "verified": true}
 {"key": "li2021detoki", "facet": "optimization", "value": "incremental", "confidence": "low", "evidence": "keyword: incremental|stream|online|dynamic", "source": "inferred", "verified": false}
-{"key": "li2021detoki", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "li2021detoki", "facet": "supervision", "value": "unsupervised", "confidence": "high", "evidence": "fulltext: 'By non-negative matrix factorization, deTOKI seeks regions that insulate the genome' - no labels", "source": "deep_pass", "verified": true}
 {"key": "li2021detoki", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
 {"key": "li2016cancer", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/bioinformatics", "source": "metadata", "verified": false}
 {"key": "li2016cancer", "facet": "year", "value": "2016", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
 {"key": "li2016cancer", "facet": "domain", "value": "bioinformatics", "confidence": "high", "evidence": "subcategory=bioinformatics", "source": "metadata", "verified": false}
-{"key": "li2016cancer", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "li2016cancer", "facet": "supervision", "value": "unsupervised", "confidence": "high", "evidence": "fulltext: comprehensive, global and unbiased methods for identifying tumour subtypes", "source": "deep_pass", "verified": true}
 {"key": "li2016cancer", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
 {"key": "zeng2023lesion", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/bioinformatics", "source": "metadata", "verified": false}
 {"key": "zeng2023lesion", "facet": "year", "value": "2023", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
@@ -508,20 +509,20 @@
 {"key": "wxb2022scientificxray", "facet": "year", "value": "2022", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
 {"key": "wxb2022scientificxray", "facet": "domain", "value": "kg", "confidence": "high", "evidence": "subcategory=knowledge", "source": "metadata", "verified": false}
 {"key": "wxb2022scientificxray", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
-{"key": "wxb2022scientificxray", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "wxb2022scientificxray", "facet": "supervision", "value": "unsupervised", "confidence": "med", "evidence": "fulltext: quantifies the development degree ... extracted 'idea tree' on the citation network", "source": "deep_pass", "verified": true}
 {"key": "wxb2022scientificxray", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
 {"key": "wang2023quantifyingKnowledge", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/knowledge", "source": "metadata", "verified": false}
 {"key": "wang2023quantifyingKnowledge", "facet": "year", "value": "2023", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
 {"key": "wang2023quantifyingKnowledge", "facet": "domain", "value": "kg", "confidence": "high", "evidence": "subcategory=knowledge", "source": "metadata", "verified": false}
 {"key": "wang2023quantifyingKnowledge", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
-{"key": "wang2023quantifyingKnowledge", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "wang2023quantifyingKnowledge", "facet": "supervision", "value": "unsupervised", "confidence": "high", "evidence": "fulltext: leverages the extent of disorder difference caused by hierarchical structure in the citation network", "source": "deep_pass", "verified": true}
 {"key": "wang2023quantifyingKnowledge", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
 {"key": "zhao2025sese", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/llm", "source": "metadata", "verified": false}
 {"key": "zhao2025sese", "facet": "year", "value": "2025", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
 {"key": "zhao2025sese", "facet": "domain", "value": "llm", "confidence": "med", "evidence": "keyword: \\bLLM|language model|hallucinat|retrieval|GraphRAG", "source": "title", "verified": false}
 {"key": "zhao2025sese", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
 {"key": "zhao2025sese", "facet": "se_role", "value": "metric", "confidence": "high", "evidence": "abstract: \u2026uncertainty\u2026", "source": "abstract", "verified": true}
-{"key": "zhao2025sese", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "zhao2025sese", "facet": "supervision", "value": "unsupervised", "confidence": "high", "evidence": "fulltext: principled black-box UQ framework ... encoding tree with minimal structural entropy", "source": "deep_pass", "verified": true}
 {"key": "zhao2025sese", "facet": "output", "value": "score", "confidence": "high", "evidence": "abstract: \u2026uncertainty\u2026", "source": "abstract", "verified": true}
 {"key": "zhao2025sese", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
 {"key": "ye2026fairgse", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/fairness", "source": "metadata", "verified": false}
@@ -542,7 +543,7 @@
 {"key": "Zhang2021", "facet": "year", "value": "2021", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
 {"key": "Zhang2021", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
 {"key": "Zhang2021", "facet": "se_role", "value": "objective", "confidence": "med", "evidence": "clustering/theory -> SE is the objective", "source": "inferred", "verified": false}
-{"key": "Zhang2021", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
+{"key": "Zhang2021", "facet": "supervision", "value": "unsupervised", "confidence": "med", "evidence": "fulltext: used structural entropy to measure the complex structure of a formula", "source": "deep_pass", "verified": true}
 {"key": "Zhang2021", "facet": "output", "value": "score", "confidence": "med", "evidence": "typical output of theory", "source": "inferred", "verified": false}
 {"key": "Zhang2021", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
 {"key": "li2025eden", "facet": "task", "value": "structure_learning", "confidence": "high", "evidence": "category=graph-learning/structure-learning", "source": "metadata", "verified": false}
@@ -577,13 +578,13 @@
 {"key": "sehfs2025", "facet": "graph_type", "value": "heterogeneous", "confidence": "high", "evidence": "abstract: \u2026multi-view\u2026", "source": "abstract", "verified": true}
 {"key": "sehfs2025", "facet": "graph_type", "value": "attributed", "confidence": "high", "evidence": "keyword: attribut|node feature|feature", "source": "title", "verified": false}
 {"key": "sehfs2025", "facet": "se_role", "value": "prior", "confidence": "high", "evidence": "abstract: \u2026Guide\u2026", "source": "abstract", "verified": true}
-{"key": "sehfs2025", "facet": "supervision", "value": "supervised", "confidence": "low", "evidence": "downstream-supervised default", "source": "inferred", "verified": false}
+{"key": "sehfs2025", "facet": "supervision", "value": "supervised", "confidence": "med", "evidence": "fulltext: 'Multi-View Multi-Label Feature Selection' learning correlations to labels; matrix reconstruction uses label info", "source": "deep_pass", "verified": true}
 {"key": "sehfs2025", "facet": "output", "value": "rewired", "confidence": "med", "evidence": "typical output of structure_learning", "source": "inferred", "verified": false}
 {"key": "sehfs2025", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
 {"key": "se_dialogue_sentiment2025", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/nlp", "source": "metadata", "verified": false}
 {"key": "se_dialogue_sentiment2025", "facet": "year", "value": "2025", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
 {"key": "se_dialogue_sentiment2025", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
-{"key": "se_dialogue_sentiment2025", "facet": "se_representation", "value": "2D", "confidence": "low", "evidence": "keyword: community|cluster|2d|two-dimensional|partition", "source": "inferred", "verified": false}
+{"key": "se_dialogue_sentiment2025", "facet": "se_representation", "value": "2D", "confidence": "med", "evidence": "fulltext: partitioning dialogues into semantically independent sub-dialogues", "source": "deep_pass", "verified": true}
 {"key": "se_dialogue_sentiment2025", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
 {"key": "se_dialogue_sentiment2025", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
 {"key": "se_contrastive_nc2024", "facet": "task", "value": "contrastive_ssl", "confidence": "high", "evidence": "category=graph-learning/contrastive", "source": "metadata", "verified": false}
@@ -623,6 +624,57 @@
 {"key": "se_marl_hierarchical2025", "facet": "output", "value": "policy", "confidence": "high", "evidence": "abstract: \u2026reinforcement\u2026", "source": "abstract", "verified": true}
 {"key": "se_marl_hierarchical2025", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026hierarch\u2026", "source": "abstract", "verified": true}
 {"key": "se_marl_hierarchical2025", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
+{"key": "huang2025MASGCN", "facet": "se_role", "value": "regularizer", "confidence": "high", "evidence": "fulltext: present a structural entropy loss to learn the dependency type adjacency matrix", "source": "deep_pass", "verified": true}
+{"key": "huang2025MASGCN", "facet": "output", "value": "score", "confidence": "high", "evidence": "fulltext: predicting the sentiment polarity of aspect words within sentences", "source": "deep_pass", "verified": true}
+{"key": "huang2025MASGCN", "facet": "output", "value": "rewired", "confidence": "med", "evidence": "fulltext: structural entropy loss to learn the dependency type adjacency matrix", "source": "deep_pass", "verified": true}
+{"key": "huang2025MASGCN", "facet": "supervision", "value": "supervised", "confidence": "high", "evidence": "fulltext: task aimed at predicting the sentiment polarity ... outperforms state-of-the-art", "source": "deep_pass", "verified": true}
+{"key": "ljm2021improvingTogetherness", "facet": "optimization", "value": "incremental", "confidence": "high", "evidence": "fulltext: design an efficient algorithm that iteratively establish edges", "source": "deep_pass", "verified": true}
+{"key": "se_dialogue_sentiment2025", "facet": "optimization", "value": "greedy_agglomerative", "confidence": "med", "evidence": "fulltext: utilizing a structural entropy minimization algorithm to partition the dialogues", "source": "deep_pass", "verified": true}
+{"key": "se_dialogue_sentiment2025", "facet": "supervision", "value": "supervised", "confidence": "high", "evidence": "fulltext: extract all target-aspect-opinion-sentiment quadruples ... state-of-the-art performance", "source": "deep_pass", "verified": true}
+{"key": "se_timeseries2025", "facet": "se_role", "value": "prior", "confidence": "high", "evidence": "fulltext: implement the proposed STSCIB upon an encoding tree with the minimal structural entropy", "source": "deep_pass", "verified": true}
+{"key": "yang2023MGEDE", "facet": "supervision", "value": "supervised", "confidence": "high", "evidence": "fulltext: node and graph classification tasks and nine benchmark datasets", "source": "deep_pass", "verified": true}
+{"key": "zeng2024effectiveSI2E", "facet": "optimization", "value": "hierarchical_merge", "confidence": "med", "evidence": "fulltext: minimizes structural entropy to derive the hierarchical state-action structure, referred to as the encoding tree", "source": "deep_pass", "verified": true}
+{"key": "zeng2024effectiveSI2E", "facet": "supervision", "value": "unsupervised", "confidence": "high", "evidence": "fulltext: intrinsic reward mechanism that avoids redundant transitions and promotes enhanced coverage", "source": "deep_pass", "verified": true}
+{"key": "se_hypergraph_rec2025", "facet": "optimization", "value": "hierarchical_merge", "confidence": "med", "evidence": "fulltext: 'converting the hyperedge information in the hypergraph to form a high-dimensional encoding tree' + pooling/unpooling", "source": "deep_pass", "verified": true}
+{"key": "wxb2024rwedirected", "facet": "optimization", "value": "greedy_agglomerative", "confidence": "high", "evidence": "fulltext: 'convert the community detection problem into the minimization of two-dimensional RWE, and design a greedy algorithm'", "source": "deep_pass", "verified": true}
+{"key": "yang2024graphkernal", "facet": "optimization", "value": "hierarchical_merge", "confidence": "high", "evidence": "fulltext: 'constructing its hierarchical abstracting ... adhering to the principle of structural entropy minimization' (nested node sets)", "source": "deep_pass", "verified": true}
+{"key": "ye2026fairgse", "facet": "supervision", "value": "supervised", "confidence": "high", "evidence": "fulltext: fairness-aware GNN for node classification; 'predict negative labels', FPR/accuracy metrics", "source": "deep_pass", "verified": true}
+{"key": "zeng2024semiSSE", "facet": "optimization", "value": "greedy_agglomerative", "confidence": "med", "evidence": "fulltext: 'incorporate these constraints into structural entropy and develop tailored algorithms' for partitioning clustering", "source": "deep_pass", "verified": true}
+{"key": "zeng2024semiSSE", "facet": "optimization", "value": "hierarchical_merge", "confidence": "med", "evidence": "fulltext: 'perform both partitioning and hierarchical clustering' with constraint-incorporated SE objectives", "source": "deep_pass", "verified": true}
+{"key": "zou2024transformer", "facet": "supervision", "value": "supervised", "confidence": "high", "evidence": "fulltext: 'Traffic forecasting is a complex multivariate time-series regression task'; trained on targets", "source": "deep_pass", "verified": true}
+{"key": "Zhang2021", "facet": "se_representation", "value": "2D", "confidence": "med", "evidence": "fulltext: select variables in different communities ... structural entropy of a variable", "source": "deep_pass", "verified": true}
+{"key": "huang2024sec", "facet": "optimization", "value": "hierarchical_merge", "confidence": "high", "evidence": "fulltext: iterative encoding tree method, where hierarchical abstractions ... iteratively extracted", "source": "deep_pass", "verified": true}
+{"key": "li2016cancer", "facet": "optimization", "value": "greedy_agglomerative", "confidence": "med", "evidence": "fulltext: natural communities ... detected by an algorithm ... structural entropy minimisation", "source": "deep_pass", "verified": true}
+{"key": "liu2025sihtc", "facet": "optimization", "value": "differentiable", "confidence": "high", "evidence": "fulltext: design a tree aggregation network and construct encoding trees to minimize the structural entropy", "source": "deep_pass", "verified": true}
+{"key": "pan2025hcsegraphs", "facet": "optimization", "value": "hierarchical_merge", "confidence": "high", "evidence": "fulltext: HCSE that recursively stratifies cluster trees through sparsity-aware partitioning", "source": "deep_pass", "verified": true}
+{"key": "pan2025hcsegraphs", "facet": "supervision", "value": "unsupervised", "confidence": "high", "evidence": "fulltext: hyperparameter-free framework HCSE ... hierarchical clustering on graphs", "source": "deep_pass", "verified": true}
+{"key": "se_infrared2025", "facet": "output", "value": "embedding", "confidence": "med", "evidence": "fulltext: aggregated under a structural-entropy criterion, yielding decoder-ready representations", "source": "deep_pass", "verified": true}
+{"key": "se_infrared2025", "facet": "supervision", "value": "supervised", "confidence": "med", "evidence": "fulltext: restore high-quality images from complex compound degradations ... jointly trainable", "source": "deep_pass", "verified": true}
+{"key": "su2025emergencecollab", "facet": "supervision", "value": "unsupervised", "confidence": "med", "evidence": "fulltext: multi-agent reinforcement learning ... shared rewards ... detect the emergence of coalitions", "source": "deep_pass", "verified": true}
+{"key": "wxb2022scientificxray", "facet": "se_representation", "value": "kD_tree", "confidence": "med", "evidence": "fulltext: extracted 'idea tree' ... the valid depth of the idea tree, cannot exceed a limit of six hops", "source": "deep_pass", "verified": true}
+{"key": "wxb2022scientificxray", "facet": "optimization", "value": "hierarchical_merge", "confidence": "med", "evidence": "fulltext: preserve the most representative idea flow structure underneath each citation network", "source": "deep_pass", "verified": true}
+{"key": "zeng2023effective", "facet": "optimization", "value": "hierarchical_merge", "confidence": "high", "evidence": "fulltext: minimize the K-dimensional structural entropy ... to get the optimal encoding tree", "source": "deep_pass", "verified": true}
+{"key": "zeng2023effective", "facet": "supervision", "value": "unsupervised", "confidence": "med", "evidence": "fulltext: role discovery ... independent of manual assistance ... CTDE MARL", "source": "deep_pass", "verified": true}
+{"key": "zeng2025si2af", "facet": "supervision", "value": "supervised", "confidence": "med", "evidence": "fulltext: refine graph-based detectors to improve their robustness against adversarial attacks", "source": "deep_pass", "verified": true}
+{"key": "zhao2025sese", "facet": "optimization", "value": "hierarchical_merge", "confidence": "med", "evidence": "fulltext: constructs its optimal hierarchical abstraction through an encoding tree with minimal structural entropy", "source": "deep_pass", "verified": true}
+{"key": "cao2024multi", "facet": "optimization", "value": "greedy_agglomerative", "confidence": "high", "evidence": "fulltext: \u2026MrSE is then optimized by a new greedy algorithm to reveal the essential structures\u2026", "source": "deep_pass", "verified": true}
+{"key": "huang2024structuralProbCoding", "facet": "optimization", "value": "differentiable", "confidence": "med", "evidence": "fulltext: \u2026proposing a structural entropy regularization loss\u2026probabilistic encoding tree\u2026", "source": "deep_pass", "verified": true}
+{"key": "huang2024structuralProbCoding", "facet": "supervision", "value": "supervised", "confidence": "high", "evidence": "fulltext: \u202612 natural language understanding tasks, including both classification and regression tasks\u2026", "source": "deep_pass", "verified": true}
+{"key": "liu2026ragsede", "facet": "output", "value": "score", "confidence": "med", "evidence": "fulltext: \u2026leverages structural information theory to dynamically model event evolution keywords\u2026", "source": "deep_pass", "verified": true}
+{"key": "liu2026ragsede", "facet": "output", "value": "partition", "confidence": "med", "evidence": "fulltext: \u2026unsupervised Social Event Detection\u2026aggregate messages\u2026forming event clusters\u2026", "source": "deep_pass", "verified": true}
+{"key": "peng2024zjyun", "facet": "se_role", "value": "objective", "confidence": "high", "evidence": "fulltext: \u2026optimizing heterogeneous structural entropy\u2026to generate a two-dimensional encoding tree\u2026", "source": "deep_pass", "verified": true}
+{"key": "peng2024zjyun", "facet": "se_role", "value": "metric", "confidence": "med", "evidence": "fulltext: \u2026heterogeneous structural entropy facilitates decoding\u2026hierarchical clustering of social bots\u2026", "source": "deep_pass", "verified": true}
+{"key": "se_marl_hierarchical2025", "facet": "supervision", "value": "unsupervised", "confidence": "med", "evidence": "fulltext: \u2026structural entropy minimization to uncover the hierarchical structure\u2026without manually specified quotas\u2026", "source": "deep_pass", "verified": true}
+{"key": "xie2025ses", "facet": "se_representation", "value": "1D", "confidence": "med", "evidence": "fulltext: \u2026losslessly decompose it from the whole graph to individual nodes using the Shapley value\u2026node-level structural entropy\u2026", "source": "deep_pass", "verified": true}
+{"key": "xie2025ses", "facet": "se_representation", "value": "kD_tree", "confidence": "med", "evidence": "fulltext: \u2026structural entropy to evaluate the amount of information required to describe a given graph structure (Li & Pan 2016)\u2026", "source": "deep_pass", "verified": true}
+{"key": "xie2025ses", "facet": "optimization", "value": "other", "confidence": "med", "evidence": "fulltext: \u2026reformulate the Shapley value for structural entropy, enabling linear-time calculation\u2026", "source": "deep_pass", "verified": true}
+{"key": "yang2026seinevent", "facet": "se_representation", "value": "1D", "confidence": "med", "evidence": "fulltext: \u2026Pointwise Structural Entropy-based noise filter, which quantifies each sample's informational contribution\u2026", "source": "deep_pass", "verified": true}
+{"key": "zeng2023lesion", "facet": "se_representation", "value": "2D", "confidence": "med", "evidence": "fulltext: \u2026minimizing the SE of a graph constructed from the image\u2026Modules in the graph partition\u2026", "source": "deep_pass", "verified": true}
+{"key": "zeng2023lesion", "facet": "optimization", "value": "greedy_agglomerative", "confidence": "med", "evidence": "fulltext: \u2026minimizing the structural entropy of a superpixel graph\u2026adaptively determines the number of segments by SE minimization\u2026", "source": "deep_pass", "verified": true}
+{"key": "zeng2025sihd", "facet": "optimization", "value": "greedy_agglomerative", "confidence": "med", "evidence": "fulltext: \u2026analyze structural information embedded in offline trajectories to construct the diffusion hierarchy adaptively\u2026", "source": "deep_pass", "verified": true}
+{"key": "zeng2025sihd", "facet": "optimization", "value": "differentiable", "confidence": "med", "evidence": "fulltext: \u2026structural entropy regularizer that encourages exploration of underrepresented states\u2026", "source": "deep_pass", "verified": true}
+{"key": "zeng2025sihd", "facet": "supervision", "value": "unsupervised", "confidence": "med", "evidence": "fulltext: \u2026offline reinforcement learning\u2026structural information gain of each state community\u2026conditioning signal\u2026", "source": "deep_pass", "verified": true}
+{"key": "zhu2023HiTIN", "facet": "optimization", "value": "hierarchical_merge", "confidence": "med", "evidence": "fulltext: \u2026convert the label hierarchy into an unweighted tree structure, termed coding tree, with the guidance of structural entropy\u2026", "source": "deep_pass", "verified": true}
 {"key": "Li2016", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026K-dimensional\u2026", "source": "abstract", "verified": true}
 {"key": "Li2016", "facet": "se_representation", "value": "2D", "confidence": "high", "evidence": "abstract: \u2026two-dimensional\u2026", "source": "abstract", "verified": true}
 {"key": "Li2016", "facet": "se_representation", "value": "1D", "confidence": "high", "evidence": "abstract: \u2026degree distribution\u2026", "source": "abstract", "verified": true}
@@ -639,7 +691,6 @@
 {"key": "Li2018", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026coding tree\u2026", "source": "abstract", "verified": true}
 {"key": "Li2018", "facet": "output", "value": "rewired", "confidence": "high", "evidence": "abstract: \u2026optimal communi- cation networks. The answer for this questi\u2026", "source": "abstract", "verified": true}
 {"key": "Li2018", "facet": "output", "value": "score", "confidence": "high", "evidence": "abstract: \u2026index\u2026", "source": "abstract", "verified": true}
-{"key": "li2024book", "facet": "graph_type", "value": "dynamic", "confidence": "high", "evidence": "abstract: \u2026dynamic\u2026", "source": "abstract", "verified": true}
 {"key": "li2015strategiesForsecurity", "facet": "optimization", "value": "incremental", "confidence": "high", "evidence": "abstract: \u2026online\u2026", "source": "abstract", "verified": true}
 {"key": "li2015strategiesForsecurity", "facet": "se_role", "value": "metric", "confidence": "high", "evidence": "abstract: \u2026measure\u2026", "source": "abstract", "verified": true}
 {"key": "li2015strategiesForsecurity", "facet": "output", "value": "policy", "confidence": "high", "evidence": "abstract: \u2026action\u2026", "source": "abstract", "verified": true}
