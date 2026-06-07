@@ -420,9 +420,8 @@
 {"key": "yang2023MGEDE", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/event-detection", "source": "metadata", "verified": false}
 {"key": "yang2023MGEDE", "facet": "year", "value": "2023", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
 {"key": "yang2023MGEDE", "facet": "domain", "value": "social", "confidence": "high", "evidence": "subcategory=event-detection", "source": "metadata", "verified": false}
-{"key": "yang2023MGEDE", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
-{"key": "yang2023MGEDE", "facet": "se_representation", "value": "continuous", "confidence": "low", "evidence": "keyword: differentiab|gradient|neural|gnn|pooling|deep|relax", "source": "inferred", "verified": false}
-{"key": "yang2023MGEDE", "facet": "optimization", "value": "differentiable", "confidence": "low", "evidence": "keyword: differentiab|gradient|neural|gnn|deep|pooling", "source": "inferred", "verified": false}
+{"key": "yang2023MGEDE", "facet": "se_representation", "value": "continuous", "confidence": "high", "evidence": "abstract: \u2026Graph Neural\u2026", "source": "abstract", "verified": true}
+{"key": "yang2023MGEDE", "facet": "optimization", "value": "differentiable", "confidence": "high", "evidence": "abstract: \u2026Neural\u2026", "source": "abstract", "verified": true}
 {"key": "yang2023MGEDE", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
 {"key": "yang2023MGEDE", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
 {"key": "yang2024eventdetect", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/event-detection", "source": "metadata", "verified": false}
@@ -503,7 +502,6 @@
 {"key": "wang2025voice", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/speech", "source": "metadata", "verified": false}
 {"key": "wang2025voice", "facet": "year", "value": "2025", "confidence": "high", "evidence": "csv", "source": "metadata", "verified": false}
 {"key": "wang2025voice", "facet": "domain", "value": "speech", "confidence": "high", "evidence": "subcategory=speech", "source": "metadata", "verified": false}
-{"key": "wang2025voice", "facet": "graph_type", "value": "simple", "confidence": "med", "evidence": "no explicit graph-type keyword -> assume simple", "source": "inferred", "verified": false}
 {"key": "wang2025voice", "facet": "supervision", "value": "unsupervised", "confidence": "low", "evidence": "clustering/app default", "source": "inferred", "verified": false}
 {"key": "wang2025voice", "facet": "pi", "value": "degree", "confidence": "low", "evidence": "default SE convention", "source": "inferred", "verified": false}
 {"key": "wxb2022scientificxray", "facet": "task", "value": "application", "confidence": "high", "evidence": "category=applications/knowledge", "source": "metadata", "verified": false}
@@ -1007,7 +1005,16 @@
 {"key": "zeng2024socialbots", "facet": "output", "value": "partition", "confidence": "high", "evidence": "abstract: \u2026communit\u2026", "source": "abstract", "verified": true}
 {"key": "zeng2024socialbots", "facet": "output", "value": "score", "confidence": "high", "evidence": "abstract: \u2026uncertainty\u2026", "source": "abstract", "verified": true}
 {"key": "zeng2024socialbots", "facet": "supervision", "value": "supervised", "confidence": "high", "evidence": "abstract: \u2026supervised\u2026", "source": "abstract", "verified": true}
-{"key": "yang2023MGEDE", "facet": "se_role", "value": "prior", "confidence": "low", "evidence": "title: Guide", "source": "inferred", "verified": false}
+{"key": "yang2023MGEDE", "facet": "graph_type", "value": "attributed", "confidence": "high", "evidence": "abstract: \u2026attribute\u2026", "source": "abstract", "verified": true}
+{"key": "yang2023MGEDE", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026encoding tree\u2026", "source": "abstract", "verified": true}
+{"key": "yang2023MGEDE", "facet": "se_role", "value": "prior", "confidence": "high", "evidence": "abstract: \u2026Guide\u2026", "source": "abstract", "verified": true}
+{"key": "yang2023MGEDE", "facet": "se_role", "value": "metric", "confidence": "high", "evidence": "abstract: \u2026uncertainty\u2026", "source": "abstract", "verified": true}
+{"key": "yang2023MGEDE", "facet": "se_role", "value": "feature", "confidence": "high", "evidence": "abstract: \u2026embedding\u2026", "source": "abstract", "verified": true}
+{"key": "yang2023MGEDE", "facet": "se_role", "value": "robustness", "confidence": "high", "evidence": "abstract: \u2026uncertainty\u2026", "source": "abstract", "verified": true}
+{"key": "yang2023MGEDE", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026encoding tree\u2026", "source": "abstract", "verified": true}
+{"key": "yang2023MGEDE", "facet": "output", "value": "embedding", "confidence": "high", "evidence": "abstract: \u2026embedding\u2026", "source": "abstract", "verified": true}
+{"key": "yang2023MGEDE", "facet": "output", "value": "partition", "confidence": "high", "evidence": "abstract: \u2026partition\u2026", "source": "abstract", "verified": true}
+{"key": "yang2023MGEDE", "facet": "output", "value": "score", "confidence": "high", "evidence": "abstract: \u2026uncertainty\u2026", "source": "abstract", "verified": true}
 {"key": "yang2024eventdetect", "facet": "graph_type", "value": "attributed", "confidence": "high", "evidence": "abstract: \u2026attribute\u2026", "source": "abstract", "verified": true}
 {"key": "yang2024eventdetect", "facet": "se_representation", "value": "continuous", "confidence": "high", "evidence": "abstract: \u2026Graph Neural\u2026", "source": "abstract", "verified": true}
 {"key": "yang2024eventdetect", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026hierarchic\u2026", "source": "abstract", "verified": true}
@@ -1107,6 +1114,18 @@
 {"key": "wang2024secodecSpeech", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026hierarch\u2026", "source": "abstract", "verified": true}
 {"key": "wang2024secodecSpeech", "facet": "output", "value": "partition", "confidence": "high", "evidence": "abstract: \u2026cluster\u2026", "source": "abstract", "verified": true}
 {"key": "wang2024secodecSpeech", "facet": "supervision", "value": "self_supervised", "confidence": "high", "evidence": "abstract: \u2026self-supervised\u2026", "source": "abstract", "verified": true}
+{"key": "wang2025voice", "facet": "graph_type", "value": "weighted", "confidence": "high", "evidence": "abstract: \u2026weighted graph\u2026", "source": "abstract", "verified": true}
+{"key": "wang2025voice", "facet": "se_representation", "value": "continuous", "confidence": "high", "evidence": "abstract: \u2026neural\u2026", "source": "abstract", "verified": true}
+{"key": "wang2025voice", "facet": "se_representation", "value": "kD_tree", "confidence": "high", "evidence": "abstract: \u2026encoding tree\u2026", "source": "abstract", "verified": true}
+{"key": "wang2025voice", "facet": "se_representation", "value": "2D", "confidence": "high", "evidence": "abstract: \u2026two-dimensional\u2026", "source": "abstract", "verified": true}
+{"key": "wang2025voice", "facet": "optimization", "value": "differentiable", "confidence": "high", "evidence": "abstract: \u2026neural\u2026", "source": "abstract", "verified": true}
+{"key": "wang2025voice", "facet": "se_role", "value": "objective", "confidence": "high", "evidence": "abstract: \u2026structural entropy minimization\u2026", "source": "abstract", "verified": true}
+{"key": "wang2025voice", "facet": "se_role", "value": "metric", "confidence": "high", "evidence": "abstract: \u2026score\u2026", "source": "abstract", "verified": true}
+{"key": "wang2025voice", "facet": "se_role", "value": "feature", "confidence": "high", "evidence": "abstract: \u2026representation\u2026", "source": "abstract", "verified": true}
+{"key": "wang2025voice", "facet": "output", "value": "tree", "confidence": "high", "evidence": "abstract: \u2026encoding tree\u2026", "source": "abstract", "verified": true}
+{"key": "wang2025voice", "facet": "output", "value": "partition", "confidence": "high", "evidence": "abstract: \u2026cluster\u2026", "source": "abstract", "verified": true}
+{"key": "wang2025voice", "facet": "output", "value": "score", "confidence": "high", "evidence": "abstract: \u2026Index\u2026", "source": "abstract", "verified": true}
+{"key": "wang2025voice", "facet": "supervision", "value": "self_supervised", "confidence": "high", "evidence": "abstract: \u2026self-supervised\u2026", "source": "abstract", "verified": true}
 {"key": "wxb2022scientificxray", "facet": "se_role", "value": "prior", "confidence": "high", "evidence": "abstract: \u2026prior\u2026", "source": "abstract", "verified": true}
 {"key": "wxb2022scientificxray", "facet": "se_role", "value": "metric", "confidence": "high", "evidence": "abstract: \u2026quantif\u2026", "source": "abstract", "verified": true}
 {"key": "wxb2022scientificxray", "facet": "output", "value": "rewired", "confidence": "high", "evidence": "abstract: \u2026optimal result [16\u201318] for the selection of the optimal idea\u2026", "source": "abstract", "verified": true}
