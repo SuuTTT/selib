@@ -53,7 +53,7 @@ Results so far (Cora/LFR/four-rooms, A4000):
 | flat CD, LFR-mu0.1 (ARI) | .894 | — | .992 | .996 | **.997** | -.003 |
 | flat CD, LFR-mu0.4 (ARI / NMI) | .182 / **.463** | — | .255 / .385 | **.294** / .435 | .200 / .409 | ~0 |
 | hierarchy (Dasgupta, 3 families) | **wins all** | — | — | — | — | — |
-| GSL rewiring (Cora Δacc) | −0.3 | −0.6 | +0.8 | 0.0 | — | **−7.0** |
+| GSL rewiring (Cora Δacc) | −0.3 | −0.6 | **+0.7 (8-seed, real)** | 0.0 | — | **−7.0** |
 | contrastive views (Cora Δacc) | −0.6 | — | −0.4 | — | — | −0.1 |
 | exploration (four-rooms) | null | — | null | — | — | — |
 | SI2E DoorKey (success) | .96 | — | — | — | — | .96 |
