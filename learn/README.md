@@ -13,6 +13,36 @@ sitting; run with one command; numbers print to stdout.
 | `min_se_gsl.py` | rewire: +intra-SE-community kNN edges, −low-sim cross edges, retrain GCN | SE-GSL (WWW 2023) | ⚠️ runs; **null** on Cora — rewired .799–.805 vs original .808 across 3 configs |
 | `min_se_contrastive.py` | contrastive views: SE-guided edge-drop probabilities (both orientations tried) | SEGA (ICML 2023) | ⚠️ runs; **null** on Cora — SE-guided ≈ uniform (−0.5 ± 0.6 pt) |
 
+## Resolution behavior — SE vs modularity (the duality)
+
+`min_se_resolution.py` on ring-of-cliques (Fortunato-Barthelemy 2007), clique size 5,
+truth = one community per clique:
+
+| r (cliques) | louvain | leiden | free-k SE | se_fixed_k |
+|---|---|---|---|---|
+| 8  | 1.00 | 1.00 | 1.00 | 1.00 |
+| 24 | 0.62 (13 found) | 0.62 | **1.00 (24)** | 0.94 |
+| 32 | 0.63 (18) | 0.63 | **1.00 (32)** | 0.91 |
+| 48 | 0.53 (21) | 0.55 | **1.00 (48)** | 0.87 |
+
+**Modularity has a resolution limit — it merges adjacent cliques as r grows
+(13/18/21 found instead of 24/32/48). Free-k SE does NOT: it recovers every
+clique (ARI 1.0).** So SE's resolution behavior is the *opposite* of
+modularity's. The over-resolution failure of SE (seen on noisy attributed
+graphs like Cora: 338 communities) is therefore regime-specific, not a
+universal flaw — on clean planted structure SE is the one that gets resolution
+right where modularity fails. (Here se_fixed_k is slightly noisier than free-k
+because free-k is already exactly correct; fixed-k helps in the *opposite*
+regime, where free-k over-segments.)
+
+**K-constrained SE** (`se_optimize_fixed_k`, ported from
+[se-label-alignment](https://github.com/SuuTTT/se-label-alignment) SE-HybridK)
+is now a first-class selib optimizer. Validated against the sealgo reference on
+LFR-mu0.3 (K=10): selib H2=6.122 / ARI .832 vs reference H2=6.131 / ARI .808 —
+agreement within multistart noise (selib reached marginally lower SE).
+It does NOT rescue the GSL downstream null (Cora se_k102 .797 vs original .808),
+which strengthens P2: the GSL null is not just over-segmentation.
+
 ## Backend ablation (2026-06-12): se vs louvain/leiden/infomap vs random
 
 Every host method can swap its structure-finder (`--cluster`, see `backends.py`).

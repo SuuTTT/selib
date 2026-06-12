@@ -22,8 +22,10 @@ def get_clusters(G, method="se", seed=0):
         from selib.seopt import se_optimize
         return list(se_optimize(G, seed=seed))
     if method.startswith("se_k"):
-        from selib.seopt import se_optimize
-        return list(se_optimize(G, k=int(method[4:]), seed=seed))
+        # K-constrained SE (SE-HybridK port): optimize WITHIN the K-cluster
+        # subspace instead of merging down from the over-resolved free-k optimum
+        from selib.seopt import se_optimize_fixed_k
+        return list(se_optimize_fixed_k(G, k=int(method[4:]), seed=seed))
     if method == "random_matched":
         from selib.seopt import se_optimize
         lab = np.array(se_optimize(G, seed=seed))

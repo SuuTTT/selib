@@ -393,3 +393,126 @@ def _selftest():
 
 if __name__ == "__main__":
     _selftest()
+
+
+# --------------------- K-constrained SE clustering ---------------------------
+# Port of `constrained_k_multistart` (SuuTTT/se-label-alignment, seclust-targetk
+# "SE-HybridK", idea 2.1'): multistart local search constrained to exactly K
+# clusters. Each restart starts from a random (or spectral) K-partition and
+# runs local moves that can neither create clusters nor empty one - so the
+# optimizer never visits the over-fragmented free-k minimum it would otherwise
+# have to merge down from. Addresses SE's over-resolution at free k.
+
+def _spectral_seed_labels(G, k, seed=0):
+    """Top-k normalized-Laplacian eigenvectors + tiny Lloyd k-means (numpy only)."""
+    import numpy as _np
+    nodes = list(G.nodes())
+    n = len(nodes)
+    idx = {u: i for i, u in enumerate(nodes)}
+    A = _np.zeros((n, n))
+    for u, v, d in G.edges(data=True):
+        w = d.get("weight", 1.0)
+        A[idx[u], idx[v]] = A[idx[v], idx[u]] = w
+    deg = A.sum(1)
+    reg = 0.5 * deg.mean()                      # regularized Laplacian (HybridK recipe)
+    dinv = 1.0 / _np.sqrt(deg + reg)
+    L = _np.eye(n) - dinv[:, None] * A * dinv[None, :]
+    vals, vecs = _np.linalg.eigh(L)
+    X = vecs[:, :k]
+    X /= _np.linalg.norm(X, axis=1, keepdims=True).clip(min=1e-12)
+    rng = _np.random.default_rng(seed)
+    C = X[rng.permutation(n)[:k]].copy()
+    for _ in range(25):
+        d2 = ((X[:, None, :] - C[None, :, :]) ** 2).sum(-1)
+        lab = d2.argmin(1)
+        for j in range(k):
+            m = lab == j
+            if m.any():
+                C[j] = X[m].mean(0)
+    # ensure exactly k non-empty clusters
+    for j in range(k):
+        if not (lab == j).any():
+            lab[rng.integers(0, n)] = j
+    return list(lab)
+
+
+def _local_moves_fixed_k(state, order_rng, max_passes=20):
+    """Local moves restricted to existing communities; never empties a source."""
+    n = state.n
+    members = {}
+    for v in range(n):
+        members[state.comm[v]] = members.get(state.comm[v], 0) + 1
+    order = list(range(n))
+    for _ in range(max_passes):
+        order_rng.shuffle(order)
+        moved = False
+        for v in order:
+            A = state.comm[v]
+            if members[A] <= 1:
+                continue                          # moving v would empty A
+            wt = state._w_to(v)
+            # constrained best move: existing communities only (no -1)
+            dv, slv = state.deg[v], state.sl[v]
+            VA, gA = state.V[A], state.g.get(A, 0.0)
+            wvA = wt.get(A, 0.0)
+            VA2 = VA - dv
+            gA2 = gA - (dv - 2 * slv - wvA) + wvA
+            base = _term(VA, gA, state.two_m)
+            removed = _term(VA2, gA2, state.two_m)
+            best_t, best_d = A, 0.0
+            for B in state.V:
+                if B == A:
+                    continue
+                VB, gB = state.V[B], state.g.get(B, 0.0)
+                wvB = wt.get(B, 0.0)
+                VB2 = VB + dv
+                gB2 = gB + (dv - 2 * slv - wvB) - wvB
+                delta = (removed + _term(VB2, gB2, state.two_m)) - (base + _term(VB, gB, state.two_m))
+                if delta < best_d - 1e-12:
+                    best_d, best_t = delta, B
+            if best_t != A:
+                state.apply(v, best_t, wt)
+                members[A] -= 1
+                members[best_t] = members.get(best_t, 0) + 1
+                moved = True
+        if not moved:
+            break
+    return state
+
+
+def se_optimize_fixed_k(G, k, starts=8, max_passes=20, seed=0, spectral_init=True):
+    """Best 2D-SE partition with EXACTLY k communities (multistart local search).
+
+    Unlike se_optimize(G, k=...) - which minimizes at free k then greedily
+    merges down - this never leaves the K-cluster subspace, avoiding SE's
+    over-resolution. Labels aligned to list(G.nodes())."""
+    import random as _random
+    n, adj, deg, sl, two_m, _, _ = _from_graph(G)
+    if k < 1 or k > n:
+        raise ValueError("k out of range")
+    rng = _random.Random(seed)
+    nrng = __import__("numpy").random.default_rng(seed)
+
+    def balanced_random():
+        lab = list(nrng.integers(0, k, size=n))
+        seeds = list(nrng.permutation(n)[:k])
+        for j, v in enumerate(seeds):
+            lab[v] = j
+        return [int(x) for x in lab]
+
+    inits = []
+    if spectral_init and k >= 2 and n <= 3000:
+        try:
+            inits.append([int(x) for x in _spectral_seed_labels(G, k, seed=seed)])
+        except Exception:
+            pass
+    while len(inits) < starts:
+        inits.append(balanced_random())
+
+    best_lab, best_obj = None, float("inf")
+    for i, init in enumerate(inits):
+        st = _State(n, adj, deg, sl, two_m, init)
+        _local_moves_fixed_k(st, _random.Random(seed * 997 + i), max_passes)
+        if st.obj < best_obj - 1e-12:
+            best_obj, best_lab = st.obj, st.comm[:]
+    return _relabel(best_lab)
