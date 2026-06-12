@@ -18,7 +18,7 @@ import torch
 import torch.nn.functional as F
 from torch_geometric.datasets import Planetoid
 
-from selib.seopt import se_optimize
+from backends import get_clusters
 
 DEV = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -65,13 +65,14 @@ def main():
     ap.add_argument("--p_intra", type=float, default=0.6, help="drop prob inside SE communities")
     ap.add_argument("--p_inter", type=float, default=0.1, help="drop prob across SE communities")
     ap.add_argument("--seeds", type=int, default=3)
+    ap.add_argument("--cluster", default="se", help="se|louvain|leiden|infomap|random_matched")
     args = ap.parse_args()
 
     data = Planetoid(root="/tmp/planetoid", name=args.dataset)[0]
     n, ei = data.num_nodes, data.edge_index
     G = nx.Graph(); G.add_nodes_from(range(n)); G.add_edges_from(ei.t().tolist())
-    labels = np.array(se_optimize(G, seed=0))
-    print(f"{args.dataset}: {len(np.unique(labels))} SE communities")
+    labels = np.array(get_clusters(G, args.cluster, seed=0))
+    print(f"{args.dataset}: {len(np.unique(labels))} {args.cluster} communities")
     same = torch.tensor(labels[ei[0].numpy()] == labels[ei[1].numpy()])
     # SE-guided per-edge drop probability; uniform control matches the MEAN rate
     p_se = torch.where(same, torch.full_like(same, args.p_intra, dtype=torch.float),

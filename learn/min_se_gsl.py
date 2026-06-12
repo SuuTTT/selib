@@ -16,7 +16,7 @@ import torch
 import torch.nn.functional as F
 from torch_geometric.datasets import Planetoid
 
-from selib.seopt import se_optimize
+from backends import get_clusters
 
 DEV = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -61,11 +61,11 @@ def train_eval(edge_index, data, seed, epochs=200):
     return best_test
 
 
-def se_rewire(data, add_per_node=2, drop_frac=0.05, seed=0):
+def se_rewire(data, add_per_node=2, drop_frac=0.05, seed=0, cluster='se'):
     n = data.num_nodes
     ei = data.edge_index.numpy()
     G = nx.Graph(); G.add_nodes_from(range(n)); G.add_edges_from(ei.T.tolist())
-    labels = np.array(se_optimize(G, seed=seed))
+    labels = np.array(get_clusters(G, cluster, seed=seed))
     xn = torch.nn.functional.normalize(data.x, dim=1)
     sim = lambda u, v: float(xn[u] @ xn[v])
 
@@ -102,15 +102,16 @@ def main():
     ap.add_argument("--add", type=int, default=2)
     ap.add_argument("--drop_frac", type=float, default=0.05)
     ap.add_argument("--seeds", type=int, default=3)
+    ap.add_argument("--cluster", default="se", help="se|louvain|leiden|infomap|random_matched")
     args = ap.parse_args()
 
     data = Planetoid(root="/tmp/planetoid", name=args.dataset)[0]
-    rewired = se_rewire(data, args.add, args.drop_frac)
+    rewired = se_rewire(data, args.add, args.drop_frac, cluster=args.cluster)
     orig = [train_eval(data.edge_index, data, s) for s in range(args.seeds)]
     new = [train_eval(rewired, data, s) for s in range(args.seeds)]
     print(f"{args.dataset} GCN test acc, {args.seeds} seeds:")
     print(f"  original graph : {np.mean(orig):.4f} +/- {np.std(orig):.4f}")
-    print(f"  SE-rewired     : {np.mean(new):.4f} +/- {np.std(new):.4f}")
+    print(f"  {args.cluster}-rewired : {np.mean(new):.4f} +/- {np.std(new):.4f}")
 
 
 if __name__ == "__main__":

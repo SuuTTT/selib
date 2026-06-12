@@ -14,7 +14,7 @@ import argparse
 import numpy as np
 import networkx as nx
 
-from selib.seopt import se_optimize
+from backends import get_clusters
 
 N = 11  # grid side; four rooms with doorways
 
@@ -39,7 +39,7 @@ def step(s, a):
     return s, (1.0 if s == GOAL else 0.0), s == GOAL
 
 
-def run(bonus, episodes, seed, beta=0.05, recluster=500):
+def run(bonus, episodes, seed, beta=0.05, recluster=500, cluster='se'):
     rng = np.random.default_rng(seed)
     Q = np.zeros((N, N, 4))
     counts = np.zeros((N, N))
@@ -58,7 +58,7 @@ def run(bonus, episodes, seed, beta=0.05, recluster=500):
                 r += beta / np.sqrt(counts[s2])
             elif bonus == "se":
                 if t % recluster == 0 and G.number_of_edges() > 4:
-                    lab = se_optimize(G, seed=0)
+                    lab = get_clusters(G, cluster, seed=0)
                     labels = dict(zip(list(G.nodes()), lab))
                     # cluster visit counts CARRY OVER: derive from accumulated
                     # state counts (resetting re-pays stale novelty forever)
@@ -92,12 +92,13 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--episodes", type=int, default=300)
     ap.add_argument("--seeds", type=int, default=5)
+    ap.add_argument("--cluster", default="se", help="backend for the se bonus arm")
     args = ap.parse_args()
 
     print(f"four-rooms {N}x{N}, sparse goal, {args.seeds} seeds, {args.episodes} episodes")
     print(f"{'bonus':8s} {'first-solve ep (mean+/-std)':30s} {'greedy path len':s}")
     for bonus in ("none", "count", "se"):
-        firsts, lens = zip(*(run(bonus, args.episodes, s) for s in range(args.seeds)))
+        firsts, lens = zip(*(run(bonus, args.episodes, s, cluster=args.cluster) for s in range(args.seeds)))
         print(f"{bonus:8s} {np.mean(firsts):7.1f} +/- {np.std(firsts):5.1f}{'':12s} "
               f"{np.mean(lens):6.1f}")
 
