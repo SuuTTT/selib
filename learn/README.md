@@ -7,10 +7,11 @@ sitting; run with one command; numbers print to stdout.
 
 | file | idea | paper it distills | status |
 |---|---|---|---|
-| `min_se_uq.py` | LLM uncertainty = min 2D SE of the semantic graph over sampled answers | SeSE (UAI 2026) | ✅ runs |
-| `min_sep_pooling.py` | graph classification with SE coding-tree pooling | SEP (ICML 2022) | planned |
-| `min_se_exploration.py` | RL exploration bonus from SE of the state-transition graph | SI2E (2024) | planned |
-| `min_se_gsl.py` | graph structure learning: rewire by SE-minimal skeleton | SE-GSL (WWW 2023) | planned |
+| `min_se_uq.py` | LLM uncertainty = min 2D SE of the semantic graph over sampled answers | SeSE (UAI 2026) | ✅ tested — beats semantic entropy on TriviaQA (.694 vs .669) and SVAMP (.774 vs .657) |
+| `min_sep_pooling.py` | graph classification with one SE pooling stage (SE-optimal partition) | SEP (ICML 2022) | 🧪 testing (MUTAG 10-fold) |
+| `min_se_exploration.py` | tabular RL: cluster-level novelty bonus on the SE-clustered transition graph | SI2E (NeurIPS 2024) | 🧪 testing (four-rooms, 3 bonus arms) |
+| `min_se_gsl.py` | rewire: +intra-SE-community kNN edges, −low-sim cross edges, retrain GCN | SE-GSL (WWW 2023) | 🧪 testing (Cora) |
+| `min_se_contrastive.py` | contrastive views: drop intra-community edges more, cross edges less | SEGA (ICML 2023) | 🧪 testing (Cora, vs uniform) |
 
 Conventions:
 - ≤ ~150 lines per file, stdlib + numpy/networkx/torch + selib only.
