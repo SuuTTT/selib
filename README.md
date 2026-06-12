@@ -12,6 +12,13 @@ on equal footing. `selib` fixes the *interface*: one `Method.fit_predict(G, k, s
 contract, shared datasets and metrics, and a one-call benchmark — so an SE method
 and a Louvain baseline are scored exactly the same way.
 
+## learn/ — minimal single-file SE learning methods
+
+[`learn/`](learn/) hosts clean-rl-style implementations: one file = one method,
+every file imports the selib core. First entry: `min_se_uq.py` (SeSE-style LLM
+uncertainty as min 2D SE of the semantic graph over sampled answers). See
+[learn/README.md](learn/README.md).
+
 ## SE calculator
 
 A first-class entry point for *computing* structural entropy (separate from the
