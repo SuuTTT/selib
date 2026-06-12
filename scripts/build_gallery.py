@@ -55,20 +55,24 @@ def main():
     data = json.load(open(RES))
     cards = "".join(card(g) for g in data["graphs"])
     css = """
-    :root{--fg:#1f2937;--mut:#6b7280;--bd:#e5e7eb;--se:#e0245e}
+    :root{--fg:#16202b;--mut:#65728a;--bd:#dfe5ec;--bg:#ffffff;--card:#fbfcfd;--se:#e0245e}
+    @media (prefers-color-scheme: dark){
+      :root{--fg:#e7ecf3;--mut:#94a3b8;--bd:#2c3a4d;--bg:#0e1520;--card:#16202d}}
     *{box-sizing:border-box}
     body{font:16px/1.6 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-         color:var(--fg);max-width:1100px;margin:0 auto;padding:32px 20px 80px}
-    h1{font-size:30px;margin:0 0 4px} a{color:#2563eb}
+         color:var(--fg);background:var(--bg);max-width:1100px;margin:0 auto;padding:32px 20px 80px}
+    h1{font-size:30px;margin:0 0 4px;letter-spacing:-.5px} a{color:#2563eb;text-decoration:none} a:hover{text-decoration:underline}
     .sub{color:var(--mut);margin:0 0 8px}
     .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-top:18px}
-    .card{border:1px solid var(--bd);border-radius:12px;padding:14px 16px;background:#fff}
+    .card{border:1px solid var(--bd);border-radius:14px;padding:14px 16px;background:var(--card);
+          transition:transform .1s ease, box-shadow .1s ease}
+    .card:hover{transform:translateY(-3px);box-shadow:0 6px 22px rgba(0,0,0,.13)}
     .card h3{margin:0 0 2px;font-size:16px} .card .note{color:var(--mut);font-size:12.5px;margin-bottom:8px;min-height:2.4em}
-    svg{width:100%;height:auto;border:1px solid var(--bd);border-radius:8px;background:#fff}
+    svg{width:100%;height:auto;border:1px solid var(--bd);border-radius:10px;background:#fff}
     table.stat{width:100%;border-collapse:collapse;margin-top:8px;font-size:12.5px}
-    table.stat td{padding:3px 4px;border-bottom:1px solid #f1f3f5} table.stat td:last-child{text-align:right}
-    code{background:#f3f4f6;padding:2px 6px;border-radius:5px;font-size:14px}
-    pre{background:#0f172a;color:#e2e8f0;padding:14px;border-radius:8px;overflow:auto;font-size:13px}
+    table.stat td{padding:3px 4px;border-bottom:1px solid var(--bd)} table.stat td:last-child{text-align:right}
+    code{background:rgba(127,127,127,.12);padding:2px 6px;border-radius:5px;font-size:14px}
+    pre{background:#0f172a;color:#e2e8f0;padding:14px;border-radius:10px;overflow:auto;font-size:13px}
     pre code{background:none;color:inherit;padding:0}
     .foot{color:var(--mut);font-size:13px;margin-top:36px;border-top:1px solid var(--bd);padding-top:14px}
     """
