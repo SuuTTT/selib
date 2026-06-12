@@ -60,13 +60,19 @@ def run(bonus, episodes, seed, beta=0.05, recluster=500):
                 if t % recluster == 0 and G.number_of_edges() > 4:
                     lab = se_optimize(G, seed=0)
                     labels = dict(zip(list(G.nodes()), lab))
+                    # cluster visit counts CARRY OVER: derive from accumulated
+                    # state counts (resetting re-pays stale novelty forever)
                     cl_counts = np.zeros(max(lab) + 1)
+                    for node, c in labels.items():
+                        cl_counts[c] += counts[node]
                 if labels:
                     c = labels.get(s2)
                     if c is not None:
                         cl_counts[c] += 1
                         # state novelty + cluster novelty (the SI2E mechanism)
                         r += beta / np.sqrt(counts[s2]) + beta / np.sqrt(cl_counts[c])
+                    else:
+                        r += beta / np.sqrt(counts[s2])
                 else:
                     r += beta / np.sqrt(counts[s2])
             best_next = 0.0 if done else Q[s2].max()
