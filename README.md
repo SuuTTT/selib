@@ -1,23 +1,29 @@
 # selib
 
 **A standardized library for structural entropy** — compute it, optimize it, and
-benchmark structural-entropy (SE) methods against classical baselines under one API.
+benchmark SE methods against classical baselines under one API. Built so that
+"does SE actually help?" can be answered on equal footing
+([benchmark](https://github.com/SuuTTT/structural-entropy-benchmark) ·
+[survey](https://github.com/SuuTTT/structural-entropy-survey-paper)).
 
-`selib` grew out of an empirical re-appraisal of the SE literature (see the
-[benchmark](https://github.com/SuuTTT/structural-entropy-benchmark) and
-[survey](https://github.com/SuuTTT/structural-entropy-survey-paper)). The repeated
-pain there was that every SE paper ships its own data loader, its own metric, and
-its own (often unmaintained) code, so "does SE actually help?" was hard to answer
-on equal footing. `selib` fixes the *interface*: one `Method.fit_predict(G, k, seed)`
-contract, shared datasets and metrics, and a one-call benchmark — so an SE method
-and a Louvain baseline are scored exactly the same way.
+**Optimizers** (validated to machine precision against independent code, and
+ranked first among SE minimizers on attained entropy in the survey benchmark):
 
-## learn/ — minimal single-file SE learning methods
+- `se_louvain` / `optimal_2d` — multilevel **2D-SE minimizer** (free-resolution).
+- `se_hier` / `optimal_tree` — **encoding-tree** optimizer (arbitrary depth).
+- `se_optimize_fixed_k` — **K-constrained SE** (`selib.seopt`): searches within the
+  fixed-K subspace instead of merging down from the over-segmented free-k optimum;
+  recovers communities where free-k SE over-segments (e.g. karate ARI 0.29→0.88).
+- `se_gnn` — differentiable soft-2D-SE GNN with a balanced (Sinkhorn) head.
+- `sepi` — bring-your-own-π SE (exogenous stationary distribution; e.g. PPR).
 
-[`learn/`](learn/) hosts clean-rl-style implementations: one file = one method,
-every file imports the selib core. First entry: `min_se_uq.py` (SeSE-style LLM
-uncertainty as min 2D SE of the semantic graph over sampled answers). See
-[learn/README.md](learn/README.md).
+## learn/ — clean-RL-style single-file SE learning methods
+
+[`learn/`](learn/) — one file = one method, each importing the selib core, runnable
+in one command: `min_se_uq` (SeSE-style LLM UQ), `min_sep_pooling` (SEP),
+`min_se_exploration` (SI2E-style), `min_se_gsl` (SE-GSL), `min_se_contrastive`
+(SEGA), plus `min_se_clustering` / `min_se_hierarchy` / `min_se_resolution`
+head-to-heads. See [learn/README.md](learn/README.md).
 
 ## SE calculator
 
