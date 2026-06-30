@@ -6,6 +6,11 @@ benchmark SE methods against classical baselines under one API. Built so that
 ([benchmark](https://github.com/SuuTTT/structural-entropy-benchmark) ·
 [survey](https://github.com/SuuTTT/structural-entropy-survey-paper)).
 
+> **New to SE, or deciding whether it fits your problem?** Read
+> **[A Practitioner's Guide to Structural Entropy: What Works, What Doesn't](docs/USING_SE.md)** —
+> a regime-by-regime decision table plus the expensive lessons (controls to run, traps to
+> avoid) distilled from a decade of SE work and our own re-runs.
+
 **Optimizers** (validated to machine precision against independent code, and
 ranked first among SE minimizers on attained entropy in the survey benchmark):
 
