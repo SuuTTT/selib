@@ -6,7 +6,7 @@ Frozen on 2026-08-08 for the TAMC submission candidate.
 
 - Repository: `https://github.com/SuuTTT/selib`
 - Branch: `codex/se-hier-nni-paper`
-- Evidence-and-paper commit: `9932c014e006b8bb86642b9c316f7735129c145e`
+- Evidence-and-paper commit: `ca3f768185ecae50d57adcad00e976994538074c`
 - Official HCSE/BBM comparison code commit: `ccf832e`
 - Paper format: A4 Springer LNCS, 11 pages including references
 
@@ -14,7 +14,7 @@ Frozen on 2026-08-08 for the TAMC submission candidate.
 
 | Artifact | SHA-256 |
 |---|---|
-| `paper/se-hier-nni/main.pdf` | `aa44c38c9888819e9fe02b6c40f2998dbb5a573ec3db5ef66f6b948ea52d82a9` |
+| `paper/se-hier-nni/main.pdf` | `857dc35060b206ee6109fe69105c2516cdabaf81475551130ed0e23256e80d19` |
 | `results/nni_benchmark.json` | `0fafdac19f3c70458b894027dffbdda67172861900812135bd4bb4673ba8345d` |
 | `results/nni_real_benchmark.json` | `7c0c942455cf7b348935912068f0cb3d233b6e690c0a219ac8969e6e3e476d7d` |
 | `results/nni_scaling.json` | `930d73412a07bee34528fa3cb6b40f50172a7d42c911f3df76fd8ad9341f74ad` |
@@ -27,7 +27,8 @@ Frozen on 2026-08-08 for the TAMC submission candidate.
 - Supplement verifier: 28 real-network records, 24 scaling records, 250 ablation records, and 50 exact cross-artifact matches.
 - Tests: 10 passed, 1 skipped (`.venv/bin/pytest -q`).
 - PDF: A4, 11 pages, all fonts embedded, no Type 3 fonts; visually inspected after final compilation.
-- TAMC mechanical checker: zero mechanical failures; the intentional anonymous author placeholder remains a manual submission gate.
+- TAMC double-blind checker: pass with zero mechanical failures; anonymous
+  author and affiliation fields are required by the official review policy.
 
 ## Environment
 
