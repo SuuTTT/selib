@@ -1,0 +1,64 @@
+{
+  "status": "development",
+  "primary_objective": "tree structural entropy H^T; lower is better",
+  "claims": [
+    {
+      "id": "C1",
+      "claim": "The weighted rooted-NNI delta equals the two-cross-weight closed form.",
+      "evidence": "Random weighted graphs and binary trees; compare every predicted delta with full H^T recomputation.",
+      "falsifier": "Any mismatch above 1e-9 after ruling out floating-point accumulation."
+    },
+    {
+      "id": "C2",
+      "claim": "se_hier_nni never worsens H^T relative to the identical se_hier initializer.",
+      "evidence": "Per-run paired H^T records and monotonic move traces.",
+      "falsifier": "Any final H^T greater than its paired initializer beyond 1e-10."
+    },
+    {
+      "id": "C3",
+      "claim": "NNI closes a reproducible local-optimality gap left by current hierarchy constructors.",
+      "evidence": "Paired refinement of se_hier, HCSE, BBM, Paris, and agglomerative outputs over held-out seeds.",
+      "falsifier": "Improvements occur only on development graphs or only on a hand-built clique."
+    },
+    {
+      "id": "C4",
+      "claim": "Bounded compound NNI escapes cases where strict one-NNI descent stalls.",
+      "evidence": "Exact trap family plus naturally occurring held-out one-NNI local optima.",
+      "falsifier": "Compound search adds cost without improving any non-constructed case."
+    },
+    {
+      "id": "C5",
+      "claim": "The enhanced optimizer improves the practical entropy/runtime frontier.",
+      "evidence": "H^T, hierarchy recovery, runtime, and peak RAM with 95% confidence intervals.",
+      "falsifier": "Lower H^T requires prohibitive runtime or degrades hierarchy recovery consistently."
+    }
+  ],
+  "datasets": {
+    "development": ["Karate", "45-node clean SBM", "45-node noisy SBM"],
+    "held_out": [
+      "hierarchical SBM with depth, imbalance, and noise sweeps",
+      "LFR with frozen seeds",
+      "HCSE paper synthetic protocol",
+      "real graphs with usable hierarchy or taxonomy labels"
+    ]
+  },
+  "baselines": [
+    "se_hier",
+    "HCSE official",
+    "BBM official",
+    "Paris",
+    "SE agglomerative",
+    "HypCSE official if reproducible"
+  ],
+  "metrics": [
+    "H^T",
+    "NNI-local rate",
+    "NNI and compound-move gain",
+    "hierarchical recovery",
+    "top-level NMI and ARI",
+    "recovered depth",
+    "runtime",
+    "peak RAM"
+  ],
+  "statistics": "Paired per-seed comparisons; report mean, 95% confidence interval, and raw records."
+}

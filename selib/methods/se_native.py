@@ -60,3 +60,18 @@ def se_hier(G, k=None, seed=0):
     if k is not None and len(set(labels)) > k:
         labels = _merge_down_to_k(G, labels, k, seed=seed)
     return labels
+
+
+@method("se_hier_nni", family="community_detection", is_se=True, native=True,
+        paper="this lib: se_hier plus exact rooted-NNI refinement",
+        note="native: se_hier initializer followed by strictly decreasing, "
+             "exact-delta rooted-NNI moves on binary neighborhoods")
+def se_hier_nni(G, k=None, seed=0):
+    from ..htree import encoding_tree_nni, top_level_labels
+    from ..seopt import _merge_down_to_k
+    root, deg, adj, vol = encoding_tree_nni(G, seed=seed)
+    n = G.number_of_nodes()
+    labels = top_level_labels(root, n)
+    if k is not None and len(set(labels)) > k:
+        labels = _merge_down_to_k(G, labels, k, seed=seed)
+    return labels

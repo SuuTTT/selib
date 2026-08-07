@@ -1,0 +1,96 @@
+\documentclass[runningheads]{llncs}
+\usepackage{amsmath,amssymb,booktabs,graphicx,microtype,url}
+\newcommand{\vol}{\operatorname{vol}}
+\newcommand{\HT}{H^{T}}
+
+\begin{document}
+\title{NNI-Certified Structural-Entropy Hierarchies:\\
+Fast Refinement beyond Greedy Construction}
+\titlerunning{NNI-Certified Structural-Entropy Hierarchies}
+\author{Anonymous Authors}
+\authorrunning{Anonymous Authors}
+\institute{Affiliation withheld for review}
+\maketitle
+
+\begin{abstract}
+Structural entropy assigns an information-theoretic objective to an encoding
+tree, but existing hierarchy constructors need not be locally optimal under
+tree-topology changes.  We study rooted nearest-neighbor interchange as an
+exact refinement operator for structural-entropy hierarchies.  For weighted
+graphs, we derive a local cost formula involving only module volumes and two
+cross-module edge weights, enabling independently verified monotone descent.
+We incorporate this operator into SELib's multi-start hierarchical optimizer
+and plan a bounded compound-move extension for addressing strict-descent
+traps; that extension remains an evidence-gated experimental target. This is an
+evidence-gated development draft: final comparative and scalability claims
+will be inserted only from the frozen benchmark artifacts.
+\keywords{Structural entropy \and hierarchical clustering \and local search
+\and nearest-neighbor interchange \and graph algorithms}
+\end{abstract}
+
+\section{Introduction}
+Hierarchical graph clustering seeks a tree rather than a single flat
+partition. Structural entropy supplies an objective for this tree
+\cite{li2016}, while recent algorithms construct binary or non-binary
+hierarchies through merging, partitioning, stretching, and compression
+\cite{pan2025}. Construction quality, however, does not certify local
+optimality in tree space.
+
+This paper develops an exact NNI refinement layer for structural entropy. Its
+algorithmic contribution is separate from the companion analysis of clique
+landscapes: here the graph is arbitrary and weighted, the objective is the
+actual tree structural entropy, and the target is a reusable optimizer.
+
+\paragraph{Planned contributions.}
+The evidence plan targets (i) an exact weighted NNI delta, (ii) a monotone
+NNI-certified extension of a multi-start SE hierarchy optimizer, (iii) a
+bounded escape rule for compound moves, and (iv) paired evaluation against
+HCSE, BBM, Paris, and the unmodified optimizer.
+
+\section{Structural-entropy hierarchy optimization}
+Let $G=(V,E,w)$ be an undirected weighted graph and let an encoding-tree node
+$a$ represent leaves $V_a$, volume $V_a=\vol(V_a)$, and boundary weight
+$g_a$. The tree structural entropy is
+\begin{equation}
+ \HT(G)=-\sum_{a\ne r}\frac{g_a}{\vol(V)}
+ \log_2\frac{V_a}{V_{a^-}}.
+\end{equation}
+The baseline optimizer combines several hierarchy initializations with
+strictly decreasing collapse and subtree-relocation moves. We retain every
+baseline candidate and add a topology-preserving binary refinement.
+
+\section{Exact NNI refinement}
+Consider $((A,B),C)\rightarrow(A,(B,C))$, let $P=A\cup B\cup C$, and write
+$W(X,Y)$ for total edge weight between modules. Only $A$--$B$ and $B$--$C$
+edges change their lowest common ancestor, giving
+\begin{equation}
+ \Delta \HT=
+ \frac{2}{\vol(V)}\left[
+ W(A,B)\log_2\frac{V_P}{V_{A\cup B}}+
+ W(B,C)\log_2\frac{V_{B\cup C}}{V_P}
+ \right].
+ \label{eq:nni-delta}
+\end{equation}
+The implementation accepts a move only when Eq.~\eqref{eq:nni-delta} is
+negative and an independent full recomputation agrees with the prediction.
+
+\section{Experiments}
+The final evaluation will use frozen development and held-out graph seeds. It
+will report exact $\HT$, local-optimality gaps, hierarchy recovery, recovered
+depth, runtime, and peak memory. Every table entry will trace to a raw JSON
+record; the current 25-run pilot is excluded from final statistical claims.
+
+\section{Related work}
+Structural entropy originates with Li and Pan\cite{li2016}. Pan et
+al.\ propose BBM and the HCSE stretch--compress framework\cite{pan2025}; Paris
+provides a strong graph-hierarchy initialization\cite{bonald2018paris}. NNI is
+classical in tree space and has recently been used for hierarchical-clustering
+local search under a different objective\cite{jowhari2024}.
+
+\section{Conclusion}
+This draft establishes the method and evidence boundary. The final conclusion
+will be written after the held-out operator and scalability benchmarks.
+
+\bibliographystyle{splncs04}
+\bibliography{refs}
+\end{document}

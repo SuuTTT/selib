@@ -307,6 +307,169 @@ def _do_relocate(root, src_path, dst_path):
     return r
 
 
+# -------------------------- binary NNI refinement ---------------------------
+def _descendant_vertices(root):
+    """Return the leaf set below every node, keyed by object identity."""
+    leaves = {}
+
+    def rec(node):
+        if node.is_leaf():
+            out = {node.vertex}
+        else:
+            out = set()
+            for child in node.children:
+                out.update(rec(child))
+        leaves[id(node)] = out
+        return out
+
+    rec(root)
+    return leaves
+
+
+def _cross_weight(left, right, adj):
+    """Total undirected edge weight between two disjoint vertex sets."""
+    if len(left) > len(right):
+        left, right = right, left
+    return sum(weight for u in left for v, weight in adj[u].items()
+               if v in right)
+
+
+def _nni_candidates(root):
+    """Enumerate rooted-NNI moves as ``(internal_child_path, promoted_child)``.
+
+    A candidate exists on a binary parent--child edge.  If the current local
+    topology is ``((A, B), C)``, promoting child 0 produces ``(A, (B, C))``
+    and promoting child 1 produces ``(B, (A, C))``.
+    """
+    out = []
+
+    def rec(node, path):
+        if node.is_leaf():
+            return
+        if len(node.children) == 2:
+            for child_index, child in enumerate(node.children):
+                if not child.is_leaf() and len(child.children) == 2:
+                    child_path = path + (child_index,)
+                    out.append((child_path, 0))
+                    out.append((child_path, 1))
+        for index, child in enumerate(node.children):
+            rec(child, path + (index,))
+
+    rec(root, ())
+    return out
+
+
+def _do_nni(root, child_path, promoted_child):
+    """Return a copy after one rooted NNI, or ``None`` if the move is illegal."""
+    if not child_path or promoted_child not in (0, 1):
+        return None
+    r = copy_tree(root)
+    try:
+        parent = _get(r, child_path[:-1])
+        child_index = child_path[-1]
+        internal = parent.children[child_index]
+    except (IndexError, AttributeError):
+        return None
+    if (len(parent.children) != 2 or internal.is_leaf()
+            or len(internal.children) != 2):
+        return None
+    sibling = parent.children[1 - child_index]
+    promoted = internal.children[promoted_child]
+    retained = internal.children[1 - promoted_child]
+    internal.children = [retained, sibling]
+    parent.children = [promoted, internal]
+    return r
+
+
+def nni_delta(root, child_path, promoted_child, adj, vol):
+    """Exact change in tree structural entropy for one rooted NNI.
+
+    For ``((A,B),C) -> (A,(B,C))`` only A--B and B--C graph edges change
+    their LCA.  With ``vol = 2m`` the identity is
+
+        2/vol * [w(A,B) log2(V_P/V_AB)
+                 + w(B,C) log2(V_BC/V_P)].
+
+    ``annotate`` must have been called on ``root`` so node volumes are current.
+    """
+    if vol <= 0 or not child_path or promoted_child not in (0, 1):
+        return None
+    try:
+        parent = _get(root, child_path[:-1])
+        child_index = child_path[-1]
+        internal = parent.children[child_index]
+    except (IndexError, AttributeError):
+        return None
+    if (len(parent.children) != 2 or internal.is_leaf()
+            or len(internal.children) != 2):
+        return None
+    sibling = parent.children[1 - child_index]
+    promoted = internal.children[promoted_child]
+    retained = internal.children[1 - promoted_child]
+    if internal.V <= 0 or parent.V <= 0 or retained.V + sibling.V <= 0:
+        return None
+
+    leaves = _descendant_vertices(root)
+    w_ab = _cross_weight(leaves[id(promoted)], leaves[id(retained)], adj)
+    w_bc = _cross_weight(leaves[id(retained)], leaves[id(sibling)], adj)
+    return (2.0 / vol) * (
+        w_ab * math.log(parent.V / internal.V, 2)
+        + w_bc * math.log((retained.V + sibling.V) / parent.V, 2)
+    )
+
+
+def refine_nni(root, deg, adj, vol, max_rounds=100, tol=1e-10,
+               return_trace=False):
+    """Best-improvement rooted-NNI descent with exact delta verification.
+
+    The routine only edits binary parent--child neighborhoods; multiway parts
+    are left intact.  Each selected move is predicted by :func:`nni_delta` and
+    independently checked by a full ``H^T`` recomputation before acceptance.
+    Consequently the returned tree is never worse than the input and is
+    one-NNI-local within the neighborhoods examined when the routine stops.
+    """
+    annotate(root, deg, adj, vol)
+    current = hd_se(root, vol)
+    trace = []
+    for round_index in range(max_rounds):
+        best = None
+        for child_path, promoted_child in _nni_candidates(root):
+            delta = nni_delta(root, child_path, promoted_child, adj, vol)
+            if delta is not None and delta < -tol:
+                if best is None or delta < best[0]:
+                    best = (delta, child_path, promoted_child)
+        if best is None:
+            break
+
+        predicted, child_path, promoted_child = best
+        candidate = _do_nni(root, child_path, promoted_child)
+        if candidate is None:
+            break
+        annotate(candidate, deg, adj, vol)
+        candidate_h = hd_se(candidate, vol)
+        observed = candidate_h - current
+        if abs(observed - predicted) > 1e-8:
+            raise AssertionError(
+                f"NNI delta mismatch: predicted={predicted:.12g}, "
+                f"observed={observed:.12g}"
+            )
+        if observed >= -tol:
+            break
+        trace.append({
+            "round": round_index,
+            "child_path": child_path,
+            "promoted_child": promoted_child,
+            "delta": observed,
+            "before": current,
+            "after": candidate_h,
+        })
+        root, current = candidate, candidate_h
+
+    if return_trace:
+        return root, trace
+    return root
+
+
 def _reloc_targets(root, sp):
     """Local relocation targets for the subtree at path sp: internal siblings,
     internal uncles, and the grandparent."""
@@ -459,6 +622,28 @@ def encoding_tree(G, seed=0, starts=4, do_refine=True):
     best = min(cands, key=lambda r: hd_se(r, vol))
     annotate(best, deg, adj, vol)
     return best, deg, adj, vol
+
+
+def encoding_tree_nni(G, seed=0, starts=4, do_refine=True,
+                      max_nni_rounds=100, return_trace=False):
+    """Refine :func:`encoding_tree` with exact best-improvement rooted NNI.
+
+    The original ``se_hier`` output is the initializer and only strictly
+    decreasing, independently verified NNI moves are accepted.  The returned
+    tree therefore has ``H^T`` no greater than the corresponding ``se_hier``
+    tree.  NNI acts on binary neighborhoods and leaves multiway regions intact.
+    """
+    root, deg, adj, vol = encoding_tree(
+        G, seed=seed, starts=starts, do_refine=do_refine
+    )
+    root, trace = refine_nni(
+        root, deg, adj, vol,
+        max_rounds=max_nni_rounds,
+        return_trace=True,
+    )
+    if return_trace:
+        return root, deg, adj, vol, trace
+    return root, deg, adj, vol
 
 
 def _external_inits(G, n):
