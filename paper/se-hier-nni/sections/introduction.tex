@@ -1,0 +1,55 @@
+\section{Introduction}
+Many networks are organized at more than one scale: vertices form local
+groups, related groups form larger modules, and the useful output is therefore
+a tree rather than one flat partition. Structural entropy supplies an
+information-theoretic objective for such an encoding tree \cite{li2016}.
+Recent methods construct low-entropy hierarchies by agglomeration, recursive
+partitioning, or stretch--compress operations \cite{pan2025}. These
+constructors answer how to build a plausible tree, but they leave a basic
+algorithmic question unresolved: \emph{after construction, is a small change
+of tree topology still able to lower the same objective?}
+
+This distinction matters in practice. A constructor can be globally
+competitive while retaining locally avoidable entropy. Conversely, an
+expensive general tree-edit search can spend most of its time reconsidering
+moves whose objective effect is not known until the entire tree is rescored.
+We seek a local operator whose effect is exact, whose neighborhood is small,
+and whose termination has an interpretable certificate.
+
+Nearest-neighbor interchange (NNI) is the elementary rotation of a rooted
+binary tree. It changes one internal edge while preserving every leaf. NNI is
+standard in phylogenetic tree search and has been studied for other
+hierarchical-clustering objectives, but its structural-entropy change has not
+been used as an exact graph-hierarchy optimizer. The obstacle is that
+structural entropy depends on both graph cuts and nested module volumes; an NNI
+formula must respect the original encoding-tree objective rather than a
+surrogate.
+
+We show that the change is local. For
+$((A,B),C)\rightarrow(A,(B,C))$, all terms cancel except two cross-module edge
+weights and three volumes. This identity yields a best-improvement descent that
+never worsens the tree and stops at a one-NNI local optimum. Because strict
+descent may itself be trapped, we also evaluate a bounded two-move beam: the
+first move may cross a small barrier, but the pair is accepted only if its
+fully verified endpoint is better. Finally, we replace the slow general-edit
+stage of the original \texttt{se\_hier} implementation with NNI refinement of
+several inexpensive starts.
+
+Our contributions are:
+\begin{itemize}
+  \item an exact weighted-graph NNI delta for tree structural entropy, with an
+  implementation cross-checked against full objective recomputation;
+  \item monotone one-step descent, a one-NNI local certificate, and a bounded
+  compound search that can escape strict one-step traps without weakening the
+  output guarantee;
+  \item \SEAlg, a fast multi-start hierarchy optimizer built from independent
+  SE-agglomerative, recursive-SE, and Paris initializations; and
+  \item a paired evaluation against SE agglomeration, Louvain-2L, Paris, the
+  official HCSE and BBM implementations, and the original \texttt{se\_hier},
+  measuring entropy, hierarchy recovery, runtime, and memory.
+\end{itemize}
+
+The paper is deliberately separate from analyses of specially structured
+clique landscapes. Here the graph is arbitrary and weighted, the optimized
+quantity is the complete encoding-tree entropy, and the contribution is a
+reusable algorithm with falsifiable benchmark claims.

@@ -1,0 +1,18 @@
+\section{Limitations and Conclusion}
+NNI is a local operator, not a certificate of global optimality. Compound
+search explores only a bounded two-step neighborhood and its barrier and beam
+are computational controls. Multiway regions must be resolved by a constructor
+before binary rotations can act on them. Lower structural entropy also need
+not improve every external notion of hierarchy, which is why we report planted
+purity alongside the optimized objective.
+
+We introduced an exact NNI identity for weighted graph structural entropy and
+used it to build monotone, auditable hierarchy refinement. The resulting
+method separates construction from local optimality, detects avoidable gaps in
+existing trees, and crosses shallow strict-descent traps without accepting a
+worse output. On the frozen five-regime suite it achieved the lowest mean
+entropy in every regime, improved both entropy and mean planted purity over the
+previous \texttt{se\_hier}, and reduced instrumented construction time by
+\OursSpeedup. More broadly, the operator audit shows that hierarchy
+construction and local tree optimality should be evaluated separately in
+future structural-entropy methods.

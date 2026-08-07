@@ -1,0 +1,21 @@
+\begin{table}[t]
+\centering\small
+\caption{Tree structural entropy $H^T$ (mean $\pm$ 95\% CI; lower is better). BBM$^\dagger$ receives the planted fine-cluster count.}
+\label{tab:main-h}
+\setlength{\tabcolsep}{3.2pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccc}
+\toprule
+Method & Clean & Noisy & Imbal. & Weighted & Weak \\
+\midrule
+SE--agglomerative & 2.920 $\pm$ 0.094 & 3.712 $\pm$ 0.070 & 3.218 $\pm$ 0.116 & 2.444 $\pm$ 0.079 & 3.424 $\pm$ 0.112 \\
+Louvain--2L & 4.167 $\pm$ 0.066 & 4.575 $\pm$ 0.061 & 4.270 $\pm$ 0.060 & 3.647 $\pm$ 0.145 & 4.425 $\pm$ 0.095 \\
+Paris & 2.919 $\pm$ 0.112 & 3.698 $\pm$ 0.072 & 3.165 $\pm$ 0.106 & 2.348 $\pm$ 0.072 & 3.433 $\pm$ 0.112 \\
+HCSE & 3.300 $\pm$ 0.190 & 4.351 $\pm$ 0.170 & 3.685 $\pm$ 0.122 & 2.759 $\pm$ 0.130 & 4.040 $\pm$ 0.286 \\
+BBM$^\dagger$ & 3.359 $\pm$ 0.122 & 4.062 $\pm$ 0.073 & 3.634 $\pm$ 0.124 & 2.996 $\pm$ 0.073 & 3.916 $\pm$ 0.064 \\
+se\_hier & 2.903 $\pm$ 0.103 & 3.691 $\pm$ 0.071 & 3.164 $\pm$ 0.106 & 2.348 $\pm$ 0.072 & 3.413 $\pm$ 0.110 \\
+SE--NNI--fast & \textbf{2.845 $\pm$ 0.094} & \textbf{3.675 $\pm$ 0.067} & \textbf{3.135 $\pm$ 0.115} & \textbf{2.337 $\pm$ 0.073} & \textbf{3.387 $\pm$ 0.104} \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

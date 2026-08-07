@@ -1,0 +1,24 @@
+\begin{abstract}
+Structural entropy evaluates a graph hierarchy through the description length
+of an encoding tree, but a hierarchy produced by merging, partitioning, or
+stretch--compress construction need not be locally optimal in tree space. We
+introduce \SEAlg, an exact refinement method based on rooted
+nearest-neighbor interchange (NNI). For weighted graphs, we derive a closed
+form for the entropy change of an NNI move using only three module volumes and
+two cross-module edge weights. This supports monotone best-improvement descent
+and a checkable one-NNI local-optimality certificate. We further introduce a
+bounded two-move search that may cross a controlled intermediate barrier but
+commits only an entropy-decreasing pair, and a fast multi-start constructor
+that refines SE agglomeration, recursive SE, and Paris candidates. All reported
+comparisons are paired by graph seed and use the same independently recomputed
+tree objective. Across 50 seeded graphs from five hierarchical regimes,
+\SEAlg attains the lowest mean entropy in every regime. Relative to the
+previous \texttt{se\_hier} implementation, it lowers entropy by
+$\OursAbsEntropyGain\!\pm\!\OursAbsEntropyGainCI$ bits, raises fine-level
+dendrogram purity by $\OursPurityDeltaVsHier\!\pm\!\OursPurityDeltaCI$, and is
+\OursSpeedup faster under the instrumented benchmark. The NNI audit also finds
+strictly improving moves in common SE and non-SE constructors, demonstrating
+that construction quality and local tree optimality are distinct concerns.
+\keywords{Structural entropy \and hierarchical clustering \and local search
+\and nearest-neighbor interchange \and graph algorithms}
+\end{abstract}

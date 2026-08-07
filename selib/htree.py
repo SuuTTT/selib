@@ -381,7 +381,7 @@ def _do_nni(root, child_path, promoted_child):
     return r
 
 
-def nni_delta(root, child_path, promoted_child, adj, vol):
+def nni_delta(root, child_path, promoted_child, adj, vol, leaves=None):
     """Exact change in tree structural entropy for one rooted NNI.
 
     For ``((A,B),C) -> (A,(B,C))`` only A--B and B--C graph edges change
@@ -409,7 +409,8 @@ def nni_delta(root, child_path, promoted_child, adj, vol):
     if internal.V <= 0 or parent.V <= 0 or retained.V + sibling.V <= 0:
         return None
 
-    leaves = _descendant_vertices(root)
+    if leaves is None:
+        leaves = _descendant_vertices(root)
     w_ab = _cross_weight(leaves[id(promoted)], leaves[id(retained)], adj)
     w_bc = _cross_weight(leaves[id(retained)], leaves[id(sibling)], adj)
     return (2.0 / vol) * (
@@ -433,8 +434,11 @@ def refine_nni(root, deg, adj, vol, max_rounds=100, tol=1e-10,
     trace = []
     for round_index in range(max_rounds):
         best = None
+        leaves = _descendant_vertices(root)
         for child_path, promoted_child in _nni_candidates(root):
-            delta = nni_delta(root, child_path, promoted_child, adj, vol)
+            delta = nni_delta(
+                root, child_path, promoted_child, adj, vol, leaves=leaves
+            )
             if delta is not None and delta < -tol:
                 if best is None or delta < best[0]:
                     best = (delta, child_path, promoted_child)
@@ -464,6 +468,118 @@ def refine_nni(root, deg, adj, vol, max_rounds=100, tol=1e-10,
             "after": candidate_h,
         })
         root, current = candidate, candidate_h
+
+    if return_trace:
+        return root, trace
+    return root
+
+
+def refine_nni_compound(root, deg, adj, vol, max_rounds=8, beam_width=16,
+                        barrier_bits=0.05, tol=1e-10, return_trace=False):
+    """Escape one-NNI local optima with bounded two-move lookahead.
+
+    The first NNI may raise ``H^T`` by at most ``barrier_bits``.  Up to
+    ``beam_width`` first moves with the smallest exact deltas are expanded, and
+    every legal second move is evaluated.  A pair is committed only when its
+    final, fully recomputed entropy is strictly below the entropy before the
+    pair.  Thus compound search can cross a shallow barrier without weakening
+    the monotone-output guarantee.
+
+    After each accepted pair, ordinary exact NNI descent is rerun.  The method
+    stops when neither a one-step move nor an admissible two-step sequence
+    improves the tree, or when ``max_rounds`` compound moves have been used.
+    """
+    if beam_width <= 0:
+        raise ValueError("beam_width must be positive")
+    if barrier_bits < 0:
+        raise ValueError("barrier_bits must be non-negative")
+
+    annotate(root, deg, adj, vol)
+    root, descent_trace = refine_nni(
+        root, deg, adj, vol, tol=tol, return_trace=True
+    )
+    annotate(root, deg, adj, vol)
+    current = hd_se(root, vol)
+    trace = [{**step, "kind": "descent"} for step in descent_trace]
+
+    for round_index in range(max_rounds):
+        first_leaves = _descendant_vertices(root)
+        first_moves = []
+        for child_path, promoted_child in _nni_candidates(root):
+            delta = nni_delta(
+                root, child_path, promoted_child, adj, vol,
+                leaves=first_leaves,
+            )
+            if delta is not None and delta <= barrier_bits + tol:
+                first_moves.append((delta, child_path, promoted_child))
+        first_moves.sort(key=lambda item: item[0])
+
+        best = None
+        for delta1, path1, promoted1 in first_moves[:beam_width]:
+            middle = _do_nni(root, path1, promoted1)
+            if middle is None:
+                continue
+            annotate(middle, deg, adj, vol)
+            middle_h = hd_se(middle, vol)
+            if abs((middle_h - current) - delta1) > 1e-8:
+                raise AssertionError(
+                    "compound NNI first-step delta disagrees with full entropy"
+                )
+
+            second_leaves = _descendant_vertices(middle)
+            for path2, promoted2 in _nni_candidates(middle):
+                delta2 = nni_delta(
+                    middle, path2, promoted2, adj, vol,
+                    leaves=second_leaves,
+                )
+                if delta2 is None:
+                    continue
+                predicted_final = middle_h + delta2
+                if predicted_final >= current - tol:
+                    continue
+                candidate = _do_nni(middle, path2, promoted2)
+                if candidate is None:
+                    continue
+                annotate(candidate, deg, adj, vol)
+                candidate_h = hd_se(candidate, vol)
+                if abs((candidate_h - middle_h) - delta2) > 1e-8:
+                    raise AssertionError(
+                        "compound NNI second-step delta disagrees with full entropy"
+                    )
+                if candidate_h < current - tol:
+                    item = (candidate_h, candidate, delta1, delta2,
+                            path1, promoted1, path2, promoted2, middle_h)
+                    if best is None or candidate_h < best[0]:
+                        best = item
+
+        if best is None:
+            break
+
+        (candidate_h, candidate, delta1, delta2, path1, promoted1,
+         path2, promoted2, middle_h) = best
+        before = current
+        root, current = candidate, candidate_h
+        trace.append({
+            "kind": "compound",
+            "round": round_index,
+            "first_child_path": path1,
+            "first_promoted_child": promoted1,
+            "second_child_path": path2,
+            "second_promoted_child": promoted2,
+            "first_delta": delta1,
+            "second_delta": delta2,
+            "barrier": max(0.0, middle_h - before),
+            "before": before,
+            "after": current,
+            "delta": current - before,
+        })
+
+        root, post_trace = refine_nni(
+            root, deg, adj, vol, tol=tol, return_trace=True
+        )
+        trace.extend({**step, "kind": "descent"} for step in post_trace)
+        annotate(root, deg, adj, vol)
+        current = hd_se(root, vol)
 
     if return_trace:
         return root, trace
@@ -625,13 +741,17 @@ def encoding_tree(G, seed=0, starts=4, do_refine=True):
 
 
 def encoding_tree_nni(G, seed=0, starts=4, do_refine=True,
-                      max_nni_rounds=100, return_trace=False):
-    """Refine :func:`encoding_tree` with exact best-improvement rooted NNI.
+                      max_nni_rounds=100, compound=True,
+                      compound_rounds=8, beam_width=16,
+                      barrier_bits=0.05, return_trace=False):
+    """Refine :func:`encoding_tree` with exact rooted-NNI search.
 
     The original ``se_hier`` output is the initializer and only strictly
     decreasing, independently verified NNI moves are accepted.  The returned
     tree therefore has ``H^T`` no greater than the corresponding ``se_hier``
     tree.  NNI acts on binary neighborhoods and leaves multiway regions intact.
+    By default, bounded two-move lookahead is applied after exact one-step
+    descent; set ``compound=False`` for the one-NNI-local variant only.
     """
     root, deg, adj, vol = encoding_tree(
         G, seed=seed, starts=starts, do_refine=do_refine
@@ -641,8 +761,98 @@ def encoding_tree_nni(G, seed=0, starts=4, do_refine=True,
         max_rounds=max_nni_rounds,
         return_trace=True,
     )
+    if compound:
+        root, compound_trace = refine_nni_compound(
+            root, deg, adj, vol,
+            max_rounds=compound_rounds,
+            beam_width=beam_width,
+            barrier_bits=barrier_bits,
+            return_trace=True,
+        )
+        trace.extend(compound_trace)
     if return_trace:
         return root, deg, adj, vol, trace
+    return root, deg, adj, vol
+
+
+def encoding_tree_nni_fast(G, seed=0, starts=4, compound=True,
+                           max_nni_rounds=100, compound_rounds=8,
+                           beam_width=16, barrier_bits=0.05,
+                           return_trace=False):
+    """Fast multi-start hierarchy construction with exact NNI certification.
+
+    Unlike :func:`encoding_tree`, this variant does not run exhaustive generic
+    collapse/relocation refinement.  It builds three inexpensive candidates
+    (SE agglomeration, recursive SE, and Paris when installed), applies exact
+    one-step NNI descent and optional bounded two-step escape to each, and
+    returns the lowest-entropy result.  The output is therefore no worse than
+    the NNI-refined SE-agglomerative start and is one-NNI-local on all binary
+    neighborhoods examined.
+    """
+    from .se import se_agglomerative
+
+    _, _, n, adj, deg, vol = _graph_arrays(G)
+    nodes = list(G.nodes())
+    pos = {node: index for index, node in enumerate(nodes)}
+    graph = nx.relabel_nodes(G, pos, copy=True)
+    candidates = []
+
+    try:
+        candidates.append((
+            "SE-agglomerative",
+            linkage_to_tree(se_agglomerative(graph), n),
+        ))
+    except Exception:
+        pass
+    try:
+        candidates.append((
+            "recursive-SE",
+            build_tree(graph, seed=seed, starts=starts),
+        ))
+    except Exception:
+        pass
+    for index, linkage in enumerate(_external_inits(graph, n)):
+        try:
+            candidates.append((
+                f"external-{index}", linkage_to_tree(linkage, n)
+            ))
+        except Exception:
+            pass
+    if not candidates:
+        raise RuntimeError("no hierarchy initializer succeeded")
+
+    results = []
+    for name, root in candidates:
+        annotate(root, deg, adj, vol)
+        root, trace = refine_nni(
+            root, deg, adj, vol,
+            max_rounds=max_nni_rounds,
+            return_trace=True,
+        )
+        if compound:
+            root, extra_trace = refine_nni_compound(
+                root, deg, adj, vol,
+                max_rounds=compound_rounds,
+                beam_width=beam_width,
+                barrier_bits=barrier_bits,
+                return_trace=True,
+            )
+            trace.extend(extra_trace)
+        annotate(root, deg, adj, vol)
+        results.append((hd_se(root, vol), name, root, trace))
+
+    entropy, selected, root, trace = min(results, key=lambda item: item[0])
+    annotate(root, deg, adj, vol)
+    if return_trace:
+        audit = {
+            "selected_initializer": selected,
+            "selected_entropy": entropy,
+            "selected_trace": trace,
+            "candidate_entropies": {
+                name: value for value, name, _, _ in results
+            },
+        }
+        return root, deg, adj, vol, audit
     return root, deg, adj, vol
 
 

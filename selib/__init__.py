@@ -19,6 +19,7 @@ from .base import (Method, get, info, register, method,               # noqa: F4
 from .benchmark import benchmark, summarize                           # noqa: F401
 from .calc import (structural_entropy, one_dimensional, two_dimensional,  # noqa: F401
                    tree_entropy, optimal_2d, optimal_tree, optimal_tree_nni,
+                   optimal_tree_nni_fast,
                    se_report)
 from . import methods                                                 # noqa: F401  (self-registers algorithms)
 

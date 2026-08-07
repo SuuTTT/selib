@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering\small
+\caption{Tree entropy on four bundled real networks (lower is better). BBM uses the ground-truth $k$ when labels exist and Louvain's $k$ otherwise.}
+\label{tab:real}
+\begin{tabular}{lrrrr}
+\toprule
+Method & Karate & Florent. & Les Mis. & Davis \\
+\midrule
+SE--agglomerative & 2.698 & 1.923 & 3.078 & 3.055 \\
+Louvain--2L & 3.405 & 2.452 & 3.923 & 3.813 \\
+Paris & 2.597 & 1.923 & 2.920 & 2.981 \\
+HCSE & 2.929 & 2.172 & 3.930 & 3.206 \\
+BBM & 3.330 & 2.254 & 3.199 & 3.387 \\
+se\_hier & 2.597 & 1.923 & 2.920 & 2.981 \\
+SE--NNI--fast & \textbf{2.586} & \textbf{1.919} & \textbf{2.916} & \textbf{2.962} \\
+\bottomrule
+\end{tabular}
+\end{table}

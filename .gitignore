@@ -10,3 +10,5 @@ dist/
 *.blg
 *.fdb_latexmk
 *.fls
+external/
+results/*smoke*.json

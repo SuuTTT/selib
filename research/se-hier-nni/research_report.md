@@ -45,13 +45,40 @@ Artifact: `results/nni_pilot.json`.
 These runs establish a GO decision for broader evaluation. They do not support
 SOTA, scalability, robustness, or statistical-superiority claims.
 
-## Next technical work
+## Implemented after the pilot
 
-1. Cache module membership and inter-module weights so candidate deltas do not
-   rebuild descendant sets.
-2. Insert NNI before and after collapse/relocation rather than only after the
-   final `se_hier` tree.
-3. Add plateau traversal and bounded two-NNI compound escape.
-4. Fix and test the known parent-pointer issue in `dasgupta_tree` before using
-   that metric in the paper.
-5. Freeze development and held-out graph seeds before full benchmarking.
+- Cached descendant sets are reused within each NNI sweep.
+- `refine_nni_compound` evaluates bounded two-step paths, permits a controlled
+  first-step barrier, and commits only a fully verified lower endpoint.
+- A fixed eight-node witness starts at a strict one-NNI local optimum of
+  `1.970038` bits and reaches `1.920593` bits through compound search.
+- `encoding_tree_nni_fast` refines SE-agglomerative, recursive-SE, and Paris
+  candidates without the expensive generic collapse/relocation stage.
+- The frozen benchmark compares seven methods over five two-level HSBM regimes
+  and ten seeds, plus a separate real-network suite.
+
+## Frozen evidence completed
+
+- The main artifact has 350 verified records over 50 paired graphs; the new
+  method is the raw-objective winner on all 50.
+- Four bundled real networks add 28 verified method records; the new method is
+  the raw-objective winner on all four.
+- Clean scaling over 32--128 vertices and three seeds per size gives lower
+  entropy on 12/12 pairs and a 9.7--22.2x speedup over `se_hier`.
+- A 250-record component ablation separates the candidate-pool, one-step NNI,
+  and compound-search gains and exactly matches the main artifact.
+- Current HCSE, Jowhari local search, and HypCSE papers were checked to delimit
+  the novelty claim. HypCSE is not reported as a direct baseline because it
+  learns a graph from feature data and optimizes a continuous relaxation.
+- The LNCS manuscript compiles to 11 pages with generated figures and tables.
+
+## Manual submission items
+
+1. Replace anonymous author/affiliation placeholders after confirming TAMC's
+   review policy in EasyChair.
+2. Obtain an external proof/claim read and settle the concurrent-paper
+   disclosure before upload.
+
+The final A4/page/font/render audit has been run on the exact 11-page PDF;
+all fonts are embedded and no Type 3 fonts are present. The only submission
+gate reported by the TAMC checker is the intentional author placeholder.

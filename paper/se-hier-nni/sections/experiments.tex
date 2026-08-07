@@ -1,0 +1,128 @@
+\section{Experiments}\label{sec:experiments}
+\subsection{Questions and protocol}
+We ask: (Q1) how often do established constructors leave an improving NNI;
+(Q2) does compound search add improvements beyond a one-step certificate;
+(Q3) does lower entropy preserve or improve recovery of a planted hierarchy;
+and (Q4) does \SEAlg improve the entropy--runtime trade-off relative to the
+original \texttt{se\_hier}?
+
+The frozen protocol uses ten graph seeds per regime. Every method sees the
+identical weighted graph, and every tree is rescored by the same independent
+implementation of Eq.~\eqref{eq:tree-se}. We report paired means and 95\%
+$t$-intervals, raw per-seed records, wall-clock time, and Python allocation
+peak. The compound search uses beam width 16, barrier $\beta=0.05$ bits, and at
+most eight accepted compound rounds. No label is used by \SEAlg or for model
+selection. BBM is additionally shown with the planted number of fine clusters,
+which is an oracle advantage and is marked as such.
+
+\paragraph{Data.}
+Our controlled suite contains five two-level hierarchical stochastic block
+models: clean, noisy, imbalanced, weighted, and weak-hierarchy. Each balanced
+graph has 64 vertices, eight fine blocks, and four coarse blocks; the
+imbalanced regime has the same total size with block sizes from 4 to 12. The
+generator manifest, any $0.01$-weight connectivity edges, and every seed are
+stored with the results. This family follows the hierarchical stochastic block
+model used to study recovery beyond worst-case inputs \cite{cohenaddad2017hsbm}.
+
+\paragraph{Methods.}
+We compare SE agglomeration, a two-level Louvain tree, Paris
+\cite{bonald2018paris}, official HCSE, official BBM with oracle $k$
+\cite{pan2025}, the released \texttt{se\_hier}, and \SEAlg. We also refine each
+constructor independently to measure its one-step and compound gap rather than
+crediting all gains to our preferred initializer.
+
+\paragraph{Metrics.}
+The primary metric is $\HT(G)$. Dendrogram purity is computed for the planted
+fine and coarse partitions: for every same-class vertex pair, it measures the
+class fraction under the pair's predicted LCA, then averages over pairs. We
+also report the fraction of runs improved by one-step and compound NNI, number
+of moves, runtime, and memory.
+
+\subsection{A strict one-step trap}
+Before aggregate evaluation, an eight-vertex weighted witness verifies the
+purpose of compound search. Exact one-step descent stops at $1.970038$ bits.
+Every one-NNI delta is nonnegative, but a first move crossing a $0.013970$-bit
+barrier followed by a second move and ordinary descent reaches $1.920593$ bits,
+a $0.049445$-bit reduction. This witness is generated from a fixed seed and is
+covered by a regression test.
+
+\subsection{Frozen benchmark results}
+Table~\ref{tab:main-h} reports the raw output of each method, before applying
+our audit to competing trees. \SEAlg has the lowest mean $\HT$ in all five
+regimes and on \OursWins\ individual paired graphs. Against the released
+\texttt{se\_hier}, the paired reduction is
+$\OursAbsEntropyGain\!\pm\!\OursAbsEntropyGainCI$ bits (mean relative change
+\OursEntropyDeltaVsHier), while fine-level dendrogram purity changes by
+$\OursPurityDeltaVsHier\!\pm\!\OursPurityDeltaCI$. Thus the objective gain is
+not obtained by systematically degrading planted recovery. Figure~\ref{fig:entropy}
+shows the regime-level confidence intervals.
+
+\input{tables/main_entropy}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/benchmark_entropy.pdf}
+  \caption{Raw tree structural entropy on the frozen synthetic suite. Points
+  are means over ten paired graph seeds and bars are 95\% confidence intervals.
+  BBM receives the planted fine-cluster count; no other method uses labels.}
+  \label{fig:entropy}
+\end{figure}
+
+\subsection{The operator audit}
+The constructor audit in Table~\ref{tab:operator} asks a different question:
+whether a returned tree can be improved by the exact local operator. One-step
+NNI improves SE agglomeration and oracle BBM on every graph and improves the
+released \texttt{se\_hier} on 80\% of graphs. After one-step descent has
+certified its local neighborhood, bounded compound search still improves 72\%
+of SE-agglomerative trees, 92\% of BBM trees, and 40\% of
+\texttt{se\_hier} trees. Paris is closer to local optimality but is not immune;
+HCSE is rarely changed. These results support the paper's operator-level
+claim without asserting that every constructor is deficient.
+
+\input{tables/operator_audit}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.94\textwidth]{figures/operator_runtime.pdf}
+  \caption{Local-search gaps and the entropy--runtime trade-off, pooled over
+  the 50 paired graphs. The fast multi-start method achieves a
+  \OursSpeedup mean instrumented speedup over \texttt{se\_hier}; runtime
+  includes Python allocation tracing and should be interpreted comparatively.}
+  \label{fig:runtime}
+\end{figure}
+
+\subsection{Interpretation and reproducibility}
+The fast method is not merely the old constructor followed by rotations: it
+forms a small candidate set from SE agglomeration, recursive SE, and Paris,
+refines each candidate with the same exact operator, and returns the lowest
+independently rescored endpoint. The full benchmark contains 350 unique method
+records and 50 generator manifests. A verifier checks schema completeness,
+paired seeds, unique keys, and monotonicity of every committed NNI endpoint.
+The JSON evidence, generation scripts, official HCSE/BBM commit identifier,
+and table/figure generator accompany the paper.
+
+Table~\ref{tab:ablation} separates the three algorithmic choices. The
+candidate pool improves 34 of 50 graphs over SE agglomeration; exact one-step
+NNI then improves 45 of 50 paired multi-start outputs; bounded compound search
+adds a smaller but nonzero gain on 30 graphs. Hence neither the initializer
+pool nor the escape stage alone explains the full result.
+
+\input{tables/ablation}
+
+\subsection{Real networks and clean scaling}
+Table~\ref{tab:real} complements the controlled suite with four networks
+bundled by NetworkX or the released library. \SEAlg obtains the lowest raw
+entropy on \RealWins\ networks. Because only Karate has a standard class label
+in the bundled loader and the remaining networks lack a unique ground-truth
+hierarchy, this experiment tests objective minimization rather than recovery.
+
+\input{tables/real_entropy}
+
+Table~\ref{tab:scaling} removes allocation tracing and varies graph size. The
+new method lowers entropy in \ScalingWins\ paired runs. Its mean speedup over
+\texttt{se\_hier} grows from \ScalingSpeedupMin\ at 32 vertices to
+\ScalingSpeedupMax\ at 128 vertices. These graphs remain small enough for
+exact rescoring; the trend supports efficiency, not an asymptotic complexity
+claim.
+
+\input{tables/scaling}

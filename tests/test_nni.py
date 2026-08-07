@@ -11,6 +11,7 @@ from selib.htree import (
     hd_se,
     nni_delta,
     refine_nni,
+    refine_nni_compound,
 )
 
 
@@ -91,3 +92,60 @@ def test_se_hier_nni_cannot_worsen_se_hier_objective():
     _, baseline = optimal_tree(graph, seed=3)
     _, refined = optimal_tree_nni(graph, seed=3)
     assert refined <= baseline + 1e-10
+
+
+def test_two_step_nni_escapes_a_strict_one_move_local_optimum():
+    """Regression witness found by scripts/find_nni_trap.py (seed 1)."""
+    seed = 1
+    rng = random.Random(seed)
+    n = 8
+    graph = nx.gnp_random_graph(n, 0.38, seed=seed)
+    for node in range(n - 1):
+        graph.add_edge(node, node + 1)
+    for u, v in graph.edges():
+        graph[u][v]["weight"] = round(0.2 + 2.8 * rng.random(), 6)
+
+    forest = [TNode(vertex=i) for i in range(n)]
+    while len(forest) > 1:
+        first, second = sorted(rng.sample(range(len(forest)), 2), reverse=True)
+        left = forest.pop(first)
+        right = forest.pop(second)
+        forest.append(TNode(children=[left, right]))
+    root = forest[0]
+
+    _, _, _, adj, deg, vol = _graph_arrays(graph)
+    local = refine_nni(root, deg, adj, vol)
+    annotate(local, deg, adj, vol)
+    local_h = hd_se(local, vol)
+    for child_path, promoted_child in _nni_candidates(local):
+        assert nni_delta(local, child_path, promoted_child, adj, vol) >= -1e-10
+
+    escaped, trace = refine_nni_compound(
+        local, deg, adj, vol,
+        max_rounds=2,
+        beam_width=32,
+        barrier_bits=0.25,
+        return_trace=True,
+    )
+    annotate(escaped, deg, adj, vol)
+    escaped_h = hd_se(escaped, vol)
+    compound = [step for step in trace if step["kind"] == "compound"]
+
+    assert compound
+    assert compound[0]["barrier"] > 0.0
+    assert escaped_h < local_h - 0.04
+
+
+def test_fast_multi_start_nni_is_no_worse_than_its_agglomerative_start():
+    from selib.calc import optimal_tree_nni_fast
+    from selib.se import se_agglomerative
+    from selib.htree import linkage_to_tree
+
+    graph = _random_weighted_graph(18, 44)
+    _, _, n, adj, deg, vol = _graph_arrays(graph)
+    baseline = linkage_to_tree(se_agglomerative(graph), n)
+    annotate(baseline, deg, adj, vol)
+    baseline_h = hd_se(baseline, vol)
+
+    _, fast_h = optimal_tree_nni_fast(graph, seed=44)
+    assert fast_h <= baseline_h + 1e-10

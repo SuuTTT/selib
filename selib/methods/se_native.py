@@ -75,3 +75,18 @@ def se_hier_nni(G, k=None, seed=0):
     if k is not None and len(set(labels)) > k:
         labels = _merge_down_to_k(G, labels, k, seed=seed)
     return labels
+
+
+@method("se_nni_fast", family="community_detection", is_se=True, native=True,
+        paper="this lib: fast multi-start hierarchy plus exact NNI search",
+        note="native: SE-agglomerative/recursive-SE/Paris starts, exact rooted "
+             "NNI descent, and bounded two-step escape")
+def se_nni_fast(G, k=None, seed=0):
+    from ..htree import encoding_tree_nni_fast, top_level_labels
+    from ..seopt import _merge_down_to_k
+    root, _, _, _ = encoding_tree_nni_fast(G, seed=seed)
+    n = G.number_of_nodes()
+    labels = top_level_labels(root, n)
+    if k is not None and len(set(labels)) > k:
+        labels = _merge_down_to_k(G, labels, k, seed=seed)
+    return labels

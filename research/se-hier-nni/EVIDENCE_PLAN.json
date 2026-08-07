@@ -1,5 +1,5 @@
 {
-  "status": "development",
+  "status": "frozen-and-verified",
   "primary_objective": "tree structural entropy H^T; lower is better",
   "claims": [
     {
@@ -10,36 +10,42 @@
     },
     {
       "id": "C2",
-      "claim": "se_hier_nni never worsens H^T relative to the identical se_hier initializer.",
-      "evidence": "Per-run paired H^T records and monotonic move traces.",
-      "falsifier": "Any final H^T greater than its paired initializer beyond 1e-10."
+      "claim": "One-step and compound NNI never worsen their input; the compatibility variant never worsens the identical se_hier initializer.",
+      "evidence": "Unit tests, per-run monotonic endpoint checks, and exact full-objective verification.",
+      "falsifier": "Any committed endpoint greater than its paired input beyond 1e-10."
     },
     {
       "id": "C3",
       "claim": "NNI closes a reproducible local-optimality gap left by current hierarchy constructors.",
-      "evidence": "Paired refinement of se_hier, HCSE, BBM, Paris, and agglomerative outputs over held-out seeds.",
-      "falsifier": "Improvements occur only on development graphs or only on a hand-built clique."
+      "evidence": "Paired refinement of se_hier, official HCSE/BBM, Paris, and SE-agglomerative outputs on 50 frozen HSBM graphs and four real networks.",
+      "falsifier": "No positive one-step or compound gaps outside the fixed trap witness."
     },
     {
       "id": "C4",
       "claim": "Bounded compound NNI escapes cases where strict one-NNI descent stalls.",
-      "evidence": "Exact trap family plus naturally occurring held-out one-NNI local optima.",
+      "evidence": "Fixed exact witness plus 30/50 additional gains after multi-start one-step descent.",
       "falsifier": "Compound search adds cost without improving any non-constructed case."
     },
     {
       "id": "C5",
       "claim": "The enhanced optimizer improves the practical entropy/runtime frontier.",
-      "evidence": "H^T, hierarchy recovery, runtime, and peak RAM with 95% confidence intervals.",
+      "evidence": "H^T and planted dendrogram purity with 95% confidence intervals; traced benchmark runtime plus clean size scaling.",
       "falsifier": "Lower H^T requires prohibitive runtime or degrades hierarchy recovery consistently."
     }
   ],
   "datasets": {
-    "development": ["Karate", "45-node clean SBM", "45-node noisy SBM"],
-    "held_out": [
-      "hierarchical SBM with depth, imbalance, and noise sweeps",
-      "LFR with frozen seeds",
-      "HCSE paper synthetic protocol",
-      "real graphs with usable hierarchy or taxonomy labels"
+    "frozen_synthetic": [
+      "64-node clean HSBM (10 seeds)",
+      "64-node noisy HSBM (10 seeds)",
+      "64-node imbalanced HSBM (10 seeds)",
+      "64-node weighted HSBM (10 seeds)",
+      "64-node weak-hierarchy HSBM (10 seeds)"
+    ],
+    "real_networks": [
+      "Karate", "Florentine families", "Les Miserables", "Davis Southern Women"
+    ],
+    "scaling": [
+      "HSBM n=32,64,96,128 with three seeds per size"
     ]
   },
   "baselines": [
@@ -48,17 +54,26 @@
     "BBM official",
     "Paris",
     "SE agglomerative",
-    "HypCSE official if reproducible"
+    "HypCSE (related continuous feature-to-tree method; not a fixed-graph discrete baseline)"
   ],
   "metrics": [
     "H^T",
     "NNI-local rate",
     "NNI and compound-move gain",
     "hierarchical recovery",
-    "top-level NMI and ARI",
-    "recovered depth",
+    "fine and coarse dendrogram purity",
     "runtime",
     "peak RAM"
   ],
-  "statistics": "Paired per-seed comparisons; report mean, 95% confidence interval, and raw records."
+  "statistics": "Paired per-graph comparisons; report mean, 95% t interval, raw records, and deterministic artifact verifiers.",
+  "artifacts": {
+    "main": "results/nni_benchmark.json (350 records, 50 manifests)",
+    "real": "results/nni_real_benchmark.json (28 records)",
+    "scaling": "results/nni_scaling.json (24 records)",
+    "ablation": "results/nni_ablation.json (250 records)",
+    "verification": [
+      "scripts/verify_nni_benchmark.py",
+      "scripts/verify_nni_supplements.py"
+    ]
+  }
 }

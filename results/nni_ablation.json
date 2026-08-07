@@ -1,0 +1,1520 @@
+{
+  "protocol": {
+    "base": "tamc-nni-v1",
+    "seeds": 10,
+    "regimes": [
+      "clean",
+      "noisy",
+      "imbalanced",
+      "weighted",
+      "weak-hierarchy"
+    ],
+    "compound": {
+      "rounds": 8,
+      "beam_width": 16,
+      "barrier_bits": 0.05
+    }
+  },
+  "records": [
+    {
+      "dataset": "clean",
+      "seed": 0,
+      "variant": "SE-agglomerative",
+      "h": 3.1546660512488076
+    },
+    {
+      "dataset": "clean",
+      "seed": 0,
+      "variant": "SE-agglomerative+NNI",
+      "h": 3.076888237685253
+    },
+    {
+      "dataset": "clean",
+      "seed": 0,
+      "variant": "Multi-start",
+      "h": 3.1546660512488076
+    },
+    {
+      "dataset": "clean",
+      "seed": 0,
+      "variant": "Multi-start+NNI",
+      "h": 3.076888237685253
+    },
+    {
+      "dataset": "clean",
+      "seed": 0,
+      "variant": "Multi-start+NNI+compound",
+      "h": 3.075109079462961
+    },
+    {
+      "dataset": "clean",
+      "seed": 1,
+      "variant": "SE-agglomerative",
+      "h": 2.8869040825047088
+    },
+    {
+      "dataset": "clean",
+      "seed": 1,
+      "variant": "SE-agglomerative+NNI",
+      "h": 2.8108427108465297
+    },
+    {
+      "dataset": "clean",
+      "seed": 1,
+      "variant": "Multi-start",
+      "h": 2.8249548329069754
+    },
+    {
+      "dataset": "clean",
+      "seed": 1,
+      "variant": "Multi-start+NNI",
+      "h": 2.8108427108465297
+    },
+    {
+      "dataset": "clean",
+      "seed": 1,
+      "variant": "Multi-start+NNI+compound",
+      "h": 2.8093645405545966
+    },
+    {
+      "dataset": "clean",
+      "seed": 2,
+      "variant": "SE-agglomerative",
+      "h": 2.9498248135218756
+    },
+    {
+      "dataset": "clean",
+      "seed": 2,
+      "variant": "SE-agglomerative+NNI",
+      "h": 2.919672988074848
+    },
+    {
+      "dataset": "clean",
+      "seed": 2,
+      "variant": "Multi-start",
+      "h": 2.9269088912841354
+    },
+    {
+      "dataset": "clean",
+      "seed": 2,
+      "variant": "Multi-start+NNI",
+      "h": 2.919672988074848
+    },
+    {
+      "dataset": "clean",
+      "seed": 2,
+      "variant": "Multi-start+NNI+compound",
+      "h": 2.9122076330061457
+    },
+    {
+      "dataset": "clean",
+      "seed": 3,
+      "variant": "SE-agglomerative",
+      "h": 2.889275597526632
+    },
+    {
+      "dataset": "clean",
+      "seed": 3,
+      "variant": "SE-agglomerative+NNI",
+      "h": 2.8496220733043933
+    },
+    {
+      "dataset": "clean",
+      "seed": 3,
+      "variant": "Multi-start",
+      "h": 2.889275597526632
+    },
+    {
+      "dataset": "clean",
+      "seed": 3,
+      "variant": "Multi-start+NNI",
+      "h": 2.8496220733043933
+    },
+    {
+      "dataset": "clean",
+      "seed": 3,
+      "variant": "Multi-start+NNI+compound",
+      "h": 2.8112770730702725
+    },
+    {
+      "dataset": "clean",
+      "seed": 4,
+      "variant": "SE-agglomerative",
+      "h": 3.0402725638201726
+    },
+    {
+      "dataset": "clean",
+      "seed": 4,
+      "variant": "SE-agglomerative+NNI",
+      "h": 2.9490547574421733
+    },
+    {
+      "dataset": "clean",
+      "seed": 4,
+      "variant": "Multi-start",
+      "h": 3.0402725638201726
+    },
+    {
+      "dataset": "clean",
+      "seed": 4,
+      "variant": "Multi-start+NNI",
+      "h": 2.9490547574421733
+    },
+    {
+      "dataset": "clean",
+      "seed": 4,
+      "variant": "Multi-start+NNI+compound",
+      "h": 2.9484791622129913
+    },
+    {
+      "dataset": "clean",
+      "seed": 5,
+      "variant": "SE-agglomerative",
+      "h": 3.038918528130721
+    },
+    {
+      "dataset": "clean",
+      "seed": 5,
+      "variant": "SE-agglomerative+NNI",
+      "h": 2.9707553551204966
+    },
+    {
+      "dataset": "clean",
+      "seed": 5,
+      "variant": "Multi-start",
+      "h": 3.038918528130721
+    },
+    {
+      "dataset": "clean",
+      "seed": 5,
+      "variant": "Multi-start+NNI",
+      "h": 2.9707553551204966
+    },
+    {
+      "dataset": "clean",
+      "seed": 5,
+      "variant": "Multi-start+NNI+compound",
+      "h": 2.9687542577234036
+    },
+    {
+      "dataset": "clean",
+      "seed": 6,
+      "variant": "SE-agglomerative",
+      "h": 2.7967608515503324
+    },
+    {
+      "dataset": "clean",
+      "seed": 6,
+      "variant": "SE-agglomerative+NNI",
+      "h": 2.7315963599256583
+    },
+    {
+      "dataset": "clean",
+      "seed": 6,
+      "variant": "Multi-start",
+      "h": 2.79279137319899
+    },
+    {
+      "dataset": "clean",
+      "seed": 6,
+      "variant": "Multi-start+NNI",
+      "h": 2.7315963599256583
+    },
+    {
+      "dataset": "clean",
+      "seed": 6,
+      "variant": "Multi-start+NNI+compound",
+      "h": 2.7307981466738345
+    },
+    {
+      "dataset": "clean",
+      "seed": 7,
+      "variant": "SE-agglomerative",
+      "h": 2.9305044509664584
+    },
+    {
+      "dataset": "clean",
+      "seed": 7,
+      "variant": "SE-agglomerative+NNI",
+      "h": 2.8398981924441675
+    },
+    {
+      "dataset": "clean",
+      "seed": 7,
+      "variant": "Multi-start",
+      "h": 2.9210982788322175
+    },
+    {
+      "dataset": "clean",
+      "seed": 7,
+      "variant": "Multi-start+NNI",
+      "h": 2.8398981924441675
+    },
+    {
+      "dataset": "clean",
+      "seed": 7,
+      "variant": "Multi-start+NNI+compound",
+      "h": 2.8398981924441675
+    },
+    {
+      "dataset": "clean",
+      "seed": 8,
+      "variant": "SE-agglomerative",
+      "h": 2.7479821718668864
+    },
+    {
+      "dataset": "clean",
+      "seed": 8,
+      "variant": "SE-agglomerative+NNI",
+      "h": 2.703353730433649
+    },
+    {
+      "dataset": "clean",
+      "seed": 8,
+      "variant": "Multi-start",
+      "h": 2.732697221006505
+    },
+    {
+      "dataset": "clean",
+      "seed": 8,
+      "variant": "Multi-start+NNI",
+      "h": 2.703353730433649
+    },
+    {
+      "dataset": "clean",
+      "seed": 8,
+      "variant": "Multi-start+NNI+compound",
+      "h": 2.701480775368358
+    },
+    {
+      "dataset": "clean",
+      "seed": 9,
+      "variant": "SE-agglomerative",
+      "h": 2.76209641288928
+    },
+    {
+      "dataset": "clean",
+      "seed": 9,
+      "variant": "SE-agglomerative+NNI",
+      "h": 2.6538591370513362
+    },
+    {
+      "dataset": "clean",
+      "seed": 9,
+      "variant": "Multi-start",
+      "h": 2.709659678382366
+    },
+    {
+      "dataset": "clean",
+      "seed": 9,
+      "variant": "Multi-start+NNI",
+      "h": 2.6538591370513362
+    },
+    {
+      "dataset": "clean",
+      "seed": 9,
+      "variant": "Multi-start+NNI+compound",
+      "h": 2.6538591370513362
+    },
+    {
+      "dataset": "noisy",
+      "seed": 0,
+      "variant": "SE-agglomerative",
+      "h": 3.8083365605326933
+    },
+    {
+      "dataset": "noisy",
+      "seed": 0,
+      "variant": "SE-agglomerative+NNI",
+      "h": 3.7797435774600365
+    },
+    {
+      "dataset": "noisy",
+      "seed": 0,
+      "variant": "Multi-start",
+      "h": 3.743819528603762
+    },
+    {
+      "dataset": "noisy",
+      "seed": 0,
+      "variant": "Multi-start+NNI",
+      "h": 3.743183030538778
+    },
+    {
+      "dataset": "noisy",
+      "seed": 0,
+      "variant": "Multi-start+NNI+compound",
+      "h": 3.743183030538778
+    },
+    {
+      "dataset": "noisy",
+      "seed": 1,
+      "variant": "SE-agglomerative",
+      "h": 3.5452353271309875
+    },
+    {
+      "dataset": "noisy",
+      "seed": 1,
+      "variant": "SE-agglomerative+NNI",
+      "h": 3.52835010030179
+    },
+    {
+      "dataset": "noisy",
+      "seed": 1,
+      "variant": "Multi-start",
+      "h": 3.5452353271309875
+    },
+    {
+      "dataset": "noisy",
+      "seed": 1,
+      "variant": "Multi-start+NNI",
+      "h": 3.52835010030179
+    },
+    {
+      "dataset": "noisy",
+      "seed": 1,
+      "variant": "Multi-start+NNI+compound",
+      "h": 3.52835010030179
+    },
+    {
+      "dataset": "noisy",
+      "seed": 2,
+      "variant": "SE-agglomerative",
+      "h": 3.738678556733216
+    },
+    {
+      "dataset": "noisy",
+      "seed": 2,
+      "variant": "SE-agglomerative+NNI",
+      "h": 3.716670219796389
+    },
+    {
+      "dataset": "noisy",
+      "seed": 2,
+      "variant": "Multi-start",
+      "h": 3.738678556733216
+    },
+    {
+      "dataset": "noisy",
+      "seed": 2,
+      "variant": "Multi-start+NNI",
+      "h": 3.716670219796389
+    },
+    {
+      "dataset": "noisy",
+      "seed": 2,
+      "variant": "Multi-start+NNI+compound",
+      "h": 3.716670219796389
+    },
+    {
+      "dataset": "noisy",
+      "seed": 3,
+      "variant": "SE-agglomerative",
+      "h": 3.8054527460392036
+    },
+    {
+      "dataset": "noisy",
+      "seed": 3,
+      "variant": "SE-agglomerative+NNI",
+      "h": 3.7839847771270794
+    },
+    {
+      "dataset": "noisy",
+      "seed": 3,
+      "variant": "Multi-start",
+      "h": 3.8054527460392036
+    },
+    {
+      "dataset": "noisy",
+      "seed": 3,
+      "variant": "Multi-start+NNI",
+      "h": 3.7839847771270794
+    },
+    {
+      "dataset": "noisy",
+      "seed": 3,
+      "variant": "Multi-start+NNI+compound",
+      "h": 3.7804721088731505
+    },
+    {
+      "dataset": "noisy",
+      "seed": 4,
+      "variant": "SE-agglomerative",
+      "h": 3.7727754961013296
+    },
+    {
+      "dataset": "noisy",
+      "seed": 4,
+      "variant": "SE-agglomerative+NNI",
+      "h": 3.7154855018303614
+    },
+    {
+      "dataset": "noisy",
+      "seed": 4,
+      "variant": "Multi-start",
+      "h": 3.733011830413325
+    },
+    {
+      "dataset": "noisy",
+      "seed": 4,
+      "variant": "Multi-start+NNI",
+      "h": 3.7154855018303614
+    },
+    {
+      "dataset": "noisy",
+      "seed": 4,
+      "variant": "Multi-start+NNI+compound",
+      "h": 3.7129452140507793
+    },
+    {
+      "dataset": "noisy",
+      "seed": 5,
+      "variant": "SE-agglomerative",
+      "h": 3.835323231031088
+    },
+    {
+      "dataset": "noisy",
+      "seed": 5,
+      "variant": "SE-agglomerative+NNI",
+      "h": 3.8025572165805905
+    },
+    {
+      "dataset": "noisy",
+      "seed": 5,
+      "variant": "Multi-start",
+      "h": 3.835323231031088
+    },
+    {
+      "dataset": "noisy",
+      "seed": 5,
+      "variant": "Multi-start+NNI",
+      "h": 3.8025572165805905
+    },
+    {
+      "dataset": "noisy",
+      "seed": 5,
+      "variant": "Multi-start+NNI+compound",
+      "h": 3.7971595857933593
+    },
+    {
+      "dataset": "noisy",
+      "seed": 6,
+      "variant": "SE-agglomerative",
+      "h": 3.621362393689817
+    },
+    {
+      "dataset": "noisy",
+      "seed": 6,
+      "variant": "SE-agglomerative+NNI",
+      "h": 3.592474376269908
+    },
+    {
+      "dataset": "noisy",
+      "seed": 6,
+      "variant": "Multi-start",
+      "h": 3.596880817556398
+    },
+    {
+      "dataset": "noisy",
+      "seed": 6,
+      "variant": "Multi-start+NNI",
+      "h": 3.592474376269908
+    },
+    {
+      "dataset": "noisy",
+      "seed": 6,
+      "variant": "Multi-start+NNI+compound",
+      "h": 3.590379118272432
+    },
+    {
+      "dataset": "noisy",
+      "seed": 7,
+      "variant": "SE-agglomerative",
+      "h": 3.714850375276624
+    },
+    {
+      "dataset": "noisy",
+      "seed": 7,
+      "variant": "SE-agglomerative+NNI",
+      "h": 3.7029136235535796
+    },
+    {
+      "dataset": "noisy",
+      "seed": 7,
+      "variant": "Multi-start",
+      "h": 3.714850375276624
+    },
+    {
+      "dataset": "noisy",
+      "seed": 7,
+      "variant": "Multi-start+NNI",
+      "h": 3.7029136235535796
+    },
+    {
+      "dataset": "noisy",
+      "seed": 7,
+      "variant": "Multi-start+NNI+compound",
+      "h": 3.7024841331359126
+    },
+    {
+      "dataset": "noisy",
+      "seed": 8,
+      "variant": "SE-agglomerative",
+      "h": 3.6273971984969022
+    },
+    {
+      "dataset": "noisy",
+      "seed": 8,
+      "variant": "SE-agglomerative+NNI",
+      "h": 3.611561317297328
+    },
+    {
+      "dataset": "noisy",
+      "seed": 8,
+      "variant": "Multi-start",
+      "h": 3.605054228070335
+    },
+    {
+      "dataset": "noisy",
+      "seed": 8,
+      "variant": "Multi-start+NNI",
+      "h": 3.59730919545882
+    },
+    {
+      "dataset": "noisy",
+      "seed": 8,
+      "variant": "Multi-start+NNI+compound",
+      "h": 3.589825095799362
+    },
+    {
+      "dataset": "noisy",
+      "seed": 9,
+      "variant": "SE-agglomerative",
+      "h": 3.6468206530432346
+    },
+    {
+      "dataset": "noisy",
+      "seed": 9,
+      "variant": "SE-agglomerative+NNI",
+      "h": 3.6058568742584005
+    },
+    {
+      "dataset": "noisy",
+      "seed": 9,
+      "variant": "Multi-start",
+      "h": 3.591830689531215
+    },
+    {
+      "dataset": "noisy",
+      "seed": 9,
+      "variant": "Multi-start+NNI",
+      "h": 3.591830689531215
+    },
+    {
+      "dataset": "noisy",
+      "seed": 9,
+      "variant": "Multi-start+NNI+compound",
+      "h": 3.5895119562351354
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 0,
+      "variant": "SE-agglomerative",
+      "h": 3.452860078517133
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 0,
+      "variant": "SE-agglomerative+NNI",
+      "h": 3.4200456072358136
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 0,
+      "variant": "Multi-start",
+      "h": 3.350158696927438
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 0,
+      "variant": "Multi-start+NNI",
+      "h": 3.350158696927438
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 0,
+      "variant": "Multi-start+NNI+compound",
+      "h": 3.350158696927438
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 1,
+      "variant": "SE-agglomerative",
+      "h": 3.112982515642109
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 1,
+      "variant": "SE-agglomerative+NNI",
+      "h": 3.080022456982334
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 1,
+      "variant": "Multi-start",
+      "h": 3.112982515642109
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 1,
+      "variant": "Multi-start+NNI",
+      "h": 3.080022456982334
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 1,
+      "variant": "Multi-start+NNI+compound",
+      "h": 3.080022456982334
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 2,
+      "variant": "SE-agglomerative",
+      "h": 3.2298356378945163
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 2,
+      "variant": "SE-agglomerative+NNI",
+      "h": 3.168003794801541
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 2,
+      "variant": "Multi-start",
+      "h": 3.190117166699502
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 2,
+      "variant": "Multi-start+NNI",
+      "h": 3.168003794801541
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 2,
+      "variant": "Multi-start+NNI+compound",
+      "h": 3.164699411249009
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 3,
+      "variant": "SE-agglomerative",
+      "h": 3.3002640427385024
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 3,
+      "variant": "SE-agglomerative+NNI",
+      "h": 3.225873432073926
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 3,
+      "variant": "Multi-start",
+      "h": 3.1893062946481945
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 3,
+      "variant": "Multi-start+NNI",
+      "h": 3.1857582576497596
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 3,
+      "variant": "Multi-start+NNI+compound",
+      "h": 3.1857582576497596
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 4,
+      "variant": "SE-agglomerative",
+      "h": 3.2735048927912644
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 4,
+      "variant": "SE-agglomerative+NNI",
+      "h": 3.217455693696958
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 4,
+      "variant": "Multi-start",
+      "h": 3.24100229382173
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 4,
+      "variant": "Multi-start+NNI",
+      "h": 3.217455693696958
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 4,
+      "variant": "Multi-start+NNI+compound",
+      "h": 3.1868284394823028
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 5,
+      "variant": "SE-agglomerative",
+      "h": 3.4009282583107945
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 5,
+      "variant": "SE-agglomerative+NNI",
+      "h": 3.3263442999059083
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 5,
+      "variant": "Multi-start",
+      "h": 3.3728044096672347
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 5,
+      "variant": "Multi-start+NNI",
+      "h": 3.3263442999059083
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 5,
+      "variant": "Multi-start+NNI+compound",
+      "h": 3.3263442999059083
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 6,
+      "variant": "SE-agglomerative",
+      "h": 3.020848310924168
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 6,
+      "variant": "SE-agglomerative+NNI",
+      "h": 2.9730531897948604
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 6,
+      "variant": "Multi-start",
+      "h": 2.9935733928588766
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 6,
+      "variant": "Multi-start+NNI",
+      "h": 2.9730531897948604
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 6,
+      "variant": "Multi-start+NNI+compound",
+      "h": 2.969707663106856
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 7,
+      "variant": "SE-agglomerative",
+      "h": 3.1837220063970815
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 7,
+      "variant": "SE-agglomerative+NNI",
+      "h": 3.06046061824993
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 7,
+      "variant": "Multi-start",
+      "h": 3.071396996693765
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 7,
+      "variant": "Multi-start+NNI",
+      "h": 3.06046061824993
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 7,
+      "variant": "Multi-start+NNI+compound",
+      "h": 3.0535681552747254
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 8,
+      "variant": "SE-agglomerative",
+      "h": 3.27449562351187
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 8,
+      "variant": "SE-agglomerative+NNI",
+      "h": 3.236572804083732
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 8,
+      "variant": "Multi-start",
+      "h": 3.2180378060044745
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 8,
+      "variant": "Multi-start+NNI",
+      "h": 3.2148269863815915
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 8,
+      "variant": "Multi-start+NNI+compound",
+      "h": 3.2133545138646884
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 9,
+      "variant": "SE-agglomerative",
+      "h": 2.929674271773886
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 9,
+      "variant": "SE-agglomerative+NNI",
+      "h": 2.8211881162646906
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 9,
+      "variant": "Multi-start",
+      "h": 2.899498417322059
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 9,
+      "variant": "Multi-start+NNI",
+      "h": 2.8211881162646906
+    },
+    {
+      "dataset": "imbalanced",
+      "seed": 9,
+      "variant": "Multi-start+NNI+compound",
+      "h": 2.8211881162646906
+    },
+    {
+      "dataset": "weighted",
+      "seed": 0,
+      "variant": "SE-agglomerative",
+      "h": 2.571337966125315
+    },
+    {
+      "dataset": "weighted",
+      "seed": 0,
+      "variant": "SE-agglomerative+NNI",
+      "h": 2.4807274387121208
+    },
+    {
+      "dataset": "weighted",
+      "seed": 0,
+      "variant": "Multi-start",
+      "h": 2.4666229072955432
+    },
+    {
+      "dataset": "weighted",
+      "seed": 0,
+      "variant": "Multi-start+NNI",
+      "h": 2.4659778968417663
+    },
+    {
+      "dataset": "weighted",
+      "seed": 0,
+      "variant": "Multi-start+NNI+compound",
+      "h": 2.464682940121937
+    },
+    {
+      "dataset": "weighted",
+      "seed": 1,
+      "variant": "SE-agglomerative",
+      "h": 2.47988804167036
+    },
+    {
+      "dataset": "weighted",
+      "seed": 1,
+      "variant": "SE-agglomerative+NNI",
+      "h": 2.3667431740819764
+    },
+    {
+      "dataset": "weighted",
+      "seed": 1,
+      "variant": "Multi-start",
+      "h": 2.3668007378122513
+    },
+    {
+      "dataset": "weighted",
+      "seed": 1,
+      "variant": "Multi-start+NNI",
+      "h": 2.3663558331769696
+    },
+    {
+      "dataset": "weighted",
+      "seed": 1,
+      "variant": "Multi-start+NNI+compound",
+      "h": 2.348869052180414
+    },
+    {
+      "dataset": "weighted",
+      "seed": 2,
+      "variant": "SE-agglomerative",
+      "h": 2.3977112813593764
+    },
+    {
+      "dataset": "weighted",
+      "seed": 2,
+      "variant": "SE-agglomerative+NNI",
+      "h": 2.3060618003360873
+    },
+    {
+      "dataset": "weighted",
+      "seed": 2,
+      "variant": "Multi-start",
+      "h": 2.312575261944693
+    },
+    {
+      "dataset": "weighted",
+      "seed": 2,
+      "variant": "Multi-start+NNI",
+      "h": 2.3060618003360873
+    },
+    {
+      "dataset": "weighted",
+      "seed": 2,
+      "variant": "Multi-start+NNI+compound",
+      "h": 2.2985481835796695
+    },
+    {
+      "dataset": "weighted",
+      "seed": 3,
+      "variant": "SE-agglomerative",
+      "h": 2.6176770213675447
+    },
+    {
+      "dataset": "weighted",
+      "seed": 3,
+      "variant": "SE-agglomerative+NNI",
+      "h": 2.5183542382092017
+    },
+    {
+      "dataset": "weighted",
+      "seed": 3,
+      "variant": "Multi-start",
+      "h": 2.4776499099211957
+    },
+    {
+      "dataset": "weighted",
+      "seed": 3,
+      "variant": "Multi-start+NNI",
+      "h": 2.4776499099211957
+    },
+    {
+      "dataset": "weighted",
+      "seed": 3,
+      "variant": "Multi-start+NNI+compound",
+      "h": 2.4776499099211957
+    },
+    {
+      "dataset": "weighted",
+      "seed": 4,
+      "variant": "SE-agglomerative",
+      "h": 2.4459191310582717
+    },
+    {
+      "dataset": "weighted",
+      "seed": 4,
+      "variant": "SE-agglomerative+NNI",
+      "h": 2.3867345481291946
+    },
+    {
+      "dataset": "weighted",
+      "seed": 4,
+      "variant": "Multi-start",
+      "h": 2.374242521807742
+    },
+    {
+      "dataset": "weighted",
+      "seed": 4,
+      "variant": "Multi-start+NNI",
+      "h": 2.3734606177627433
+    },
+    {
+      "dataset": "weighted",
+      "seed": 4,
+      "variant": "Multi-start+NNI+compound",
+      "h": 2.3734606177627433
+    },
+    {
+      "dataset": "weighted",
+      "seed": 5,
+      "variant": "SE-agglomerative",
+      "h": 2.5237128383107845
+    },
+    {
+      "dataset": "weighted",
+      "seed": 5,
+      "variant": "SE-agglomerative+NNI",
+      "h": 2.4448081460766478
+    },
+    {
+      "dataset": "weighted",
+      "seed": 5,
+      "variant": "Multi-start",
+      "h": 2.467616277987484
+    },
+    {
+      "dataset": "weighted",
+      "seed": 5,
+      "variant": "Multi-start+NNI",
+      "h": 2.4448081460766478
+    },
+    {
+      "dataset": "weighted",
+      "seed": 5,
+      "variant": "Multi-start+NNI+compound",
+      "h": 2.4406314360131827
+    },
+    {
+      "dataset": "weighted",
+      "seed": 6,
+      "variant": "SE-agglomerative",
+      "h": 2.3465010548511467
+    },
+    {
+      "dataset": "weighted",
+      "seed": 6,
+      "variant": "SE-agglomerative+NNI",
+      "h": 2.2530867198696964
+    },
+    {
+      "dataset": "weighted",
+      "seed": 6,
+      "variant": "Multi-start",
+      "h": 2.279389125721711
+    },
+    {
+      "dataset": "weighted",
+      "seed": 6,
+      "variant": "Multi-start+NNI",
+      "h": 2.2530867198696964
+    },
+    {
+      "dataset": "weighted",
+      "seed": 6,
+      "variant": "Multi-start+NNI+compound",
+      "h": 2.2530867198696964
+    },
+    {
+      "dataset": "weighted",
+      "seed": 7,
+      "variant": "SE-agglomerative",
+      "h": 2.457339267410985
+    },
+    {
+      "dataset": "weighted",
+      "seed": 7,
+      "variant": "SE-agglomerative+NNI",
+      "h": 2.3083212618411424
+    },
+    {
+      "dataset": "weighted",
+      "seed": 7,
+      "variant": "Multi-start",
+      "h": 2.291885227908595
+    },
+    {
+      "dataset": "weighted",
+      "seed": 7,
+      "variant": "Multi-start+NNI",
+      "h": 2.291885227908595
+    },
+    {
+      "dataset": "weighted",
+      "seed": 7,
+      "variant": "Multi-start+NNI+compound",
+      "h": 2.291885227908595
+    },
+    {
+      "dataset": "weighted",
+      "seed": 8,
+      "variant": "SE-agglomerative",
+      "h": 2.3362260962913273
+    },
+    {
+      "dataset": "weighted",
+      "seed": 8,
+      "variant": "SE-agglomerative+NNI",
+      "h": 2.2457058750167014
+    },
+    {
+      "dataset": "weighted",
+      "seed": 8,
+      "variant": "Multi-start",
+      "h": 2.2698025190564586
+    },
+    {
+      "dataset": "weighted",
+      "seed": 8,
+      "variant": "Multi-start+NNI",
+      "h": 2.2457058750167014
+    },
+    {
+      "dataset": "weighted",
+      "seed": 8,
+      "variant": "Multi-start+NNI+compound",
+      "h": 2.2457058750167014
+    },
+    {
+      "dataset": "weighted",
+      "seed": 9,
+      "variant": "SE-agglomerative",
+      "h": 2.2631368018896683
+    },
+    {
+      "dataset": "weighted",
+      "seed": 9,
+      "variant": "SE-agglomerative+NNI",
+      "h": 2.184452476346947
+    },
+    {
+      "dataset": "weighted",
+      "seed": 9,
+      "variant": "Multi-start",
+      "h": 2.175245053620187
+    },
+    {
+      "dataset": "weighted",
+      "seed": 9,
+      "variant": "Multi-start+NNI",
+      "h": 2.1724699092903164
+    },
+    {
+      "dataset": "weighted",
+      "seed": 9,
+      "variant": "Multi-start+NNI+compound",
+      "h": 2.1724699092903164
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 0,
+      "variant": "SE-agglomerative",
+      "h": 3.5425070036875765
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 0,
+      "variant": "SE-agglomerative+NNI",
+      "h": 3.5213120575833003
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 0,
+      "variant": "Multi-start",
+      "h": 3.5425070036875765
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 0,
+      "variant": "Multi-start+NNI",
+      "h": 3.5213120575833003
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 0,
+      "variant": "Multi-start+NNI+compound",
+      "h": 3.5213120575833003
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 1,
+      "variant": "SE-agglomerative",
+      "h": 3.3649390671817274
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 1,
+      "variant": "SE-agglomerative+NNI",
+      "h": 3.35467772528441
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 1,
+      "variant": "Multi-start",
+      "h": 3.3649390671817274
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 1,
+      "variant": "Multi-start+NNI",
+      "h": 3.35467772528441
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 1,
+      "variant": "Multi-start+NNI+compound",
+      "h": 3.35467772528441
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 2,
+      "variant": "SE-agglomerative",
+      "h": 3.400255450713312
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 2,
+      "variant": "SE-agglomerative+NNI",
+      "h": 3.357775183466139
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 2,
+      "variant": "Multi-start",
+      "h": 3.3905024635774876
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 2,
+      "variant": "Multi-start+NNI",
+      "h": 3.357775183466139
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 2,
+      "variant": "Multi-start+NNI+compound",
+      "h": 3.3556688650779103
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 3,
+      "variant": "SE-agglomerative",
+      "h": 3.5303717228106546
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 3,
+      "variant": "SE-agglomerative+NNI",
+      "h": 3.4884631190229034
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 3,
+      "variant": "Multi-start",
+      "h": 3.467939773691411
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 3,
+      "variant": "Multi-start+NNI",
+      "h": 3.467939773691411
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 3,
+      "variant": "Multi-start+NNI+compound",
+      "h": 3.4668034732700357
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 4,
+      "variant": "SE-agglomerative",
+      "h": 3.6393656719217837
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 4,
+      "variant": "SE-agglomerative+NNI",
+      "h": 3.5834122332696317
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 4,
+      "variant": "Multi-start",
+      "h": 3.6267330245759433
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 4,
+      "variant": "Multi-start+NNI",
+      "h": 3.5834122332696317
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 4,
+      "variant": "Multi-start+NNI+compound",
+      "h": 3.5824090541271776
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 5,
+      "variant": "SE-agglomerative",
+      "h": 3.6469683891674487
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 5,
+      "variant": "SE-agglomerative+NNI",
+      "h": 3.5859275156779336
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 5,
+      "variant": "Multi-start",
+      "h": 3.6469683891674487
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 5,
+      "variant": "Multi-start+NNI",
+      "h": 3.5859275156779336
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 5,
+      "variant": "Multi-start+NNI+compound",
+      "h": 3.5859275156779336
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 6,
+      "variant": "SE-agglomerative",
+      "h": 3.3236597888725905
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 6,
+      "variant": "SE-agglomerative+NNI",
+      "h": 3.315897853567394
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 6,
+      "variant": "Multi-start",
+      "h": 3.3236597888725905
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 6,
+      "variant": "Multi-start+NNI",
+      "h": 3.315897853567394
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 6,
+      "variant": "Multi-start+NNI+compound",
+      "h": 3.315431902046424
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 7,
+      "variant": "SE-agglomerative",
+      "h": 3.32452709539921
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 7,
+      "variant": "SE-agglomerative+NNI",
+      "h": 3.281241791420856
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 7,
+      "variant": "Multi-start",
+      "h": 3.32452709539921
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 7,
+      "variant": "Multi-start+NNI",
+      "h": 3.281241791420856
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 7,
+      "variant": "Multi-start+NNI+compound",
+      "h": 3.281241791420856
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 8,
+      "variant": "SE-agglomerative",
+      "h": 3.2772831574636085
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 8,
+      "variant": "SE-agglomerative+NNI",
+      "h": 3.2528201227046463
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 8,
+      "variant": "Multi-start",
+      "h": 3.2772831574636085
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 8,
+      "variant": "Multi-start+NNI",
+      "h": 3.2528201227046463
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 8,
+      "variant": "Multi-start+NNI+compound",
+      "h": 3.2356415584751614
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 9,
+      "variant": "SE-agglomerative",
+      "h": 3.1916718021197164
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 9,
+      "variant": "SE-agglomerative+NNI",
+      "h": 3.17325112006037
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 9,
+      "variant": "Multi-start",
+      "h": 3.1780667494476864
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 9,
+      "variant": "Multi-start+NNI",
+      "h": 3.17325112006037
+    },
+    {
+      "dataset": "weak-hierarchy",
+      "seed": 9,
+      "variant": "Multi-start+NNI+compound",
+      "h": 3.172950084920878
+    }
+  ]
+}

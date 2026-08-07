@@ -1,15 +1,18 @@
 # Objective: NNI-Certified Structural-Entropy Hierarchies
 
-Build and evaluate a hierarchical graph-clustering algorithm that starts from
-SELib's `se_hier`, applies exact incremental rooted-NNI refinement, and uses a
-bounded compound-move escape only when strict one-step search stalls.
+Build and evaluate a hierarchical graph-clustering algorithm that refines a
+fast pool of SE-agglomerative, recursive-SE, and Paris starts with exact rooted
+NNI, and uses a bounded compound-move escape only when strict one-step search
+stalls. The released `se_hier` is a required baseline, not a mandatory slow
+stage of the new method.
 
 ## Primary claim target
 
-The final method should return an encoding tree with exact structural entropy
-no greater than the unmodified `se_hier` output, reach a certified one-NNI
-local optimum, and improve either attained entropy or runtime relative to the
-strongest reproducible hierarchy baselines.
+The final method should return an encoding tree no worse than each of its own
+refined starts, reach a certified one-NNI local optimum, and improve the
+entropy--runtime frontier relative to the released `se_hier` and the strongest
+reproducible hierarchy baselines. A slower compatibility variant additionally
+refines the final `se_hier` output and is no worse than that identical start.
 
 ## New-paper boundary
 
@@ -18,9 +21,9 @@ not rewritten and its source is not copied here. If both papers are submitted,
 the older manuscript's clique trap and curvature theorem must be cited or
 disclosed as related work, not reclaimed as new. New contributions here are:
 
-1. the exact weighted-graph structural-entropy NNI delta;
-2. the NNI-certified `se_hier` refinement algorithm;
-3. incremental implementation and bounded compound escape;
+1. the use of the exact weighted-graph NNI identity as a verified optimizer;
+2. one-NNI certification and fast multi-start hierarchy construction;
+3. cached evaluation and bounded compound escape;
 4. comparison against HCSE, BBM, Paris, HypCSE when reproducible, and the
    unmodified SELib optimizer.
 

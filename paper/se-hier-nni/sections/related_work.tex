@@ -1,0 +1,40 @@
+\section{Related Work}
+\paragraph{Structural entropy and hierarchy construction.}
+Li and Pan introduced structural information as an encoding-tree measure of
+network organization \cite{li2016}. HCSE and BBM develop hierarchy
+construction and balancing operations for this objective \cite{pan2025}.
+The structural-entropy survey organizes the broader theory, optimization, and
+application literature \cite{su2025survey}; HypCSE subsequently develops a
+continuous hyperbolic formulation for hierarchical clustering
+\cite{zeng2026hypcse}.
+Our work does not replace their constructors; it asks whether their output is
+locally optimal under an exact topology rotation and uses the answer as both a
+diagnostic and an optimizer.
+
+\paragraph{Graph hierarchical clustering.}
+Classical hierarchical clustering is predominantly agglomerative or divisive
+\cite{murtagh2012}. Paris is an agglomerative graph hierarchy related to
+modularity and provides a strong inexpensive initialization
+\cite{bonald2018paris}. Dasgupta-style objectives initiated a complementary
+algorithmic literature \cite{dasgupta2016}; average linkage and divisive local
+search have guarantees for its revenue dual \cite{moseley2017}. Sparsest-cut
+and spreading-metric algorithms give approximations for that family
+\cite{charikar2017,roy2017}, while admissible hierarchical objectives have been
+characterized more generally \cite{cohenaddad2019}. Continuous ultrametric
+fitting offers another optimization route \cite{chierchia2019}. These
+objectives are useful conceptual neighbors, but a local delta derived for one
+cannot be substituted for Eq.~\eqref{eq:tree-se}.
+
+\paragraph{Local search in tree space.}
+NNI is a classical neighborhood for phylogenetic trees; its reconfiguration
+distance is itself nontrivial \cite{litrompzhang1996}. Recent work studies NNI
+local search for hierarchical-clustering costs \cite{jowhari2024}. Our
+formula is specific to weighted graph structural entropy, exposes the two
+cross-module weights that determine a rotation, and is integrated with
+SE-specific constructors and verification.
+
+Unlike landscape analyses restricted to unit cliques, the present method
+operates on arbitrary weighted graphs and evaluates the complete tree entropy.
+The overlap is the elementary NNI identity; the new content is its verified
+optimizer, compound implementation, multi-start construction, and comparative
+evaluation. We do not claim that a local certificate is global optimality.

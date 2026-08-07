@@ -1,0 +1,34 @@
+\section{Preliminaries}
+\paragraph{Weighted graph and encoding tree.}
+Let $G=(V,E,w)$ be an undirected graph with nonnegative edge weights. For
+$S\subseteq V$, let $V_S=\vol(S)=\sum_{u\in S}d_u$, and let $g_S$ be the total
+weight of edges with exactly one endpoint in $S$. The total graph volume is
+$\vol(V)=\sum_ud_u=2\sum_{e\in E}w_e$. An encoding tree $T$ has one leaf per
+vertex. Each internal node $a$ represents the union $S_a$ of its descendant
+leaves; $a^-$ denotes its parent.
+
+The structural entropy of $G$ under $T$ is
+\begin{equation}
+ \HT(G)=-\sum_{a\ne r}\frac{g_{S_a}}{\vol(V)}
+ \log_2\frac{V_{S_a}}{V_{S_{a^-}}}.
+ \label{eq:tree-se}
+\end{equation}
+Our sole optimization objective is Eq.~\eqref{eq:tree-se}; lower is better.
+No ground-truth label is used to construct or select a tree.
+
+\paragraph{Constructors.}
+We distinguish a \emph{constructor}, which produces an initial tree, from a
+\emph{refiner}, which searches its neighboring topologies. The candidate pool
+contains (i) a binary SE-agglomerative dendrogram, (ii) a recursive SE
+partition tree, and (iii) a Paris dendrogram when the optional implementation
+is available \cite{bonald2018paris}. The original \texttt{se\_hier} additionally
+performs exact-guarded collapse and subtree-relocation search. HCSE and BBM are
+evaluated from their official implementation \cite{pan2025}.
+
+\paragraph{Rooted NNI.}
+An NNI move acts on a binary parent--child edge. Writing the local topology as
+$((A,B),C)$, the two nontrivial alternatives are $(A,(B,C))$ and
+$(B,(A,C))$. The leaf set, graph, and all modules outside the local parent
+$P=A\cup B\cup C$ remain unchanged. A rooted binary tree with $n$ labeled
+leaves has finitely many topologies, namely $(2n-3)!!$, so any strictly
+decreasing local search terminates.

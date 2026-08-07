@@ -1,0 +1,15 @@
+\begin{table}[t]
+\centering\small
+\caption{Component ablation pooled over 50 paired graphs. The gain and improved-run columns compare each row to the preceding row.}
+\label{tab:ablation}
+\begin{tabular}{lrrr}
+\toprule
+Variant & Mean $H^T$ & Mean gain & Improved runs \\
+\midrule
+SE agglomeration & 3.1435 & -- & -- \\
++ candidate pool & 3.1041 & 0.0394 & 34/50 \\
++ exact 1-NNI & 3.0794 & 0.0247 & 45/50 \\
++ compound escape & 3.0759 & 0.0035 & 30/50 \\
+\bottomrule
+\end{tabular}
+\end{table}

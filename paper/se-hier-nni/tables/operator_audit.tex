@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering\small
+\caption{NNI audit pooled over 50 paired graphs. Reduction is relative to each constructor's raw $H^T$; rates are the fractions of runs improved.}
+\label{tab:operator}
+\begin{tabular}{lrrrrr}
+\toprule
+Constructor & 1-NNI gain & 1-NNI hit & 2-step gain & 2-step hit & Time \\
+\midrule
+SE--agglomerative & 1.99\% & 100\% & 0.15\% & 72\% & 0.334s \\
+Paris & 0.06\% & 68\% & 0.07\% & 38\% & 0.181s \\
+HCSE & 0.00\% & 2\% & 0.00\% & 2\% & 0.055s \\
+BBM & 13.98\% & 100\% & 0.47\% & 92\% & 1.038s \\
+se\_hier & 0.36\% & 80\% & 0.06\% & 40\% & 0.200s \\
+\bottomrule
+\end{tabular}
+\end{table}

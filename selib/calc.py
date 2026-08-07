@@ -63,6 +63,13 @@ def optimal_tree_nni(G, seed=0):
     return root, float(hd_se(root, vol))
 
 
+def optimal_tree_nni_fast(G, seed=0):
+    """Fast multi-start encoding tree with exact and compound NNI search."""
+    from .htree import encoding_tree_nni_fast, hd_se
+    root, _, _, vol = encoding_tree_nni_fast(G, seed=seed)
+    return root, float(hd_se(root, vol))
+
+
 def structural_entropy(G, partition=None, *, dim=2, tree=None, k=None):
     """Unified entry point. See module docstring for the call forms."""
     if tree is not None:
