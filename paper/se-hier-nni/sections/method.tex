@@ -34,7 +34,8 @@ $B\cup C$ while preserving all leaves and the surrounding tree.}
 \end{figure}
 
 \begin{theorem}[Exact weighted NNI delta]\label{thm:delta}
-For $((A,B),C)\rightarrow(A,(B,C))$, the change in tree structural entropy is
+For an eligible rotation with $V_X,V_Y,V_P>0$, the change in tree structural
+entropy is
 \begin{equation}
  \Delta \HT=
  \frac{2}{\vol(V)}\left[
@@ -56,6 +57,9 @@ The parent-volume term in Eq.~\eqref{eq:nni-expanded} is essential and cannot
 be dropped merely because the edit is local.
 
 \begin{proof}
+First suppose the three child modules have positive volume; the zero-volume
+boundary case follows by deleting modules with no incident positive-weight
+edge and taking the corresponding zero-contribution limit.
 Only the terms for $A,B,C,X$, and $Y$ can change. Omitting the common factor
 $1/\vol(V)$, their old and new contributions are
 \begin{align*}

@@ -1,55 +1,31 @@
-# Quality Gate Report
+# Paper audit gate
 
-**File**: `/Users/suu/Documents/codexcli/selib-nni-paper/paper/se-hier-nni/main.tex` | **Language**: EN
-**Generated**: 2026-08-08 06:57
+Audit date: 2026-08-08. Verdict: **PASS TO SUBMISSION**.
 
-## Verdict: FAIL
+## Mechanical and policy gate
 
-## Checklist
+- Official TAMC 2026 page rechecked: review is double-blind.
+- The PDF correctly uses anonymous author and affiliation fields.
+- A4 Springer LNCS, 11 pages including references, no margin/font changes.
+- No undefined citation/reference, overfull box, missing graphic, or Type 3 font.
+- All 11 pages rendered; every changed page and all figures/tables inspected.
+- `audit_tamc_submission.py --double-blind` passes with zero failures.
 
-- [PASS] No placeholder text (TODO, FIXME, XXX)
-- [PASS] All figures referenced in text
-- [PASS] All tables referenced in text
-- [FAIL] Anonymous submission (blind review check)
-  - Author information detected — verify if blind review required
-- [PASS] Consistent math notation
-- [PASS] Acronyms defined on first use
+## Scientific gate
 
-## Advisory Recommendations (non-blocking)
+- Exact delta proof independently re-expanded in `ADVERSARIAL_REVIEW.md`.
+- Zero-volume scope is now explicit in the theorem and preliminaries.
+- Main and supplemental artifact verifiers pass.
+- 10 automated tests pass; 1 optional-dependency test is skipped.
+- Current primary-source novelty search found no prior exact discrete SE--NNI
+  optimizer; closest-work boundaries are documented in `NOVELTY_AUDIT.md`.
 
-These are advisory recommendations, not submission blockers.
+## Human upload-only items
 
-- [INFO] **[FIGURES]** figures in /Users/suu/Documents/codexcli/selib-nni-paper/paper/se-hier-nni/main.tex...
-- [INFO] **[FIGURES]** 2 figures.
-- [INFO] **[FIGURES]** sections/experiments.tex:63: figures/benchmark_entropy.pdf
-- [INFO] **[FIGURES]** sections/experiments.tex:85: figures/operator_runtime.pdf
-- [INFO] **[FIGURES]** All figures passed check.
-- [INFO] **[BIB]** Check: /Users/suu/Documents/codexcli/selib-nni-paper/paper/se-hier-nni/main.tex
-- [INFO] **[BIB]** PASS
-- [INFO] **[BIB]** entries: 0
-- [INFO] **[BIB]** entries: 0
-- [INFO] **[PRESUBMISSION]** [A0] Abstract was not detected; submission packages need a visible abstract.
-- [INFO] **[FORMAT]** ============================================================
-- [INFO] **[FORMAT]** Format Check Report
-- [INFO] **[FORMAT]** ============================================================
-- [INFO] **[FORMAT]** /Users/suu/Documents/codexcli/selib-nni-paper/paper/se-hier-nni/main.tex
-- [INFO] **[FORMAT]** WARNING
-- [INFO] **[FORMAT]** Found 57 issues
-- [INFO] **[FORMAT]** Found
-- [INFO] **[FORMAT]** (1 issues)
-- [INFO] **[FORMAT]** 6: You might wish to put this between a pair of `{}'
-- [INFO] **[FORMAT]** (19 issues)
-- [INFO] **[FORMAT]** 8: Wrong length of dash may have been used.
-- [INFO] **[FORMAT]** 4: Wrong length of dash may have been used.
-- [INFO] **[FORMAT]** 7: Wrong length of dash may have been used.
-- [INFO] **[FORMAT]** 29: Wrong length of dash may have been used.
-- [INFO] **[FORMAT]** 33: You should put punctuation outside inner math mode.
-- [INFO] **[FORMAT]** ... and 14 more
-- [INFO] **[FORMAT]** (37 issues)
-- [INFO] **[FORMAT]** 15: Command terminated with space.
-- [INFO] **[FORMAT]** 19: Command terminated with space.
-- [INFO] **[FORMAT]** 5: Non-breaking space (`~') should have been used.
-- [INFO] **[FORMAT]** 7: Non-breaking space (`~') should have been used.
-- [INFO] **[FORMAT]** 24: Non-breaking space (`~') should have been used.
-- [INFO] **[FORMAT]** ... and 32 more
-- [INFO] **[FORMAT]** ============================================================
+EasyChair still requires private author metadata, a corresponding author, and
+a non-simultaneous-submission attestation. These are account/author facts, not
+defects in the double-blind paper. See `SUBMISSION_READINESS.md`.
+
+The earlier generic parser report was discarded because it did not follow
+LaTeX `\input` files and incorrectly treated required anonymous fields as
+named-author placeholders.

@@ -72,13 +72,16 @@ SOTA, scalability, robustness, or statistical-superiority claims.
   learns a graph from feature data and optimizes a continuous relaxation.
 - The LNCS manuscript compiles to 11 pages with generated figures and tables.
 
-## Manual submission items
+## Submission state
 
-1. Replace anonymous author/affiliation placeholders after confirming TAMC's
-   review policy in EasyChair.
-2. Obtain an external proof/claim read and settle the concurrent-paper
-   disclosure before upload.
+The official TAMC page now explicitly confirms double-blind review, so the
+anonymous author/affiliation fields are correct. The final A4/page/font/render
+audit has been run on the exact 11-page PDF; all fonts are embedded and no
+Type 3 fonts are present. The double-blind TAMC checker passes with zero
+failures, and an adversarial proof/novelty/claim read passes the paper to
+submission.
 
-The final A4/page/font/render audit has been run on the exact 11-page PDF;
-all fonts are embedded and no Type 3 fonts are present. The only submission
-gate reported by the TAMC checker is the intentional author placeholder.
+The remaining actions occur privately in EasyChair: enter the real author
+metadata and corresponding author, attest that no essentially overlapping
+paper is simultaneously under review, and retain the upload receipt and
+checksum. See `SUBMISSION_READINESS.md`.

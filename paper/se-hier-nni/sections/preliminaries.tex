@@ -15,6 +15,9 @@ The structural entropy of $G$ under $T$ is
 \end{equation}
 Our sole optimization objective is Eq.~\eqref{eq:tree-se}; lower is better.
 No ground-truth label is used to construct or select a tree.
+For a zero-volume module, its summand is defined as zero; such a module has no
+incident positive-weight edge and can be attached after optimizing the
+positive-volume part of the tree.
 
 \paragraph{Constructors.}
 We distinguish a \emph{constructor}, which produces an initial tree, from a
