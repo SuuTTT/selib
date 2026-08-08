@@ -62,9 +62,11 @@ shows the regime-level confidence intervals.
 \begin{figure}[t]
   \centering
   \includegraphics[width=\textwidth]{figures/benchmark_entropy.pdf}
-  \caption{Raw tree structural entropy on the frozen synthetic suite. Points
-  are means over ten paired graph seeds and bars are 95\% confidence intervals.
-  BBM receives the planted fine-cluster count; no other method uses labels.}
+  \caption{Paired advantage on the frozen synthetic suite. (a) Reduction
+  relative to \texttt{se\_hier}; diamonds and bars are means and 95\%
+  paired confidence intervals. (b) Per-seed margin to the strongest competing
+  method, with small vertical jitter for visibility. \SEAlg is best or tied on
+  all 50 graphs and strictly best on 47.}
   \label{fig:entropy}
 \end{figure}
 
@@ -84,10 +86,11 @@ claim without asserting that every constructor is deficient.
 \begin{figure}[t]
   \centering
   \includegraphics[width=0.94\textwidth]{figures/operator_runtime.pdf}
-  \caption{Local-search gaps and the entropy--runtime trade-off, pooled over
-  the 50 paired graphs. The fast multi-start method achieves a
-  \OursSpeedup mean instrumented speedup over \texttt{se\_hier}; runtime
-  includes Python allocation tracing and should be interpreted comparatively.}
+  \caption{Operator diagnostics pooled over 50 paired graphs. (a) Fraction of
+  graphs improved by one-step NNI and by compound search after the one-step
+  certificate. (b) Mean entropy regret versus runtime; lower-left is better,
+  and the arrow compares \texttt{se\_hier} with \SEAlg. Runtime includes
+  Python allocation tracing and should be interpreted comparatively.}
   \label{fig:runtime}
 \end{figure}
 

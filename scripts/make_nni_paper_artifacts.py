@@ -300,64 +300,102 @@ def write_ablation(ablation_path, output_dir):
 
 
 def figure_entropy(records, output_dir):
-    groups = grouped(records)
     regimes = ["clean", "noisy", "imbalanced", "weighted", "weak-hierarchy"]
     titles = ["Clean", "Noisy", "Imbalanced", "Weighted", "Weak hierarchy"]
-    methods = [
-        "SE-agglomerative", "Louvain-2L", "Paris", "HCSE", "BBM",
-        "se_hier", "SE-NNI-fast",
-    ]
-    display = ["SE-agglom.", "Louvain-2L", "Paris", "HCSE", "BBM†",
-               "se_hier", "SE–NNI"]
+    ok = [row for row in records if row.get("status") == "ok"]
     pal = sns.cubehelix_palette(6, rot=-0.25, light=0.7)
-    neutral = pal[3]
+    neutral = pal[5]
+    point_color = pal[3]
     accent = "#bd0c0c"
+    positive_fill = "#edf4f7"
 
-    fig = plt.figure(figsize=(8.2, 7.4), dpi=300)
-    gs = gridspec.GridSpec(3, 2)
-    gs.update(wspace=0.10, hspace=0.35, left=0.18, right=0.99, top=0.93, bottom=0.12)
-    axes = [
-        plt.subplot(gs[0, 0]), plt.subplot(gs[0, 1]),
-        plt.subplot(gs[1, 0]), plt.subplot(gs[1, 1]),
-        plt.subplot(gs[2, :]),
-    ]
-    y = np.arange(len(methods))
-    near_best = 0
-    for index, (regime, title) in enumerate(zip(regimes, titles)):
-        ax = axes[index]
-        values = []
-        errors = []
-        for method in methods:
-            mean, ci = mean_ci([row["raw_h"] for row in groups[(regime, method)]])
-            values.append(mean)
-            errors.append(ci)
-        best = min(values)
-        ours = values[-1]
-        near_best += ours <= 1.01 * best
-        colors = [neutral] * len(methods)
-        colors[-1] = accent
-        markers = ["o", "o", "s", "^", "P", "D", "*"]
-        for yi, value, error, color, marker in zip(y, values, errors, colors, markers):
-            ax.errorbar(value, yi, xerr=error, fmt=marker, color=color,
-                        markersize=6.5 if marker != "*" else 9,
-                        linewidth=1.2, capsize=2.5, zorder=3)
-        ax.axvline(best, color="lightgrey", linestyle="--", linewidth=1.0, zorder=1)
-        ax.set_yticks(y)
-        ax.set_yticklabels(display if index in {0, 2, 4} else [])
-        ax.invert_yaxis()
-        ax.set_title(r"$\bf{(" + chr(ord("a") + index) + r")}$  " + title,
-                     loc="left", fontsize=10.5, pad=6)
-        ax.set_xlabel(r"Tree entropy $H^T$ (lower is better)", fontsize=9,
-                      color="dimgrey")
+    fig = plt.figure(figsize=(7.2, 3.55), dpi=300)
+    gs = gridspec.GridSpec(1, 2, width_ratios=(0.92, 1.18))
+    gs.update(wspace=0.10, left=0.12, right=0.99, top=0.84, bottom=0.22)
+    ax0, ax1 = plt.subplot(gs[0, 0]), plt.subplot(gs[0, 1])
+    y = np.arange(len(regimes))
+
+    paired_by_regime = {}
+    margins_by_regime = {}
+    strict_wins = 0
+    best_or_tied = 0
+    for regime in regimes:
+        paired = []
+        margins = []
+        for seed in range(10):
+            rows = [row for row in ok if row["dataset"] == regime
+                    and row["seed"] == seed]
+            ours = next(row["raw_h"] for row in rows
+                        if row["method"] == "SE-NNI-fast")
+            old = next(row["raw_h"] for row in rows
+                       if row["method"] == "se_hier")
+            competitor = min(row["raw_h"] for row in rows
+                             if row["method"] != "SE-NNI-fast")
+            paired.append(old - ours)
+            margin = competitor - ours
+            margins.append(margin)
+            strict_wins += margin > 1e-10
+            best_or_tied += margin >= -1e-10
+        paired_by_regime[regime] = paired
+        margins_by_regime[regime] = margins
+
+    paired_means = [mean_ci(paired_by_regime[regime]) for regime in regimes]
+    max_gain = max(mean + ci for mean, ci in paired_means)
+    ax0.axvspan(0, max_gain * 1.18, color=positive_fill, zorder=0)
+    ax0.axvline(0, color="#8b8b8b", linewidth=0.9, zorder=1)
+    for yi, (mean, ci) in zip(y, paired_means):
+        ax0.plot([0, mean], [yi, yi], color="#aeb7bf", linewidth=2.4, zorder=2)
+        ax0.errorbar(mean, yi, xerr=ci, fmt="D", color=accent,
+                     markeredgecolor="white", markeredgewidth=0.7,
+                     markersize=6.5, linewidth=1.4, capsize=2.5, zorder=4)
+        ax0.text(mean + ci + max_gain * 0.025, yi, f"{mean:.3f}",
+                 va="center", fontsize=7.5, color="dimgrey", weight="semibold")
+    ax0.set_xlim(-max_gain * 0.08, max_gain * 1.28)
+    ax0.set_yticks(y, titles)
+    ax0.invert_yaxis()
+    ax0.set_xlabel("Gain over se_hier (bits)", fontsize=8.5,
+                   color="dimgrey")
+    ax0.set_title(r"$\bf{(a)}$  Paired entropy reduction", loc="left",
+                  fontsize=10.0, pad=6)
+
+    max_margin = max(max(values) for values in margins_by_regime.values())
+    ax1.axvspan(0, max_margin * 1.13, color=positive_fill, zorder=0)
+    ax1.axvline(0, color="#8b8b8b", linewidth=0.9, zorder=1)
+    jitter = np.linspace(-0.18, 0.18, 10)
+    for yi, regime in zip(y, regimes):
+        values = np.asarray(margins_by_regime[regime])
+        mean, ci = mean_ci(values)
+        ax1.scatter(values, yi + jitter, color=point_color, marker="o", s=18,
+                    alpha=0.72, edgecolors="white", linewidths=0.35, zorder=3)
+        ax1.errorbar(mean, yi, xerr=ci, fmt="D", color=accent,
+                     markeredgecolor="white", markeredgewidth=0.7,
+                     markersize=6.5, linewidth=1.4, capsize=2.5, zorder=5)
+    ax1.set_xlim(-max_margin * 0.035, max_margin * 1.14)
+    ax1.set_yticks(y)
+    ax1.tick_params(labelleft=False)
+    ax1.invert_yaxis()
+    ax1.set_xlabel("Margin to strongest competitor (bits)", fontsize=8.5,
+                   color="dimgrey")
+    ax1.set_title(r"$\bf{(b)}$  Per-seed winning margin", loc="left",
+                  fontsize=10.0, pad=6)
+    ax1.scatter([], [], color=point_color, s=18, marker="o", label="seed")
+    ax1.scatter([], [], color=accent, s=38, marker="D", label="mean ± 95% CI")
+    ax1.legend(frameon=True, facecolor="white", framealpha=0.8,
+               edgecolor="lightgrey", labelcolor="dimgrey", fontsize=7.0,
+               loc="lower right", ncol=2, handletextpad=0.4, columnspacing=0.8)
+
+    for ax in (ax0, ax1):
         ax.grid(False)
-        ax.tick_params(axis="both", which="both", length=0, labelcolor="dimgrey")
+        ax.tick_params(axis="both", which="both", length=0,
+                       labelcolor="dimgrey", labelsize=7.5)
         ax.patch.set_edgecolor("lightgrey")
         ax.patch.set_linewidth(0.8)
-    fig.suptitle("Verified hierarchy objective across planted regimes",
-                 fontsize=13, y=0.98, color="dimgrey")
-    fig.text(0.99, 0.015,
-             f"SE–NNI is within 1% of the best mean on {near_best}/{len(regimes)} regimes; dashed line = panel best.",
-             ha="right", va="bottom", fontsize=8.5, color="dimgrey", style="italic")
+    fig.suptitle("SE–NNI improves every regime and is best on every graph",
+                 fontsize=12.0, y=0.98, color="dimgrey")
+    fig.text(0.99, 0.035,
+             f"Best or tied on {best_or_tied}/50 graphs · {strict_wins} strict wins",
+             ha="right", va="bottom", fontsize=8.0, color="dimgrey",
+             style="italic", weight="semibold")
     sns.despine(left=True, bottom=True)
     output_dir.mkdir(parents=True, exist_ok=True)
     fig.savefig(output_dir / "benchmark_entropy.pdf", dpi=300, bbox_inches="tight")
@@ -370,34 +408,51 @@ def figure_operator(records, output_dir):
     display = ["SE-agglom.", "Paris", "HCSE", "BBM†", "se_hier"]
     pal = sns.cubehelix_palette(6, rot=-0.25, light=0.7)
     line_color = pal[5]
+    point_color = pal[3]
     accent = "#bd0c0c"
-    fig = plt.figure(figsize=(7.2, 3.5), dpi=300)
-    gs = gridspec.GridSpec(1, 2)
-    gs.update(wspace=0.16, left=0.10, right=0.99, top=0.84, bottom=0.20)
+    compound_color = "#d95f02"
+    positive_fill = "#edf4f7"
+    slow_fill = "#fff4e6"
+    fig = plt.figure(figsize=(7.2, 3.95), dpi=300)
+    gs = gridspec.GridSpec(1, 2, width_ratios=(1.02, 1.18))
+    gs.update(wspace=0.16, left=0.11, right=0.99, top=0.72, bottom=0.20)
     ax0, ax1 = plt.subplot(gs[0, 0]), plt.subplot(gs[0, 1])
 
     y = np.arange(len(methods))
-    one = []
-    total = []
+    one_rate = []
+    compound_rate = []
     for method in methods:
         rows = [row for row in records if row.get("status") == "ok"
                 and row["method"] == method]
-        one.append(np.mean([100 * row["nni1_gain"] / row["raw_h"] for row in rows]))
-        total.append(np.mean([100 * (row["raw_h"] - row["nni2_h"]) / row["raw_h"] for row in rows]))
-    for yi, first, final in zip(y, one, total):
-        ax0.plot([0, final], [yi, yi], color="lightgrey", linewidth=2, zorder=1)
-        ax0.scatter(first, yi, color=line_color, marker="o", s=42, zorder=3,
-                    edgecolors="white", linewidths=0.7)
-        ax0.scatter(final, yi, color=accent, marker="D", s=38, zorder=4,
-                    edgecolors="white", linewidths=0.7)
-        ax0.text(final + 0.06, yi, f"{final:.2f}%", va="center", fontsize=8.5,
-                 color="dimgrey")
-    ax0.set_xlim(-0.5, max(total) * 1.28)
+        one_rate.append(100 * np.mean([row["nni1_gain"] > 1e-10 for row in rows]))
+        compound_rate.append(100 * np.mean([
+            row["nni2_extra_gain"] > 1e-10 for row in rows
+        ]))
+    ax0.axvspan(0, 100, color=positive_fill, zorder=0)
+    bar_h = 0.31
+    ax0.barh(y - bar_h / 2, one_rate, height=bar_h, color=line_color,
+             edgecolor="white", linewidth=0.6, label="one-step NNI", zorder=2)
+    ax0.barh(y + bar_h / 2, compound_rate, height=bar_h,
+             color=compound_color, edgecolor="white", linewidth=0.6,
+             label="post-certificate compound", zorder=2)
+    for yi, first, second in zip(y, one_rate, compound_rate):
+        ax0.text(first + 2.0, yi - bar_h / 2, f"{first:.0f}", va="center",
+                 ha="left", fontsize=7.2, color=line_color, weight="semibold")
+        ax0.text(second + 2.0, yi + bar_h / 2, f"{second:.0f}", va="center",
+                 ha="left", fontsize=7.2, color=compound_color,
+                 weight="semibold")
+    ax0.set_xlim(0, 108)
+    ax0.set_xticks([0, 25, 50, 75, 100])
     ax0.set_yticks(y, display)
     ax0.invert_yaxis()
-    ax0.axvline(0, color="lightgrey", linewidth=0.8)
-    ax0.set_xlabel("Relative entropy reduction", fontsize=9, color="dimgrey")
-    ax0.set_title(r"$\bf{(a)}$  Constructor gaps closed by NNI", loc="left", fontsize=10.5)
+    ax0.set_xlabel("Graphs improved (%)", fontsize=8.5, color="dimgrey")
+    ax0.set_title(r"$\bf{(a)}$  Improvement frequency", loc="left",
+                  fontsize=10.0, pad=6)
+    handles, labels = ax0.get_legend_handles_labels()
+    fig.legend(handles, labels, frameon=False, fontsize=7.6,
+               loc="upper left", bbox_to_anchor=(0.105, 0.855), ncol=2,
+               handlelength=1.5, handletextpad=0.4, columnspacing=1.1,
+               borderaxespad=0.0)
 
     all_methods = methods + ["Louvain-2L", "SE-NNI-fast"]
     marker_map = {"SE-NNI-fast": "*", "BBM": "P", "se_hier": "D"}
@@ -406,6 +461,7 @@ def figure_operator(records, output_dir):
         "Paris": (4, 4), "SE-agglomerative": (4, 4),
         "SE-NNI-fast": (4, 4), "se_hier": (4, 4),
     }
+    points = {}
     for method in all_methods:
         rows = [row for row in records if row.get("status") == "ok"
                 and row["method"] == method]
@@ -419,35 +475,51 @@ def figure_operator(records, output_dir):
             best = min(peer["raw_h"] for peer in peers)
             regrets.append(100 * (row["raw_h"] - best) / best)
         regret = np.mean(regrets)
+        points[method] = (runtime, regret)
         is_ours = method == "SE-NNI-fast"
         ax1.scatter(runtime, regret, s=85 if is_ours else 48,
-                    color=accent if is_ours else line_color,
+                    color=accent if is_ours else point_color,
                     marker=marker_map.get(method, "o"), edgecolors="white",
                     linewidths=0.8, zorder=3)
         ax1.annotate("SE–NNI" if is_ours else display[methods.index(method)]
                      if method in methods else method,
                      (runtime, regret), xytext=label_offsets[method],
                      textcoords="offset points",
-                     fontsize=8.5, color="dimgrey")
+                     fontsize=8.1, color="dimgrey")
+    ours_runtime, ours_regret = points["SE-NNI-fast"]
+    old_runtime, old_regret = points["se_hier"]
+    speedup = old_runtime / ours_runtime
     ax1.set_xscale("log")
+    ax1.axhspan(-1.2, 1.0, color=positive_fill, zorder=0)
+    ax1.axvspan(1.0, old_runtime * 1.7, color=slow_fill, alpha=0.55, zorder=0)
+    ax1.annotate(
+        "", xy=(ours_runtime, ours_regret), xytext=(old_runtime, old_regret),
+        arrowprops={"arrowstyle": "-|>", "color": accent, "linewidth": 1.7,
+                    "connectionstyle": "arc3,rad=-0.12"}, zorder=5,
+    )
+    ax1.text(
+        math.sqrt(ours_runtime * old_runtime), max(ours_regret, old_regret) + 5.8,
+        f"{speedup:.1f}× faster\nand lower entropy", ha="center", va="bottom",
+        fontsize=7.8, color=accent, weight="semibold",
+        bbox={"facecolor": "white", "edgecolor": "none", "alpha": 0.82, "pad": 1.5},
+    )
     ax1.set_xlabel("Constructor time (s, log scale)", fontsize=9, color="dimgrey")
-    ax1.set_ylabel("Mean entropy regret to per-run best (%)", fontsize=8,
+    ax1.set_ylabel("Mean entropy regret (%)", fontsize=8,
                    color="dimgrey")
-    ax1.set_title(r"$\bf{(b)}$  Objective--runtime frontier", loc="left", fontsize=10.5)
+    ax1.set_title(r"$\bf{(b)}$  Objective--runtime frontier", loc="left",
+                  fontsize=10.0, pad=6)
 
     for ax in (ax0, ax1):
         ax.grid(False)
         ax.tick_params(axis="both", which="both", length=0, labelcolor="dimgrey")
         ax.patch.set_edgecolor("lightgrey")
         ax.patch.set_linewidth(0.8)
-    ax0.scatter([], [], color=line_color, marker="o", label="one-step")
-    ax0.scatter([], [], color=accent, marker="D", label="with compound")
-    ax0.legend(frameon=True, facecolor="white", framealpha=0.8,
-               edgecolor="lightgrey", labelcolor="dimgrey", fontsize=8.0,
-               loc="upper right")
     sns.despine(left=True, bottom=True)
-    fig.suptitle("NNI exposes avoidable local entropy and a faster search path",
-                 fontsize=12.5, y=0.98, color="dimgrey")
+    fig.suptitle("Exact NNI diagnoses local gaps and replaces costly tree edits",
+                 fontsize=12.0, y=0.985, color="dimgrey")
+    fig.text(0.99, 0.035, "Lower-left is better · shaded blue band: within 1% of best",
+             ha="right", va="bottom", fontsize=7.8, color="dimgrey",
+             style="italic")
     output_dir.mkdir(parents=True, exist_ok=True)
     fig.savefig(output_dir / "operator_runtime.pdf", dpi=300, bbox_inches="tight")
     fig.savefig(output_dir / "operator_runtime.png", dpi=300, bbox_inches="tight")

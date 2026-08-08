@@ -10,26 +10,37 @@ $P=A\cup B\cup C$.
 \begin{tikzpicture}[
   level distance=8mm,
   every node/.style={font=\small},
-  internal/.style={circle,draw,inner sep=1.4pt},
-  module/.style={rounded corners,draw,minimum width=8mm,minimum height=5mm},
-  edge from parent/.style={draw,-}
+  internal/.style={circle,draw=black!55,fill=black!5,inner sep=1.7pt,
+                   line width=0.55pt},
+  module/.style={rounded corners=2pt,draw=black!55,minimum width=9mm,
+                 minimum height=5.5mm,line width=0.55pt},
+  edge from parent/.style={draw=black!65,-,line width=0.65pt}
 ]
 \node[internal] (p1) at (0,0) {$P$};
 \node[internal] (x) at (-0.7,-0.8) {$X$};
-\node[module] (c1) at (0.7,-0.8) {$C$};
-\node[module] (a1) at (-1.1,-1.65) {$A$};
-\node[module] (b1) at (-0.3,-1.65) {$B$};
+\node[module,fill=blue!12] (c1) at (0.7,-0.8) {$C$};
+\node[module,fill=cyan!13] (a1) at (-1.1,-1.65) {$A$};
+\node[module,fill=orange!18] (b1) at (-0.3,-1.65) {$B$};
 \draw (p1)--(x) (p1)--(c1) (x)--(a1) (x)--(b1);
-\node at (2.0,-0.85) {$\xrightarrow{\mathrm{NNI}}$};
+\node[text=red!75!black,font=\small\bfseries] at (2.0,-0.72)
+  {$\xrightarrow{\quad\mathrm{exact\ NNI}\quad}$};
+\node[text=black!60,font=\scriptsize] at (-0.7,-2.05) {$X=A\cup B$};
 \node[internal] (p2) at (4,0) {$P$};
-\node[module] (a2) at (3.3,-0.8) {$A$};
+\node[module,fill=cyan!13] (a2) at (3.3,-0.8) {$A$};
 \node[internal] (y) at (4.7,-0.8) {$Y$};
-\node[module] (b2) at (4.3,-1.65) {$B$};
-\node[module] (c2) at (5.1,-1.65) {$C$};
+\node[module,fill=orange!18] (b2) at (4.3,-1.65) {$B$};
+\node[module,fill=blue!12] (c2) at (5.1,-1.65) {$C$};
 \draw (p2)--(a2) (p2)--(y) (y)--(b2) (y)--(c2);
+\node[text=black!60,font=\scriptsize] at (4.7,-2.05) {$Y=B\cup C$};
+\node[rounded corners=2pt,draw=blue!35,fill=blue!4,
+      minimum width=7.7cm,minimum height=5.5mm,font=\scriptsize]
+  at (2.0,-2.55)
+  {three volumes $V_X,V_Y,V_P$ + two cross weights $W(A,B),W(B,C)$
+   $\Longrightarrow$ verified $\Delta H^T$};
 \end{tikzpicture}
-\caption{A rooted NNI changes one internal module from $A\cup B$ to
-$B\cup C$ while preserving all leaves and the surrounding tree.}
+\caption{A rooted NNI replaces only $X=A\cup B$ by $Y=B\cup C$. The
+highlighted local statistics determine the exact full-objective change; all
+leaves and the surrounding tree remain fixed.}
 \label{fig:nni}
 \end{figure}
 
