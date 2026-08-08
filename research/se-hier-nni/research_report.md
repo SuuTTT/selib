@@ -1,8 +1,9 @@
-# Research Report: `se_hier_nni`
+# Research Report: NEST
 
 ## Baseline
 
-SELib `se_hier` generates several candidate encoding trees, including an
+Entropy-Guided Tree Editing (EGTE; artifact key `se_hier`) generates several
+candidate encoding trees, including an
 SE-agglomerative binary dendrogram, a recursive `se_louvain` hierarchy, and
 optional Paris warm starts. It refines candidates using exact-guarded level
 collapse and local subtree relocation, then returns the lowest-entropy tree.
@@ -64,19 +65,20 @@ SOTA, scalability, robustness, or statistical-superiority claims.
 - Four bundled real networks add 28 verified method records; the new method is
   the raw-objective winner on all four.
 - Clean scaling over 32--128 vertices and three seeds per size gives lower
-  entropy on 12/12 pairs and a 9.7--22.2x speedup over `se_hier`.
+  entropy on 12/12 pairs and a 9.7--22.2x speedup of NEST over EGTE.
 - A 250-record component ablation separates the candidate-pool, one-step NNI,
   and compound-search gains and exactly matches the main artifact.
 - Current HCSE, Jowhari local search, and HypCSE papers were checked to delimit
   the novelty claim. HypCSE is not reported as a direct baseline because it
   learns a graph from feature data and optimizes a continuous relaxation.
-- The LNCS manuscript compiles to 11 pages with generated figures and tables.
+- The LNCS manuscript compiles to the 12-page limit with generated figures and
+  tables.
 
 ## Submission state
 
 The official TAMC page now explicitly confirms double-blind review, so the
 anonymous author/affiliation fields are correct. The final A4/page/font/render
-audit has been run on the exact 11-page PDF; all fonts are embedded and no
+audit has been run on the exact 12-page PDF; all fonts are embedded and no
 Type 3 fonts are present. The double-blind TAMC checker passes with zero
 failures, and an adversarial proof/novelty/claim read passes the paper to
 submission.

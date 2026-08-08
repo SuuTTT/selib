@@ -1,55 +1,61 @@
 \section{Introduction}
 Many networks are organized at more than one scale: vertices form local
-groups, related groups form larger modules, and the useful output is therefore
+groups, related groups form larger modules, and the desired output is therefore
 a tree rather than one flat partition. Structural entropy supplies an
 information-theoretic objective for such an encoding tree \cite{li2016}.
-Recent methods construct low-entropy hierarchies by agglomeration, recursive
-partitioning, or stretch--compress operations \cite{pan2025}. These
-constructors answer how to build a plausible tree, but they leave a basic
-algorithmic question unresolved: \emph{after construction, is a small change
-of tree topology still able to lower the same objective?}
+Recent HCSE and BBM methods construct low-entropy hierarchies through recursive
+partitioning and balanced merging \cite{pan2025}. Their construction rules,
+however, do not answer a complementary question: \emph{after a tree has been
+constructed, does a small topology change still lower the same objective?}
 
-This distinction matters in practice. A constructor can be globally
-competitive while retaining locally avoidable entropy. Conversely, an
-expensive general tree-edit search can spend most of its time reconsidering
-moves whose objective effect is not known until the entire tree is rescored.
-We seek a local operator whose effect is exact, whose neighborhood is small,
-and whose termination has an interpretable certificate.
+The distinction between construction and local optimality matters
+algorithmically. A strong constructor can retain avoidable entropy because its
+earlier decisions constrain later steps. At the other extreme, unrestricted
+tree editing can reconsider many source--destination pairs and require a full
+objective recomputation for every candidate. A useful hierarchy optimizer
+should therefore combine a broad construction neighborhood with a local
+operator whose effect is exact and whose termination is interpretable.
+
+We first introduce Entropy-Guided Tree Editing (\EGTE), a general optimizer for
+structural-entropy trees. \EGTE starts from SE agglomeration, recursive SE, and
+optionally Paris, then applies exact-guarded level-collapse and subtree-
+relocation moves. This general edit space provides a strong hierarchy without
+ground-truth labels, but its repeated whole-tree rescoring is expensive. \EGTE
+therefore establishes the broad-search component of our framework and exposes
+the need for a cheaper certifiable neighborhood.
 
 Nearest-neighbor interchange (NNI) is the elementary rotation of a rooted
 binary tree. It changes one internal edge while preserving every leaf. NNI is
 standard in phylogenetic tree search and has been studied for other
 hierarchical-clustering objectives, but its structural-entropy change has not
-been used as an exact graph-hierarchy optimizer. The obstacle is that
-structural entropy depends on both graph cuts and nested module volumes; an NNI
-formula must respect the original encoding-tree objective rather than a
-surrogate.
+been used as an exact graph-hierarchy optimizer. We show that, for
+$((A,B),C)\rightarrow(A,(B,C))$, all objective terms cancel except two
+cross-module edge weights and three module volumes. This identity yields
+monotone descent and a one-NNI local-optimality certificate.
 
-We show that the change is local. For
-$((A,B),C)\rightarrow(A,(B,C))$, all terms cancel except two cross-module edge
-weights and three volumes. This identity yields a best-improvement descent that
-never worsens the tree and stops at a one-NNI local optimum. Because strict
-descent may itself be trapped, we also evaluate a bounded two-move beam: the
-first move may cross a small barrier, but the pair is accepted only if its
-fully verified endpoint is better. Finally, we replace the slow general-edit
-stage of the original \texttt{se\_hier} implementation with NNI refinement of
-several inexpensive starts.
+Our full fast method, NNI-certified Entropy Search over Trees (\NEST), refines
+several inexpensive initial trees with the exact operator and returns the
+lowest independently verified endpoint. A bounded two-move beam can cross a
+small intermediate barrier, but accepts a pair only when its endpoint lowers
+the full objective. This design retains exact acceptance while avoiding the
+costliest part of general tree editing.
 
 Our contributions are:
 \begin{itemize}
-  \item an exact weighted-graph NNI delta for tree structural entropy, with an
-  implementation cross-checked against full objective recomputation;
-  \item monotone one-step descent, a one-NNI local certificate, and a bounded
-  compound search that can escape strict one-step traps without weakening the
-  output guarantee;
-  \item \SEAlg, a fast multi-start hierarchy optimizer built from independent
-  SE-agglomerative, recursive-SE, and Paris initializations; and
-  \item a paired evaluation against SE agglomeration, Louvain-2L, Paris, the
-  official HCSE and BBM implementations, and the original \texttt{se\_hier},
-  measuring entropy, hierarchy recovery, runtime, and memory.
+  \item \EGTE, a label-free multi-start hierarchy optimizer with
+  exact-guarded collapse and subtree-relocation moves;
+  \item an exact weighted-graph NNI delta for tree structural entropy, together
+  with monotone descent and a checkable one-NNI local certificate;
+  \item \NEST, which combines multi-start construction, exact NNI refinement,
+  and bounded two-move escape without weakening the output guarantee; and
+  \item a paired evaluation against SE agglomeration, Louvain-2L, Paris, and
+  the official HCSE and BBM implementations, with entropy, hierarchy recovery,
+  runtime, memory, operator audits, and an explicit \EGTE--\NEST ablation.
 \end{itemize}
 
-The paper is deliberately separate from analyses of specially structured
-clique landscapes. Here the graph is arbitrary and weighted, the optimized
-quantity is the complete encoding-tree entropy, and the contribution is a
-reusable algorithm with falsifiable benchmark claims.
+Across five frozen hierarchical graph regimes, \NEST lowers entropy by
+$\NESTGainVsHCSE\!\pm\!\NESTGainVsHCSECI$ bits relative to HCSE and by
+$\NESTGainVsBBM\!\pm\!\NESTGainVsBBMCI$ bits relative to BBM, winning all
+paired comparisons against both. The paper therefore contributes both a
+general tree-edit optimizer and a faster locally certified alternative, rather
+than treating an implementation artifact as a competing method.

@@ -32,6 +32,15 @@ def esc(text):
     return text.replace("_", r"\_").replace("-", "--")
 
 
+def tex_label(method):
+    """Return a publication label for an internal benchmark key."""
+    labels = {
+        "se_hier": r"\EGTE\ (ours)",
+        "SE-NNI-fast": r"\NEST\ (ours)",
+    }
+    return labels.get(method, esc(method))
+
+
 def grouped(records):
     output = {}
     for record in records:
@@ -71,7 +80,9 @@ def write_tables(records, output_dir):
         r"\midrule",
     ]
     for method in methods:
-        label = r"BBM$^\dagger$" if method == "BBM" else esc(method)
+        if method == "se_hier":
+            lines.append(r"\midrule")
+        label = r"BBM$^\dagger$" if method == "BBM" else tex_label(method)
         cells = []
         for regime in regimes:
             mean, ci = means[(regime, method)]
@@ -111,7 +122,7 @@ def write_tables(records, output_dir):
             row["nni1_time_s"] + row["nni2_time_s"] for row in rows
         ])
         lines.append(
-            f"{esc(method)} & {one_reduction:.2f}\\% & {100*one_rate:.0f}\\% & "
+            f"{tex_label(method)} & {one_reduction:.2f}\\% & {100*one_rate:.0f}\\% & "
             f"{two_reduction:.2f}\\% & {100*two_rate:.0f}\\% & {nni_time:.3f}s \\\\"
         )
     lines.extend([r"\bottomrule", r"\end{tabular}", r"\end{table}"])
@@ -152,6 +163,27 @@ def write_tables(records, output_dir):
         stats.t.ppf(0.975, len(purity_differences) - 1)
         * stats.sem(purity_differences)
     )
+    external_differences = {}
+    for method in ("HCSE", "BBM"):
+        external = [record for record in ok if record["method"] == method]
+        external_by_key = {
+            (row["dataset"], row["seed"]): row for row in external
+        }
+        external_differences[method] = np.asarray([
+            external_by_key[(row["dataset"], row["seed"])] ["raw_h"]
+            - row["raw_h"]
+            for row in ours
+        ])
+    best_external_differences = np.asarray([
+        min(
+            next(other["raw_h"] for other in ok
+                 if other["dataset"] == row["dataset"]
+                 and other["seed"] == row["seed"]
+                 and other["method"] == method)
+            for method in ("HCSE", "BBM")
+        ) - row["raw_h"]
+        for row in ours
+    ])
     wins = 0
     within_one = 0
     for row in ours:
@@ -165,12 +197,18 @@ def write_tables(records, output_dir):
     one_rate = np.mean([row["nni1_gain"] > 1e-10 for row in audited])
     compound_rate = np.mean([row["nni2_extra_gain"] > 1e-10 for row in audited])
     macros = [
-        f"\\newcommand{{\\OursSpeedup}}{{{speedup:.1f}\\ensuremath{{\\times}}}}",
-        f"\\newcommand{{\\OursEntropyDeltaVsHier}}{{{entropy_delta:+.2f}\\%}}",
-        f"\\newcommand{{\\OursAbsEntropyGain}}{{{-entropy_difference_mean:.4f}}}",
-        f"\\newcommand{{\\OursAbsEntropyGainCI}}{{{entropy_difference_ci:.4f}}}",
-        f"\\newcommand{{\\OursPurityDeltaVsHier}}{{{purity_delta:+.3f}}}",
-        f"\\newcommand{{\\OursPurityDeltaCI}}{{{purity_difference_ci:.3f}}}",
+        f"\\newcommand{{\\NESTSpeedupVsEGTE}}{{{speedup:.1f}\\ensuremath{{\\times}}}}",
+        f"\\newcommand{{\\NESTEntropyDeltaVsEGTE}}{{{entropy_delta:+.2f}\\%}}",
+        f"\\newcommand{{\\NESTGainVsEGTE}}{{{-entropy_difference_mean:.4f}}}",
+        f"\\newcommand{{\\NESTGainVsEGTECI}}{{{entropy_difference_ci:.4f}}}",
+        f"\\newcommand{{\\NESTPurityDeltaVsEGTE}}{{{purity_delta:+.3f}}}",
+        f"\\newcommand{{\\NESTPurityDeltaVsEGTECI}}{{{purity_difference_ci:.3f}}}",
+        f"\\newcommand{{\\NESTGainVsHCSE}}{{{external_differences['HCSE'].mean():.4f}}}",
+        f"\\newcommand{{\\NESTGainVsHCSECI}}{{{mean_ci(external_differences['HCSE'])[1]:.4f}}}",
+        f"\\newcommand{{\\NESTGainVsBBM}}{{{external_differences['BBM'].mean():.4f}}}",
+        f"\\newcommand{{\\NESTGainVsBBMCI}}{{{mean_ci(external_differences['BBM'])[1]:.4f}}}",
+        f"\\newcommand{{\\NESTGainVsBestExternal}}{{{best_external_differences.mean():.4f}}}",
+        f"\\newcommand{{\\NESTGainVsBestExternalCI}}{{{mean_ci(best_external_differences)[1]:.4f}}}",
         f"\\newcommand{{\\OursWins}}{{{wins}/50}}",
         f"\\newcommand{{\\OursWithinOne}}{{{within_one}/50}}",
         f"\\newcommand{{\\AuditOneRate}}{{{100*one_rate:.0f}\\%}}",
@@ -211,7 +249,9 @@ def write_complements(real_path, scaling_path, output_dir):
             if abs(value - best[dataset]) < 1e-10:
                 cell = r"\textbf{" + cell + "}"
             cells.append(cell)
-        lines.append(esc(method) + " & " + " & ".join(cells) + r" \\")
+        if method == "se_hier":
+            lines.append(r"\midrule")
+        lines.append(tex_label(method) + " & " + " & ".join(cells) + r" \\")
     lines.extend([r"\bottomrule", r"\end{tabular}", r"\end{table}"])
     (output_dir / "real_entropy.tex").write_text("\n".join(lines) + "\n")
 
@@ -225,12 +265,12 @@ def write_complements(real_path, scaling_path, output_dir):
     lines = [
         r"\begin{table}[t]",
         r"\centering\small",
-        r"\caption{Clean wall-clock scaling without allocation tracing; means over three graph seeds. Old denotes \texttt{se\_hier}; Ours denotes \SEAlg.}",
+        r"\caption{Clean wall-clock scaling without allocation tracing; means over three graph seeds. EGTE and NEST are our general-edit and certified fast variants.}",
         r"\label{tab:scaling}",
         r"\begin{tabular}{rrrrrr}",
         r"\toprule",
         r"$n$ & \multicolumn{2}{c}{$H^T$} & \multicolumn{2}{c}{Time (s)} & Speedup \\",
-        r" & Old & Ours & Old & Ours & \\",
+        r" & EGTE & NEST & EGTE & NEST & \\",
         r"\midrule",
     ]
     for n in sizes:
@@ -327,11 +367,9 @@ def figure_entropy(records, output_dir):
                     and row["seed"] == seed]
             ours = next(row["raw_h"] for row in rows
                         if row["method"] == "SE-NNI-fast")
-            old = next(row["raw_h"] for row in rows
-                       if row["method"] == "se_hier")
             competitor = min(row["raw_h"] for row in rows
-                             if row["method"] != "SE-NNI-fast")
-            paired.append(old - ours)
+                             if row["method"] in {"HCSE", "BBM"})
+            paired.append(competitor - ours)
             margin = competitor - ours
             margins.append(margin)
             strict_wins += margin > 1e-10
@@ -353,7 +391,7 @@ def figure_entropy(records, output_dir):
     ax0.set_xlim(-max_gain * 0.08, max_gain * 1.28)
     ax0.set_yticks(y, titles)
     ax0.invert_yaxis()
-    ax0.set_xlabel("Gain over se_hier (bits)", fontsize=8.5,
+    ax0.set_xlabel("Gain over best of HCSE/BBM (bits)", fontsize=8.5,
                    color="dimgrey")
     ax0.set_title(r"$\bf{(a)}$  Paired entropy reduction", loc="left",
                   fontsize=10.0, pad=6)
@@ -374,7 +412,7 @@ def figure_entropy(records, output_dir):
     ax1.set_yticks(y)
     ax1.tick_params(labelleft=False)
     ax1.invert_yaxis()
-    ax1.set_xlabel("Margin to strongest competitor (bits)", fontsize=8.5,
+    ax1.set_xlabel("Margin to best of HCSE/BBM (bits)", fontsize=8.5,
                    color="dimgrey")
     ax1.set_title(r"$\bf{(b)}$  Per-seed winning margin", loc="left",
                   fontsize=10.0, pad=6)
@@ -390,10 +428,10 @@ def figure_entropy(records, output_dir):
                        labelcolor="dimgrey", labelsize=7.5)
         ax.patch.set_edgecolor("lightgrey")
         ax.patch.set_linewidth(0.8)
-    fig.suptitle("SE–NNI improves every regime and is best on every graph",
+    fig.suptitle("NEST consistently improves over HCSE and BBM",
                  fontsize=12.0, y=0.98, color="dimgrey")
     fig.text(0.99, 0.035,
-             f"Best or tied on {best_or_tied}/50 graphs · {strict_wins} strict wins",
+             f"Lower entropy on {strict_wins}/50 graphs against the better external SE baseline",
              ha="right", va="bottom", fontsize=8.0, color="dimgrey",
              style="italic", weight="semibold")
     sns.despine(left=True, bottom=True)
@@ -405,7 +443,7 @@ def figure_entropy(records, output_dir):
 
 def figure_operator(records, output_dir):
     methods = ["SE-agglomerative", "Paris", "HCSE", "BBM", "se_hier"]
-    display = ["SE-agglom.", "Paris", "HCSE", "BBM†", "se_hier"]
+    display = ["SE-agglom.", "Paris", "HCSE", "BBM†", "EGTE (ours)"]
     pal = sns.cubehelix_palette(6, rot=-0.25, light=0.7)
     line_color = pal[5]
     point_color = pal[3]
@@ -481,7 +519,7 @@ def figure_operator(records, output_dir):
                     color=accent if is_ours else point_color,
                     marker=marker_map.get(method, "o"), edgecolors="white",
                     linewidths=0.8, zorder=3)
-        ax1.annotate("SE–NNI" if is_ours else display[methods.index(method)]
+        ax1.annotate("NEST" if is_ours else display[methods.index(method)]
                      if method in methods else method,
                      (runtime, regret), xytext=label_offsets[method],
                      textcoords="offset points",
@@ -515,7 +553,7 @@ def figure_operator(records, output_dir):
         ax.patch.set_edgecolor("lightgrey")
         ax.patch.set_linewidth(0.8)
     sns.despine(left=True, bottom=True)
-    fig.suptitle("Exact NNI diagnoses local gaps and replaces costly tree edits",
+    fig.suptitle("Exact NNI diagnoses constructor gaps and accelerates EGTE",
                  fontsize=12.0, y=0.985, color="dimgrey")
     fig.text(0.99, 0.035, "Lower-left is better · shaded blue band: within 1% of best",
              ha="right", va="bottom", fontsize=7.8, color="dimgrey",

@@ -1,11 +1,11 @@
 \begin{table}[t]
 \centering\small
-\caption{Clean wall-clock scaling without allocation tracing; means over three graph seeds. Old denotes \texttt{se\_hier}; Ours denotes \SEAlg.}
+\caption{Clean wall-clock scaling without allocation tracing; means over three graph seeds. EGTE and NEST are our general-edit and certified fast variants.}
 \label{tab:scaling}
 \begin{tabular}{rrrrrr}
 \toprule
 $n$ & \multicolumn{2}{c}{$H^T$} & \multicolumn{2}{c}{Time (s)} & Speedup \\
- & Old & Ours & Old & Ours & \\
+ & EGTE & NEST & EGTE & NEST & \\
 \midrule
 32 & 2.485 & \textbf{2.453} & 0.430 & \textbf{0.044} & 9.7$\times$ \\
 64 & 3.140 & \textbf{3.098} & 2.941 & \textbf{0.188} & 15.7$\times$ \\

@@ -5,30 +5,32 @@ Author identities belong in EasyChair only; the review PDF is double-blind.
 
 ## Title
 
-NNI-Certified Structural-Entropy Hierarchies: Fast Refinement beyond Greedy
-Construction
+NEST: Structural-Entropy Hierarchy Search with General Tree Editing and Exact
+NNI Certification
 
 ## Abstract
 
 Structural entropy evaluates a graph hierarchy through the description length
-of an encoding tree, but a hierarchy produced by merging, partitioning, or
-stretch-compress construction need not be locally optimal in tree space. We
-introduce SE-NNI, an exact refinement method based on rooted nearest-neighbor
-interchange (NNI). For weighted graphs, we derive a closed form for the entropy
-change of an NNI move using only three module volumes and two cross-module edge
-weights. This supports monotone best-improvement descent and a checkable
-one-NNI local-optimality certificate. We further introduce a bounded two-move
-search that may cross a controlled intermediate barrier but commits only an
-entropy-decreasing pair, and a fast multi-start constructor that refines SE
-agglomeration, recursive SE, and Paris candidates. All synthetic comparisons
-are paired by graph seed and use the same independently recomputed tree
-objective. Across 50 seeded graphs from five hierarchical regimes, SE-NNI
-attains the lowest mean entropy in every regime. Relative to the previous
-se_hier implementation, it lowers entropy by 0.0279 plus or minus 0.0072 bits,
-raises fine-level dendrogram purity by 0.016 plus or minus 0.010, and is 21.5
-times faster under the instrumented benchmark. The NNI audit also finds
-strictly improving moves in common SE and non-SE constructors, demonstrating
-that construction quality and local tree optimality are distinct concerns.
+of an encoding tree. Existing methods such as HCSE and BBM construct such
+trees, but do not determine whether a returned hierarchy still admits an
+entropy-reducing local topology change. We introduce two complementary tree
+optimizers. Entropy-Guided Tree Editing (EGTE) constructs a hierarchy from
+multiple initial trees and monotonically improves the complete objective by
+level collapse and subtree relocation. NNI-certified Entropy Search over Trees
+(NEST) replaces this costly general-edit stage with exact rooted
+nearest-neighbor interchange (NNI). For weighted graphs, we derive a closed
+form for the entropy change of an NNI using only three module volumes and two
+cross-module edge weights. The identity supports monotone best-improvement
+descent, a checkable one-NNI local-optimality certificate, and a bounded
+two-move search that can cross a controlled intermediate barrier while
+committing only an entropy-decreasing endpoint. All synthetic comparisons are
+paired by graph seed and use the same independently recomputed objective.
+Across 50 graphs from five hierarchical regimes, NEST attains the lowest mean
+entropy in every regime. Relative to the better of HCSE and BBM on each graph,
+it lowers entropy by 0.4290 plus or minus 0.0281 bits and wins all 50 paired
+comparisons. As an internal efficiency comparison, NEST also lowers entropy by
+0.0279 plus or minus 0.0072 bits while running 21.5 times faster than EGTE
+under the instrumented benchmark.
 
 ## Keywords
 
@@ -38,7 +40,7 @@ Enter one per line:
 structural entropy
 hierarchical clustering
 nearest-neighbor interchange
-local search
+tree editing
 graph algorithms
 ```
 

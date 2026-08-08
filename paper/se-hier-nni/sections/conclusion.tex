@@ -1,18 +1,18 @@
 \section{Limitations and Conclusion}
 NNI is a local operator, not a certificate of global optimality. Compound
-search explores only a bounded two-step neighborhood and its barrier and beam
-are computational controls. Multiway regions must be resolved by a constructor
-before binary rotations can act on them. Lower structural entropy also need
-not improve every external notion of hierarchy, which is why we report planted
-purity alongside the optimized objective.
+search explores only a bounded two-step neighborhood, while \EGTE uses a
+finite edit budget; neither exhausts all encoding trees. Multiway regions must
+also be resolved by a constructor before binary rotations can act on them.
+Lower structural entropy need not improve every external notion of hierarchy,
+which is why we report planted purity alongside the optimized objective.
 
-We introduced an exact NNI identity for weighted graph structural entropy and
-used it to build monotone, auditable hierarchy refinement. The resulting
-method separates construction from local optimality, detects avoidable gaps in
-existing trees, and crosses shallow strict-descent traps without accepting a
-worse output. On the frozen five-regime suite it achieved the lowest mean
-entropy in every regime, improved both entropy and mean planted purity over the
-previous \texttt{se\_hier}, and reduced instrumented construction time by
-\OursSpeedup. More broadly, the operator audit shows that hierarchy
-construction and local tree optimality should be evaluated separately in
-future structural-entropy methods.
+We introduced two structural-entropy hierarchy optimizers. \EGTE performs
+exact-guarded level collapse and subtree relocation over multiple initial
+trees. \NEST derives an exact weighted NNI identity and uses it for fast
+monotone refinement, a local-optimality certificate, and safe bounded escape
+from shallow one-step traps. On the frozen five-regime suite, \NEST achieved
+the lowest mean entropy in every regime and outperformed both HCSE and BBM on
+all 50 paired graphs. The operator audit further shows that hierarchy
+construction and local tree optimality are distinct concerns. Together, \EGTE
+and \NEST turn a broad but costly edit strategy into a reproducible global--
+local framework whose guarantees and empirical gains can be checked directly.

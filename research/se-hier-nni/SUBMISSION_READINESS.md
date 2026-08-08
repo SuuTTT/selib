@@ -17,9 +17,9 @@ Status: **UPLOAD-READY REVIEW PDF**.
 - Build: `latexmk -cd -pdf -interaction=nonstopmode -halt-on-error paper/se-hier-nni/main.tex`
 - Upload PDF: `paper/se-hier-nni/main.pdf`
 - Branch: `codex/se-hier-nni-paper`
-- Format result: 11 A4 pages; all fonts embedded; no Type 3 fonts.
+- Format result: 12 A4 pages; all fonts embedded; no Type 3 fonts.
 - TAMC checker: pass in `--double-blind` mode with zero mechanical failures.
-- Visual inspection: all 11 pages rendered; title, equations, algorithm,
+- Visual inspection: all 12 pages rendered; title, equations, algorithm,
   figures, tables, references, headers, and page breaks inspected.
 - Science gate: `ADVERSARIAL_REVIEW.md` passes the manuscript to submission.
 - Evidence: both artifact verifiers pass; 10 tests pass and 1 is skipped.

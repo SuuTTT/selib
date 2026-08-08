@@ -21,12 +21,12 @@ positive-volume part of the tree.
 
 \paragraph{Constructors.}
 We distinguish a \emph{constructor}, which produces an initial tree, from a
-\emph{refiner}, which searches its neighboring topologies. The candidate pool
+\emph{refiner}, which searches neighboring topologies. Our candidate pool
 contains (i) a binary SE-agglomerative dendrogram, (ii) a recursive SE
 partition tree, and (iii) a Paris dendrogram when the optional implementation
-is available \cite{bonald2018paris}. The original \texttt{se\_hier} additionally
-performs exact-guarded collapse and subtree-relocation search. HCSE and BBM are
-evaluated from their official implementation \cite{pan2025}.
+is available \cite{bonald2018paris}. HCSE and BBM are distinct external
+constructors and are evaluated from their official implementation
+\cite{pan2025}.
 
 \paragraph{Rooted NNI.}
 An NNI move acts on a binary parent--child edge. Writing the local topology as

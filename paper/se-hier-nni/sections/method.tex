@@ -1,11 +1,43 @@
-\section{Exact NNI Refinement}
+\section{Entropy-Guided Tree Search}
+Our framework contains two complementary optimizers. \EGTE searches a broad
+space of non-binary hierarchy edits and provides a strong general solution.
+\NEST uses the exact local identity developed below to obtain a substantially
+faster hierarchy with an explicit NNI-local certificate.
+
+\subsection{Entropy-guided general tree editing}
+\EGTE first constructs a pool containing an SE-agglomerative dendrogram, a
+recursive-SE partition tree, and a Paris tree when available. For each start it
+searches two topology-changing neighborhoods. A \emph{collapse} removes an
+internal level and connects its children directly to its parent. A
+\emph{relocation} detaches a subtree and attaches it to a nearby internal
+module, allowing information from one branch to reorganize another. Every
+candidate tree is evaluated with the complete objective in
+Eq.~\eqref{eq:tree-se}; a move is accepted only when this independently
+recomputed value strictly decreases. Small graphs use best improvement over
+all candidates, while larger graphs use shuffled first improvement with a
+declared relocation cap.
+
+\begin{proposition}[Monotonicity of general tree editing]\label{prop:egte}
+The entropy returned by \textup{\EGTE} is no greater than that of the best successfully
+constructed initial tree.
+\end{proposition}
+\begin{proof}
+Each edit is committed only after exact recomputation verifies a strict
+decrease, and \EGTE returns the lowest-entropy refined candidate.
+\end{proof}
+
+Collapse and relocation provide a broad edit space, but repeated full-tree
+evaluation is costly and their termination does not characterize a canonical
+binary neighborhood. We therefore develop an exact NNI refiner whose local
+effect can be evaluated without rescoring every unaffected module.
+
 \subsection{A local structural-entropy identity}
 For disjoint sets $X,Y$, write
 $W(X,Y)=\sum_{u\in X,v\in Y}w_{uv}$. Consider the rotation shown in
 Fig.~\ref{fig:nni}. Let $X=A\cup B$, $Y=B\cup C$, and
 $P=A\cup B\cup C$.
 
-\begin{figure}[t]
+\begin{figure}[H]
 \centering
 \begin{tikzpicture}[
   level distance=8mm,
@@ -144,14 +176,15 @@ delta; the regression witness in Sec.~\ref{sec:experiments} instantiates this
 case.
 \end{proof}
 
-\subsection{Fast multi-start SE--NNI}
-\SEAlg applies Algorithm~\ref{alg:nni} independently to SE-agglomerative,
+\subsection{Fast NNI-certified entropy search}
+\NEST applies Algorithm~\ref{alg:nni} independently to SE-agglomerative,
 recursive-SE, and Paris starts and returns the candidate with minimum verified
-entropy. This replaces the generic collapse/relocation stage of
-\texttt{se\_hier}. The initializer is recorded for every output, so gains can
-be attributed either to construction or refinement. With $n$ leaves there are
-at most $2(n-2)$ oriented NNI alternatives per sweep, versus a substantially
-larger generic space of source--destination tree edits. Our implementation
-uses best improvement, cached leaf sets, sparse cross-weight scans, and an
-$O(m\log h+n)$ full verification only for a selected move, where $h$ is tree
-height. We make runtime claims empirically rather than assuming balanced trees.
+entropy. Unlike \EGTE, it omits general collapse/relocation search and uses the
+exact NNI neighborhood directly. The initializer is recorded for every output,
+so gains can be attributed to candidate selection, one-step refinement, and
+compound escape. With $n$ leaves there are at most $2(n-2)$ oriented NNI
+alternatives per sweep, versus the larger source--destination edit space of
+\EGTE. Our implementation uses best improvement, cached leaf sets, sparse
+cross-weight scans, and an $O(m\log h+n)$ full verification only for a selected
+move, where $h$ is tree height. We make runtime claims empirically rather than
+assuming balanced trees.

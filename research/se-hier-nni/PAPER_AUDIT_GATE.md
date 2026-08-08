@@ -6,9 +6,9 @@ Audit date: 2026-08-08. Verdict: **PASS TO SUBMISSION**.
 
 - Official TAMC 2026 page rechecked: review is double-blind.
 - The PDF correctly uses anonymous author and affiliation fields.
-- A4 Springer LNCS, 11 pages including references, no margin/font changes.
+- A4 Springer LNCS, 12 pages including references, no margin/font changes.
 - No undefined citation/reference, overfull box, missing graphic, or Type 3 font.
-- All 11 pages rendered; every changed page and all figures/tables inspected.
+- All 12 pages rendered; every changed page and all figures/tables inspected.
 - `audit_tamc_submission.py --double-blind` passes with zero failures.
 
 ## Scientific gate
