@@ -6,7 +6,7 @@ Frozen on 2026-08-08 for the TAMC submission candidate.
 
 - Repository: `https://github.com/SuuTTT/selib`
 - Branch: `codex/se-hier-nni-paper`
-- Evidence-and-paper commit: `82aa88113ab8227905a9b7c649c68531f1b322a7`
+- Evidence-and-paper commit: `61bc121a59e38cd27291048b752d46a90cc48a1a`
 - Official HCSE/BBM comparison code commit: `ccf832e`
 - Paper format: A4 Springer LNCS, 12 pages including references
 
@@ -14,7 +14,7 @@ Frozen on 2026-08-08 for the TAMC submission candidate.
 
 | Artifact | SHA-256 |
 |---|---|
-| `paper/se-hier-nni/main.pdf` | `4a44f605203ad7e23cf8815dc4a88a7baa74d9b5db5c39de6b8f443fa07d67a3` |
+| `paper/se-hier-nni/main.pdf` | `37fc4d87847432630d1350a3930747bd2352e5518bec64e8df8ccc5627cc7d1b` |
 | `results/nni_benchmark.json` | `0fafdac19f3c70458b894027dffbdda67172861900812135bd4bb4673ba8345d` |
 | `results/nni_real_benchmark.json` | `7c0c942455cf7b348935912068f0cb3d233b6e690c0a219ac8969e6e3e476d7d` |
 | `results/nni_scaling.json` | `930d73412a07bee34528fa3cb6b40f50172a7d42c911f3df76fd8ad9341f74ad` |
