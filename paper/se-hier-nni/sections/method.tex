@@ -90,15 +90,6 @@ entropy is
 The symmetric alternative follows by exchanging $A$ and $B$.
 \end{theorem}
 
-Equivalently, the bracket in Eq.~\eqref{eq:nni-delta} is
-\begin{equation}
- W(B,C)\log_2 V_Y-W(A,B)\log_2 V_X
- +\bigl(W(A,B)-W(B,C)\bigr)\log_2 V_P.
- \label{eq:nni-expanded}
-\end{equation}
-The parent-volume term in Eq.~\eqref{eq:nni-expanded} is essential and cannot
-be dropped merely because the edit is local.
-
 \begin{proof}
 First suppose the three child modules have positive volume; the zero-volume
 boundary case follows by deleting modules with no incident positive-weight
@@ -125,10 +116,32 @@ Restoring $1/\vol(V)$ proves Eq.~\eqref{eq:nni-delta}. In particular, external b
 weights and $W(A,C)$ do not enter the rotation delta.
 \end{proof}
 
-Equation~\eqref{eq:nni-delta} is evaluated from cached descendant sets and the
-sparse adjacency lists. Every selected move is also checked by rebuilding all
-module volumes and cuts and recomputing Eq.~\eqref{eq:tree-se}. This second path
-is slower but makes a formula or tree-edit error observable rather than silent.
+\begin{proposition}[Atomic advantage over merge--compress]
+\label{prop:atomic}
+Let $T_c$ contract the edge from $P$ to $X=A\cup B$, exposing $A,B,C$ as
+siblings, and let $T'$ then merge $B,C$ under $Y=B\cup C$. For these HCSE
+compress and merge primitives,
+\begin{align}
+ H^{T_c}(G)-H^T(G)
+ &=\frac{2W(A,B)}{\vol(V)}\log_2\frac{V_P}{V_X}\ge0,\label{eq:compress}\\
+ H^{T'}(G)-H^{T_c}(G)
+ &=-\frac{2W(B,C)}{\vol(V)}\log_2\frac{V_P}{V_Y}\le0.\label{eq:merge}
+\end{align}
+Their sum is Eq.~\eqref{eq:nni-delta}. Thus NNI lowers entropy when the merge
+gain in Eq.~\eqref{eq:merge} exceeds the compression loss in
+Eq.~\eqref{eq:compress}, although neither desired reparenting nor an improving
+compression is available as one primitive.
+\end{proposition}
+\begin{proof}
+Delete $X$'s codeword and substitute $g_X=g_A+g_B-2W(A,B)$ in
+Eq.~\eqref{eq:tree-se}; this gives Eq.~\eqref{eq:compress}. The symmetric
+calculation for inserting $Y$ gives Eq.~\eqref{eq:merge}.
+\end{proof}
+
+This proves strict separation from monotone single-primitive search, not global
+dominance over a complete HCSE round, which may cross an intermediate increase.
+We evaluate Eq.~\eqref{eq:nni-delta} from cached sets and sparse adjacency lists,
+then verify every selected move by fully recomputing Eq.~\eqref{eq:tree-se}.
 
 \subsection{One-step certificate and compound escape}
 \begin{algorithm}[H]

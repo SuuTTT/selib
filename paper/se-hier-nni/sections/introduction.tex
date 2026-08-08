@@ -8,21 +8,16 @@ partitioning and balanced merging \cite{pan2025}. Their construction rules,
 however, do not answer a complementary question: \emph{after a tree has been
 constructed, does a small topology change still lower the same objective?}
 
-The distinction between construction and local optimality matters
-algorithmically. A strong constructor can retain avoidable entropy because its
-earlier decisions constrain later steps. At the other extreme, unrestricted
-tree editing can reconsider many source--destination pairs and require a full
-objective recomputation for every candidate. A useful hierarchy optimizer
-should therefore combine a broad construction neighborhood with a local
-operator whose effect is exact and whose termination is interpretable.
+Construction and local optimality are distinct: early decisions can retain
+avoidable entropy, while unrestricted tree editing considers many
+source--destination pairs and repeatedly rescores the full objective. We seek
+both broad construction and a local operator with an exact effect and
+interpretable termination.
 
-We first introduce Entropy-Guided Tree Editing (\EGTE), a general optimizer for
-structural-entropy trees. \EGTE starts from SE agglomeration, recursive SE, and
-optionally Paris, then applies exact-guarded level-collapse and subtree-
-relocation moves. This general edit space provides a strong hierarchy without
-ground-truth labels, but its repeated whole-tree rescoring is expensive. \EGTE
-therefore establishes the broad-search component of our framework and exposes
-the need for a cheaper certifiable neighborhood.
+Entropy-Guided Tree Editing (\EGTE) starts from SE agglomeration, recursive SE,
+and optionally Paris, then applies exact-guarded collapse and relocation. This
+label-free general search is strong but costly because it repeatedly rescores
+the whole tree, motivating a cheaper certifiable neighborhood.
 
 Nearest-neighbor interchange (NNI) is the elementary rotation of a rooted
 binary tree. It changes one internal edge while preserving every leaf. NNI is
@@ -44,8 +39,8 @@ Our contributions are:
 \begin{itemize}
   \item \EGTE, a label-free multi-start hierarchy optimizer with
   exact-guarded collapse and subtree-relocation moves;
-  \item an exact weighted-graph NNI delta for tree structural entropy, together
-  with monotone descent and a checkable one-NNI local certificate;
+  \item an exact weighted-graph NNI delta, a proof of separation from monotone
+  single merge/compress steps, and a checkable one-NNI local certificate;
   \item \NEST, which combines multi-start construction, exact NNI refinement,
   and bounded two-move escape without weakening the output guarantee; and
   \item a paired evaluation against SE agglomeration, Louvain-2L, Paris, and
@@ -53,9 +48,7 @@ Our contributions are:
   runtime, memory, operator audits, and an explicit \EGTE--\NEST ablation.
 \end{itemize}
 
-Across five frozen hierarchical graph regimes, \NEST lowers entropy by
-$\NESTGainVsHCSE\!\pm\!\NESTGainVsHCSECI$ bits relative to HCSE and by
-$\NESTGainVsBBM\!\pm\!\NESTGainVsBBMCI$ bits relative to BBM, winning all
-paired comparisons against both. The paper therefore contributes both a
-general tree-edit optimizer and a faster locally certified alternative, rather
-than treating an implementation artifact as a competing method.
+Across five frozen regimes, \NEST lowers entropy by
+$\NESTGainVsHCSE\!\pm\!\NESTGainVsHCSECI$ bits versus HCSE and
+$\NESTGainVsBBM\!\pm\!\NESTGainVsBBMCI$ bits versus BBM, winning every paired
+comparison. It provides a fast locally certified alternative to general editing.

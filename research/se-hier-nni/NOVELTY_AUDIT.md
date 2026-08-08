@@ -25,6 +25,11 @@ construction.
 
 - The exact identity has a direct telescoping proof and agrees with full
   objective recomputation on more than 100 random weighted moves.
+- A new atomic-separation proposition decomposes every local NNI into HCSE-style
+  compression followed by merging. The compression loss is always nonnegative,
+  while the later merge gain can be larger. Therefore an improving NNI can be
+  inaccessible to any monotone single merge/compress step. This is a strict
+  neighborhood result, not a claim that NNI dominates a complete HCSE round.
 - The full method is best on 50/50 frozen HSBM graphs and 4/4 bundled real
   networks under the common exact objective.
 - Component ablation confirms separate gains from the candidate pool,

@@ -24,6 +24,11 @@ and constructor audit.
   termination before a move-budget cap; it does not imply global optimality.
 - The compound proposition claims only monotone accepted endpoints and
   existence of an escaped witness, not complete depth-two search.
+- The merge--compress proposition is exact: contracting the old sibling module
+  has nonnegative entropy change, inserting the new sibling module has
+  nonpositive change, and their sum is the NNI delta. Its conclusion is limited
+  to separation from monotone single-primitive search; a full HCSE
+  stretch--compress round may cross the same intermediate barrier.
 - More than 100 random weighted moves agree with independent full-objective
   recomputation to `1e-9`; every accepted benchmark endpoint is rescored.
 

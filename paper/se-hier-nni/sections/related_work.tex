@@ -28,13 +28,9 @@ cannot be substituted for Eq.~\eqref{eq:tree-se}.
 \paragraph{Local search in tree space.}
 NNI is a classical neighborhood for phylogenetic trees; its reconfiguration
 distance is itself nontrivial \cite{litrompzhang1996}. Recent work studies NNI
-local search for hierarchical-clustering costs \cite{jowhari2024}. Our
-formula is specific to weighted graph structural entropy, exposes the two
-cross-module weights that determine a rotation, and is integrated with
-SE-specific constructors and verification.
-
-Unlike landscape analyses restricted to unit cliques, the present method
-operates on arbitrary weighted graphs and evaluates the complete tree entropy.
-The overlap is the elementary NNI identity; the new content is its verified
-optimizer, compound implementation, multi-start construction, and comparative
-evaluation. We do not claim that a local certificate is global optimality.
+local search for hierarchical-clustering costs \cite{jowhari2024}. Our formula
+targets weighted graph structural entropy and exposes the two cross-module
+weights controlling a rotation. Unlike unit-clique landscape analyses, our
+method evaluates the complete objective on arbitrary weighted graphs. Its new
+content is the verified optimizer, compound search, multi-start construction,
+and comparative evaluation; local certification is not global optimality.

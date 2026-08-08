@@ -7,9 +7,9 @@ optimizers. Entropy-Guided Tree Editing (\EGTE) constructs a hierarchy from
 multiple initial trees and monotonically improves the complete objective by
 level collapse and subtree relocation. NNI-certified Entropy Search over Trees
 (\NEST) replaces this costly general-edit stage with exact rooted
-nearest-neighbor interchange (NNI). For weighted graphs, we derive a closed
-form for the entropy change of an NNI using only three module volumes and two
-cross-module edge weights. The identity supports monotone best-improvement
+nearest-neighbor interchange (NNI). For weighted graphs, we derive its exact
+entropy change and prove that an improving NNI can be inaccessible to a
+monotone single merge or compression. The identity supports best-improvement
 descent, a checkable one-NNI local-optimality certificate, and a bounded
 two-move search that can cross a controlled intermediate barrier while
 committing only an entropy-decreasing endpoint. All synthetic comparisons are
