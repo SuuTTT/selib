@@ -1,0 +1,20 @@
+\begin{table}[H]
+\centering
+\caption{Exact basin mass on one fixed noisy HSBM graph at each size. $p_U$
+uses the uniform measure over unordered rooted binary labeled topologies;
+$p_C$ uses NEST's pairwise-coalescent measure. ``Strict'' requires every
+planted fine and coarse block to occur as a clade.}
+\label{tab:basin-exact}
+\small
+\setlength{\tabcolsep}{4.2pt}
+\begin{tabular}{rrrrrr}
+\toprule
+$n$ & starts & pool hits? & $p_U(H^*)$ & $p_C(H^*)$ & $p_C(\text{strict})$ \\
+\midrule
+5 & 105     & yes & 100.000\% & 100.000\% & 0.000\% \\
+6 & 945     & yes & 100.000\% & 100.000\% & 0.000\% \\
+7 & 10,395  & yes & 100.000\% & 100.000\% & 0.000\% \\
+8 & 135,135 & no  &  24.848\% &  25.237\% & 0.000\% \\
+\bottomrule
+\end{tabular}
+\end{table}

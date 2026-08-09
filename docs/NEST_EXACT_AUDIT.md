@@ -37,10 +37,58 @@ in the original protocol it is identical to the graph seed.
   test.
 - **Stochastic success probability:** for one fixed graph and one fixed restart
   budget, fraction of independent optimizer campaigns that hit `H*`.
+- **Strict planted recovery:** every declared fine and coarse planted block is
+  present as the descendant-leaf set of some returned tree node. Singleton
+  fine blocks are necessarily recovered and are counted explicitly.
 
 Optimal-hit rate measures optimization quality, not recovery of a unique
 planted hierarchy. Multiple different trees can tie at `H*`; use planted
 fine/coarse recovery metrics separately when topology recovery matters.
+
+## Per-start basin probability
+
+For a fixed graph `G`, deterministic NNI refinement `F`, exact optimum `H*`,
+and start distribution `mu`, the per-start objective-success probability is
+
+```text
+p_G = sum_T mu(T) 1{ H(F(T)) = H* }.
+```
+
+It is a property of that graph, start distribution, tie-breaking rule, and
+refinement configuration—not a universal constant of NEST. The exact dynamic
+program computes `H*`; it does not compute this basin probability.
+
+For `n <= 8`, `scripts/run_nni_basin_audit.py` enumerates every unordered
+rooted binary labeled topology. There are `(2n-3)!!` such topologies: 105,
+945, 10,395, and 135,135 for `n=5,6,7,8`. It reports both:
+
+- the uniform fraction of topologies ending at `H*`; and
+- the probability induced by NEST's pairwise coalescent generator.
+
+The latter is not uniform over topologies. If a topology has child subtrees
+with `a` and `b` leaves and compatible-history counts `h(A), h(B)`, then
+
+```text
+h(T) = binom(a+b-2, a-1) h(A) h(B),
+mu(T) = h(T) / product_{k=2}^n binom(k,2).
+```
+
+At `n=12`, exhaustive enumeration would require 13,749,310,575 topologies, so
+the companion audit uses 10,000 independent starts per fixed hard graph and
+reports exact two-sided Clopper--Pearson 95% confidence intervals. For `R`
+independent random starts, the implied hit probability is `1-(1-p_G)^R`. If
+the deterministic candidate pool already reaches `H*`, NEST-R succeeds before
+using any random start; otherwise this expression gives its random-restart
+success probability.
+
+In the frozen audit, the hard noisy `n=8` graph has exact coalescent mass
+`p_G=0.252365`, so 32 starts imply `0.999909`, not certainty. Across eight
+preidentified hard `n=12` graphs, 10,000-start estimates range from `0.0807`
+to `0.4643`; the hardest case implies `0.932293` for 32 starts. Strict planted
+recovery occurred in none of the 80,000 sampled endpoints and has zero exact
+mass on the audited `n=8` graph. This is evidence of objective--recovery
+misalignment under the strict all-clades criterion, not evidence that the
+generator labels or the reported NMI/purity values were fabricated.
 
 ## Repair and evaluation phases
 
@@ -76,4 +124,8 @@ python scripts/run_nni_restart_audit.py --skip-development --holdout-start 110 \
   --output results/nni_restart_independent_confirmation.json
 python scripts/diagnose_nni_restart_failures.py
 python scripts/verify_nni_restart_audit.py
+python scripts/run_nni_basin_audit.py --mode exact --exact-regimes noisy \
+  --exact-graph-seed 9
+python scripts/run_nni_basin_audit.py --mode monte-carlo --starts 10000
+python scripts/verify_nni_basin_audit.py
 ```

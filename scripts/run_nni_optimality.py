@@ -29,8 +29,15 @@ REGIMES = {
 }
 
 
-def small_hierarchical_sbm(regime, seed, independent_regime_seed=False):
-    probabilities, sizes = REGIMES[regime]
+def small_hierarchical_sbm(
+    regime, seed, independent_regime_seed=False, sizes_override=None
+):
+    probabilities, default_sizes = REGIMES[regime]
+    sizes = list(default_sizes if sizes_override is None else sizes_override)
+    if len(sizes) % 2:
+        raise ValueError("fine-block sizes must contain pairs of coarse children")
+    if any(size <= 0 for size in sizes):
+        raise ValueError("all fine-block sizes must be positive")
     regime_index = list(REGIMES).index(regime)
     rng_seed = (
         seed + 1_000_003 * (regime_index + 1)
@@ -75,6 +82,14 @@ def small_hierarchical_sbm(regime, seed, independent_regime_seed=False):
         "graph_seed": seed,
         "rng_seed": rng_seed,
         "independent_regime_seed": independent_regime_seed,
+        "fine_blocks": [
+            [vertex for vertex, label in enumerate(fine) if label == block]
+            for block in range(len(sizes))
+        ],
+        "coarse_blocks": [
+            [vertex for vertex, label in enumerate(coarse) if label == block]
+            for block in range(len(sizes) // 2)
+        ],
     }
     return graph, manifest
 

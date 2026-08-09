@@ -1,0 +1,500 @@
+{
+  "protocol": {
+    "version": "tamc-nest-basin-exact-v1",
+    "measure": "all unordered rooted binary labeled topologies, reported both uniformly and under the pairwise-coalescent history measure",
+    "sizes": {
+      "5": [
+        1,
+        1,
+        1,
+        2
+      ],
+      "6": [
+        1,
+        2,
+        1,
+        2
+      ],
+      "7": [
+        1,
+        2,
+        2,
+        2
+      ],
+      "8": [
+        2,
+        2,
+        2,
+        2
+      ]
+    },
+    "imbalanced_sizes": {
+      "5": [
+        1,
+        1,
+        1,
+        2
+      ],
+      "6": [
+        1,
+        2,
+        1,
+        2
+      ],
+      "7": [
+        1,
+        2,
+        1,
+        3
+      ],
+      "8": [
+        1,
+        3,
+        1,
+        3
+      ]
+    },
+    "graph_seed_base": 9,
+    "regimes": [
+      "noisy"
+    ],
+    "optimizer": "one-step NNI descent followed by bounded two-step compound search",
+    "evaluation_only": "H* and planted blocks are never visible to the optimizer",
+    "strict_recovery": "every declared fine and coarse block occurs as a descendant-leaf clade; singleton fine blocks are trivially recovered"
+  },
+  "records": [
+    {
+      "regime": "noisy",
+      "n": 5,
+      "m": 4,
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          1,
+          1,
+          1,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": [
+          [
+            0,
+            1,
+            0.01
+          ],
+          [
+            1,
+            2,
+            0.01
+          ],
+          [
+            2,
+            3,
+            0.01
+          ]
+        ],
+        "graph_seed": 14,
+        "rng_seed": 2000020,
+        "independent_regime_seed": true,
+        "fine_blocks": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "coarse_blocks": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3,
+            4
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.0317094259512885,
+      "standard_pool": {
+        "entropy_bits": 1.0317094259512882,
+        "globally_optimal": true
+      },
+      "uniform_topology_measure": {
+        "optimal": {
+          "successes": 105,
+          "topologies": 105,
+          "probability": 1.0
+        },
+        "strict_recovery": {
+          "successes": 0,
+          "topologies": 105,
+          "probability": 0.0
+        },
+        "both": {
+          "successes": 0,
+          "topologies": 105,
+          "probability": 0.0
+        }
+      },
+      "coalescent_measure": {
+        "optimal": {
+          "successful_histories": 180,
+          "total_histories": 180,
+          "probability": 1.0
+        },
+        "strict_recovery": {
+          "successful_histories": 0,
+          "total_histories": 180,
+          "probability": 0.0
+        },
+        "both": {
+          "successful_histories": 0,
+          "total_histories": 180,
+          "probability": 0.0
+        }
+      },
+      "strict_given_optimal": 0.0,
+      "coalescent_strict_given_optimal": 0.0,
+      "predicted_nest_r32_optimal_probability": 1.0,
+      "endpoint_additive_gap_bits": {
+        "mean": 0.0,
+        "median": 0.0,
+        "maximum": 0.0
+      },
+      "elapsed_s": 0.19412195804761723
+    },
+    {
+      "regime": "noisy",
+      "n": 6,
+      "m": 5,
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          1,
+          2,
+          1,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": [
+          [
+            0,
+            1,
+            0.01
+          ],
+          [
+            1,
+            2,
+            0.01
+          ],
+          [
+            2,
+            5,
+            0.01
+          ]
+        ],
+        "graph_seed": 15,
+        "rng_seed": 2000021,
+        "independent_regime_seed": true,
+        "fine_blocks": [
+          [
+            0
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "coarse_blocks": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            3,
+            4,
+            5
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.047965231039309,
+      "standard_pool": {
+        "entropy_bits": 1.0479652310393088,
+        "globally_optimal": true
+      },
+      "uniform_topology_measure": {
+        "optimal": {
+          "successes": 945,
+          "topologies": 945,
+          "probability": 1.0
+        },
+        "strict_recovery": {
+          "successes": 0,
+          "topologies": 945,
+          "probability": 0.0
+        },
+        "both": {
+          "successes": 0,
+          "topologies": 945,
+          "probability": 0.0
+        }
+      },
+      "coalescent_measure": {
+        "optimal": {
+          "successful_histories": 2700,
+          "total_histories": 2700,
+          "probability": 1.0
+        },
+        "strict_recovery": {
+          "successful_histories": 0,
+          "total_histories": 2700,
+          "probability": 0.0
+        },
+        "both": {
+          "successful_histories": 0,
+          "total_histories": 2700,
+          "probability": 0.0
+        }
+      },
+      "strict_given_optimal": 0.0,
+      "coalescent_strict_given_optimal": 0.0,
+      "predicted_nest_r32_optimal_probability": 1.0,
+      "endpoint_additive_gap_bits": {
+        "mean": 0.0,
+        "median": 0.0,
+        "maximum": 0.0
+      },
+      "elapsed_s": 0.7888449159800075
+    },
+    {
+      "regime": "noisy",
+      "n": 7,
+      "m": 7,
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          1,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": [],
+        "graph_seed": 16,
+        "rng_seed": 2000022,
+        "independent_regime_seed": true,
+        "fine_blocks": [
+          [
+            0
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "coarse_blocks": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            3,
+            4,
+            5,
+            6
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.5423514687077584,
+      "standard_pool": {
+        "entropy_bits": 1.5423514687077584,
+        "globally_optimal": true
+      },
+      "uniform_topology_measure": {
+        "optimal": {
+          "successes": 10395,
+          "topologies": 10395,
+          "probability": 1.0
+        },
+        "strict_recovery": {
+          "successes": 0,
+          "topologies": 10395,
+          "probability": 0.0
+        },
+        "both": {
+          "successes": 0,
+          "topologies": 10395,
+          "probability": 0.0
+        }
+      },
+      "coalescent_measure": {
+        "optimal": {
+          "successful_histories": 56700,
+          "total_histories": 56700,
+          "probability": 1.0
+        },
+        "strict_recovery": {
+          "successful_histories": 0,
+          "total_histories": 56700,
+          "probability": 0.0
+        },
+        "both": {
+          "successful_histories": 0,
+          "total_histories": 56700,
+          "probability": 0.0
+        }
+      },
+      "strict_given_optimal": 0.0,
+      "coalescent_strict_given_optimal": 0.0,
+      "predicted_nest_r32_optimal_probability": 1.0,
+      "endpoint_additive_gap_bits": {
+        "mean": 1.8370212624870314e-17,
+        "median": 0.0,
+        "maximum": 2.220446049250313e-16
+      },
+      "elapsed_s": 13.154149165959097
+    },
+    {
+      "regime": "noisy",
+      "n": 8,
+      "m": 10,
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": [],
+        "graph_seed": 17,
+        "rng_seed": 2000023,
+        "independent_regime_seed": true,
+        "fine_blocks": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            6,
+            7
+          ]
+        ],
+        "coarse_blocks": [
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6,
+            7
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.8773616209547939,
+      "standard_pool": {
+        "entropy_bits": 1.930809982844966,
+        "globally_optimal": false
+      },
+      "uniform_topology_measure": {
+        "optimal": {
+          "successes": 33579,
+          "topologies": 135135,
+          "probability": 0.24848484848484848
+        },
+        "strict_recovery": {
+          "successes": 0,
+          "topologies": 135135,
+          "probability": 0.0
+        },
+        "both": {
+          "successes": 0,
+          "topologies": 135135,
+          "probability": 0.0
+        }
+      },
+      "coalescent_measure": {
+        "optimal": {
+          "successful_histories": 400655,
+          "total_histories": 1587600,
+          "probability": 0.25236520534139584
+        },
+        "strict_recovery": {
+          "successful_histories": 0,
+          "total_histories": 1587600,
+          "probability": 0.0
+        },
+        "both": {
+          "successful_histories": 0,
+          "total_histories": 1587600,
+          "probability": 0.0
+        }
+      },
+      "strict_given_optimal": 0.0,
+      "coalescent_strict_given_optimal": 0.0,
+      "predicted_nest_r32_optimal_probability": 0.999909204533816,
+      "endpoint_additive_gap_bits": {
+        "mean": 0.04574150833924473,
+        "median": 0.053448361890172436,
+        "maximum": 0.1365845211417569
+      },
+      "elapsed_s": 256.179430417018
+    }
+  ],
+  "elapsed_s": 270.5471299579949
+}

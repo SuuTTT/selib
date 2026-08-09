@@ -8,8 +8,8 @@ Audit date: 2026-08-10. Verdict: **PASS TO SUBMISSION**.
 - The PDF correctly uses anonymous author and affiliation fields.
 - A4 Springer LNCS, 12 pages including references, no margin/font changes.
 - No undefined citation/reference, overfull box, missing graphic, or Type 3 font.
-- All 12 main pages plus the optional proof appendix rendered; every changed
-  page and all figures/tables inspected.
+- All 12 main pages plus the three-page optional appendix rendered; every
+  changed appendix page and both new probability tables inspected.
 - `audit_tamc_submission.py --double-blind` passes on the 12-page main artifact;
   the checker does not parse the CFP's excluded optional appendix.
 
@@ -21,7 +21,10 @@ Audit date: 2026-08-10. Verdict: **PASS TO SUBMISSION**.
   cluster-trellis exact inference is now cited and the novelty claim narrowed.
 - Zero-volume scope is now explicit in the theorem and preliminaries.
 - Main and restart-optimum artifact verifiers pass.
-- 16 automated tests pass; 1 optional-dependency test is skipped.
+- 19 automated tests pass; 1 optional-dependency test is skipped.
+- The basin verifier checks exact topology/history totals, frozen exhaustive
+  counts, all 80,000 Monte Carlo trials, confidence intervals, and restart
+  probability transforms.
 - Current primary-source novelty search found no prior exact discrete SE--NNI
   optimizer; closest-work boundaries are documented in `NOVELTY_AUDIT.md`.
 

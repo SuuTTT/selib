@@ -10,6 +10,7 @@
 | C6 | The SE-specific subset-trellis DP returns the global minimum over all encoding trees. | Positive-volume graph; exponential small-graph use. | DP recurrence plus C5; rebuilt optimum; enumeration of all 105 trees at n=5; generic trellis prior cited. | This is not a polynomial-time NEST guarantee or generic DP novelty. | proved |
 | C7 | NEST-R32 is exact on 800/800 audited n=12 graphs; standard NEST is exact on 685/800. | Five declared HSBM regimes and phased seeds; final 250 use disjoint regime streams. | Restart JSON artifacts and verifier; DP is exact. | No worst-case, size-independent, or all-graph optimality claim. | verified |
 | C8 | NEST beats HCSE and BBM on the frozen external suite. | Five n=64 HSBM regimes, ten paired seeds. | `nni_benchmark.json`, verifier, paired CIs. | No universal dominance claim. | verified |
+| C9 | On a fixed hard n=8 graph the exact coalescent basin mass is 0.252365; across eight hard n=12 graphs direct estimates range from 0.0807 to 0.4643. | One exhaustively enumerated noisy graph per n=5--8 and eight preidentified hard n=12 graphs with 10,000 starts each. | Basin JSON artifacts, exact history-mass identity, Clopper--Pearson intervals, and verifier. | No graph-independent success probability; 32 starts are not guaranteed. Strict planted recovery is a separate event and was not observed. | verified |
 
 ## Dependency graph
 
@@ -28,6 +29,10 @@ sufficiency → exact subset DP → finite global-optimum audit.
   a separate metric.
 - **NNI is newly invented:** false; novelty is the structural-entropy identity,
   certified optimizer, and global audit.
+- **The 800/800 audit means NEST-R32 succeeds with probability one:** false;
+  direct hard-case estimates include a 93.23% point estimate for 32 starts.
+- **Reaching $H^*$ means recovering the planted hierarchy:** false on the
+  declared small realized HSBMs under the strict all-clades criterion.
 
 ## Concurrent-work boundary
 

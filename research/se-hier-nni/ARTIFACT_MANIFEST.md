@@ -16,7 +16,7 @@ Frozen on 2026-08-10 for the NEST-only TAMC submission candidate.
 | Artifact | SHA-256 |
 |---|---|
 | `paper/se-hier-nni/main.pdf` | `b0e31d0158b840b98359e490cbcfd25fb9feb7e5f3385d688e8822b46c566d94` |
-| `paper/se-hier-nni/main-with-appendix.pdf` | `6c5806ac6b73fef494cad61777226511f640e54f586562acadd587a915ce3832` |
+| `paper/se-hier-nni/main-with-appendix.pdf` | `fe90e4589d03ecbcfb4a25251bba8c5dd17f4c707124de2ad742fda7e2c05939` |
 | `results/nni_benchmark.json` | `0fafdac19f3c70458b894027dffbdda67172861900812135bd4bb4673ba8345d` |
 | `results/nni_real_benchmark.json` | `7c0c942455cf7b348935912068f0cb3d233b6e690c0a219ac8969e6e3e476d7d` |
 | `results/nni_ablation.json` | `694fd324850573421862fb4697f0a14c28204f30df61cfff0497942cc2e3b71f` |
@@ -26,6 +26,8 @@ Frozen on 2026-08-10 for the NEST-only TAMC submission candidate.
 | `results/nni_restart_independent_confirmation.json` | `a9b470f7ef1f4cf9d132f47f059f77995ffc142f628b487e5faa3978b118feb1` |
 | `results/nni_restart_failure_diagnostics.json` | `0a5a735d8630e6c21f265c3a95b4493115d25e2b6494714cff6257fd507cdc21` |
 | `results/nni_benchmark_repeat.json` | `0f67a2a89dbaed4570de88a4d7f30cbe5f2781ecb8e700eb8375ca9f88f75693` |
+| `results/nni_basin_exact.json` | `d2a196aecba92355956bbbda4de03e7215e8802135f0965fa1acc7f651ca2bcb` |
+| `results/nni_basin_monte_carlo.json` | `6db83cc29d8765c6287cb103eae0ab703c79d0f38e105749d1f628c297c34185` |
 
 ## Verification
 
@@ -34,9 +36,13 @@ Frozen on 2026-08-10 for the NEST-only TAMC submission candidate.
   regime-separated confirmation 250/250; original standard-pool gaps were
   0.1181% mean and 3.7155% maximum.
 - Hard-case stochastic audit: R32 hit the optimum in 60/60 independent campaigns.
-- Tests: 16 passed, 1 skipped (`pytest -q`).
-- PDF: A4; 12-page main-plus-references artifact and 13-page combined artifact
-  with one optional appendix page; visually inspected after final compilation.
+- Basin audit: all 146,580 rooted binary starts enumerated across one fixed
+  noisy graph at each n=5--8; 80,000 direct starts over eight hard n=12 graphs;
+  exact history-mass and frozen-count verifier passes.
+- Tests: 19 passed, 1 skipped (`pytest -ra`).
+- PDF: A4; 12-page main-plus-references artifact and 15-page combined artifact
+  with three optional appendix pages; changed pages visually inspected after
+  final compilation.
 - TAMC double-blind checker: pass with zero mechanical failures; anonymous
   author and affiliation fields are required by the official review policy.
 

@@ -1,0 +1,1032 @@
+{
+  "protocol": {
+    "version": "tamc-nest-basin-monte-carlo-v1",
+    "cases": [
+      [
+        "noisy",
+        0
+      ],
+      [
+        "noisy",
+        8
+      ],
+      [
+        "noisy",
+        9
+      ],
+      [
+        "imbalanced",
+        0
+      ],
+      [
+        "weak-hierarchy",
+        9
+      ],
+      [
+        "noisy",
+        11
+      ],
+      [
+        "noisy",
+        17
+      ],
+      [
+        "weak-hierarchy",
+        17
+      ]
+    ],
+    "starts_per_graph": 10000,
+    "campaign_seed": 20260810,
+    "start_distribution": "independent pairwise coalescent starts",
+    "interval": "two-sided exact Clopper-Pearson 95% interval",
+    "optimizer": "one-step NNI descent followed by bounded two-step compound search",
+    "evaluation_only": "H* and planted blocks are never visible to the optimizer",
+    "strict_recovery": "every declared fine and coarse block occurs as a descendant-leaf clade"
+  },
+  "environment": {
+    "python": "3.14.6",
+    "networkx": "3.6.1",
+    "numpy": "2.5.1"
+  },
+  "records": [
+    {
+      "regime": "noisy",
+      "graph_seed": 0,
+      "n": 12,
+      "m": 17,
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": [],
+        "graph_seed": 0,
+        "rng_seed": 0,
+        "independent_regime_seed": false,
+        "fine_blocks": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            10,
+            11
+          ]
+        ],
+        "coarse_blocks": [
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ]
+        ]
+      },
+      "restart_rng_seed": 20260810,
+      "global_optimum_bits": 1.9211330688580148,
+      "standard_pool": {
+        "entropy_bits": 1.9925119447714221,
+        "globally_optimal": false
+      },
+      "probabilities": {
+        "optimal": {
+          "successes": 1719,
+          "trials": 10000,
+          "estimate": 0.1719,
+          "clopper_pearson_95ci": [
+            0.16455152717555127,
+            0.17944006768601659
+          ],
+          "predicted_random_r32": 0.9976086171598612,
+          "predicted_random_r32_from_95ci": [
+            0.9968272969699536,
+            0.9982154455077195
+          ]
+        },
+        "strict_recovery": {
+          "successes": 0,
+          "trials": 10000,
+          "estimate": 0.0,
+          "clopper_pearson_95ci": [
+            0.0,
+            0.0003688199146187622
+          ]
+        },
+        "both": {
+          "successes": 0,
+          "trials": 10000,
+          "estimate": 0.0,
+          "clopper_pearson_95ci": [
+            0.0,
+            0.0003688199146187622
+          ]
+        }
+      },
+      "strict_given_optimal": 0.0,
+      "endpoint_additive_gap_bits": {
+        "mean": 0.041765538008898456,
+        "median": 0.02750028936311688,
+        "p95": 0.11553507883684122,
+        "maximum": 0.21012007492836893
+      },
+      "elapsed_s": 66.56370908301324
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 8,
+      "n": 12,
+      "m": 16,
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": [
+          [
+            0,
+            5,
+            0.01
+          ]
+        ],
+        "graph_seed": 8,
+        "rng_seed": 8,
+        "independent_regime_seed": false,
+        "fine_blocks": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            10,
+            11
+          ]
+        ],
+        "coarse_blocks": [
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ]
+        ]
+      },
+      "restart_rng_seed": 21260813,
+      "global_optimum_bits": 1.944938280053319,
+      "standard_pool": {
+        "entropy_bits": 1.9483823463290975,
+        "globally_optimal": false
+      },
+      "probabilities": {
+        "optimal": {
+          "successes": 1461,
+          "trials": 10000,
+          "estimate": 0.1461,
+          "clopper_pearson_95ci": [
+            0.13923107491585734,
+            0.1531757102729466
+          ],
+          "predicted_random_r32": 0.9936170060350358,
+          "predicted_random_r32_from_95ci": [
+            0.991751583929911,
+            0.9951091334953182
+          ]
+        },
+        "strict_recovery": {
+          "successes": 0,
+          "trials": 10000,
+          "estimate": 0.0,
+          "clopper_pearson_95ci": [
+            0.0,
+            0.0003688199146187622
+          ]
+        },
+        "both": {
+          "successes": 0,
+          "trials": 10000,
+          "estimate": 0.0,
+          "clopper_pearson_95ci": [
+            0.0,
+            0.0003688199146187622
+          ]
+        }
+      },
+      "strict_given_optimal": 0.0,
+      "endpoint_additive_gap_bits": {
+        "mean": 0.022215429147464986,
+        "median": 0.02106046908707171,
+        "p95": 0.06352748578362655,
+        "maximum": 0.08368802216842419
+      },
+      "elapsed_s": 74.31502695800737
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 9,
+      "n": 12,
+      "m": 15,
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": [
+          [
+            0,
+            8,
+            0.01
+          ]
+        ],
+        "graph_seed": 9,
+        "rng_seed": 9,
+        "independent_regime_seed": false,
+        "fine_blocks": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            10,
+            11
+          ]
+        ],
+        "coarse_blocks": [
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ]
+        ]
+      },
+      "restart_rng_seed": 22260816,
+      "global_optimum_bits": 1.9559580832986294,
+      "standard_pool": {
+        "entropy_bits": 1.963925416533913,
+        "globally_optimal": false
+      },
+      "probabilities": {
+        "optimal": {
+          "successes": 2056,
+          "trials": 10000,
+          "estimate": 0.2056,
+          "clopper_pearson_95ci": [
+            0.19771562147058394,
+            0.21365619337129457
+          ],
+          "predicted_random_r32": 0.9993672159327711,
+          "predicted_random_r32_from_95ci": [
+            0.9991320259262408,
+            0.9995433336008658
+          ]
+        },
+        "strict_recovery": {
+          "successes": 0,
+          "trials": 10000,
+          "estimate": 0.0,
+          "clopper_pearson_95ci": [
+            0.0,
+            0.0003688199146187622
+          ]
+        },
+        "both": {
+          "successes": 0,
+          "trials": 10000,
+          "estimate": 0.0,
+          "clopper_pearson_95ci": [
+            0.0,
+            0.0003688199146187622
+          ]
+        }
+      },
+      "strict_given_optimal": 0.0,
+      "endpoint_additive_gap_bits": {
+        "mean": 0.029529787376639912,
+        "median": 0.007967333235283869,
+        "p95": 0.11505570774204732,
+        "maximum": 0.12855122275887765
+      },
+      "elapsed_s": 79.86393549997592
+    },
+    {
+      "regime": "imbalanced",
+      "graph_seed": 0,
+      "n": 12,
+      "m": 13,
+      "manifest": {
+        "regime": "imbalanced",
+        "sizes": [
+          1,
+          3,
+          1,
+          3,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.65,
+          0.23,
+          0.06
+        ],
+        "connectors": [],
+        "graph_seed": 0,
+        "rng_seed": 0,
+        "independent_regime_seed": false,
+        "fine_blocks": [
+          [
+            0
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4
+          ],
+          [
+            5,
+            6,
+            7
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            10,
+            11
+          ]
+        ],
+        "coarse_blocks": [
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ]
+        ]
+      },
+      "restart_rng_seed": 23260819,
+      "global_optimum_bits": 1.7336937681862303,
+      "standard_pool": {
+        "entropy_bits": 1.7413503584593775,
+        "globally_optimal": false
+      },
+      "probabilities": {
+        "optimal": {
+          "successes": 4643,
+          "trials": 10000,
+          "estimate": 0.4643,
+          "clopper_pearson_95ci": [
+            0.4544867869088878,
+            0.47413401535806843
+          ],
+          "predicted_random_r32": 0.999999997884112,
+          "predicted_random_r32_from_95ci": [
+            0.9999999962175885,
+            0.9999999988304937
+          ]
+        },
+        "strict_recovery": {
+          "successes": 0,
+          "trials": 10000,
+          "estimate": 0.0,
+          "clopper_pearson_95ci": [
+            0.0,
+            0.0003688199146187622
+          ]
+        },
+        "both": {
+          "successes": 0,
+          "trials": 10000,
+          "estimate": 0.0,
+          "clopper_pearson_95ci": [
+            0.0,
+            0.0003688199146187622
+          ]
+        }
+      },
+      "strict_given_optimal": 0.0,
+      "endpoint_additive_gap_bits": {
+        "mean": 0.015413103137120814,
+        "median": 0.007656590273146913,
+        "p95": 0.04861775033676441,
+        "maximum": 0.04861775033676441
+      },
+      "elapsed_s": 63.25398183299694
+    },
+    {
+      "regime": "weak-hierarchy",
+      "graph_seed": 9,
+      "n": 12,
+      "m": 15,
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": [
+          [
+            0,
+            8,
+            0.01
+          ]
+        ],
+        "graph_seed": 9,
+        "rng_seed": 9,
+        "independent_regime_seed": false,
+        "fine_blocks": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            10,
+            11
+          ]
+        ],
+        "coarse_blocks": [
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ]
+        ]
+      },
+      "restart_rng_seed": 24260822,
+      "global_optimum_bits": 1.898328383142735,
+      "standard_pool": {
+        "entropy_bits": 1.920446192913028,
+        "globally_optimal": false
+      },
+      "probabilities": {
+        "optimal": {
+          "successes": 3061,
+          "trials": 10000,
+          "estimate": 0.3061,
+          "clopper_pearson_95ci": [
+            0.29707460673521024,
+            0.3152384403242834
+          ],
+          "predicted_random_r32": 0.9999916535768358,
+          "predicted_random_r32_from_95ci": [
+            0.9999873789513355,
+            0.9999945391541367
+          ]
+        },
+        "strict_recovery": {
+          "successes": 0,
+          "trials": 10000,
+          "estimate": 0.0,
+          "clopper_pearson_95ci": [
+            0.0,
+            0.0003688199146187622
+          ]
+        },
+        "both": {
+          "successes": 0,
+          "trials": 10000,
+          "estimate": 0.0,
+          "clopper_pearson_95ci": [
+            0.0,
+            0.0003688199146187622
+          ]
+        }
+      },
+      "strict_given_optimal": 0.0,
+      "endpoint_additive_gap_bits": {
+        "mean": 0.025041548246041094,
+        "median": 0.022117809770292984,
+        "p95": 0.05587148751836479,
+        "maximum": 0.15852081065867685
+      },
+      "elapsed_s": 58.63719233404845
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 11,
+      "n": 12,
+      "m": 17,
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": [],
+        "graph_seed": 11,
+        "rng_seed": 11,
+        "independent_regime_seed": false,
+        "fine_blocks": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            10,
+            11
+          ]
+        ],
+        "coarse_blocks": [
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ]
+        ]
+      },
+      "restart_rng_seed": 25260825,
+      "global_optimum_bits": 2.0416442983789533,
+      "standard_pool": {
+        "entropy_bits": 2.0434222010979117,
+        "globally_optimal": false
+      },
+      "probabilities": {
+        "optimal": {
+          "successes": 807,
+          "trials": 10000,
+          "estimate": 0.0807,
+          "clopper_pearson_95ci": [
+            0.07543425175795936,
+            0.08621143069207937
+          ],
+          "predicted_random_r32": 0.9322931944901003,
+          "predicted_random_r32_from_95ci": [
+            0.9187151492928483,
+            0.9441448688922074
+          ]
+        },
+        "strict_recovery": {
+          "successes": 0,
+          "trials": 10000,
+          "estimate": 0.0,
+          "clopper_pearson_95ci": [
+            0.0,
+            0.0003688199146187622
+          ]
+        },
+        "both": {
+          "successes": 0,
+          "trials": 10000,
+          "estimate": 0.0,
+          "clopper_pearson_95ci": [
+            0.0,
+            0.0003688199146187622
+          ]
+        }
+      },
+      "strict_given_optimal": 0.0,
+      "endpoint_additive_gap_bits": {
+        "mean": 0.03838697357006955,
+        "median": 0.011332063408376225,
+        "p95": 0.1112092863561438,
+        "maximum": 0.19490571039520432
+      },
+      "elapsed_s": 74.32074083399493
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 17,
+      "n": 12,
+      "m": 15,
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": [],
+        "graph_seed": 17,
+        "rng_seed": 17,
+        "independent_regime_seed": false,
+        "fine_blocks": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            10,
+            11
+          ]
+        ],
+        "coarse_blocks": [
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ]
+        ]
+      },
+      "restart_rng_seed": 26260828,
+      "global_optimum_bits": 1.970472047677215,
+      "standard_pool": {
+        "entropy_bits": 2.0518763560157,
+        "globally_optimal": false
+      },
+      "probabilities": {
+        "optimal": {
+          "successes": 1775,
+          "trials": 10000,
+          "estimate": 0.1775,
+          "clopper_pearson_95ci": [
+            0.17005587500508496,
+            0.18513242885027203
+          ],
+          "predicted_random_r32": 0.9980753621964845,
+          "predicted_random_r32_from_95ci": [
+            0.9974321871966539,
+            0.9985718128790795
+          ]
+        },
+        "strict_recovery": {
+          "successes": 0,
+          "trials": 10000,
+          "estimate": 0.0,
+          "clopper_pearson_95ci": [
+            0.0,
+            0.0003688199146187622
+          ]
+        },
+        "both": {
+          "successes": 0,
+          "trials": 10000,
+          "estimate": 0.0,
+          "clopper_pearson_95ci": [
+            0.0,
+            0.0003688199146187622
+          ]
+        }
+      },
+      "strict_given_optimal": 0.0,
+      "endpoint_additive_gap_bits": {
+        "mean": 0.05221666777394289,
+        "median": 0.04913103961108023,
+        "p95": 0.10243776338701327,
+        "maximum": 0.13522796980899265
+      },
+      "elapsed_s": 63.242329750035424
+    },
+    {
+      "regime": "weak-hierarchy",
+      "graph_seed": 17,
+      "n": 12,
+      "m": 13,
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": [],
+        "graph_seed": 17,
+        "rng_seed": 17,
+        "independent_regime_seed": false,
+        "fine_blocks": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            10,
+            11
+          ]
+        ],
+        "coarse_blocks": [
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            8,
+            9,
+            10,
+            11
+          ]
+        ]
+      },
+      "restart_rng_seed": 27260831,
+      "global_optimum_bits": 1.758997247677811,
+      "standard_pool": {
+        "entropy_bits": 1.7607449458701245,
+        "globally_optimal": false
+      },
+      "probabilities": {
+        "optimal": {
+          "successes": 1786,
+          "trials": 10000,
+          "estimate": 0.1786,
+          "clopper_pearson_95ci": [
+            0.17113741313848702,
+            0.18625024448645347
+          ],
+          "predicted_random_r32": 0.9981560448544999,
+          "predicted_random_r32_from_95ci": [
+            0.9975371317411493,
+            0.9986331908577061
+          ]
+        },
+        "strict_recovery": {
+          "successes": 0,
+          "trials": 10000,
+          "estimate": 0.0,
+          "clopper_pearson_95ci": [
+            0.0,
+            0.0003688199146187622
+          ]
+        },
+        "both": {
+          "successes": 0,
+          "trials": 10000,
+          "estimate": 0.0,
+          "clopper_pearson_95ci": [
+            0.0,
+            0.0003688199146187622
+          ]
+        }
+      },
+      "strict_given_optimal": 0.0,
+      "endpoint_additive_gap_bits": {
+        "mean": 0.0149268948775448,
+        "median": 0.014818852149414585,
+        "p95": 0.04674481363240268,
+        "maximum": 0.09187911990882758
+      },
+      "elapsed_s": 47.9911096659489
+    }
+  ],
+  "elapsed_s": 529.4961377920117
+}

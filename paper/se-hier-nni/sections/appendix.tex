@@ -51,3 +51,46 @@ change is
 \]
 Repeated insertion converts every multiway node to binary without increasing
 the objective.
+
+\subsection{Exact and sampled basin probabilities}\label{app:basin}
+The finite hit rates in the main paper do not supply a per-start probability.
+For a fixed graph $G$, deterministic refinement map $F$, optimum $H^*$, and
+start measure $\mu$, that probability is
+\[
+ p_G=\sum_T \mu(T)\,\mathbf{1}\{H^{F(T)}(G)=H^*(G)\}.
+\]
+It depends on the graph, start distribution, tie-breaking, and refinement
+configuration.  The exact subset DP supplies $H^*$ but not $p_G$.
+
+For $n\leq 8$ we enumerate all $(2n-3)!!$ unordered rooted binary labeled
+topologies.  Uniform topology mass is not NEST's restart distribution. Under
+the pairwise coalescent, a topology with child subtrees of $a,b$ leaves has
+compatible-history count
+\[
+ h(T)=\binom{a+b-2}{a-1}h(T_A)h(T_B),\qquad
+ \mu(T)=\frac{h(T)}{\prod_{k=2}^{n}\binom{k}{2}}.
+\]
+The history counts sum exactly to the denominator. Table~\ref{tab:basin-exact}
+shows that the selected hard $n=8$ graph has exact coalescent basin mass
+$p_G=0.252365$; because the standard pool misses it, 32 independent starts
+give $1-(1-p_G)^{32}=0.999909$, not certainty.
+
+\input{tables/basin_exact}
+
+At $n=12$, exact enumeration would require 13,749,310,575 topologies.
+Table~\ref{tab:basin-mc} therefore uses direct Bernoulli sampling rather than
+the earlier first-hit diagnostic. The estimates vary substantially by graph:
+$8.07\%$--$46.43\%$ per start. On noisy-11 this implies only $93.23\%$ for 32
+random starts (a conservative 95\% lower value of $91.87\%$), explaining why
+the observed finite-suite success must not be read as a probabilistic
+guarantee.
+
+\input{tables/basin_mc}
+
+Objective success is deliberately separated from strict planted recovery.
+No one of the 80,000 hard-case endpoints contained every planted fine and
+coarse block as a clade; the exact $n=8$ enumeration likewise gives zero mass.
+This strict event is stronger than dendrogram purity and exposes objective--
+recovery misalignment on these small realized HSBMs. Thus the restart evidence
+supports optimization of $H^T$, not a claim that every entropy optimum equals
+the generator's planted hierarchy.
