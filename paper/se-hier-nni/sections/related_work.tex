@@ -7,9 +7,9 @@ The structural-entropy survey organizes the broader theory, optimization, and
 application literature \cite{su2025survey}; HypCSE subsequently develops a
 continuous hyperbolic formulation for hierarchical clustering
 \cite{zeng2026hypcse}.
-\EGTE complements these constructors with exact-guarded general tree editing;
-\NEST then asks whether any returned tree is locally optimal under an exact
-topology rotation and uses the answer as both a diagnostic and an optimizer.
+\NEST asks whether a returned tree is locally optimal under an exact topology
+rotation and uses the answer as both a diagnostic and an optimizer. Its subset
+dynamic program supplies a distinct small-instance global certificate.
 
 \paragraph{Graph hierarchical clustering.}
 Classical hierarchical clustering is predominantly agglomerative or divisive
@@ -33,4 +33,5 @@ targets weighted graph structural entropy and exposes the two cross-module
 weights controlling a rotation. Unlike unit-clique landscape analyses, our
 method evaluates the complete objective on arbitrary weighted graphs. Its new
 content is the verified optimizer, compound search, multi-start construction,
-and comparative evaluation; local certification is not global optimality.
+comparative evaluation, and exact global audit; local certification alone is
+not global optimality.

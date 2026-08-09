@@ -6,7 +6,6 @@
 from pathlib import Path
 import argparse
 import json
-import math
 
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
@@ -35,7 +34,6 @@ def esc(text):
 def tex_label(method):
     """Return a publication label for an internal benchmark key."""
     labels = {
-        "se_hier": r"\EGTE\ (ours)",
         "SE-NNI-fast": r"\NEST\ (ours)",
     }
     return labels.get(method, esc(method))
@@ -55,7 +53,7 @@ def write_tables(records, output_dir):
     regimes = ["clean", "noisy", "imbalanced", "weighted", "weak-hierarchy"]
     methods = [
         "SE-agglomerative", "Louvain-2L", "Paris", "HCSE", "BBM",
-        "se_hier", "SE-NNI-fast",
+        "SE-NNI-fast",
     ]
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -80,7 +78,7 @@ def write_tables(records, output_dir):
         r"\midrule",
     ]
     for method in methods:
-        if method == "se_hier":
+        if method == "SE-NNI-fast":
             lines.append(r"\midrule")
         label = r"BBM$^\dagger$" if method == "BBM" else tex_label(method)
         cells = []
@@ -95,7 +93,7 @@ def write_tables(records, output_dir):
     (output_dir / "main_entropy.tex").write_text("\n".join(lines) + "\n")
 
     operator_methods = [
-        "SE-agglomerative", "Paris", "HCSE", "BBM", "se_hier"
+        "SE-agglomerative", "Paris", "HCSE", "BBM"
     ]
     lines = [
         r"\begin{table}[t]",
@@ -130,39 +128,6 @@ def write_tables(records, output_dir):
 
     ok = [record for record in records if record.get("status") == "ok"]
     ours = [record for record in ok if record["method"] == "SE-NNI-fast"]
-    slow = [record for record in ok if record["method"] == "se_hier"]
-    slow_by_key = {(row["dataset"], row["seed"]): row for row in slow}
-    speedup = np.mean([row["constructor_time_s"] for row in slow]) / np.mean(
-        [row["constructor_time_s"] for row in ours]
-    )
-    entropy_delta = np.mean([
-        100.0 * (row["raw_h"] - slow_by_key[(row["dataset"], row["seed"])]["raw_h"])
-        / slow_by_key[(row["dataset"], row["seed"])]["raw_h"]
-        for row in ours
-    ])
-    purity_delta = np.mean([
-        row["raw_fine_purity"]
-        - slow_by_key[(row["dataset"], row["seed"])]["raw_fine_purity"]
-        for row in ours
-    ])
-    entropy_differences = np.asarray([
-        row["raw_h"] - slow_by_key[(row["dataset"], row["seed"])]["raw_h"]
-        for row in ours
-    ])
-    entropy_difference_mean = float(np.mean(entropy_differences))
-    entropy_difference_ci = float(
-        stats.t.ppf(0.975, len(entropy_differences) - 1)
-        * stats.sem(entropy_differences)
-    )
-    purity_differences = np.asarray([
-        row["raw_fine_purity"]
-        - slow_by_key[(row["dataset"], row["seed"])]["raw_fine_purity"]
-        for row in ours
-    ])
-    purity_difference_ci = float(
-        stats.t.ppf(0.975, len(purity_differences) - 1)
-        * stats.sem(purity_differences)
-    )
     external_differences = {}
     for method in ("HCSE", "BBM"):
         external = [record for record in ok if record["method"] == method]
@@ -188,21 +153,16 @@ def write_tables(records, output_dir):
     within_one = 0
     for row in ours:
         peers = [other for other in ok if other["dataset"] == row["dataset"]
-                 and other["seed"] == row["seed"]]
+                 and other["seed"] == row["seed"]
+                 and other["method"] != "se_hier"]
         best_value = min(other["raw_h"] for other in peers)
         wins += row["raw_h"] <= best_value + 1e-10
         within_one += row["raw_h"] <= 1.01 * best_value
     audited = [row for row in ok if row["method"] not in
-               {"SE-NNI-fast", "Louvain-2L"}]
+               {"SE-NNI-fast", "Louvain-2L", "se_hier"}]
     one_rate = np.mean([row["nni1_gain"] > 1e-10 for row in audited])
     compound_rate = np.mean([row["nni2_extra_gain"] > 1e-10 for row in audited])
     macros = [
-        f"\\newcommand{{\\NESTSpeedupVsEGTE}}{{{speedup:.1f}\\ensuremath{{\\times}}}}",
-        f"\\newcommand{{\\NESTEntropyDeltaVsEGTE}}{{{entropy_delta:+.2f}\\%}}",
-        f"\\newcommand{{\\NESTGainVsEGTE}}{{{-entropy_difference_mean:.4f}}}",
-        f"\\newcommand{{\\NESTGainVsEGTECI}}{{{entropy_difference_ci:.4f}}}",
-        f"\\newcommand{{\\NESTPurityDeltaVsEGTE}}{{{purity_delta:+.3f}}}",
-        f"\\newcommand{{\\NESTPurityDeltaVsEGTECI}}{{{purity_difference_ci:.3f}}}",
         f"\\newcommand{{\\NESTGainVsHCSE}}{{{external_differences['HCSE'].mean():.4f}}}",
         f"\\newcommand{{\\NESTGainVsHCSECI}}{{{mean_ci(external_differences['HCSE'])[1]:.4f}}}",
         f"\\newcommand{{\\NESTGainVsBBM}}{{{external_differences['BBM'].mean():.4f}}}",
@@ -217,14 +177,14 @@ def write_tables(records, output_dir):
     (output_dir / "result_macros.tex").write_text("\n".join(macros) + "\n")
 
 
-def write_complements(real_path, scaling_path, output_dir):
-    """Generate compact real-network and clean-timing evidence tables."""
+def write_complements(real_path, output_dir):
+    """Generate the compact real-network evidence table."""
     real = json.loads(real_path.read_text())["records"]
     real = [row for row in real if row.get("status") == "ok"]
     datasets = ["Karate", "Florentine", "Les-Miserables", "Davis-Southern"]
     methods = [
         "SE-agglomerative", "Louvain-2L", "Paris", "HCSE", "BBM",
-        "se_hier", "SE-NNI-fast",
+        "SE-NNI-fast",
     ]
     by_real = {(row["dataset"], row["method"]): row for row in real}
     best = {
@@ -249,53 +209,61 @@ def write_complements(real_path, scaling_path, output_dir):
             if abs(value - best[dataset]) < 1e-10:
                 cell = r"\textbf{" + cell + "}"
             cells.append(cell)
-        if method == "se_hier":
+        if method == "SE-NNI-fast":
             lines.append(r"\midrule")
         lines.append(tex_label(method) + " & " + " & ".join(cells) + r" \\")
     lines.extend([r"\bottomrule", r"\end{tabular}", r"\end{table}"])
     (output_dir / "real_entropy.tex").write_text("\n".join(lines) + "\n")
 
-    scaling = json.loads(scaling_path.read_text())["records"]
-    by_scale = {}
-    for row in scaling:
-        by_scale.setdefault((row["n"], row["method"]), []).append(row)
-    sizes = sorted({row["n"] for row in scaling})
-    speedups = []
-    scaling_wins = 0
-    lines = [
-        r"\begin{table}[t]",
-        r"\centering\small",
-        r"\caption{Clean wall-clock scaling without allocation tracing; means over three graph seeds. EGTE and NEST are our general-edit and certified fast variants.}",
-        r"\label{tab:scaling}",
-        r"\begin{tabular}{rrrrrr}",
-        r"\toprule",
-        r"$n$ & \multicolumn{2}{c}{$H^T$} & \multicolumn{2}{c}{Time (s)} & Speedup \\",
-        r" & EGTE & NEST & EGTE & NEST & \\",
-        r"\midrule",
-    ]
-    for n in sizes:
-        old = by_scale[(n, "se_hier")]
-        ours = by_scale[(n, "SE-NNI-fast")]
-        old_h = float(np.mean([row["h"] for row in old]))
-        our_h = float(np.mean([row["h"] for row in ours]))
-        old_t = float(np.mean([row["time_s"] for row in old]))
-        our_t = float(np.mean([row["time_s"] for row in ours]))
-        speedup = old_t / our_t
-        speedups.append(speedup)
-        scaling_wins += sum(a["h"] < b["h"] - 1e-10 for a, b in zip(ours, old))
-        lines.append(
-            f"{n} & {old_h:.3f} & \\textbf{{{our_h:.3f}}} & "
-            f"{old_t:.3f} & \\textbf{{{our_t:.3f}}} & {speedup:.1f}$\\times$ \\\\"
-        )
-    lines.extend([r"\bottomrule", r"\end{tabular}", r"\end{table}"])
-    (output_dir / "scaling.tex").write_text("\n".join(lines) + "\n")
-
     macro_path = output_dir / "result_macros.tex"
     with macro_path.open("a") as handle:
         handle.write(f"\\newcommand{{\\RealWins}}{{{len(datasets)}/{len(datasets)}}}\n")
-        handle.write(f"\\newcommand{{\\ScalingWins}}{{{scaling_wins}/{len(scaling)//2}}}\n")
-        handle.write(f"\\newcommand{{\\ScalingSpeedupMin}}{{{min(speedups):.1f}\\ensuremath{{\\times}}}}\n")
-        handle.write(f"\\newcommand{{\\ScalingSpeedupMax}}{{{max(speedups):.1f}\\ensuremath{{\\times}}}}\n")
+
+
+def write_optimality(optimality_path, output_dir):
+    """Generate the exact global-optimum audit table and headline macros."""
+    summary = json.loads(optimality_path.read_text())["summary"]
+    regimes = ["clean", "noisy", "imbalanced", "weighted", "weak-hierarchy"]
+    labels = {
+        "clean": "Clean", "noisy": "Noisy", "imbalanced": "Imbalanced",
+        "weighted": "Weighted", "weak-hierarchy": "Weak hierarchy",
+    }
+    lines = [
+        r"\begin{table}[t]",
+        r"\centering\small",
+        r"\caption{Exact global-optimum audit on 12-vertex HSBMs. Gap is $H^{T}_{\rm NEST}-H^*$; relative gaps are computed per graph.}",
+        r"\label{tab:optimality}",
+        r"\begin{tabular}{lrrr}",
+        r"\toprule",
+        r"Regime & Exact optimum & Mean gap (bits) & Max rel. gap \\",
+        r"\midrule",
+    ]
+    for regime in regimes:
+        row = summary[regime]
+        lines.append(
+            f"{labels[regime]} & {row['globally_optimal']}/{row['runs']} & "
+            f"{row['mean_additive_gap_bits']:.4f} & "
+            f"{row['max_relative_gap_percent']:.2f}\\% \\\\"
+        )
+    overall = summary["overall"]
+    lines.extend([
+        r"\midrule",
+        f"Overall & \\textbf{{{overall['globally_optimal']}/{overall['runs']}}} & "
+        f"\\textbf{{{overall['mean_additive_gap_bits']:.4f}}} & "
+        f"\\textbf{{{overall['max_relative_gap_percent']:.2f}\\%}} \\\\ ".rstrip(),
+        r"\bottomrule", r"\end{tabular}", r"\end{table}",
+    ])
+    (output_dir / "optimality.tex").write_text("\n".join(lines) + "\n")
+    with (output_dir / "result_macros.tex").open("a") as handle:
+        handle.write(
+            f"\\newcommand{{\\ExactOptima}}{{{overall['globally_optimal']}/{overall['runs']}}}\n"
+        )
+        handle.write(
+            f"\\newcommand{{\\ExactMeanRelativeGap}}{{{overall['mean_relative_gap_percent']:.3f}\\%}}\n"
+        )
+        handle.write(
+            f"\\newcommand{{\\ExactMaxRelativeGap}}{{{overall['max_relative_gap_percent']:.2f}\\%}}\n"
+        )
 
 
 def write_ablation(ablation_path, output_dir):
@@ -442,15 +410,14 @@ def figure_entropy(records, output_dir):
 
 
 def figure_operator(records, output_dir):
-    methods = ["SE-agglomerative", "Paris", "HCSE", "BBM", "se_hier"]
-    display = ["SE-agglom.", "Paris", "HCSE", "BBM†", "EGTE (ours)"]
+    methods = ["SE-agglomerative", "Paris", "HCSE", "BBM"]
+    display = ["SE-agglom.", "Paris", "HCSE", "BBM†"]
     pal = sns.cubehelix_palette(6, rot=-0.25, light=0.7)
     line_color = pal[5]
     point_color = pal[3]
     accent = "#bd0c0c"
     compound_color = "#d95f02"
     positive_fill = "#edf4f7"
-    slow_fill = "#fff4e6"
     fig = plt.figure(figsize=(7.2, 3.95), dpi=300)
     gs = gridspec.GridSpec(1, 2, width_ratios=(1.02, 1.18))
     gs.update(wspace=0.16, left=0.11, right=0.99, top=0.72, bottom=0.20)
@@ -493,11 +460,11 @@ def figure_operator(records, output_dir):
                borderaxespad=0.0)
 
     all_methods = methods + ["Louvain-2L", "SE-NNI-fast"]
-    marker_map = {"SE-NNI-fast": "*", "BBM": "P", "se_hier": "D"}
+    marker_map = {"SE-NNI-fast": "*", "BBM": "P"}
     label_offsets = {
         "HCSE": (4, 8), "BBM": (4, -13), "Louvain-2L": (4, 4),
         "Paris": (4, 4), "SE-agglomerative": (4, 4),
-        "SE-NNI-fast": (4, 4), "se_hier": (4, 4),
+        "SE-NNI-fast": (4, 4),
     }
     points = {}
     for method in all_methods:
@@ -509,7 +476,8 @@ def figure_operator(records, output_dir):
         for row in rows:
             peers = [other for other in records if other.get("status") == "ok"
                      and other["dataset"] == row["dataset"]
-                     and other["seed"] == row["seed"]]
+                     and other["seed"] == row["seed"]
+                     and other["method"] in all_methods]
             best = min(peer["raw_h"] for peer in peers)
             regrets.append(100 * (row["raw_h"] - best) / best)
         regret = np.mean(regrets)
@@ -524,23 +492,8 @@ def figure_operator(records, output_dir):
                      (runtime, regret), xytext=label_offsets[method],
                      textcoords="offset points",
                      fontsize=8.1, color="dimgrey")
-    ours_runtime, ours_regret = points["SE-NNI-fast"]
-    old_runtime, old_regret = points["se_hier"]
-    speedup = old_runtime / ours_runtime
     ax1.set_xscale("log")
     ax1.axhspan(-1.2, 1.0, color=positive_fill, zorder=0)
-    ax1.axvspan(1.0, old_runtime * 1.7, color=slow_fill, alpha=0.55, zorder=0)
-    ax1.annotate(
-        "", xy=(ours_runtime, ours_regret), xytext=(old_runtime, old_regret),
-        arrowprops={"arrowstyle": "-|>", "color": accent, "linewidth": 1.7,
-                    "connectionstyle": "arc3,rad=-0.12"}, zorder=5,
-    )
-    ax1.text(
-        math.sqrt(ours_runtime * old_runtime), max(ours_regret, old_regret) + 5.8,
-        f"{speedup:.1f}× faster\nand lower entropy", ha="center", va="bottom",
-        fontsize=7.8, color=accent, weight="semibold",
-        bbox={"facecolor": "white", "edgecolor": "none", "alpha": 0.82, "pad": 1.5},
-    )
     ax1.set_xlabel("Constructor time (s, log scale)", fontsize=9, color="dimgrey")
     ax1.set_ylabel("Mean entropy regret (%)", fontsize=8,
                    color="dimgrey")
@@ -553,7 +506,7 @@ def figure_operator(records, output_dir):
         ax.patch.set_edgecolor("lightgrey")
         ax.patch.set_linewidth(0.8)
     sns.despine(left=True, bottom=True)
-    fig.suptitle("Exact NNI diagnoses constructor gaps and accelerates EGTE",
+    fig.suptitle("Exact NNI diagnoses constructor gaps and locates NEST",
                  fontsize=12.0, y=0.985, color="dimgrey")
     fig.text(0.99, 0.035, "Lower-left is better · shaded blue band: within 1% of best",
              ha="right", va="bottom", fontsize=7.8, color="dimgrey",
@@ -574,7 +527,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", default="results/nni_benchmark.json")
     parser.add_argument("--real", default="results/nni_real_benchmark.json")
-    parser.add_argument("--scaling", default="results/nni_scaling.json")
+    parser.add_argument("--optimality", default="results/nni_optimality.json")
     parser.add_argument("--ablation", default="results/nni_ablation.json")
     parser.add_argument("--figure-dir", default="paper/se-hier-nni/figures")
     parser.add_argument("--table-dir", default="paper/se-hier-nni/tables")
@@ -588,9 +541,11 @@ def main():
     # --- Data / Tables / Plot / Save ---
     write_tables(records, Path(args.table_dir))
     real_path = Path(args.real)
-    scaling_path = Path(args.scaling)
-    if real_path.exists() and scaling_path.exists():
-        write_complements(real_path, scaling_path, Path(args.table_dir))
+    if real_path.exists():
+        write_complements(real_path, Path(args.table_dir))
+    optimality_path = Path(args.optimality)
+    if optimality_path.exists():
+        write_optimality(optimality_path, Path(args.table_dir))
     ablation_path = Path(args.ablation)
     if ablation_path.exists():
         write_ablation(ablation_path, Path(args.table_dir))

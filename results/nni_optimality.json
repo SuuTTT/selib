@@ -1,0 +1,2299 @@
+{
+  "protocol": {
+    "version": "tamc-nest-exact-v1",
+    "purpose": "exact global-optimum audit; no model selection",
+    "graph_family": "six-fine-block, three-coarse-block HSBM",
+    "n": 12,
+    "seeds_per_regime": 10,
+    "regimes": {
+      "clean": [
+        [
+          0.72,
+          0.25,
+          0.04
+        ],
+        [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      ],
+      "noisy": [
+        [
+          0.5,
+          0.3,
+          0.14
+        ],
+        [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      ],
+      "imbalanced": [
+        [
+          0.65,
+          0.23,
+          0.06
+        ],
+        [
+          1,
+          3,
+          1,
+          3,
+          2,
+          2
+        ]
+      ],
+      "weighted": [
+        [
+          0.6,
+          0.22,
+          0.06
+        ],
+        [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      ],
+      "weak-hierarchy": [
+        [
+          0.45,
+          0.36,
+          0.1
+        ],
+        [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      ]
+    },
+    "optimizer": "exact unordered-subset DP over binary trees",
+    "complexity": "O(3^n) time and O(2^n) memory",
+    "nest": {
+      "compound_rounds": 8,
+      "beam_width": 16,
+      "barrier_bits": 0.05
+    }
+  },
+  "environment": {
+    "python": "3.12.13",
+    "networkx": "3.6.1",
+    "numpy": "2.5.2"
+  },
+  "records": [
+    {
+      "regime": "clean",
+      "seed": 0,
+      "n": 12,
+      "m": 14,
+      "manifest": {
+        "regime": "clean",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.72,
+          0.25,
+          0.04
+        ],
+        "connectors": [
+          [
+            0,
+            5,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.5890605320687603,
+      "nest_entropy_bits": 1.5890605320687603,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0534359135098814,
+      "exact_time_s": 0.08870958298211917,
+      "nest_time_s": 0.10988341696793213
+    },
+    {
+      "regime": "clean",
+      "seed": 1,
+      "n": 12,
+      "m": 12,
+      "manifest": {
+        "regime": "clean",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.72,
+          0.25,
+          0.04
+        ],
+        "connectors": [
+          [
+            0,
+            4,
+            0.01
+          ],
+          [
+            4,
+            7,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.4786767517179091,
+      "nest_entropy_bits": 1.4786767517179091,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.1138612581499863,
+      "exact_time_s": 0.09131966601125896,
+      "nest_time_s": 0.005210125003941357
+    },
+    {
+      "regime": "clean",
+      "seed": 2,
+      "n": 12,
+      "m": 12,
+      "manifest": {
+        "regime": "clean",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.72,
+          0.25,
+          0.04
+        ],
+        "connectors": [
+          [
+            0,
+            4,
+            0.01
+          ],
+          [
+            4,
+            5,
+            0.01
+          ],
+          [
+            5,
+            6,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.3703968611160966,
+      "nest_entropy_bits": 1.370396861116097,
+      "additive_gap_bits": 4.440892098500626e-16,
+      "relative_gap_percent": 3.240588346709884e-14,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0743770435381352,
+      "exact_time_s": 0.0890547499875538,
+      "nest_time_s": 0.0053417079616338015
+    },
+    {
+      "regime": "clean",
+      "seed": 3,
+      "n": 12,
+      "m": 12,
+      "manifest": {
+        "regime": "clean",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.72,
+          0.25,
+          0.04
+        ],
+        "connectors": [
+          [
+            0,
+            3,
+            0.01
+          ],
+          [
+            3,
+            4,
+            0.01
+          ],
+          [
+            4,
+            5,
+            0.01
+          ],
+          [
+            5,
+            8,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.491799031220859,
+      "nest_entropy_bits": 1.4917990312208589,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0304116779306118,
+      "exact_time_s": 0.0930328750400804,
+      "nest_time_s": 0.007852083013858646
+    },
+    {
+      "regime": "clean",
+      "seed": 4,
+      "n": 12,
+      "m": 13,
+      "manifest": {
+        "regime": "clean",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.72,
+          0.25,
+          0.04
+        ],
+        "connectors": [
+          [
+            0,
+            1,
+            0.01
+          ],
+          [
+            1,
+            2,
+            0.01
+          ],
+          [
+            2,
+            3,
+            0.01
+          ],
+          [
+            3,
+            4,
+            0.01
+          ],
+          [
+            4,
+            8,
+            0.01
+          ],
+          [
+            8,
+            10,
+            0.01
+          ],
+          [
+            10,
+            11,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.4877065987972726,
+      "nest_entropy_bits": 1.4877065987972729,
+      "additive_gap_bits": 2.220446049250313e-16,
+      "relative_gap_percent": 1.492529542481978e-14,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0262968942485786,
+      "exact_time_s": 0.09005370899103582,
+      "nest_time_s": 0.007518417027313262
+    },
+    {
+      "regime": "clean",
+      "seed": 5,
+      "n": 12,
+      "m": 13,
+      "manifest": {
+        "regime": "clean",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.72,
+          0.25,
+          0.04
+        ],
+        "connectors": [
+          [
+            0,
+            1,
+            0.01
+          ],
+          [
+            1,
+            6,
+            0.01
+          ],
+          [
+            6,
+            7,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.6753605345411908,
+      "nest_entropy_bits": 1.6753605345411908,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.097300266321867,
+      "exact_time_s": 0.08848166599636897,
+      "nest_time_s": 0.0068203749833628535
+    },
+    {
+      "regime": "clean",
+      "seed": 6,
+      "n": 12,
+      "m": 11,
+      "manifest": {
+        "regime": "clean",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.72,
+          0.25,
+          0.04
+        ],
+        "connectors": [
+          [
+            0,
+            4,
+            0.01
+          ],
+          [
+            4,
+            5,
+            0.01
+          ],
+          [
+            5,
+            8,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.2921584322031698,
+      "nest_entropy_bits": 1.2921584322031698,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.047370320831651,
+      "exact_time_s": 0.08784095902228728,
+      "nest_time_s": 0.0056128749856725335
+    },
+    {
+      "regime": "clean",
+      "seed": 7,
+      "n": 12,
+      "m": 12,
+      "manifest": {
+        "regime": "clean",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.72,
+          0.25,
+          0.04
+        ],
+        "connectors": []
+      },
+      "global_optimum_bits": 1.58249042207625,
+      "nest_entropy_bits": 1.5824904220762495,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0752018519720548,
+      "exact_time_s": 0.08890599996084347,
+      "nest_time_s": 0.004770791972987354
+    },
+    {
+      "regime": "clean",
+      "seed": 8,
+      "n": 12,
+      "m": 11,
+      "manifest": {
+        "regime": "clean",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.72,
+          0.25,
+          0.04
+        ],
+        "connectors": [
+          [
+            0,
+            5,
+            0.01
+          ],
+          [
+            5,
+            8,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.4176383503977388,
+      "nest_entropy_bits": 1.417638350397739,
+      "additive_gap_bits": 2.220446049250313e-16,
+      "relative_gap_percent": 1.5662993658624817e-14,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0820593077448146,
+      "exact_time_s": 0.09269841603236273,
+      "nest_time_s": 0.005453707999549806
+    },
+    {
+      "regime": "clean",
+      "seed": 9,
+      "n": 12,
+      "m": 11,
+      "manifest": {
+        "regime": "clean",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.72,
+          0.25,
+          0.04
+        ],
+        "connectors": [
+          [
+            0,
+            1,
+            0.01
+          ],
+          [
+            1,
+            4,
+            0.01
+          ],
+          [
+            4,
+            8,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.3480845063372755,
+      "nest_entropy_bits": 1.348084506337275,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0468646135122364,
+      "exact_time_s": 0.09616137499688193,
+      "nest_time_s": 0.007428083044942468
+    },
+    {
+      "regime": "noisy",
+      "seed": 0,
+      "n": 12,
+      "m": 17,
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      },
+      "global_optimum_bits": 1.9211330688580148,
+      "nest_entropy_bits": 1.9925119447714221,
+      "additive_gap_bits": 0.0713788759134073,
+      "relative_gap_percent": 3.7154571471635367,
+      "globally_optimal": false,
+      "edge_lca_lower_bound_bits": 1.026775890730945,
+      "exact_time_s": 0.08904137497302145,
+      "nest_time_s": 0.009660915995482355
+    },
+    {
+      "regime": "noisy",
+      "seed": 1,
+      "n": 12,
+      "m": 13,
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": [
+          [
+            0,
+            1,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.6731207981221263,
+      "nest_entropy_bits": 1.6731207981221263,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.069123077825143,
+      "exact_time_s": 0.09351562499068677,
+      "nest_time_s": 0.008064290974289179
+    },
+    {
+      "regime": "noisy",
+      "seed": 2,
+      "n": 12,
+      "m": 16,
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": [
+          [
+            0,
+            3,
+            0.01
+          ],
+          [
+            3,
+            6,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.8144745412560617,
+      "nest_entropy_bits": 1.8144745412560617,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0659891066642255,
+      "exact_time_s": 0.08948008297011256,
+      "nest_time_s": 0.013800250017084181
+    },
+    {
+      "regime": "noisy",
+      "seed": 3,
+      "n": 12,
+      "m": 13,
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": [
+          [
+            0,
+            4,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.5518829372157275,
+      "nest_entropy_bits": 1.5518829372157275,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.062693514355968,
+      "exact_time_s": 0.10039158299332485,
+      "nest_time_s": 0.0069945420254953206
+    },
+    {
+      "regime": "noisy",
+      "seed": 4,
+      "n": 12,
+      "m": 13,
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": [
+          [
+            0,
+            1,
+            0.01
+          ],
+          [
+            1,
+            3,
+            0.01
+          ],
+          [
+            3,
+            8,
+            0.01
+          ],
+          [
+            8,
+            10,
+            0.01
+          ],
+          [
+            10,
+            11,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.5294809244705754,
+      "nest_entropy_bits": 1.5294809244705752,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0902865781425481,
+      "exact_time_s": 0.09338379197288305,
+      "nest_time_s": 0.007780832995194942
+    },
+    {
+      "regime": "noisy",
+      "seed": 5,
+      "n": 12,
+      "m": 16,
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": [
+          [
+            0,
+            6,
+            0.01
+          ],
+          [
+            6,
+            7,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.8671543024132218,
+      "nest_entropy_bits": 1.8671543024132218,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0971598089406636,
+      "exact_time_s": 0.09064183302689344,
+      "nest_time_s": 0.0076173749985173345
+    },
+    {
+      "regime": "noisy",
+      "seed": 6,
+      "n": 12,
+      "m": 13,
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": [
+          [
+            0,
+            6,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.863541577856429,
+      "nest_entropy_bits": 1.8635415778564288,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0343493459723514,
+      "exact_time_s": 0.08924575004493818,
+      "nest_time_s": 0.006204582983627915
+    },
+    {
+      "regime": "noisy",
+      "seed": 7,
+      "n": 12,
+      "m": 14,
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      },
+      "global_optimum_bits": 1.8095297254299891,
+      "nest_entropy_bits": 1.8095297254299891,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.078436824136235,
+      "exact_time_s": 0.08926666702609509,
+      "nest_time_s": 0.007448166026733816
+    },
+    {
+      "regime": "noisy",
+      "seed": 8,
+      "n": 12,
+      "m": 16,
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": [
+          [
+            0,
+            5,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.944938280053319,
+      "nest_entropy_bits": 1.9483823463290975,
+      "additive_gap_bits": 0.0034440662757784235,
+      "relative_gap_percent": 0.1770784353981663,
+      "globally_optimal": false,
+      "edge_lca_lower_bound_bits": 1.0249715633922911,
+      "exact_time_s": 0.08966820797650144,
+      "nest_time_s": 0.010986458975821733
+    },
+    {
+      "regime": "noisy",
+      "seed": 9,
+      "n": 12,
+      "m": 15,
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": [
+          [
+            0,
+            8,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.9559580832986294,
+      "nest_entropy_bits": 1.963925416533913,
+      "additive_gap_bits": 0.007967333235283647,
+      "relative_gap_percent": 0.407336604159079,
+      "globally_optimal": false,
+      "edge_lca_lower_bound_bits": 1.0406942576140479,
+      "exact_time_s": 0.09135429101297632,
+      "nest_time_s": 0.006278250017203391
+    },
+    {
+      "regime": "imbalanced",
+      "seed": 0,
+      "n": 12,
+      "m": 13,
+      "manifest": {
+        "regime": "imbalanced",
+        "sizes": [
+          1,
+          3,
+          1,
+          3,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.65,
+          0.23,
+          0.06
+        ],
+        "connectors": []
+      },
+      "global_optimum_bits": 1.7336937681862303,
+      "nest_entropy_bits": 1.7413503584593775,
+      "additive_gap_bits": 0.007656590273147135,
+      "relative_gap_percent": 0.4416345270224607,
+      "globally_optimal": false,
+      "edge_lca_lower_bound_bits": 1.040986529029691,
+      "exact_time_s": 0.09017924999352545,
+      "nest_time_s": 0.005599665979389101
+    },
+    {
+      "regime": "imbalanced",
+      "seed": 1,
+      "n": 12,
+      "m": 13,
+      "manifest": {
+        "regime": "imbalanced",
+        "sizes": [
+          1,
+          3,
+          1,
+          3,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.65,
+          0.23,
+          0.06
+        ],
+        "connectors": [
+          [
+            0,
+            4,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.5128725545716943,
+      "nest_entropy_bits": 1.5128725545716937,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0830723273090672,
+      "exact_time_s": 0.08866904198657721,
+      "nest_time_s": 0.005474458041135222
+    },
+    {
+      "regime": "imbalanced",
+      "seed": 2,
+      "n": 12,
+      "m": 14,
+      "manifest": {
+        "regime": "imbalanced",
+        "sizes": [
+          1,
+          3,
+          1,
+          3,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.65,
+          0.23,
+          0.06
+        ],
+        "connectors": [
+          [
+            0,
+            1,
+            0.01
+          ],
+          [
+            1,
+            4,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.518301070362705,
+      "nest_entropy_bits": 1.5183010703627047,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0415643440200264,
+      "exact_time_s": 0.08892729104263708,
+      "nest_time_s": 0.007265791995450854
+    },
+    {
+      "regime": "imbalanced",
+      "seed": 3,
+      "n": 12,
+      "m": 12,
+      "manifest": {
+        "regime": "imbalanced",
+        "sizes": [
+          1,
+          3,
+          1,
+          3,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.65,
+          0.23,
+          0.06
+        ],
+        "connectors": [
+          [
+            0,
+            4,
+            0.01
+          ],
+          [
+            4,
+            5,
+            0.01
+          ],
+          [
+            5,
+            8,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.4804816465630541,
+      "nest_entropy_bits": 1.4804816465630544,
+      "additive_gap_bits": 2.220446049250313e-16,
+      "relative_gap_percent": 1.4998132900904853e-14,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.112064980700806,
+      "exact_time_s": 0.09031712496653199,
+      "nest_time_s": 0.009039291995577514
+    },
+    {
+      "regime": "imbalanced",
+      "seed": 4,
+      "n": 12,
+      "m": 12,
+      "manifest": {
+        "regime": "imbalanced",
+        "sizes": [
+          1,
+          3,
+          1,
+          3,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.65,
+          0.23,
+          0.06
+        ],
+        "connectors": [
+          [
+            0,
+            1,
+            0.01
+          ],
+          [
+            1,
+            4,
+            0.01
+          ],
+          [
+            4,
+            8,
+            0.01
+          ],
+          [
+            8,
+            10,
+            0.01
+          ],
+          [
+            10,
+            11,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.3293794527088876,
+      "nest_entropy_bits": 1.3293794527088871,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0684845638650793,
+      "exact_time_s": 0.09245612501399592,
+      "nest_time_s": 0.006645166024100035
+    },
+    {
+      "regime": "imbalanced",
+      "seed": 5,
+      "n": 12,
+      "m": 15,
+      "manifest": {
+        "regime": "imbalanced",
+        "sizes": [
+          1,
+          3,
+          1,
+          3,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.65,
+          0.23,
+          0.06
+        ],
+        "connectors": [
+          [
+            0,
+            10,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.8408581505588,
+      "nest_entropy_bits": 1.8408581505588002,
+      "additive_gap_bits": 2.220446049250313e-16,
+      "relative_gap_percent": 1.2062016014521747e-14,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.1390576351406374,
+      "exact_time_s": 0.08979833300691098,
+      "nest_time_s": 0.008376124955248088
+    },
+    {
+      "regime": "imbalanced",
+      "seed": 6,
+      "n": 12,
+      "m": 11,
+      "manifest": {
+        "regime": "imbalanced",
+        "sizes": [
+          1,
+          3,
+          1,
+          3,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.65,
+          0.23,
+          0.06
+        ],
+        "connectors": [
+          [
+            0,
+            4,
+            0.01
+          ],
+          [
+            4,
+            6,
+            0.01
+          ],
+          [
+            6,
+            8,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.4871871676731654,
+      "nest_entropy_bits": 1.4871871676731656,
+      "additive_gap_bits": 2.220446049250313e-16,
+      "relative_gap_percent": 1.4930508395418683e-14,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0701167105043912,
+      "exact_time_s": 0.0873393330257386,
+      "nest_time_s": 0.009250208968296647
+    },
+    {
+      "regime": "imbalanced",
+      "seed": 7,
+      "n": 12,
+      "m": 15,
+      "manifest": {
+        "regime": "imbalanced",
+        "sizes": [
+          1,
+          3,
+          1,
+          3,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.65,
+          0.23,
+          0.06
+        ],
+        "connectors": []
+      },
+      "global_optimum_bits": 1.863274942141979,
+      "nest_entropy_bits": 1.8632749421419788,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0807787690090154,
+      "exact_time_s": 0.08895166596630588,
+      "nest_time_s": 0.006951000017579645
+    },
+    {
+      "regime": "imbalanced",
+      "seed": 8,
+      "n": 12,
+      "m": 12,
+      "manifest": {
+        "regime": "imbalanced",
+        "sizes": [
+          1,
+          3,
+          1,
+          3,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.65,
+          0.23,
+          0.06
+        ],
+        "connectors": [
+          [
+            0,
+            1,
+            0.01
+          ],
+          [
+            1,
+            8,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.4567980963932272,
+      "nest_entropy_bits": 1.456798096393227,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.1235175840603135,
+      "exact_time_s": 0.08780420798575506,
+      "nest_time_s": 0.006331125041469932
+    },
+    {
+      "regime": "imbalanced",
+      "seed": 9,
+      "n": 12,
+      "m": 12,
+      "manifest": {
+        "regime": "imbalanced",
+        "sizes": [
+          1,
+          3,
+          1,
+          3,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.65,
+          0.23,
+          0.06
+        ],
+        "connectors": [
+          [
+            0,
+            1,
+            0.01
+          ],
+          [
+            1,
+            4,
+            0.01
+          ],
+          [
+            4,
+            8,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.4553752770549941,
+      "nest_entropy_bits": 1.4553752770549941,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0417840899155548,
+      "exact_time_s": 0.0903902500285767,
+      "nest_time_s": 0.0060117500252090394
+    },
+    {
+      "regime": "weighted",
+      "seed": 0,
+      "n": 12,
+      "m": 11,
+      "manifest": {
+        "regime": "weighted",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.6,
+          0.22,
+          0.06
+        ],
+        "connectors": [
+          [
+            0,
+            4,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.220854187863917,
+      "nest_entropy_bits": 1.220854187863917,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0267698199980078,
+      "exact_time_s": 0.08828424999956042,
+      "nest_time_s": 0.004481124982703477
+    },
+    {
+      "regime": "weighted",
+      "seed": 1,
+      "n": 12,
+      "m": 11,
+      "manifest": {
+        "regime": "weighted",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.6,
+          0.22,
+          0.06
+        ],
+        "connectors": [
+          [
+            0,
+            4,
+            0.01
+          ],
+          [
+            4,
+            6,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.3000973211593987,
+      "nest_entropy_bits": 1.3000973211593987,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0546295374258943,
+      "exact_time_s": 0.08794008300174028,
+      "nest_time_s": 0.006879125023260713
+    },
+    {
+      "regime": "weighted",
+      "seed": 2,
+      "n": 12,
+      "m": 11,
+      "manifest": {
+        "regime": "weighted",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.6,
+          0.22,
+          0.06
+        ],
+        "connectors": [
+          [
+            0,
+            4,
+            0.01
+          ],
+          [
+            4,
+            8,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.2835835202132992,
+      "nest_entropy_bits": 1.2835835202132986,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0514192382081793,
+      "exact_time_s": 0.08777379203820601,
+      "nest_time_s": 0.006156250019557774
+    },
+    {
+      "regime": "weighted",
+      "seed": 3,
+      "n": 12,
+      "m": 11,
+      "manifest": {
+        "regime": "weighted",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.6,
+          0.22,
+          0.06
+        ],
+        "connectors": [
+          [
+            0,
+            2,
+            0.01
+          ],
+          [
+            2,
+            4,
+            0.01
+          ],
+          [
+            4,
+            5,
+            0.01
+          ],
+          [
+            5,
+            11,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.2578306120379847,
+      "nest_entropy_bits": 1.2578306120379845,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0311119758343354,
+      "exact_time_s": 0.08987374999560416,
+      "nest_time_s": 0.006373499985784292
+    },
+    {
+      "regime": "weighted",
+      "seed": 4,
+      "n": 12,
+      "m": 11,
+      "manifest": {
+        "regime": "weighted",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.6,
+          0.22,
+          0.06
+        ],
+        "connectors": [
+          [
+            0,
+            1,
+            0.01
+          ],
+          [
+            1,
+            2,
+            0.01
+          ],
+          [
+            2,
+            3,
+            0.01
+          ],
+          [
+            3,
+            4,
+            0.01
+          ],
+          [
+            4,
+            10,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.2971175189552848,
+      "nest_entropy_bits": 1.2971175189552848,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0440137045466655,
+      "exact_time_s": 0.09105624997755513,
+      "nest_time_s": 0.007532541989348829
+    },
+    {
+      "regime": "weighted",
+      "seed": 5,
+      "n": 12,
+      "m": 12,
+      "manifest": {
+        "regime": "weighted",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.6,
+          0.22,
+          0.06
+        ],
+        "connectors": [
+          [
+            0,
+            1,
+            0.01
+          ],
+          [
+            1,
+            6,
+            0.01
+          ],
+          [
+            6,
+            11,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.325142382579434,
+      "nest_entropy_bits": 1.325142382579434,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0477044466746572,
+      "exact_time_s": 0.0923703329754062,
+      "nest_time_s": 0.006427207961678505
+    },
+    {
+      "regime": "weighted",
+      "seed": 6,
+      "n": 12,
+      "m": 12,
+      "manifest": {
+        "regime": "weighted",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.6,
+          0.22,
+          0.06
+        ],
+        "connectors": [
+          [
+            0,
+            2,
+            0.01
+          ],
+          [
+            2,
+            5,
+            0.01
+          ],
+          [
+            5,
+            6,
+            0.01
+          ],
+          [
+            6,
+            9,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.2659274780693683,
+      "nest_entropy_bits": 1.2659274780693683,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.085928029020854,
+      "exact_time_s": 0.08821470901602879,
+      "nest_time_s": 0.00744054198730737
+    },
+    {
+      "regime": "weighted",
+      "seed": 7,
+      "n": 12,
+      "m": 12,
+      "manifest": {
+        "regime": "weighted",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.6,
+          0.22,
+          0.06
+        ],
+        "connectors": [
+          [
+            0,
+            1,
+            0.01
+          ],
+          [
+            1,
+            2,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.3429403164671048,
+      "nest_entropy_bits": 1.3429403164671045,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0818047192029754,
+      "exact_time_s": 0.08793754200451076,
+      "nest_time_s": 0.010136042023077607
+    },
+    {
+      "regime": "weighted",
+      "seed": 8,
+      "n": 12,
+      "m": 11,
+      "manifest": {
+        "regime": "weighted",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.6,
+          0.22,
+          0.06
+        ],
+        "connectors": [
+          [
+            0,
+            4,
+            0.01
+          ],
+          [
+            4,
+            5,
+            0.01
+          ],
+          [
+            5,
+            8,
+            0.01
+          ],
+          [
+            8,
+            9,
+            0.01
+          ],
+          [
+            9,
+            11,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.2878091501585411,
+      "nest_entropy_bits": 1.2878091501585414,
+      "additive_gap_bits": 2.220446049250313e-16,
+      "relative_gap_percent": 1.724204280562035e-14,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0785617686455495,
+      "exact_time_s": 0.08827037503942847,
+      "nest_time_s": 0.008496541995555162
+    },
+    {
+      "regime": "weighted",
+      "seed": 9,
+      "n": 12,
+      "m": 11,
+      "manifest": {
+        "regime": "weighted",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.6,
+          0.22,
+          0.06
+        ],
+        "connectors": [
+          [
+            0,
+            1,
+            0.01
+          ],
+          [
+            1,
+            3,
+            0.01
+          ],
+          [
+            3,
+            8,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.197340906088326,
+      "nest_entropy_bits": 1.197340906088326,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.038826298843724,
+      "exact_time_s": 0.08981329103698954,
+      "nest_time_s": 0.0066940420074388385
+    },
+    {
+      "regime": "weak-hierarchy",
+      "seed": 0,
+      "n": 12,
+      "m": 17,
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": []
+      },
+      "global_optimum_bits": 1.901141892217743,
+      "nest_entropy_bits": 1.9011418922177432,
+      "additive_gap_bits": 2.220446049250313e-16,
+      "relative_gap_percent": 1.1679538798969347e-14,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.026775890730945,
+      "exact_time_s": 0.09426325000822544,
+      "nest_time_s": 0.0068269590265117586
+    },
+    {
+      "regime": "weak-hierarchy",
+      "seed": 1,
+      "n": 12,
+      "m": 12,
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": [
+          [
+            0,
+            5,
+            0.01
+          ],
+          [
+            5,
+            7,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.6320373313295558,
+      "nest_entropy_bits": 1.6320373313295555,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.1173142114621992,
+      "exact_time_s": 0.08923891599988565,
+      "nest_time_s": 0.00710891600465402
+    },
+    {
+      "regime": "weak-hierarchy",
+      "seed": 2,
+      "n": 12,
+      "m": 13,
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": [
+          [
+            0,
+            3,
+            0.01
+          ],
+          [
+            3,
+            7,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.5816111515399403,
+      "nest_entropy_bits": 1.58161115153994,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0780722408217709,
+      "exact_time_s": 0.09012145799351856,
+      "nest_time_s": 0.009076334012206644
+    },
+    {
+      "regime": "weak-hierarchy",
+      "seed": 3,
+      "n": 12,
+      "m": 12,
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": [
+          [
+            0,
+            4,
+            0.01
+          ],
+          [
+            4,
+            8,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.5013180682703255,
+      "nest_entropy_bits": 1.5013180682703253,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.034132706570239,
+      "exact_time_s": 0.08852620801189914,
+      "nest_time_s": 0.005380792019423097
+    },
+    {
+      "regime": "weak-hierarchy",
+      "seed": 4,
+      "n": 12,
+      "m": 12,
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": [
+          [
+            0,
+            1,
+            0.01
+          ],
+          [
+            1,
+            2,
+            0.01
+          ],
+          [
+            2,
+            3,
+            0.01
+          ],
+          [
+            3,
+            8,
+            0.01
+          ],
+          [
+            8,
+            9,
+            0.01
+          ],
+          [
+            9,
+            10,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.374077488459309,
+      "nest_entropy_bits": 1.3740774884593088,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0382369946942376,
+      "exact_time_s": 0.09278116602217779,
+      "nest_time_s": 0.007968083024024963
+    },
+    {
+      "regime": "weak-hierarchy",
+      "seed": 5,
+      "n": 12,
+      "m": 16,
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": [
+          [
+            0,
+            6,
+            0.01
+          ],
+          [
+            6,
+            7,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.8671543024132218,
+      "nest_entropy_bits": 1.8671543024132218,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0971598089406636,
+      "exact_time_s": 0.09191008302150294,
+      "nest_time_s": 0.008119207981508225
+    },
+    {
+      "regime": "weak-hierarchy",
+      "seed": 6,
+      "n": 12,
+      "m": 13,
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": [
+          [
+            0,
+            6,
+            0.01
+          ],
+          [
+            6,
+            10,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.76252466261806,
+      "nest_entropy_bits": 1.7625246626180597,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0481836175776822,
+      "exact_time_s": 0.08882129198173061,
+      "nest_time_s": 0.006211792002432048
+    },
+    {
+      "regime": "weak-hierarchy",
+      "seed": 7,
+      "n": 12,
+      "m": 14,
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": []
+      },
+      "global_optimum_bits": 1.8095297254299891,
+      "nest_entropy_bits": 1.8095297254299891,
+      "additive_gap_bits": 0.0,
+      "relative_gap_percent": 0.0,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.078436824136235,
+      "exact_time_s": 0.09905879199504852,
+      "nest_time_s": 0.0073589590028859675
+    },
+    {
+      "regime": "weak-hierarchy",
+      "seed": 8,
+      "n": 12,
+      "m": 13,
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": [
+          [
+            0,
+            5,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.5974753742352716,
+      "nest_entropy_bits": 1.5974753742352719,
+      "additive_gap_bits": 2.220446049250313e-16,
+      "relative_gap_percent": 1.3899720052418737e-14,
+      "globally_optimal": true,
+      "edge_lca_lower_bound_bits": 1.0914873920751718,
+      "exact_time_s": 0.08887545799370855,
+      "nest_time_s": 0.0063610420329496264
+    },
+    {
+      "regime": "weak-hierarchy",
+      "seed": 9,
+      "n": 12,
+      "m": 15,
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": [
+          [
+            0,
+            8,
+            0.01
+          ]
+        ]
+      },
+      "global_optimum_bits": 1.898328383142735,
+      "nest_entropy_bits": 1.920446192913028,
+      "additive_gap_bits": 0.022117809770292984,
+      "relative_gap_percent": 1.1651203220001556,
+      "globally_optimal": false,
+      "edge_lca_lower_bound_bits": 1.0329866861587653,
+      "exact_time_s": 0.09057424997445196,
+      "nest_time_s": 0.010537291993387043
+    }
+  ],
+  "summary": {
+    "clean": {
+      "runs": 10,
+      "globally_optimal": 10,
+      "mean_additive_gap_bits": 8.881784197001253e-17,
+      "max_additive_gap_bits": 4.440892098500626e-16,
+      "mean_relative_gap_percent": 6.299417255054344e-15,
+      "max_relative_gap_percent": 3.240588346709884e-14
+    },
+    "noisy": {
+      "runs": 10,
+      "globally_optimal": 7,
+      "mean_additive_gap_bits": 0.008279027542446938,
+      "max_additive_gap_bits": 0.0713788759134073,
+      "mean_relative_gap_percent": 0.4299872186720782,
+      "max_relative_gap_percent": 3.7154571471635367
+    },
+    "imbalanced": {
+      "runs": 10,
+      "globally_optimal": 9,
+      "mean_additive_gap_bits": 0.0007656590273147801,
+      "max_additive_gap_bits": 0.007656590273147135,
+      "mean_relative_gap_percent": 0.044163452702250264,
+      "max_relative_gap_percent": 0.4416345270224607
+    },
+    "weighted": {
+      "runs": 10,
+      "globally_optimal": 10,
+      "mean_additive_gap_bits": 2.2204460492503132e-17,
+      "max_additive_gap_bits": 2.220446049250313e-16,
+      "mean_relative_gap_percent": 1.724204280562035e-15,
+      "max_relative_gap_percent": 1.724204280562035e-14
+    },
+    "weak-hierarchy": {
+      "runs": 10,
+      "globally_optimal": 9,
+      "mean_additive_gap_bits": 0.002211780977029343,
+      "max_additive_gap_bits": 0.022117809770292984,
+      "mean_relative_gap_percent": 0.11651203220001811,
+      "max_relative_gap_percent": 1.1651203220001556
+    },
+    "overall": {
+      "runs": 50,
+      "globally_optimal": 45,
+      "mean_additive_gap_bits": 0.002251293509358234,
+      "max_additive_gap_bits": 0.0713788759134073,
+      "mean_relative_gap_percent": 0.11813254071487092,
+      "max_relative_gap_percent": 3.7154571471635367
+    }
+  },
+  "elapsed_s": 4.998575210571289
+}

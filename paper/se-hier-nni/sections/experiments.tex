@@ -3,17 +3,16 @@
 We ask: (Q1) how often do established constructors leave an improving NNI;
 (Q2) does compound search add improvements beyond a one-step certificate;
 (Q3) does lower entropy preserve or improve recovery of a planted hierarchy;
-and (Q4) how do \EGTE and \NEST compare with HCSE and BBM, and what efficiency
-is gained by replacing general editing with exact NNI?
+and (Q4) how close is \NEST to the global optimum on exactly solvable graphs?
 
-The frozen protocol uses ten graph seeds per regime. Every method sees the
+The frozen main protocol uses ten graph seeds per regime. Every method sees the
 identical weighted graph, and every tree is rescored by the same independent
 implementation of Eq.~\eqref{eq:tree-se}. We report paired means and 95\%
 $t$-intervals, raw per-seed records, wall-clock time, and Python allocation
 peak. The compound search uses beam width 16, barrier $\beta=0.05$ bits, and at
-most eight accepted compound rounds. No label is used by \EGTE or \NEST for
-model selection. BBM is additionally shown with the planted number of fine
-clusters, which is an oracle advantage and is marked as such.
+most eight accepted compound rounds. No label is used by \NEST for model
+selection. BBM is additionally shown with the planted number of fine clusters,
+which is an oracle advantage and is marked as such.
 
 \paragraph{Data.}
 Our controlled suite contains five two-level hierarchical stochastic block
@@ -27,17 +26,17 @@ model used to study recovery beyond worst-case inputs \cite{cohenaddad2017hsbm}.
 \paragraph{Methods.}
 We compare SE agglomeration, a two-level Louvain tree, Paris
 \cite{bonald2018paris}, official HCSE, official BBM with oracle $k$
-\cite{pan2025}, and our \EGTE and \NEST variants. The proposed methods are
-separated from external baselines in every table. We also refine each
-constructor independently to measure its one-step and compound gap rather than
-crediting all gains to our preferred initializer.
+\cite{pan2025}, and \NEST. We also refine each external constructor independently
+to measure its one-step and compound gap rather than crediting all gains to our
+preferred initializer.
 
 \paragraph{Metrics.}
 The primary metric is $\HT(G)$. Dendrogram purity is computed for the planted
 fine and coarse partitions: for every same-class vertex pair, it measures the
 class fraction under the pair's predicted LCA, then averages over pairs. We
 also report the fraction of runs improved by one-step and compound NNI, number
-of moves, runtime, and memory.
+of moves, runtime, and memory. For the exact suite we report the additive gap
+$H^T_{\rm NEST}-H^*$ and relative gap $(H^T_{\rm NEST}/H^*-1)100\%$.
 
 \subsection{A strict one-step trap}
 Before aggregate evaluation, an eight-vertex weighted witness verifies the
@@ -50,16 +49,11 @@ covered by a regression test.
 \subsection{Frozen benchmark results}
 Table~\ref{tab:main-h} reports the raw output of each method, before applying
 our audit to competing trees. \NEST has the lowest mean $\HT$ in all five
-regimes and on \OursWins\ individual paired graphs. Its paired reduction is
+regimes and on \OursWins individual paired graphs. Its paired reduction is
 $\NESTGainVsHCSE\!\pm\!\NESTGainVsHCSECI$ bits relative to HCSE and
 $\NESTGainVsBBM\!\pm\!\NESTGainVsBBMCI$ bits relative to BBM; it is lower on
-all 50 graphs against each method. As an internal comparison, \NEST improves
-over \EGTE by $\NESTGainVsEGTE\!\pm\!\NESTGainVsEGTECI$ bits, while fine-level
-dendrogram purity changes by
-$\NESTPurityDeltaVsEGTE\!\pm\!\NESTPurityDeltaVsEGTECI$. Thus the objective
-gain is not obtained by systematically degrading planted recovery.
-Figure~\ref{fig:entropy} shows paired evidence against the stronger of HCSE and
-BBM on each graph.
+all 50 graphs against each method. Figure~\ref{fig:entropy} shows paired
+evidence against the stronger of HCSE and BBM on each graph.
 
 \input{tables/main_entropy}
 
@@ -77,13 +71,12 @@ BBM on each graph.
 \subsection{The operator audit}
 The constructor audit in Table~\ref{tab:operator} asks whether a returned tree
 can be improved by the exact local operator. One-step NNI improves SE
-agglomeration and oracle BBM on every graph and improves the proposed \EGTE
-output on 80\% of graphs. After one-step descent has certified its local
-neighborhood, bounded compound search still improves 72\% of SE-agglomerative
-trees, 92\% of BBM trees, and 40\% of \EGTE trees. Paris is closer to local
+agglomeration and oracle BBM on every graph. After one-step descent has
+certified its local neighborhood, bounded compound search still improves 72\%
+of SE-agglomerative trees and 92\% of BBM trees. Paris is closer to local
 optimality but is not immune. For HCSE, one-step NNI lowers the imbalanced
 seed-5 tree by $0.001352$ bits, while compound search lowers the weighted
-seed-2 tree by $0.000637$ bits. These explicit witnesses support the
+seed-2 tree by $0.000637$ bits. These witnesses support the
 neighborhood-separation claim without asserting that HCSE is generally weak.
 
 \input{tables/operator_audit}
@@ -92,21 +85,19 @@ neighborhood-separation claim without asserting that HCSE is generally weak.
   \centering
   \includegraphics[width=0.94\textwidth]{figures/operator_runtime.pdf}
   \caption{Operator diagnostics pooled over 50 paired graphs. (a) Fraction of
-  graphs improved by one-step NNI and by compound search after the one-step
-  certificate. (b) Mean entropy regret versus runtime; lower-left is better,
-  and the arrow compares the proposed \EGTE and \NEST variants. Runtime includes
-  Python allocation tracing and should be interpreted comparatively.}
+  external constructor outputs improved by one-step NNI and by compound search
+  after the one-step certificate. (b) Mean entropy regret versus constructor
+  runtime; lower-left is better. Runtime includes Python allocation tracing and
+  should be interpreted comparatively.}
   \label{fig:runtime}
 \end{figure}
 
-\subsection{Interpretation and reproducibility}
-\NEST is not merely \EGTE followed by rotations. It forms a small candidate set
-from SE agglomeration, recursive SE, and Paris, skips general editing, refines
-each candidate with the same exact operator, and returns the lowest independently
-rescored endpoint. The benchmark contains 350 method records and 50 generator
-manifests. Its verifier checks schema, paired seeds, unique keys, and monotonicity
-of committed NNI endpoints. JSON evidence, scripts, and the HCSE/BBM commit
-accompany the paper.
+\subsection{Components and exact optimality}
+\NEST forms a small candidate set from SE agglomeration, recursive SE, and
+Paris, refines each with the same exact operator, and returns the lowest
+independently rescored endpoint. The main benchmark contains 350 method records
+and 50 generator manifests. Its verifier checks schema, paired seeds, unique
+keys, and monotonicity of committed NNI endpoints.
 
 Table~\ref{tab:ablation} separates the three algorithmic choices. The
 candidate pool improves 34 of 50 graphs over SE agglomeration; exact one-step
@@ -116,19 +107,21 @@ pool nor the escape stage alone explains the full result.
 
 \input{tables/ablation}
 
-\subsection{Real networks and clean scaling}
-Table~\ref{tab:real} complements the controlled suite with four networks
+For a global audit, we independently generate five analogous 12-vertex HSBM
+regimes with ten new seeds each, then compute $H^*$ using
+Eq.~\eqref{eq:exact-dp}. Table~\ref{tab:optimality} shows that \NEST reaches the
+exact optimum on \ExactOptima{} graphs. Across all 50, its mean relative gap is
+\ExactMeanRelativeGap{}; the worst case is \ExactMaxRelativeGap{}. Thus \NEST is
+provably optimal on 45 concrete instances and certified near-optimal on the
+remaining five. This does not establish a size-independent approximation ratio.
+
+\input{tables/optimality}
+
+\subsection{Real networks}
+Table~\ref{tab:real} complements the controlled suites with four networks
 bundled by NetworkX or the artifact library. \NEST obtains the lowest raw
-entropy on \RealWins\ networks. Because only Karate has a standard class label
+entropy on \RealWins networks. Because only Karate has a standard class label
 in the bundled loader and the remaining networks lack a unique ground-truth
 hierarchy, this experiment tests objective minimization rather than recovery.
 
 \input{tables/real_entropy}
-
-Table~\ref{tab:scaling} removes allocation tracing and varies graph size.
-\NEST lowers entropy in \ScalingWins\ paired runs. Its mean speedup over
-\EGTE grows from \ScalingSpeedupMin\ at 32 vertices to
-\ScalingSpeedupMax\ at 128 vertices. These graphs remain small enough for exact
-rescoring; the trend supports efficiency, not an asymptotic complexity claim.
-
-\input{tables/scaling}

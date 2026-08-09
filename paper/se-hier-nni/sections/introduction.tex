@@ -9,15 +9,9 @@ however, do not answer a complementary question: \emph{after a tree has been
 constructed, does a small topology change still lower the same objective?}
 
 Construction and local optimality are distinct: early decisions can retain
-avoidable entropy, while unrestricted tree editing considers many
-source--destination pairs and repeatedly rescores the full objective. We seek
-both broad construction and a local operator with an exact effect and
-interpretable termination.
-
-Entropy-Guided Tree Editing (\EGTE) starts from SE agglomeration, recursive SE,
-and optionally Paris, then applies exact-guarded collapse and relocation. This
-label-free general search is strong but costly because it repeatedly rescores
-the whole tree, motivating a cheaper certifiable neighborhood.
+avoidable entropy. We therefore seek a topology operator whose effect is
+exact, whose termination is interpretable, and whose output can be compared
+with a true optimum on instances small enough for exhaustive certification.
 
 Nearest-neighbor interchange (NNI) is the elementary rotation of a rooted
 binary tree. It changes one internal edge while preserving every leaf. NNI is
@@ -28,27 +22,30 @@ $((A,B),C)\rightarrow(A,(B,C))$, all objective terms cancel except two
 cross-module edge weights and three module volumes. This identity yields
 monotone descent and a one-NNI local-optimality certificate.
 
-Our full fast method, NNI-certified Entropy Search over Trees (\NEST), refines
-several inexpensive initial trees with the exact operator and returns the
-lowest independently verified endpoint. A bounded two-move beam can cross a
-small intermediate barrier, but accepts a pair only when its endpoint lowers
-the full objective. This design retains exact acceptance while avoiding the
-costliest part of general tree editing.
+Our method, NNI-certified Entropy Search over Trees (\NEST), refines several
+inexpensive initial trees with the exact operator and returns the lowest
+independently verified endpoint. A bounded two-move beam can cross a small
+intermediate barrier, but accepts a pair only when its endpoint lowers the full
+objective. We additionally derive a subset dynamic program that computes the
+global optimum for small graphs. It separates three claims that are often
+conflated: monotone improvement, local certification, and global optimality.
 
 Our contributions are:
 \begin{itemize}
-  \item \EGTE, a label-free multi-start hierarchy optimizer with
-  exact-guarded collapse and subtree-relocation moves;
   \item an exact weighted-graph NNI delta, a proof of separation from monotone
   single merge/compress steps, and a checkable one-NNI local certificate;
   \item \NEST, which combines multi-start construction, exact NNI refinement,
-  and bounded two-move escape without weakening the output guarantee; and
+  and bounded two-move escape without weakening the output guarantee;
+  \item a binary-refinement theorem, an exact $O(3^n)$ global optimizer for
+  small graphs, and an exact audit of \NEST's optimality gap; and
   \item a paired evaluation against SE agglomeration, Louvain-2L, Paris, and
   the official HCSE and BBM implementations, with entropy, hierarchy recovery,
-  runtime, memory, operator audits, and an explicit \EGTE--\NEST ablation.
+  runtime, memory, operator audits, and component ablations.
 \end{itemize}
 
 Across five frozen regimes, \NEST lowers entropy by
 $\NESTGainVsHCSE\!\pm\!\NESTGainVsHCSECI$ bits versus HCSE and
 $\NESTGainVsBBM\!\pm\!\NESTGainVsBBMCI$ bits versus BBM, winning every paired
-comparison. It provides a fast locally certified alternative to general editing.
+comparison. On the exact-solvable suite it is globally optimal in \ExactOptima{}
+cases and at most \ExactMaxRelativeGap{} above optimum. The latter is an empirical
+finite-suite certificate, not a worst-case approximation guarantee.

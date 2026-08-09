@@ -1,6 +1,6 @@
 # Paper audit gate
 
-Audit date: 2026-08-08. Verdict: **PASS TO SUBMISSION**.
+Audit date: 2026-08-10. Verdict: **PASS TO SUBMISSION**.
 
 ## Mechanical and policy gate
 
@@ -14,9 +14,11 @@ Audit date: 2026-08-08. Verdict: **PASS TO SUBMISSION**.
 ## Scientific gate
 
 - Exact delta proof independently re-expanded in `ADVERSARIAL_REVIEW.md`.
+- Binary sufficiency and the exact subset recurrence were re-derived; the DP
+  matches independent enumeration of all 105 rooted binary trees at n=5.
 - Zero-volume scope is now explicit in the theorem and preliminaries.
-- Main and supplemental artifact verifiers pass.
-- 10 automated tests pass; 1 optional-dependency test is skipped.
+- Main and exact-optimum artifact verifiers pass.
+- 14 automated tests pass; 1 optional-dependency test is skipped.
 - Current primary-source novelty search found no prior exact discrete SE--NNI
   optimizer; closest-work boundaries are documented in `NOVELTY_AUDIT.md`.
 

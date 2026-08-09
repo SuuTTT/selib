@@ -1,49 +1,37 @@
 # Claim–proof ledger
 
-| ID | Exact claim | Scope/quantifiers | Closest prior theorem | Exact novelty delta | Proof location | Finite certificate/test | Forbidden stronger reading | Independent review | Status |
-|---|---|---|---|---|---|---|---|---|---|
-| C1 | Eq. (3) is the exact change in full tree structural entropy for `((A,B),C) -> (A,(B,C))`. | Every finite undirected nonnegative weighted graph with positive total volume; eligible rooted binary neighborhood with positive local module volumes; zero-volume modules handled by the zero-contribution limit. | Jowhari 2024 derives local-search behavior for a different linear/revenue HC objective; the concurrent clique-landscape draft contains the unit-clique specialization. | Weighted graph cuts and volumes for the complete SE objective; explicit indispensable parent-volume term. | Theorem 1 and its direct boundary-cancellation proof. | `test_weighted_nni_delta_matches_full_entropy_recomputation`: >100 random weighted moves, tolerance `1e-9`. | Does not imply the move is improving, or that NNI finds the global optimum. | Algebra independently re-expanded in `ADVERSARIAL_REVIEW.md`; zero-volume scope checked. | proved; reviewed |
-| C2 | Exact one-step descent never worsens the input and, on normal budget termination, returns a one-NNI-local tree over every eligible binary edge. | Same graph/tree scope as C1; tolerance `1e-10`; excludes premature move-budget exhaustion. | Standard finite local-search reasoning; Jowhari 2024 for a different objective. | A checkable certificate under the actual structural-entropy delta. | Proposition 1. | Monotonic trace and final-neighborhood regression tests. | “NNI-local” is not “globally optimal.” | Scope and termination logic checked in `ADVERSARIAL_REVIEW.md`. | proved; reviewed |
-| C3 | Bounded compound search never worsens its input and may improve a strict one-NNI local optimum. | Beam/barrier-limited two-step search; endpoint accepted only after exact recomputation. | Concurrent clique-landscape draft studies a special analytic two-NNI escape. | Implemented arbitrary-weight graph search with a safe endpoint rule and regression witness. | Proposition 2. | Fixed eight-node witness: `1.970038 -> 1.920593` bits; positive first barrier. | Does not guarantee escape from every NNI trap or completeness of depth-two search outside the beam. | Endpoint rule and forbidden stronger reading checked in `ADVERSARIAL_REVIEW.md`. | proved; reviewed |
-| C4 | `SE-NNI-fast` is no worse than its NNI-refined candidate starts and returns the verified minimum among successful SE-agglomerative, recursive-SE, and Paris starts. | Successful constructors only; Paris optional and recorded. | Multi-start construction is used broadly; no checked prior combines this pool with exact SE-NNI certification. | Auditable initializer selection plus exact objective verification. | Method Sec. 4.3 and implementation `encoding_tree_nni_fast`. | Unit test shows no worse than the SE-agglomerative start; per-run candidate entropy audit. | Not guaranteed no worse than the slow released `se_hier`; the compatibility variant is. | Selection logic and claim boundary checked in `ADVERSARIAL_REVIEW.md`. | proved; reviewed |
-| C5 | NNI exposes a reproducible local-optimality gap in established constructors. | Five frozen HSBM regimes, ten paired seeds, named methods. | HCSE/BBM/Paris papers report constructor quality, not this audit. | Per-constructor one-NNI and compound gap rates under one evaluator. | Experiment Tables 1--3 and Fig. 3. | `verify_nni_benchmark.py`; 350 raw records and 50 manifests. | No claim outside tested graphs; no claim that lower entropy always improves labels. | Automated cross-artifact review complete; external read recommended. | verified |
-| C6 | `SE-NNI-fast` improves the entropy--runtime frontier relative to released `se_hier`. | Frozen HSBM suite, four real networks, and timing-only size sweep on declared hardware/software. | Released SELib implementation. | Replaces expensive generic edits with exact local rotations and bounded compound search. | Experiment Figs. 2--3 and real/scaling tables. | `verify_nni_supplements.py`; paired H/time records and scaling JSON. | No asymptotic speedup theorem; no hardware-independent constant factor. | Automated cross-artifact review complete; external read recommended. | verified |
+| ID | Exact claim | Scope | Proof/evidence | Forbidden stronger reading | Status |
+|---|---|---|---|---|---|
+| C1 | The weighted rooted-NNI identity is the exact full-objective change. | Finite undirected nonnegative weighted graph; eligible positive-volume binary neighborhood. | Theorem 1; more than 100 random moves versus full rescoring at `1e-9`. | Does not imply every NNI improves. | proved |
+| C2 | One-step descent is monotone and normally terminates at a one-NNI-local tree. | Eligible binary edges; excludes premature move-budget exhaustion. | Proposition 2; monotone traces and final-neighborhood tests. | Local is not global. | proved |
+| C3 | Compound search never worsens its input and can escape a strict one-NNI trap. | Declared beam, barrier, and depth two. | Proposition 3; fixed `1.970038 -> 1.920593` witness. | It does not escape every trap. | proved |
+| C4 | NEST returns the verified minimum among its successful refined candidates. | SE-agglomerative, recursive-SE, and optional Paris starts. | Selection code, per-candidate audit, unit tests. | It does not dominate every possible initializer. | proved |
+| C5 | Every multiway encoding tree has a binary refinement of no greater entropy. | Nonnegative weighted graph. | Binary-sufficiency proposition; insertion delta `-2W(A,B) log(V_P/V_S)/vol(V)`. | A particular arbitrary binary refinement need not be optimal. | proved |
+| C6 | The subset DP returns the global minimum over all encoding trees. | Positive-volume graph; exponential small-graph use. | DP recurrence plus C5; rebuilt optimum; independent enumeration of all 105 trees at n=5. | This is not a polynomial-time NEST guarantee. | proved |
+| C7 | NEST is exact on 45/50 audited n=12 graphs and within 3.72% on all 50. | Five frozen HSBM regimes, ten seeds, n=12. | `nni_optimality.json` and verifier; DP is exact. | No worst-case or size-independent approximation ratio. | verified |
+| C8 | NEST beats HCSE and BBM on the frozen external suite. | Five n=64 HSBM regimes, ten paired seeds. | `nni_benchmark.json`, verifier, paired CIs. | No universal dominance claim. | verified |
 
 ## Dependency graph
 
-`tree structural-entropy definition` → `boundary union identity` → **C1 exact delta** →
-**C2 monotone descent/local certificate** → **C3 safe compound endpoint** →
-**C4 fast multi-start selection** → paired experimental claims **C5–C6**.
-
-The empirical claims depend on the theorem-backed implementation and frozen evaluator, but
-the proofs do not depend on benchmark outcomes.
+`structural-entropy definition` → `exact NNI delta` → local monotonicity and
+compound safety → NEST; independently, `binary insertion delta` → binary
+sufficiency → exact subset DP → finite global-optimum audit.
 
 ## Killed claims
 
-- **Global optimality:** killed by known NNI-local nonglobal trees; banned everywhere.
-- **Fast variant is always no worse than released `se_hier`:** not guaranteed because the fast
-  method intentionally omits generic collapse/relocation. Only identical-start monotonicity and
-  candidate-pool dominance are permitted.
-- **Compound search always escapes:** false; it is bounded by beam, barrier, and depth two.
-- **Every constructor is NNI-improvable:** false for multiway/two-level outputs with no eligible
-  binary neighborhoods and for already local trees.
-- **Lower `H^T` always improves hierarchy recovery:** unsupported; purity is a separate metric.
-- **SE-NNI beats every baseline on every graph:** contradicted by development and early frozen
-  runs where oracle-`k` BBM or Paris has lower entropy.
-- **The parent-volume term cancels:** false in general. Equation (4) retains
-  `(W(A,B)-W(B,C)) log V_P` explicitly.
+- **General global optimality of NEST:** false; five exact-suite instances are
+  nonglobal.
+- **General approximation ratio:** not proved. The 3.72% number is confined to
+  the declared 50 exact-solvable graphs.
+- **Compound search always escapes:** false; beam, barrier, and depth are bounded.
+- **Lower entropy always improves hierarchy labels:** unsupported; recovery is
+  a separate metric.
+- **NNI is newly invented:** false; novelty is the structural-entropy identity,
+  certified optimizer, and global audit.
 
-## Concurrent-work ownership
+## Concurrent-work boundary
 
-| Work | Imported/shared material | Owned by this paper | Required action |
-|---|---|---|---|
-| Clique/curvature/Local-Traps manuscript | Rooted NNI definition, unit-clique specialization, special analytic local traps and barriers. | Arbitrary weighted-graph optimizer, full-objective verification, fast multi-start method, implementation, HSBM/real/scaling evidence. | Do not submit overlapping manuscripts concurrently unless chairs confirm separation; disclose the related manuscript and never reclaim its special-family theorems. |
-| Released SELib | `se_hier`, SE agglomeration, recursive-SE, evaluator, Paris adapter. | New NNI functions, compound search, fast public API, tests, benchmark and manuscript. | Cite/version the software and distinguish prior released functionality from additions on this branch. |
-
-## Final review state
-
-Theorem 1's algebra, the scope of Propositions 1--2, the zero-volume boundary,
-the concurrent-paper boundary, and final claim wording received a separate
-adversarial read recorded in `ADVERSARIAL_REVIEW.md`. A human coauthor should
-still read any paper before uploading, but no unresolved technical blocker is
-known.
+The Local-Traps/clique draft owns special unit-clique landscape analysis. This
+paper owns arbitrary weighted-graph NNI optimization, binary sufficiency, the
+exact subset audit, NEST, and HSBM/real evidence. Do not submit essentially
+overlapping manuscripts concurrently without chair guidance.

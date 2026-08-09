@@ -5,32 +5,29 @@ Author identities belong in EasyChair only; the review PDF is double-blind.
 
 ## Title
 
-NEST: Structural-Entropy Hierarchy Search with General Tree Editing and Exact
-NNI Certification
+NEST: Locally Certified Search for Structural-Entropy Hierarchies
 
 ## Abstract
 
 Structural entropy evaluates a graph hierarchy through the description length
 of an encoding tree. Existing methods such as HCSE and BBM construct such
 trees, but do not determine whether a returned hierarchy still admits an
-entropy-reducing local topology change. We introduce two complementary tree
-optimizers. Entropy-Guided Tree Editing (EGTE) constructs a hierarchy from
-multiple initial trees and monotonically improves the complete objective by
-level collapse and subtree relocation. NNI-certified Entropy Search over Trees
-(NEST) replaces this costly general-edit stage with exact rooted
-nearest-neighbor interchange (NNI). For weighted graphs, we derive a closed
-form for the entropy change of an NNI using only three module volumes and two
-cross-module edge weights. The identity supports monotone best-improvement
-descent, a checkable one-NNI local-optimality certificate, and a bounded
-two-move search that can cross a controlled intermediate barrier while
-committing only an entropy-decreasing endpoint. All synthetic comparisons are
-paired by graph seed and use the same independently recomputed objective.
-Across 50 graphs from five hierarchical regimes, NEST attains the lowest mean
-entropy in every regime. Relative to the better of HCSE and BBM on each graph,
-it lowers entropy by 0.4290 plus or minus 0.0281 bits and wins all 50 paired
-comparisons. As an internal efficiency comparison, NEST also lowers entropy by
-0.0279 plus or minus 0.0072 bits while running 21.5 times faster than EGTE
-under the instrumented benchmark.
+entropy-reducing local topology change. We introduce NNI-certified Entropy
+Search over Trees (NEST), a multi-start optimizer based on rooted
+nearest-neighbor interchange (NNI). For weighted graphs, we derive the exact
+entropy change of one NNI and prove that an improving rotation can be
+inaccessible to a monotone single merge or compression. The identity supports
+best-improvement descent, a checkable one-NNI local-optimality certificate, and
+a bounded two-move search that crosses a controlled intermediate barrier while
+committing only a decreasing endpoint. We further prove that every multiway
+encoding tree has a binary refinement of no greater entropy. This yields an
+O(3^n) exact dynamic program and a global-optimum audit on small graphs. Across
+50 graphs from five 64-vertex hierarchical regimes, NEST lowers entropy by
+0.4290 plus or minus 0.0281 bits relative to the better of HCSE and BBM and wins
+all paired comparisons. On 50 independently generated 12-vertex instances, it
+reaches the exact global optimum in 45 cases; its mean relative gap is 0.118%
+and its maximum is 3.72%. These exact-instance results certify observed
+near-optimality without asserting a general approximation ratio.
 
 ## Keywords
 

@@ -1,35 +1,7 @@
-\section{Entropy-Guided Tree Search}
-Our framework contains two complementary optimizers. \EGTE searches a broad
-space of non-binary hierarchy edits and provides a strong general solution.
-\NEST uses the exact local identity developed below to obtain a substantially
-faster hierarchy with an explicit NNI-local certificate.
-
-\subsection{Entropy-guided general tree editing}
-\EGTE first constructs a pool containing an SE-agglomerative dendrogram, a
-recursive-SE partition tree, and a Paris tree when available. For each start it
-searches two topology-changing neighborhoods. A \emph{collapse} removes an
-internal level and connects its children directly to its parent. A
-\emph{relocation} detaches a subtree and attaches it to a nearby internal
-module, allowing information from one branch to reorganize another. Every
-candidate tree is evaluated with the complete objective in
-Eq.~\eqref{eq:tree-se}; a move is accepted only when this independently
-recomputed value strictly decreases. Small graphs use best improvement over
-all candidates, while larger graphs use shuffled first improvement with a
-declared relocation cap.
-
-\begin{proposition}[Monotonicity of general tree editing]\label{prop:egte}
-The entropy returned by \textup{\EGTE} is no greater than that of the best successfully
-constructed initial tree.
-\end{proposition}
-\begin{proof}
-Each edit is committed only after exact recomputation verifies a strict
-decrease, and \EGTE returns the lowest-entropy refined candidate.
-\end{proof}
-
-Collapse and relocation provide a broad edit space, but repeated full-tree
-evaluation is costly and their termination does not characterize a canonical
-binary neighborhood. We therefore develop an exact NNI refiner whose local
-effect can be evaluated without rescoring every unaffected module.
+\section{NNI-Certified Entropy Search}
+\NEST constructs several candidate hierarchies and refines each in a canonical
+binary neighborhood. Its local effect is exact, every committed endpoint is
+independently rescored, and small instances admit a separate global certificate.
 
 \subsection{A local structural-entropy identity}
 For disjoint sets $X,Y$, write
@@ -192,12 +164,56 @@ case.
 \subsection{Fast NNI-certified entropy search}
 \NEST applies Algorithm~\ref{alg:nni} independently to SE-agglomerative,
 recursive-SE, and Paris starts and returns the candidate with minimum verified
-entropy. Unlike \EGTE, it omits general collapse/relocation search and uses the
-exact NNI neighborhood directly. The initializer is recorded for every output,
+entropy. The initializer is recorded for every output,
 so gains can be attributed to candidate selection, one-step refinement, and
 compound escape. With $n$ leaves there are at most $2(n-2)$ oriented NNI
-alternatives per sweep, versus the larger source--destination edit space of
-\EGTE. Our implementation uses best improvement, cached leaf sets, sparse
+alternatives per sweep. Our implementation uses best improvement, cached leaf sets, sparse
 cross-weight scans, and an $O(m\log h+n)$ full verification only for a selected
 move, where $h$ is tree height. We make runtime claims empirically rather than
 assuming balanced trees.
+
+\subsection{Exact global audit on small graphs}
+Local certification does not imply global optimality. We therefore derive a
+separate exact solver. First, binary trees suffice.
+
+\begin{proposition}[Binary sufficiency]\label{prop:binary}
+Every encoding tree has a binary refinement whose structural entropy is no
+greater. Consequently, a global minimum exists among rooted binary trees.
+\end{proposition}
+\begin{proof}
+At a node $P$, choose two children with disjoint leaf sets $A,B$, insert their
+union $S=A\cup B$ below $P$, and make $A,B$ children of $S$. The objective
+change is
+\[
+ -\frac{2W(A,B)}{\vol(V)}\log_2\frac{V_P}{V_S}\le 0.
+\]
+Repeated insertion converts every multiway node to binary without increasing
+the objective.
+\end{proof}
+
+For a nonempty vertex subset $S$, let $F(S)$ be the minimum contribution of a
+binary subtree rooted at $S$, excluding the edge from $S$ to its parent. Then
+\begin{equation}
+\begin{split}
+F(\{v\})&=0,\\
+F(S)&=\min_{A\dot\cup B=S}\left\{F(A)+F(B)
+-\frac{g_A}{\vol(V)}\log_2\frac{V_A}{V_S}
+-\frac{g_B}{\vol(V)}\log_2\frac{V_B}{V_S}\right\}.
+\end{split}\label{eq:exact-dp}
+\end{equation}
+Enumerating each unordered split once gives $O(3^n)$ time and $O(2^n)$ memory.
+By Proposition~\ref{prop:binary}, $F(V)$ is the global minimum over all encoding
+trees, not only over the binary subclass. This exponential routine is used only
+to audit 12-vertex instances; it is not part of \NEST at deployment scale.
+
+For an additional graph-only certificate, an edge-LCA expansion gives
+\begin{equation}
+H^T(G)=\sum_{uv\in E}\frac{w_{uv}}{\vol(V)}
+\log_2\frac{V_{\operatorname{lca}(u,v)}^2}{d_ud_v}
+\ge \sum_{uv\in E}\frac{w_{uv}}{\vol(V)}
+\log_2\frac{(d_u+d_v)^2}{d_ud_v}.
+\label{eq:edge-bound}
+\end{equation}
+The inequality follows from
+$V_{\operatorname{lca}(u,v)}\ge d_u+d_v$. It is a universal lower bound, but
+the exact dynamic program gives the sharper certificates reported below.
