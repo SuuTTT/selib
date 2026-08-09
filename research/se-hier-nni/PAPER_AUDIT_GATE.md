@@ -16,9 +16,9 @@ Audit date: 2026-08-10. Verdict: **PASS TO SUBMISSION**.
 ## Scientific gate
 
 - Exact delta proof independently re-expanded in `ADVERSARIAL_REVIEW.md`.
-- Binary sufficiency and the SE-specific subset recurrence were re-derived; the
-  DP matches enumeration of all 105 rooted binary trees at n=5. Prior generic
-  cluster-trellis exact inference is now cited and the novelty claim narrowed.
+- Binary sufficiency is attributed to SuperTAD and HCSE and re-derived only for
+  completeness. The SE-specific arbitrary-subset recurrence matches enumeration
+  of all 105 rooted binary trees at n=5; generic cluster-trellis prior is cited.
 - Zero-volume scope is now explicit in the theorem and preliminaries.
 - Main and restart-optimum artifact verifiers pass.
 - 19 automated tests pass; 1 optional-dependency test is skipped.

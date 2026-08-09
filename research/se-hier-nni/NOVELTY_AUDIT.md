@@ -7,11 +7,12 @@ full structural-entropy objective on a fixed undirected weighted graph.
 
 | Work | What it contributes | Why it does not subsume this paper |
 |---|---|---|
+| Zhang, Wang, and Li, Genome Biology 2021 (SuperTAD) | Proves binary sufficiency for minimum structural entropy and gives contiguity-constrained dynamic programs for hierarchical TADs. | Binary sufficiency is prior art and is only restated here. Our audit uses arbitrary graph subsets; the core method contribution is exact NNI refinement and certification. |
 | Pan et al., UAI 2025 (HCSE/BBM) | Structural-entropy hierarchy construction via partition/merge and stretch/compress; approximation results in special graph regimes. | It does not derive the NNI delta, certify NNI-local output, or run bounded two-move escape on an arbitrary returned tree. |
 | Jowhari, arXiv:2405.15983 | Interchange local search and an implementation for Dasgupta cost / Moseley--Wang revenue. | Its linear cardinality-weighted objective is different from nested graph structural entropy; its local delta cannot be reused for Eq. (1). |
 | Zeng et al., AAAI 2026 (HypCSE) | Differentiable hyperbolic relaxation of structural entropy plus graph-structure learning from features. | It changes/learns the graph and optimizes a continuous relaxation; this paper exactly refines a discrete tree on one fixed weighted graph. |
 | Bonald et al., NeurIPS 2018 (Paris) | Fast agglomerative graph dendrogram. | Paris is one initializer here; it provides neither an SE-specific NNI identity nor an SE-locality certificate. |
-| Macaluso et al., AISTATS 2021 (Cluster Trellis); Greenberg et al., UAI 2021 (A*) | Generic exact and approximate inference over binary hierarchical clusterings using subset trellises. | The subset-DP pattern is prior art. This paper contributes binary sufficiency for structural entropy and an SE-specific recurrence/audit, not generic exact-HC inference. |
+| Macaluso et al., AISTATS 2021 (Cluster Trellis); Greenberg et al., UAI 2021 (A*) | Generic exact and approximate inference over binary hierarchical clusterings using subset trellises. | The subset-DP pattern is prior art. Using prior binary sufficiency, this paper contributes an SE-specific arbitrary-subset recurrence/audit, not generic exact-HC inference. |
 | {\'A}goston and E.-Nagy, CEJOR 2024; G{\'o}recki et al., BMC Evol. Biol. 2020 | Percentage of heuristic runs reaching an exact optimum in k-means and median-tree search. | Optimal-hit rate is an established optimization diagnostic adopted here, not a newly invented metric. |
 
 ## Defensible novelty statement
@@ -52,6 +53,7 @@ exact-optimum hit rate as new.
 ## Sources checked
 
 - https://proceedings.mlr.press/v286/pan25a.html
+- https://pmc.ncbi.nlm.nih.gov/articles/PMC7831269/
 - https://arxiv.org/abs/2405.15983
 - https://ojs.aaai.org/index.php/AAAI/article/view/40035
 - https://proceedings.neurips.cc/paper/2018/hash/6b180037abbebea991d8b1232f8a8ca9-Abstract.html

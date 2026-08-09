@@ -142,13 +142,15 @@ guarantee.
 
 \subsection{Exact global audit on small graphs}
 Local certification does not imply global optimality. We therefore use a
-separate exact solver. First, binary trees suffice.
+separate exact solver. SuperTAD proves binary sufficiency for general graphs,
+and HCSE also notes it \cite{zhang2021supertad,pan2025}; we restate the result
+to make the audit self-contained.
 
 \begin{proposition}[Binary sufficiency]\label{prop:binary}
 Every encoding tree has a binary refinement whose structural entropy is no
 greater. Consequently, a global minimum exists among rooted binary trees.
 \end{proposition}
-\emph{Proof.} Deferred to the optional supplementary appendix.
+\emph{Proof.} Included for completeness in the optional supplementary appendix.
 
 For a nonempty vertex subset $S$, let $F(S)$ be the minimum contribution of a
 binary subtree rooted at $S$, excluding the edge from $S$ to its parent. Then

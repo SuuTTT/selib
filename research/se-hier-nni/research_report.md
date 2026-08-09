@@ -15,10 +15,12 @@ to `1.920593` bits.
 
 ## Global certificate
 
-Inserting a binary module beneath any multiway node changes entropy by
+By the known binary-sufficiency result, inserting a binary module beneath any
+multiway node changes entropy by
 `-2 W(A,B) / vol(V) log2(V_P/V_(A union B))`, which is nonpositive. Thus some
-binary refinement is at least as good as every multiway tree. An unordered
-subset dynamic program, specialized from generic cluster-trellis inference,
+binary refinement is at least as good as every multiway tree. We re-derive this
+identity only for completeness. An unordered arbitrary-subset dynamic program,
+specialized from generic cluster-trellis inference,
 consequently computes the true global optimum over all encoding trees in
 `O(3^n)` time and `O(2^n)` memory.
 

@@ -26,7 +26,7 @@ Status: **UPLOAD-READY REVIEW PDF**.
 - Visual inspection: all 12 main pages and the optional proof page rendered;
   changed tables, references, headers, and page breaks inspected.
 - Science gate: `ADVERSARIAL_REVIEW.md` passes the manuscript to submission.
-- Evidence: the main and restart verifiers pass; 16 tests pass and 1 is skipped.
+- Evidence: the main and restart verifiers pass; 19 tests pass and 1 is skipped.
 
 The SHA-256 value is frozen in `ARTIFACT_MANIFEST.md` after the final build.
 

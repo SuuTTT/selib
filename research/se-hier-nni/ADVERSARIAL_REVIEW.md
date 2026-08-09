@@ -8,8 +8,9 @@ SUBMISSION, SUBJECT TO HUMAN AUTHOR ATTESTATIONS**.
 The paper derives an exact local structural-entropy change for rooted NNI,
 turns it into monotone refinement with a checkable local certificate, adds a
 safe bounded two-step escape, and proposes the multi-start NEST optimizer. Its
-global-audit component proves binary sufficiency and specializes an exponential
-cluster-trellis recurrence to structural entropy.
+global-audit component uses prior binary sufficiency and specializes an
+exponential cluster-trellis recurrence to structural entropy over arbitrary
+vertex subsets.
 
 ## Correctness audit
 
@@ -28,7 +29,7 @@ cluster-trellis recurrence to structural entropy.
 - The edge-LCA lower bound is independently checked below every exact optimum.
 
 No fatal proof error is currently known. A human coauthor should still inspect
-the new binary-sufficiency and DP proofs before upload.
+the binary-sufficiency re-derivation and new DP proof before upload.
 
 ## Evidence audit
 
@@ -57,4 +58,5 @@ the new binary-sufficiency and DP proofs before upload.
 The PDF must remain anonymous and omit repository URLs. The Local-Traps/clique
 manuscript must not be simultaneously submitted if it contains essentially the
 same NNI identity or evidence. This paper owns the arbitrary-weight optimizer,
-binary-sufficiency theorem, SE-specific exact audit, and NEST experiments.
+SE-specific arbitrary-subset exact audit, and NEST experiments; it does not
+claim the prior binary-sufficiency result.

@@ -3,33 +3,30 @@
 Li and Pan introduced structural information as an encoding-tree measure of
 network organization \cite{li2016}. HCSE and BBM develop hierarchy
 construction and balancing operations for this objective \cite{pan2025}.
+SuperTAD proves binary sufficiency and uses it in contiguity-constrained dynamic
+programs \cite{zhang2021supertad}; HCSE also notes the property \cite{pan2025}.
+Our exact audit instead optimizes arbitrary vertex subsets.
 The structural-entropy survey organizes the broader theory, optimization, and
-application literature \cite{su2025survey}; HypCSE subsequently develops a
-continuous hyperbolic formulation for hierarchical clustering
-\cite{zeng2026hypcse}.
+application literature \cite{su2025survey}.
 \NEST asks whether a returned tree is locally optimal under an exact topology
 rotation and uses the answer as both a diagnostic and an optimizer.
 
 \paragraph{Graph hierarchical clustering.}
-Classical hierarchical clustering is predominantly agglomerative or divisive
-\cite{murtagh2012}. Paris is an agglomerative graph hierarchy related to
-modularity and provides a strong inexpensive initialization
-\cite{bonald2018paris}. Dasgupta-style objectives initiated a complementary
+Paris is an agglomerative graph hierarchy related to modularity and provides a
+strong inexpensive initialization \cite{bonald2018paris}. Louvain's multilevel
+aggregation optimizes modularity \cite{blondel2008}; we evaluate its final
+partition as a two-level tree, not as an SE optimizer. Dasgupta-style objectives initiated a complementary
 algorithmic literature \cite{dasgupta2016}; average linkage and divisive local
-search have guarantees for its revenue dual \cite{moseley2017}. Sparsest-cut
-and spreading-metric algorithms give approximations for that family
-\cite{charikar2017,roy2017}, while admissible hierarchical objectives have been
-characterized more generally \cite{cohenaddad2019}. Continuous ultrametric
-fitting offers another optimization route \cite{chierchia2019}. These
-objectives are useful conceptual neighbors, but a local delta derived for one
-cannot be substituted for Eq.~\eqref{eq:tree-se}.
+search have guarantees for its revenue dual \cite{moseley2017}. This objective
+is a useful neighbor, but its local delta cannot replace
+Eq.~\eqref{eq:tree-se}.
 
 \paragraph{Exact inference and heuristic accuracy.}
-Cluster trellises and trellis-guided A* support exact hierarchical inference
-\cite{macaluso2021,greenberg2021}. Our routine is an SE specialization:
-Proposition~\ref{prop:binary} justifies the subset recurrence. Exact-optimum hit
-rate has assessed $k$-means and median-tree heuristics
-\cite{agoston2024,gorecki2020}; here it complements planted-hierarchy recovery.
+Cluster trellises support exact hierarchical inference \cite{macaluso2021}.
+Our routine is an SE specialization:
+the prior binary-sufficiency property justifies the subset recurrence, while
+our arbitrary-subset formulation differs from SuperTAD's contiguity-constrained
+dynamic programs.
 
 \paragraph{Local search in tree space.}
 NNI is a classical neighborhood for phylogenetic trees; its reconfiguration

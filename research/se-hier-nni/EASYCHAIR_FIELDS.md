@@ -19,10 +19,9 @@ entropy change of one NNI and prove that an improving rotation can be
 inaccessible to a monotone single merge or compression. The identity supports
 best-improvement descent, a checkable one-NNI local-optimality certificate, and
 a bounded two-move search that crosses a controlled intermediate barrier while
-committing only a decreasing endpoint. We further prove that every multiway
-encoding tree has a binary refinement of no greater entropy. This yields an
-O(3^n) structural-entropy specialization of subset-trellis inference and a
-global-optimum audit on small graphs. Across
+committing only a decreasing endpoint. Using the known binary-sufficiency
+property of structural entropy, we formulate an O(3^n) arbitrary-subset
+specialization of trellis inference and a global-optimum audit on small graphs. Across
 50 graphs from five 64-vertex hierarchical regimes, NEST lowers entropy by
 0.4290 plus or minus 0.0281 bits relative to the better of HCSE and BBM and wins
 all paired comparisons. After development and calibration, a frozen 32-restart

@@ -1,6 +1,7 @@
 \begin{abstract}
 Structural entropy evaluates a graph hierarchy through the description length
-of an encoding tree. Existing methods such as HCSE and BBM construct such
+of an encoding tree. Existing methods such as HCSE and BBM \cite{pan2025}
+construct such
 trees, but do not determine whether a returned hierarchy still admits an
 entropy-reducing local topology change. We introduce NNI-certified Entropy
 Search over Trees (\NEST), a multi-start optimizer based on rooted
@@ -9,9 +10,9 @@ entropy change of one NNI and prove that an improving rotation can be
 inaccessible to a monotone single merge or compression. The identity supports
 best-improvement descent, a checkable one-NNI local-optimality certificate, and
 a bounded two-move search that crosses a controlled intermediate barrier while
-committing only a decreasing endpoint. We further prove that every multiway
-encoding tree has a binary refinement of no greater entropy. This yields an
-$O(3^n)$ structural-entropy specialization of subset-trellis inference and a
+committing only a decreasing endpoint. Using the known binary-sufficiency
+property of structural entropy \cite{zhang2021supertad,pan2025}, we formulate
+an $O(3^n)$ arbitrary-subset specialization of trellis inference and a
 global-optimum audit on small graphs. Across 50 graphs from five 64-vertex
 hierarchical regimes, \NEST lowers entropy by
 $\NESTGainVsBestExternal\!\pm\!\NESTGainVsBestExternalCI$ bits relative to the
