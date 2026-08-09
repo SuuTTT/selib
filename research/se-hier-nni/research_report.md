@@ -26,10 +26,12 @@ consequently computes the true global optimum over all encoding trees in
 
 The first exact audit uses five 12-vertex HSBM regimes and ten seeds per regime.
 Standard NEST is globally optimal on 45/50; mean relative gap is 0.118% and the
-maximum is 3.72%. Random coalescent restarts repair basin coverage. After
-calibration, frozen NEST-R32 reaches 800/800 audited optima, including 250/250
-under disjoint regime RNG streams, versus 685/800 for standard NEST. This is a
-finite-family certificate, not a general approximation ratio.
+maximum is 3.72%. Earlier phased restart splits yielded 800/800 hits after
+calibration. A stricter new sealed comparison instead gives NEST, HCSE, and BBM
+the same 32-candidate budget on 250 fresh graphs and retains every candidate.
+NEST reaches 249/250 optima (sole gap 0.07990%), versus 2/250 for HCSE and
+1/250 for either BBM variant. This newer comparison is the manuscript result.
+It is a finite-family certificate, not a general approximation ratio.
 
 ## Frozen external evidence
 

@@ -16,12 +16,13 @@ an $O(3^n)$ arbitrary-subset specialization of trellis inference and a
 global-optimum audit on small graphs. Across 50 graphs from five 64-vertex
 hierarchical regimes, \NEST lowers entropy by
 $\NESTGainVsBestExternal\!\pm\!\NESTGainVsBestExternalCI$ bits relative to the
-better of HCSE and BBM and wins all paired comparisons. After development and
-calibration, a frozen 32-restart variant reaches the exact global optimum on
-\ExactOptima{} independently generated 12-vertex confirmation instances,
-versus \BaselineExactOptima{} for the standard pool. These exact-instance
-results certify observed optimality without asserting a general approximation
-ratio.
+better of HCSE and BBM and wins all paired comparisons. On a new sealed,
+candidate-budget-matched audit of 250 independently generated 12-vertex graphs,
+32 coalescent starts reach the exact global optimum on \FairNESTExact{}
+instances, versus \FairHCSEExact{} for 32 HCSE calls and \FairBBMExact{} for
+either 32-call BBM variant. The sole \NEST miss has a \FairNESTWorstGap{}
+relative gap. These exact-instance results certify observed optimality without
+asserting a general approximation ratio.
 \keywords{Structural entropy \and hierarchical clustering \and tree editing
 \and nearest-neighbor interchange \and graph algorithms}
 \end{abstract}

@@ -24,11 +24,12 @@ property of structural entropy, we formulate an O(3^n) arbitrary-subset
 specialization of trellis inference and a global-optimum audit on small graphs. Across
 50 graphs from five 64-vertex hierarchical regimes, NEST lowers entropy by
 0.4290 plus or minus 0.0281 bits relative to the better of HCSE and BBM and wins
-all paired comparisons. After development and calibration, a frozen 32-restart
-variant reaches the exact global optimum on 250/250 independently generated
-12-vertex confirmation instances, versus 214/250 for the standard pool. These
-results certify observed optimality on the declared suite without asserting a
-general approximation ratio.
+all paired comparisons. On a new sealed, candidate-budget-matched audit of 250
+independently generated 12-vertex graphs, 32 coalescent starts reach the exact
+global optimum on 249/250 instances, versus 2/250 for 32 HCSE calls and 1/250
+for either 32-call BBM variant. The sole NEST miss has a 0.07990% relative gap.
+These results certify observed optimality on the declared suite without
+asserting a general approximation ratio.
 
 ## Keywords
 

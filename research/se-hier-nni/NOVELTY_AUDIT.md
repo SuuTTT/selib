@@ -38,9 +38,11 @@ exact-optimum hit rate as new.
   networks under the common exact objective.
 - Component ablation confirms separate gains from the candidate pool,
   one-step NNI, and compound escape.
-- NEST-R32 reaches 800/800 exact optima in the declared n=12 audit, including
-  250/250 under disjoint regime RNG streams. This is finite-suite evidence, not
-  a global guarantee for arbitrary graphs.
+- On the newer sealed candidate-matched n=12 audit, NEST-coalescent-B32 reaches
+  249/250 exact optima, versus 2/250 for HCSE-B32 and 1/250 for either BBM-B32
+  variant. The sole NEST miss has a 0.07990% gap. This supersedes the earlier
+  selective 800/800 restart summary in the manuscript and remains finite-suite
+  evidence, not a global guarantee for arbitrary graphs.
 - Official BBM contains iterative eigensolver/set-order variability; the raw
   frozen artifact preserves the realized runs, but exact BBM reruns may differ
   despite resetting Python and NumPy seeds. This does not affect our method's

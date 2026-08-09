@@ -110,17 +110,21 @@ pool nor the escape stage alone explains the full result.
 
 \input{tables/ablation}
 
-For a global audit, we generate five analogous 12-vertex HSBM regimes. The
-initial 50 graphs (seeds 0--9) expose five misses by the standard candidate
-pool: mean relative gap $0.118\%$ and worst gap $3.72\%$. Four, eight, and 16
-starts raise hit rate from $90\%$ to $96\%$, $98\%$, and $100\%$. A 250-graph
-calibration (seeds 10--59) leaves three misses at 16 starts, fixing $q=32$.
-A second split (60--109) gives 250/250 hits. Since the original protocol reused
-seeds across regimes, the final confirmation (110--159) uses disjoint streams:
-\NEST-R32 reaches \ExactOptima{}, versus \BaselineExactOptima{} for the standard
-pool (Table~\ref{tab:optimality}). Totals over 800 graphs are 800 and 685.
-This establishes neither a size-independent approximation ratio nor guaranteed
-global optimality beyond the audited instances.
+For a global audit, we generate five analogous 12-vertex HSBM regimes. Early
+development graphs expose misses by the standard candidate pool and motivate a
+restart study; a disjoint calibration fixes $q=32$. We then seal 250 new graphs
+(seeds 160--209, independent RNG stream per regime) and give every restarted
+constructor 32 candidate calls. Selection uses only structural entropy; the
+exact dynamic program is consulted afterward. \NEST's 32 coalescent starts hit
+$H^*$ on \FairNESTExact{} graphs, with mean relative gap
+\FairNESTMeanGap{} and worst gap \FairNESTWorstGap{}. HCSE hits
+\FairHCSEExact{}; both oracle-$k$ and label-free BBM hit \FairBBMExact{}.
+Oracle BBM returns a valid hierarchy on 248 graphs. The 32 coalescent starts
+select the same endpoints as adding \NEST's three deterministic initializers;
+their reported time conservatively includes that shared overhead. All raw
+candidates and failures are retained and independently verified. This finite
+audit establishes neither a size-independent approximation ratio nor
+guaranteed global optimality beyond the declared instances.
 
 \input{tables/optimality}
 

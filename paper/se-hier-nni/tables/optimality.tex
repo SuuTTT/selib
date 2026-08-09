@@ -1,19 +1,21 @@
 \begin{table}[t]
-\centering\small
-\caption{Exact audit on 12-vertex HSBMs. R32 was frozen after calibration.
-The final confirmation uses disjoint RNG streams across regimes. Hit means
-equality to $H^*$ within the stated tolerance.}
+\centering\scriptsize
+\caption{Sealed, budget-matched exact audit on 250 independently generated
+12-vertex HSBMs. Each restarted constructor receives 32 candidate calls; the
+lowest structural entropy is selected without consulting $H^*$. Valid reports
+successful instances. Exact rates use all 250 graphs as denominator. Gap is
+mean relative entropy gap (\%) $\pm$ 95\% CI over valid instances.}
 \label{tab:optimality}
-\begin{tabular}{lrrr}
+\setlength{\tabcolsep}{3.2pt}
+\begin{tabular}{lrrrrr}
 \toprule
-Split & Graphs & Standard hit & \NEST-R32 hit \\
+Method & Calls & Valid & Exact & Gap (\%) & Time (s) \\
 \midrule
-Development (0--9) & 50 & 45 (90.0\%) & 50 (100\%) \\
-Calibration (10--59) & 250 & 211 (84.4\%) & 250 (100\%) \\
-Confirmation A (60--109) & 250 & 215 (86.0\%) & 250 (100\%) \\
-Confirmation B (separate RNG) & 250 & 214 (85.6\%) & \textbf{250 (100\%)} \\
-\midrule
-Overall & 800 & 685 (85.6\%) & \textbf{800 (100\%)} \\
+\NEST (coalescent) & 32 & 250/250 & \textbf{249 (99.6\%)} & \textbf{$0.00031958\!\pm\!0.000629$} & 0.171 \\
+HCSE & 32 & 250/250 & 2 (0.8\%) & $10.902\!\pm\!0.971$ & 0.024 \\
+BBM (oracle $k$) & 32 & 248/250 & 1 (0.4\%) & $15.054\!\pm\!1.13$ & 0.402 \\
+BBM (label-free) & 32 & 250/250 & 1 (0.4\%) & $10.237\!\pm\!0.593$ & 0.299 \\
+SE agglomerative & 1 & 250/250 & 44 (17.6\%) & $1.7636\!\pm\!0.268$ & 0.00027 \\
 \bottomrule
 \end{tabular}
 \end{table}

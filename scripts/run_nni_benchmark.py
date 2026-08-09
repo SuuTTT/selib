@@ -227,6 +227,10 @@ def load_hcse(hcse_dir):
         )
         with contextlib.redirect_stdout(io.StringIO()):
             clusters = partition_cut.compute_improved_partition(labelled, k)
+            # The official partitioner can emit empty clusters on very small
+            # graphs when k is large. Empty clusters contain no leaves and must
+            # not be passed to HuffmanMerge.
+            clusters = [cluster for cluster in clusters if cluster]
             if not clusters:
                 clusters = [list(labelled.nodes())]
             hcse_bbm.id_generator = hcse_bbm.NewIDPartitionTreeNode(len(graph) + 1)

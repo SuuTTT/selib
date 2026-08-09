@@ -39,9 +39,10 @@ the binary-sufficiency re-derivation and new DP proof before upload.
   networks by the optimized objective.
 - 250 ablation records isolate candidate-pool, one-NNI, and compound gains.
 - The original 50 n=12 records expose five standard-pool misses (0.118% mean,
-  3.72% maximum gap). Frozen NEST-R32 reaches 800/800 optima across all phases,
-  including 250/250 under disjoint regime RNG streams; standard NEST reaches
-  685/800. The manuscript limits this to the audited family.
+  3.72% maximum gap). The newer sealed, 32-candidate-matched audit reaches
+  249/250 for NEST, 2/250 for HCSE, and 1/250 for either BBM variant; all raw
+  candidates are retained. The manuscript reports this stricter result and
+  limits it to the audited family.
 
 ## Remaining weaknesses
 

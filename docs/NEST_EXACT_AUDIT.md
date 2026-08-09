@@ -107,10 +107,14 @@ The restart budget was developed and evaluated in phases:
 3. Confirmation A, seeds 60–109: 250 newly generated graphs.
 4. Confirmation B, seeds 110–159: 250 graphs with disjoint regime RNG streams.
 
-NEST-R32 hits 800/800 exact optima across these declared phases, including
-250/250 in the regime-separated final confirmation. This is an empirical
-finite-suite result, not a proof that 32 starts are globally optimal on an
-arbitrary graph or at a larger `n`.
+Those phased splits produced 800/800 NEST-R32 hits, including 250/250 in the
+regime-separated final confirmation. The paper now reports a stricter fifth
+phase: seeds 160--209, independent regime streams, and the same 32-candidate
+budget for NEST, HCSE, and BBM. On these 250 fresh graphs, NEST is exact on
+249/250 (sole gap 0.07990%), HCSE on 2/250, and either BBM variant on 1/250.
+Every candidate and failure is retained in `nni_restart_fairness.json`. This is
+an empirical finite-suite result, not a proof that 32 starts are globally
+optimal on an arbitrary graph or at a larger `n`.
 
 ## Reproduction
 
@@ -124,6 +128,10 @@ python scripts/run_nni_restart_audit.py --skip-development --holdout-start 110 \
   --output results/nni_restart_independent_confirmation.json
 python scripts/diagnose_nni_restart_failures.py
 python scripts/verify_nni_restart_audit.py
+MPLCONFIGDIR=/tmp/selib_mplconfig python scripts/run_nni_restart_fairness.py \
+  --output results/nni_restart_fairness.json --seed-start 160 --seeds 50 \
+  --budget 32
+python scripts/verify_nni_restart_fairness.py
 python scripts/run_nni_basin_audit.py --mode exact --exact-regimes noisy \
   --exact-graph-seed 9
 python scripts/run_nni_basin_audit.py --mode monte-carlo --starts 10000
