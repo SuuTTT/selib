@@ -5,10 +5,10 @@
 | C1 | The weighted rooted-NNI identity is the exact full-objective change. | Finite undirected nonnegative weighted graph; eligible positive-volume binary neighborhood. | Theorem 1; more than 100 random moves versus full rescoring at `1e-9`. | Does not imply every NNI improves. | proved |
 | C2 | One-step descent is monotone and normally terminates at a one-NNI-local tree. | Eligible binary edges; excludes premature move-budget exhaustion. | Proposition 2; monotone traces and final-neighborhood tests. | Local is not global. | proved |
 | C3 | Compound search never worsens its input and can escape a strict one-NNI trap. | Declared beam, barrier, and depth two. | Proposition 3; fixed `1.970038 -> 1.920593` witness. | It does not escape every trap. | proved |
-| C4 | NEST returns the verified minimum among its successful refined candidates. | SE-agglomerative, recursive-SE, and optional Paris starts. | Selection code, per-candidate audit, unit tests. | It does not dominate every possible initializer. | proved |
+| C4 | NEST returns the verified minimum among its successful refined candidates. | SE-agglomerative, recursive-SE, optional Paris, and any requested coalescent starts. | Selection code, per-candidate audit, unit tests. | It does not dominate every possible initializer. | proved |
 | C5 | Every multiway encoding tree has a binary refinement of no greater entropy. | Nonnegative weighted graph. | Binary-sufficiency proposition; insertion delta `-2W(A,B) log(V_P/V_S)/vol(V)`. | A particular arbitrary binary refinement need not be optimal. | proved |
-| C6 | The subset DP returns the global minimum over all encoding trees. | Positive-volume graph; exponential small-graph use. | DP recurrence plus C5; rebuilt optimum; independent enumeration of all 105 trees at n=5. | This is not a polynomial-time NEST guarantee. | proved |
-| C7 | NEST is exact on 45/50 audited n=12 graphs and within 3.72% on all 50. | Five frozen HSBM regimes, ten seeds, n=12. | `nni_optimality.json` and verifier; DP is exact. | No worst-case or size-independent approximation ratio. | verified |
+| C6 | The SE-specific subset-trellis DP returns the global minimum over all encoding trees. | Positive-volume graph; exponential small-graph use. | DP recurrence plus C5; rebuilt optimum; enumeration of all 105 trees at n=5; generic trellis prior cited. | This is not a polynomial-time NEST guarantee or generic DP novelty. | proved |
+| C7 | NEST-R32 is exact on 800/800 audited n=12 graphs; standard NEST is exact on 685/800. | Five declared HSBM regimes and phased seeds; final 250 use disjoint regime streams. | Restart JSON artifacts and verifier; DP is exact. | No worst-case, size-independent, or all-graph optimality claim. | verified |
 | C8 | NEST beats HCSE and BBM on the frozen external suite. | Five n=64 HSBM regimes, ten paired seeds. | `nni_benchmark.json`, verifier, paired CIs. | No universal dominance claim. | verified |
 
 ## Dependency graph
@@ -19,10 +19,10 @@ sufficiency → exact subset DP → finite global-optimum audit.
 
 ## Killed claims
 
-- **General global optimality of NEST:** false; five exact-suite instances are
-  nonglobal.
-- **General approximation ratio:** not proved. The 3.72% number is confined to
-  the declared 50 exact-solvable graphs.
+- **General global optimality of NEST:** not proved; the standard pool misses
+  audited instances, and finite random restarts carry no universal guarantee.
+- **General approximation ratio:** not proved. All exact-hit rates and gaps are
+  confined to the declared n=12 audit family.
 - **Compound search always escapes:** false; beam, barrier, and depth are bounded.
 - **Lower entropy always improves hierarchy labels:** unsupported; recovery is
   a separate metric.

@@ -62,31 +62,7 @@ entropy is
 The symmetric alternative follows by exchanging $A$ and $B$.
 \end{theorem}
 
-\begin{proof}
-First suppose the three child modules have positive volume; the zero-volume
-boundary case follows by deleting modules with no incident positive-weight
-edge and taking the corresponding zero-contribution limit.
-Only the terms for $A,B,C,X$, and $Y$ can change. Omitting the common factor
-$1/\vol(V)$, their old and new contributions are
-\begin{align*}
- L_{\rm old}={}&g_A\log_2\frac{V_X}{V_A}
- +g_B\log_2\frac{V_X}{V_B}
- +g_X\log_2\frac{V_P}{V_X}
- +g_C\log_2\frac{V_P}{V_C},\\
- L_{\rm new}={}&g_A\log_2\frac{V_P}{V_A}
- +g_B\log_2\frac{V_Y}{V_B}
- +g_C\log_2\frac{V_Y}{V_C}
- +g_Y\log_2\frac{V_P}{V_Y}.
-\end{align*}
-Use $g_X=g_A+g_B-2W(A,B)$ and
-$g_Y=g_B+g_C-2W(B,C)$. In $L_{\rm new}-L_{\rm old}$, the coefficients of
-$g_A,g_B,g_C$ telescope to zero. The remaining terms are
-\[
- 2W(A,B)\log_2(V_P/V_X)+2W(B,C)\log_2(V_Y/V_P).
-\]
-Restoring $1/\vol(V)$ proves Eq.~\eqref{eq:nni-delta}. In particular, external boundary
-weights and $W(A,C)$ do not enter the rotation delta.
-\end{proof}
+\emph{Proof.} Deferred to the optional supplementary appendix.
 
 \begin{proposition}[Atomic advantage over merge--compress]
 \label{prop:atomic}
@@ -104,11 +80,7 @@ gain in Eq.~\eqref{eq:merge} exceeds the compression loss in
 Eq.~\eqref{eq:compress}, although neither desired reparenting nor an improving
 compression is available as one primitive.
 \end{proposition}
-\begin{proof}
-Delete $X$'s codeword and substitute $g_X=g_A+g_B-2W(A,B)$ in
-Eq.~\eqref{eq:tree-se}; this gives Eq.~\eqref{eq:compress}. The symmetric
-calculation for inserting $Y$ gives Eq.~\eqref{eq:merge}.
-\end{proof}
+\emph{Proof.} Deferred to the optional supplementary appendix.
 
 This proves strict separation from monotone single-primitive search, not global
 dominance over a complete HCSE round, which may cross an intermediate increase.
@@ -137,11 +109,7 @@ One-step refinement never increases $\HT(G)$. If it stops before its move
 budget, the returned tree has no improving rooted NNI on any eligible binary
 parent--child edge.
 \end{proposition}
-\begin{proof}
-Only moves with $\Delta\HT<-\varepsilon$ are committed, and their endpoint is
-independently verified. At termination every enumerated legal move has
-$\Delta\HT\ge-\varepsilon$.
-\end{proof}
+\emph{Proof.} Deferred to the optional supplementary appendix.
 
 Strict one-step descent can stop before a better tree separated by a shallow
 barrier. Algorithm~\ref{alg:nni} therefore keeps a bounded beam of first moves
@@ -152,14 +120,7 @@ the intermediate tree alone.
 The compound stage never worsens its input. It can reach an improving endpoint
 even when every one-step neighbor is non-improving.
 \end{proposition}
-\begin{proof}
-A pair is committed only after the final tree is fully recomputed and found to
-have lower entropy than the tree preceding the pair. The first move is not
-committed independently, so its sign cannot weaken the output guarantee. A
-two-edge path in tree space may have a positive first delta and a negative net
-delta; the regression witness in Sec.~\ref{sec:experiments} instantiates this
-case.
-\end{proof}
+\emph{Proof.} Deferred to the optional supplementary appendix.
 
 \subsection{Fast NNI-certified entropy search}
 \NEST applies Algorithm~\ref{alg:nni} independently to SE-agglomerative,
@@ -172,24 +133,22 @@ cross-weight scans, and an $O(m\log h+n)$ full verification only for a selected
 move, where $h$ is tree height. We make runtime claims empirically rather than
 assuming balanced trees.
 
+\paragraph{Randomized basin coverage.}
+\NEST-R adds $q$ coalescent starts, each built by repeatedly merging two
+uniformly selected current components, then applies the same NNI routine. The
+distribution is not uniform over labeled topologies. Selection uses only
+rescored entropy; increasing $q$ cannot worsen the result, but gives no global
+guarantee.
+
 \subsection{Exact global audit on small graphs}
-Local certification does not imply global optimality. We therefore derive a
+Local certification does not imply global optimality. We therefore use a
 separate exact solver. First, binary trees suffice.
 
 \begin{proposition}[Binary sufficiency]\label{prop:binary}
 Every encoding tree has a binary refinement whose structural entropy is no
 greater. Consequently, a global minimum exists among rooted binary trees.
 \end{proposition}
-\begin{proof}
-At a node $P$, choose two children with disjoint leaf sets $A,B$, insert their
-union $S=A\cup B$ below $P$, and make $A,B$ children of $S$. The objective
-change is
-\[
- -\frac{2W(A,B)}{\vol(V)}\log_2\frac{V_P}{V_S}\le 0.
-\]
-Repeated insertion converts every multiway node to binary without increasing
-the objective.
-\end{proof}
+\emph{Proof.} Deferred to the optional supplementary appendix.
 
 For a nonempty vertex subset $S$, let $F(S)$ be the minimum contribution of a
 binary subtree rooted at $S$, excluding the edge from $S$ to its parent. Then
@@ -201,7 +160,9 @@ F(S)&=\min_{A\dot\cup B=S}\left\{F(A)+F(B)
 -\frac{g_B}{\vol(V)}\log_2\frac{V_B}{V_S}\right\}.
 \end{split}\label{eq:exact-dp}
 \end{equation}
-Enumerating each unordered split once gives $O(3^n)$ time and $O(2^n)$ memory.
+Enumerating each unordered split once gives $O(3^n)$ time and $O(2^n)$ memory,
+an SE-specific instance of subset-trellis exact inference
+\cite{macaluso2021}.
 By Proposition~\ref{prop:binary}, $F(V)$ is the global minimum over all encoding
 trees, not only over the binary subclass. This exponential routine is used only
 to audit 12-vertex instances; it is not part of \NEST at deployment scale.

@@ -16,6 +16,9 @@ ranked first among SE minimizers on attained entropy in the survey benchmark):
 
 - `se_louvain` / `optimal_2d` — multilevel **2D-SE minimizer** (free-resolution).
 - `se_hier` / `optimal_tree` — **encoding-tree** optimizer (arbitrary depth).
+- `encoding_tree_nni_fast(..., random_restarts=32)` — NEST-R, exact-delta NNI
+  refinement with randomized basin coverage; see the
+  [exact-audit protocol](docs/NEST_EXACT_AUDIT.md).
 - `se_optimize_fixed_k` — **K-constrained SE** (`selib.seopt`): searches within the
   fixed-K subspace instead of merging down from the over-segmented free-k optimum;
   recovers communities where free-k SE over-segments (e.g. karate ARI 0.29→0.88).

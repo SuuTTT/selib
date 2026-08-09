@@ -18,13 +18,16 @@ to `1.920593` bits.
 Inserting a binary module beneath any multiway node changes entropy by
 `-2 W(A,B) / vol(V) log2(V_P/V_(A union B))`, which is nonpositive. Thus some
 binary refinement is at least as good as every multiway tree. An unordered
-subset dynamic program consequently computes the true global optimum over all
-encoding trees in `O(3^n)` time and `O(2^n)` memory.
+subset dynamic program, specialized from generic cluster-trellis inference,
+consequently computes the true global optimum over all encoding trees in
+`O(3^n)` time and `O(2^n)` memory.
 
-The exact audit uses five 12-vertex HSBM regimes and ten seeds per regime. NEST
-is globally optimal on 45/50 instances. Across all 50 its mean additive gap is
-0.002251 bits, mean relative gap is 0.118%, and maximum relative gap is 3.72%.
-This is a finite-suite exact certificate, not a general approximation ratio.
+The first exact audit uses five 12-vertex HSBM regimes and ten seeds per regime.
+Standard NEST is globally optimal on 45/50; mean relative gap is 0.118% and the
+maximum is 3.72%. Random coalescent restarts repair basin coverage. After
+calibration, frozen NEST-R32 reaches 800/800 audited optima, including 250/250
+under disjoint regime RNG streams, versus 685/800 for standard NEST. This is a
+finite-family certificate, not a general approximation ratio.
 
 ## Frozen external evidence
 

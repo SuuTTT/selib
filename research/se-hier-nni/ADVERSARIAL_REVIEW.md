@@ -1,15 +1,15 @@
 # Adversarial pre-submission review
 
-Review date: 2026-08-10. Target: TAMC 2026. Decision gate: **RE-AUDIT AFTER
-FINAL BUILD**.
+Review date: 2026-08-10. Target: TAMC 2026. Decision gate: **PASS TO
+SUBMISSION, SUBJECT TO HUMAN AUTHOR ATTESTATIONS**.
 
 ## Reviewer summary
 
 The paper derives an exact local structural-entropy change for rooted NNI,
 turns it into monotone refinement with a checkable local certificate, adds a
 safe bounded two-step escape, and proposes the multi-start NEST optimizer. Its
-new global component proves binary sufficiency and uses an exponential subset
-dynamic program to audit the true optimum on small graphs.
+global-audit component proves binary sufficiency and specializes an exponential
+cluster-trellis recurrence to structural entropy.
 
 ## Correctness audit
 
@@ -24,7 +24,7 @@ dynamic program to audit the true optimum on small graphs.
   two child-to-parent contributions. It uses `O(3^n)` time and `O(2^n)` memory.
 - The DP rebuilds a tree with the same objective, matches independent
   enumeration of all 105 rooted binary trees for a five-node graph, and never
-  exceeds NEST on the 50-run exact audit.
+  exceeds NEST on the exact audits.
 - The edge-LCA lower bound is independently checked below every exact optimum.
 
 No fatal proof error is currently known. A human coauthor should still inspect
@@ -37,9 +37,10 @@ the new binary-sufficiency and DP proofs before upload.
 - NEST beats HCSE and BBM on 50/50 n=64 graphs and wins 4/4 bundled real
   networks by the optimized objective.
 - 250 ablation records isolate candidate-pool, one-NNI, and compound gains.
-- 50 exact n=12 records: 45 global optima, 0.118% mean relative gap, 3.72%
-  maximum relative gap. The manuscript explicitly limits these numbers to the
-  audited suite and does not claim a general approximation ratio.
+- The original 50 n=12 records expose five standard-pool misses (0.118% mean,
+  3.72% maximum gap). Frozen NEST-R32 reaches 800/800 optima across all phases,
+  including 250/250 under disjoint regime RNG streams; standard NEST reaches
+  685/800. The manuscript limits this to the audited family.
 
 ## Remaining weaknesses
 
@@ -56,4 +57,4 @@ the new binary-sufficiency and DP proofs before upload.
 The PDF must remain anonymous and omit repository URLs. The Local-Traps/clique
 manuscript must not be simultaneously submitted if it contains essentially the
 same NNI identity or evidence. This paper owns the arbitrary-weight optimizer,
-binary-sufficiency theorem, exact DP audit, and NEST experiments.
+binary-sufficiency theorem, SE-specific exact audit, and NEST experiments.

@@ -11,15 +11,16 @@ best-improvement descent, a checkable one-NNI local-optimality certificate, and
 a bounded two-move search that crosses a controlled intermediate barrier while
 committing only a decreasing endpoint. We further prove that every multiway
 encoding tree has a binary refinement of no greater entropy. This yields an
-$O(3^n)$ exact dynamic program and, for the first time in this comparison, a
+$O(3^n)$ structural-entropy specialization of subset-trellis inference and a
 global-optimum audit on small graphs. Across 50 graphs from five 64-vertex
 hierarchical regimes, \NEST lowers entropy by
 $\NESTGainVsBestExternal\!\pm\!\NESTGainVsBestExternalCI$ bits relative to the
-better of HCSE and BBM and wins all paired comparisons. On 50 independently
-generated 12-vertex instances, it reaches the exact global optimum in
-\ExactOptima{} cases; its mean relative gap is \ExactMeanRelativeGap{} and its
-maximum is \ExactMaxRelativeGap{}. These exact-instance results certify observed
-near-optimality without asserting a general approximation ratio.
+better of HCSE and BBM and wins all paired comparisons. After development and
+calibration, a frozen 32-restart variant reaches the exact global optimum on
+\ExactOptima{} independently generated 12-vertex confirmation instances,
+versus \BaselineExactOptima{} for the standard pool. These exact-instance
+results certify observed optimality without asserting a general approximation
+ratio.
 \keywords{Structural entropy \and hierarchical clustering \and tree editing
 \and nearest-neighbor interchange \and graph algorithms}
 \end{abstract}

@@ -21,13 +21,15 @@ best-improvement descent, a checkable one-NNI local-optimality certificate, and
 a bounded two-move search that crosses a controlled intermediate barrier while
 committing only a decreasing endpoint. We further prove that every multiway
 encoding tree has a binary refinement of no greater entropy. This yields an
-O(3^n) exact dynamic program and a global-optimum audit on small graphs. Across
+O(3^n) structural-entropy specialization of subset-trellis inference and a
+global-optimum audit on small graphs. Across
 50 graphs from five 64-vertex hierarchical regimes, NEST lowers entropy by
 0.4290 plus or minus 0.0281 bits relative to the better of HCSE and BBM and wins
-all paired comparisons. On 50 independently generated 12-vertex instances, it
-reaches the exact global optimum in 45 cases; its mean relative gap is 0.118%
-and its maximum is 3.72%. These exact-instance results certify observed
-near-optimality without asserting a general approximation ratio.
+all paired comparisons. After development and calibration, a frozen 32-restart
+variant reaches the exact global optimum on 250/250 independently generated
+12-vertex confirmation instances, versus 214/250 for the standard pool. These
+results certify observed optimality on the declared suite without asserting a
+general approximation ratio.
 
 ## Keywords
 

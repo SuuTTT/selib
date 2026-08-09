@@ -29,9 +29,14 @@ REGIMES = {
 }
 
 
-def small_hierarchical_sbm(regime, seed):
+def small_hierarchical_sbm(regime, seed, independent_regime_seed=False):
     probabilities, sizes = REGIMES[regime]
-    rng = np.random.default_rng(seed)
+    regime_index = list(REGIMES).index(regime)
+    rng_seed = (
+        seed + 1_000_003 * (regime_index + 1)
+        if independent_regime_seed else seed
+    )
+    rng = np.random.default_rng(rng_seed)
     fine, coarse = [], []
     for block, size in enumerate(sizes):
         fine.extend([block] * size)
@@ -67,6 +72,9 @@ def small_hierarchical_sbm(regime, seed):
         "sizes": sizes,
         "probabilities": probabilities,
         "connectors": connectors,
+        "graph_seed": seed,
+        "rng_seed": rng_seed,
+        "independent_regime_seed": independent_regime_seed,
     }
     return graph, manifest
 

@@ -10,6 +10,7 @@ from selib.htree import (
     annotate,
     hd_se,
     nni_delta,
+    random_coalescent_tree,
     refine_nni,
     refine_nni_compound,
 )
@@ -149,3 +150,37 @@ def test_fast_multi_start_nni_is_no_worse_than_its_agglomerative_start():
 
     _, fast_h = optimal_tree_nni_fast(graph, seed=44)
     assert fast_h <= baseline_h + 1e-10
+
+
+def test_random_restart_mode_is_deterministic_and_never_worsens_candidate_pool():
+    from selib.htree import encoding_tree_nni_fast
+
+    graph = _random_weighted_graph(10, 73)
+    base_root, _, _, volume = encoding_tree_nni_fast(graph, seed=73)
+    base_entropy = hd_se(base_root, volume)
+
+    first, _, _, volume = encoding_tree_nni_fast(
+        graph, seed=73, random_restarts=4, restart_seed=991
+    )
+    second, _, _, second_volume = encoding_tree_nni_fast(
+        graph, seed=73, random_restarts=4, restart_seed=991
+    )
+    first_entropy = hd_se(first, volume)
+    second_entropy = hd_se(second, second_volume)
+
+    assert first_entropy <= base_entropy + 1e-10
+    assert abs(first_entropy - second_entropy) < 1e-12
+
+
+def test_random_coalescent_tree_contains_each_leaf_once():
+    root = random_coalescent_tree(17, random.Random(5))
+    leaves = []
+    stack = [root]
+    while stack:
+        node = stack.pop()
+        if node.is_leaf():
+            leaves.append(node.vertex)
+        else:
+            assert len(node.children) == 2
+            stack.extend(node.children)
+    assert sorted(leaves) == list(range(17))

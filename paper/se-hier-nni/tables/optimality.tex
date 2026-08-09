@@ -1,18 +1,19 @@
 \begin{table}[t]
 \centering\small
-\caption{Exact global-optimum audit on 12-vertex HSBMs. Gap is $H^{T}_{\rm NEST}-H^*$; relative gaps are computed per graph.}
+\caption{Exact audit on 12-vertex HSBMs. R32 was frozen after calibration.
+The final confirmation uses disjoint RNG streams across regimes. Hit means
+equality to $H^*$ within the stated tolerance.}
 \label{tab:optimality}
 \begin{tabular}{lrrr}
 \toprule
-Regime & Exact optimum & Mean gap (bits) & Max rel. gap \\
+Split & Graphs & Standard hit & \NEST-R32 hit \\
 \midrule
-Clean & 10/10 & 0.0000 & 0.00\% \\
-Noisy & 7/10 & 0.0083 & 3.72\% \\
-Imbalanced & 9/10 & 0.0008 & 0.44\% \\
-Weighted & 10/10 & 0.0000 & 0.00\% \\
-Weak hierarchy & 9/10 & 0.0022 & 1.17\% \\
+Development (0--9) & 50 & 45 (90.0\%) & 50 (100\%) \\
+Calibration (10--59) & 250 & 211 (84.4\%) & 250 (100\%) \\
+Confirmation A (60--109) & 250 & 215 (86.0\%) & 250 (100\%) \\
+Confirmation B (separate RNG) & 250 & 214 (85.6\%) & \textbf{250 (100\%)} \\
 \midrule
-Overall & \textbf{45/50} & \textbf{0.0023} & \textbf{3.72\%} \\
+Overall & 800 & 685 (85.6\%) & \textbf{800 (100\%)} \\
 \bottomrule
 \end{tabular}
 \end{table}

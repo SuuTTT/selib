@@ -36,7 +36,10 @@ fine and coarse partitions: for every same-class vertex pair, it measures the
 class fraction under the pair's predicted LCA, then averages over pairs. We
 also report the fraction of runs improved by one-step and compound NNI, number
 of moves, runtime, and memory. For the exact suite we report the additive gap
-$H^T_{\rm NEST}-H^*$ and relative gap $(H^T_{\rm NEST}/H^*-1)100\%$.
+$H^T_{\rm NEST}-H^*$, relative gap $(H^T_{\rm NEST}/H^*-1)100\%$, and
+\emph{optimal-hit rate}: the fraction of graph instances whose objective is
+within $\max(10^{-9},10^{-8}|H^*|)$ of the exact optimum. This objective metric
+does not assert recovery of a unique planted tree.
 
 \subsection{A strict one-step trap}
 Before aggregate evaluation, an eight-vertex weighted witness verifies the
@@ -107,13 +110,17 @@ pool nor the escape stage alone explains the full result.
 
 \input{tables/ablation}
 
-For a global audit, we independently generate five analogous 12-vertex HSBM
-regimes with ten new seeds each, then compute $H^*$ using
-Eq.~\eqref{eq:exact-dp}. Table~\ref{tab:optimality} shows that \NEST reaches the
-exact optimum on \ExactOptima{} graphs. Across all 50, its mean relative gap is
-\ExactMeanRelativeGap{}; the worst case is \ExactMaxRelativeGap{}. Thus \NEST is
-provably optimal on 45 concrete instances and certified near-optimal on the
-remaining five. This does not establish a size-independent approximation ratio.
+For a global audit, we generate five analogous 12-vertex HSBM regimes. The
+initial 50 graphs (seeds 0--9) expose five misses by the standard candidate
+pool: mean relative gap $0.118\%$ and worst gap $3.72\%$. Four, eight, and 16
+starts raise hit rate from $90\%$ to $96\%$, $98\%$, and $100\%$. A 250-graph
+calibration (seeds 10--59) leaves three misses at 16 starts, fixing $q=32$.
+A second split (60--109) gives 250/250 hits. Since the original protocol reused
+seeds across regimes, the final confirmation (110--159) uses disjoint streams:
+\NEST-R32 reaches \ExactOptima{}, versus \BaselineExactOptima{} for the standard
+pool (Table~\ref{tab:optimality}). Totals over 800 graphs are 800 and 685.
+This establishes neither a size-independent approximation ratio nor guaranteed
+global optimality beyond the audited instances.
 
 \input{tables/optimality}
 

@@ -11,6 +11,8 @@ full structural-entropy objective on a fixed undirected weighted graph.
 | Jowhari, arXiv:2405.15983 | Interchange local search and an implementation for Dasgupta cost / Moseley--Wang revenue. | Its linear cardinality-weighted objective is different from nested graph structural entropy; its local delta cannot be reused for Eq. (1). |
 | Zeng et al., AAAI 2026 (HypCSE) | Differentiable hyperbolic relaxation of structural entropy plus graph-structure learning from features. | It changes/learns the graph and optimizes a continuous relaxation; this paper exactly refines a discrete tree on one fixed weighted graph. |
 | Bonald et al., NeurIPS 2018 (Paris) | Fast agglomerative graph dendrogram. | Paris is one initializer here; it provides neither an SE-specific NNI identity nor an SE-locality certificate. |
+| Macaluso et al., AISTATS 2021 (Cluster Trellis); Greenberg et al., UAI 2021 (A*) | Generic exact and approximate inference over binary hierarchical clusterings using subset trellises. | The subset-DP pattern is prior art. This paper contributes binary sufficiency for structural entropy and an SE-specific recurrence/audit, not generic exact-HC inference. |
+| {\'A}goston and E.-Nagy, CEJOR 2024; G{\'o}recki et al., BMC Evol. Biol. 2020 | Percentage of heuristic runs reaching an exact optimum in k-means and median-tree search. | Optimal-hit rate is an established optimization diagnostic adopted here, not a newly invented metric. |
 
 ## Defensible novelty statement
 
@@ -19,7 +21,8 @@ weighted structural-entropy delta for rooted NNI used as a verified discrete
 optimizer, coupled with a one-NNI certificate, safe bounded two-step escape,
 and a fast multi-start implementation. The paper must not claim to invent NNI,
 local search for hierarchical clustering, or structural-entropy hierarchy
-construction.
+construction. It must also not claim generic subset dynamic programming or
+exact-optimum hit rate as new.
 
 ## Evidence and remaining risks
 
@@ -34,6 +37,9 @@ construction.
   networks under the common exact objective.
 - Component ablation confirms separate gains from the candidate pool,
   one-step NNI, and compound escape.
+- NEST-R32 reaches 800/800 exact optima in the declared n=12 audit, including
+  250/250 under disjoint regime RNG streams. This is finite-suite evidence, not
+  a global guarantee for arbitrary graphs.
 - Official BBM contains iterative eigensolver/set-order variability; the raw
   frozen artifact preserves the realized runs, but exact BBM reruns may differ
   despite resetting Python and NumPy seeds. This does not affect our method's
@@ -49,3 +55,7 @@ construction.
 - https://arxiv.org/abs/2405.15983
 - https://ojs.aaai.org/index.php/AAAI/article/view/40035
 - https://proceedings.neurips.cc/paper/2018/hash/6b180037abbebea991d8b1232f8a8ca9-Abstract.html
+- https://proceedings.mlr.press/v130/macaluso21a.html
+- https://proceedings.mlr.press/v161/greenberg21a.html
+- https://link.springer.com/article/10.1007/s10100-023-00881-1
+- https://pmc.ncbi.nlm.nih.gov/articles/PMC7593691/

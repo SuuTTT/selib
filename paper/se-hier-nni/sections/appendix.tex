@@ -1,0 +1,53 @@
+\section{Optional Appendix: Proof Details}\label{app:proofs}
+
+\paragraph{Proof of Theorem~\ref{thm:delta}.}
+First suppose the three child modules have positive volume; the zero-volume
+case follows by deleting modules with no incident positive-weight edge and
+taking the zero-contribution limit. Only the terms for $A,B,C,X$, and $Y$ can
+change. Omitting the common factor $1/\vol(V)$, their old and new contributions
+are
+\begin{align*}
+ L_{\rm old}={}&g_A\log_2\frac{V_X}{V_A}
+ +g_B\log_2\frac{V_X}{V_B}
+ +g_X\log_2\frac{V_P}{V_X}
+ +g_C\log_2\frac{V_P}{V_C},\\
+ L_{\rm new}={}&g_A\log_2\frac{V_P}{V_A}
+ +g_B\log_2\frac{V_Y}{V_B}
+ +g_C\log_2\frac{V_Y}{V_C}
+ +g_Y\log_2\frac{V_P}{V_Y}.
+\end{align*}
+Using $g_X=g_A+g_B-2W(A,B)$ and
+$g_Y=g_B+g_C-2W(B,C)$, the coefficients of $g_A,g_B,g_C$ telescope to zero.
+The remaining terms are
+\[
+ 2W(A,B)\log_2(V_P/V_X)+2W(B,C)\log_2(V_Y/V_P).
+\]
+Restoring $1/\vol(V)$ proves Eq.~\eqref{eq:nni-delta}. External boundary
+weights and $W(A,C)$ do not enter the delta.
+
+\paragraph{Proof of Proposition~\ref{prop:atomic}.}
+Delete $X$'s codeword and substitute $g_X=g_A+g_B-2W(A,B)$ in
+Eq.~\eqref{eq:tree-se}; this gives Eq.~\eqref{eq:compress}. The symmetric
+calculation for inserting $Y$ gives Eq.~\eqref{eq:merge}.
+
+\paragraph{Proof of Proposition~\ref{prop:local}.}
+Only moves with $\Delta\HT<-\varepsilon$ are committed, and their endpoint is
+independently verified. At termination every enumerated legal move has
+$\Delta\HT\ge-\varepsilon$.
+
+\paragraph{Proof of Proposition~\ref{prop:compound}.}
+A pair is committed only after its final tree is fully recomputed and found to
+have lower entropy than the tree preceding the pair. The first move is not
+committed independently, so its sign cannot weaken the output guarantee. A
+two-edge path may have a positive first delta and a negative net delta; the
+regression witness in Sec.~\ref{sec:experiments} instantiates this case.
+
+\paragraph{Proof of Proposition~\ref{prop:binary}.}
+At a node $P$, choose two children with disjoint leaf sets $A,B$, insert their
+union $S=A\cup B$ below $P$, and make $A,B$ children of $S$. The objective
+change is
+\[
+ -\frac{2W(A,B)}{\vol(V)}\log_2\frac{V_P}{V_S}\le 0.
+\]
+Repeated insertion converts every multiway node to binary without increasing
+the objective.

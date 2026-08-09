@@ -8,8 +8,7 @@ application literature \cite{su2025survey}; HypCSE subsequently develops a
 continuous hyperbolic formulation for hierarchical clustering
 \cite{zeng2026hypcse}.
 \NEST asks whether a returned tree is locally optimal under an exact topology
-rotation and uses the answer as both a diagnostic and an optimizer. Its subset
-dynamic program supplies a distinct small-instance global certificate.
+rotation and uses the answer as both a diagnostic and an optimizer.
 
 \paragraph{Graph hierarchical clustering.}
 Classical hierarchical clustering is predominantly agglomerative or divisive
@@ -24,6 +23,13 @@ characterized more generally \cite{cohenaddad2019}. Continuous ultrametric
 fitting offers another optimization route \cite{chierchia2019}. These
 objectives are useful conceptual neighbors, but a local delta derived for one
 cannot be substituted for Eq.~\eqref{eq:tree-se}.
+
+\paragraph{Exact inference and heuristic accuracy.}
+Cluster trellises and trellis-guided A* support exact hierarchical inference
+\cite{macaluso2021,greenberg2021}. Our routine is an SE specialization:
+Proposition~\ref{prop:binary} justifies the subset recurrence. Exact-optimum hit
+rate has assessed $k$-means and median-tree heuristics
+\cite{agoston2024,gorecki2020}; here it complements planted-hierarchy recovery.
 
 \paragraph{Local search in tree space.}
 NNI is a classical neighborhood for phylogenetic trees; its reconfiguration

@@ -1,0 +1,2762 @@
+{
+  "protocol": {
+    "version": "tamc-nest-hard-case-restart-v1",
+    "cases": [
+      [
+        "noisy",
+        11
+      ],
+      [
+        "noisy",
+        17
+      ],
+      [
+        "weak-hierarchy",
+        17
+      ]
+    ],
+    "campaigns": 20,
+    "restart_budgets": [
+      16,
+      32,
+      64,
+      128
+    ],
+    "selection": "lowest structural entropy; exact optimum unseen by optimizer"
+  },
+  "summary": {
+    "noisy/seed-11": {
+      "campaigns": 20,
+      "baseline_relative_gap_percent": 0.08708190356028368,
+      "budgets": {
+        "16": {
+          "optimal_hits": 17,
+          "optimal_hit_rate_percent": 85.0,
+          "mean_relative_gap_percent": 0.011981226431169455,
+          "max_relative_gap_percent": 0.08708190356028368
+        },
+        "32": {
+          "optimal_hits": 20,
+          "optimal_hit_rate_percent": 100.0,
+          "mean_relative_gap_percent": 0.0,
+          "max_relative_gap_percent": 0.0
+        },
+        "64": {
+          "optimal_hits": 20,
+          "optimal_hit_rate_percent": 100.0,
+          "mean_relative_gap_percent": 0.0,
+          "max_relative_gap_percent": 0.0
+        },
+        "128": {
+          "optimal_hits": 20,
+          "optimal_hit_rate_percent": 100.0,
+          "mean_relative_gap_percent": 0.0,
+          "max_relative_gap_percent": 0.0
+        }
+      }
+    },
+    "noisy/seed-17": {
+      "campaigns": 20,
+      "baseline_relative_gap_percent": 4.131208480447317,
+      "budgets": {
+        "16": {
+          "optimal_hits": 20,
+          "optimal_hit_rate_percent": 100.0,
+          "mean_relative_gap_percent": 0.0,
+          "max_relative_gap_percent": 0.0
+        },
+        "32": {
+          "optimal_hits": 20,
+          "optimal_hit_rate_percent": 100.0,
+          "mean_relative_gap_percent": 0.0,
+          "max_relative_gap_percent": 0.0
+        },
+        "64": {
+          "optimal_hits": 20,
+          "optimal_hit_rate_percent": 100.0,
+          "mean_relative_gap_percent": 0.0,
+          "max_relative_gap_percent": 0.0
+        },
+        "128": {
+          "optimal_hits": 20,
+          "optimal_hit_rate_percent": 100.0,
+          "mean_relative_gap_percent": 0.0,
+          "max_relative_gap_percent": 0.0
+        }
+      }
+    },
+    "weak-hierarchy/seed-17": {
+      "campaigns": 20,
+      "baseline_relative_gap_percent": 0.09935764223740173,
+      "budgets": {
+        "16": {
+          "optimal_hits": 19,
+          "optimal_hit_rate_percent": 95.0,
+          "mean_relative_gap_percent": 0.004967882111870087,
+          "max_relative_gap_percent": 0.09935764223740173
+        },
+        "32": {
+          "optimal_hits": 20,
+          "optimal_hit_rate_percent": 100.0,
+          "mean_relative_gap_percent": 0.0,
+          "max_relative_gap_percent": 0.0
+        },
+        "64": {
+          "optimal_hits": 20,
+          "optimal_hit_rate_percent": 100.0,
+          "mean_relative_gap_percent": 0.0,
+          "max_relative_gap_percent": 0.0
+        },
+        "128": {
+          "optimal_hits": 20,
+          "optimal_hit_rate_percent": 100.0,
+          "mean_relative_gap_percent": 0.0,
+          "max_relative_gap_percent": 0.0
+        }
+      }
+    }
+  },
+  "records": [
+    {
+      "regime": "noisy",
+      "graph_seed": 11,
+      "campaign": 0,
+      "restart_rng_seed": 91010011,
+      "global_optimum_bits": 2.0416442983789533,
+      "baseline_relative_gap_percent": 0.08708190356028368,
+      "first_hit_restart": 1,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 11,
+      "campaign": 1,
+      "restart_rng_seed": 92010011,
+      "global_optimum_bits": 2.0416442983789533,
+      "baseline_relative_gap_percent": 0.08708190356028368,
+      "first_hit_restart": 7,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 11,
+      "campaign": 2,
+      "restart_rng_seed": 93010011,
+      "global_optimum_bits": 2.0416442983789533,
+      "baseline_relative_gap_percent": 0.08708190356028368,
+      "first_hit_restart": 4,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 11,
+      "campaign": 3,
+      "restart_rng_seed": 94010011,
+      "global_optimum_bits": 2.0416442983789533,
+      "baseline_relative_gap_percent": 0.08708190356028368,
+      "first_hit_restart": 1,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 11,
+      "campaign": 4,
+      "restart_rng_seed": 95010011,
+      "global_optimum_bits": 2.0416442983789533,
+      "baseline_relative_gap_percent": 0.08708190356028368,
+      "first_hit_restart": 3,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 11,
+      "campaign": 5,
+      "restart_rng_seed": 96010011,
+      "global_optimum_bits": 2.0416442983789533,
+      "baseline_relative_gap_percent": 0.08708190356028368,
+      "first_hit_restart": 5,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 11,
+      "campaign": 6,
+      "restart_rng_seed": 97010011,
+      "global_optimum_bits": 2.0416442983789533,
+      "baseline_relative_gap_percent": 0.08708190356028368,
+      "first_hit_restart": 8,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 11,
+      "campaign": 7,
+      "restart_rng_seed": 98010011,
+      "global_optimum_bits": 2.0416442983789533,
+      "baseline_relative_gap_percent": 0.08708190356028368,
+      "first_hit_restart": 8,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 11,
+      "campaign": 8,
+      "restart_rng_seed": 99010011,
+      "global_optimum_bits": 2.0416442983789533,
+      "baseline_relative_gap_percent": 0.08708190356028368,
+      "first_hit_restart": 5,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 11,
+      "campaign": 9,
+      "restart_rng_seed": 100010011,
+      "global_optimum_bits": 2.0416442983789533,
+      "baseline_relative_gap_percent": 0.08708190356028368,
+      "first_hit_restart": 11,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 11,
+      "campaign": 10,
+      "restart_rng_seed": 101010011,
+      "global_optimum_bits": 2.0416442983789533,
+      "baseline_relative_gap_percent": 0.08708190356028368,
+      "first_hit_restart": 18,
+      "outcomes": {
+        "16": {
+          "globally_optimal": false,
+          "relative_gap_percent": 0.08708190356028368
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 11,
+      "campaign": 11,
+      "restart_rng_seed": 102010011,
+      "global_optimum_bits": 2.0416442983789533,
+      "baseline_relative_gap_percent": 0.08708190356028368,
+      "first_hit_restart": 13,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 11,
+      "campaign": 12,
+      "restart_rng_seed": 103010011,
+      "global_optimum_bits": 2.0416442983789533,
+      "baseline_relative_gap_percent": 0.08708190356028368,
+      "first_hit_restart": 31,
+      "outcomes": {
+        "16": {
+          "globally_optimal": false,
+          "relative_gap_percent": 0.08708190356028368
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 11,
+      "campaign": 13,
+      "restart_rng_seed": 104010011,
+      "global_optimum_bits": 2.0416442983789533,
+      "baseline_relative_gap_percent": 0.08708190356028368,
+      "first_hit_restart": 21,
+      "outcomes": {
+        "16": {
+          "globally_optimal": false,
+          "relative_gap_percent": 0.06546072150282174
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 11,
+      "campaign": 14,
+      "restart_rng_seed": 105010011,
+      "global_optimum_bits": 2.0416442983789533,
+      "baseline_relative_gap_percent": 0.08708190356028368,
+      "first_hit_restart": 2,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 11,
+      "campaign": 15,
+      "restart_rng_seed": 106010011,
+      "global_optimum_bits": 2.0416442983789533,
+      "baseline_relative_gap_percent": 0.08708190356028368,
+      "first_hit_restart": 14,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 11,
+      "campaign": 16,
+      "restart_rng_seed": 107010011,
+      "global_optimum_bits": 2.0416442983789533,
+      "baseline_relative_gap_percent": 0.08708190356028368,
+      "first_hit_restart": 1,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 11,
+      "campaign": 17,
+      "restart_rng_seed": 108010011,
+      "global_optimum_bits": 2.0416442983789533,
+      "baseline_relative_gap_percent": 0.08708190356028368,
+      "first_hit_restart": 2,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 11,
+      "campaign": 18,
+      "restart_rng_seed": 109010011,
+      "global_optimum_bits": 2.0416442983789533,
+      "baseline_relative_gap_percent": 0.08708190356028368,
+      "first_hit_restart": 6,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 11,
+      "campaign": 19,
+      "restart_rng_seed": 110010011,
+      "global_optimum_bits": 2.0416442983789533,
+      "baseline_relative_gap_percent": 0.08708190356028368,
+      "first_hit_restart": 10,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 17,
+      "campaign": 0,
+      "restart_rng_seed": 91010017,
+      "global_optimum_bits": 1.970472047677215,
+      "baseline_relative_gap_percent": 4.131208480447317,
+      "first_hit_restart": 2,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 17,
+      "campaign": 1,
+      "restart_rng_seed": 92010017,
+      "global_optimum_bits": 1.970472047677215,
+      "baseline_relative_gap_percent": 4.131208480447317,
+      "first_hit_restart": 6,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 17,
+      "campaign": 2,
+      "restart_rng_seed": 93010017,
+      "global_optimum_bits": 1.970472047677215,
+      "baseline_relative_gap_percent": 4.131208480447317,
+      "first_hit_restart": 10,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 17,
+      "campaign": 3,
+      "restart_rng_seed": 94010017,
+      "global_optimum_bits": 1.970472047677215,
+      "baseline_relative_gap_percent": 4.131208480447317,
+      "first_hit_restart": 7,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 17,
+      "campaign": 4,
+      "restart_rng_seed": 95010017,
+      "global_optimum_bits": 1.970472047677215,
+      "baseline_relative_gap_percent": 4.131208480447317,
+      "first_hit_restart": 2,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 17,
+      "campaign": 5,
+      "restart_rng_seed": 96010017,
+      "global_optimum_bits": 1.970472047677215,
+      "baseline_relative_gap_percent": 4.131208480447317,
+      "first_hit_restart": 3,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 17,
+      "campaign": 6,
+      "restart_rng_seed": 97010017,
+      "global_optimum_bits": 1.970472047677215,
+      "baseline_relative_gap_percent": 4.131208480447317,
+      "first_hit_restart": 5,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 17,
+      "campaign": 7,
+      "restart_rng_seed": 98010017,
+      "global_optimum_bits": 1.970472047677215,
+      "baseline_relative_gap_percent": 4.131208480447317,
+      "first_hit_restart": 1,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 17,
+      "campaign": 8,
+      "restart_rng_seed": 99010017,
+      "global_optimum_bits": 1.970472047677215,
+      "baseline_relative_gap_percent": 4.131208480447317,
+      "first_hit_restart": 3,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 17,
+      "campaign": 9,
+      "restart_rng_seed": 100010017,
+      "global_optimum_bits": 1.970472047677215,
+      "baseline_relative_gap_percent": 4.131208480447317,
+      "first_hit_restart": 3,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 17,
+      "campaign": 10,
+      "restart_rng_seed": 101010017,
+      "global_optimum_bits": 1.970472047677215,
+      "baseline_relative_gap_percent": 4.131208480447317,
+      "first_hit_restart": 9,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 17,
+      "campaign": 11,
+      "restart_rng_seed": 102010017,
+      "global_optimum_bits": 1.970472047677215,
+      "baseline_relative_gap_percent": 4.131208480447317,
+      "first_hit_restart": 3,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 17,
+      "campaign": 12,
+      "restart_rng_seed": 103010017,
+      "global_optimum_bits": 1.970472047677215,
+      "baseline_relative_gap_percent": 4.131208480447317,
+      "first_hit_restart": 4,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 17,
+      "campaign": 13,
+      "restart_rng_seed": 104010017,
+      "global_optimum_bits": 1.970472047677215,
+      "baseline_relative_gap_percent": 4.131208480447317,
+      "first_hit_restart": 2,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 17,
+      "campaign": 14,
+      "restart_rng_seed": 105010017,
+      "global_optimum_bits": 1.970472047677215,
+      "baseline_relative_gap_percent": 4.131208480447317,
+      "first_hit_restart": 1,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 17,
+      "campaign": 15,
+      "restart_rng_seed": 106010017,
+      "global_optimum_bits": 1.970472047677215,
+      "baseline_relative_gap_percent": 4.131208480447317,
+      "first_hit_restart": 4,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 17,
+      "campaign": 16,
+      "restart_rng_seed": 107010017,
+      "global_optimum_bits": 1.970472047677215,
+      "baseline_relative_gap_percent": 4.131208480447317,
+      "first_hit_restart": 11,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 17,
+      "campaign": 17,
+      "restart_rng_seed": 108010017,
+      "global_optimum_bits": 1.970472047677215,
+      "baseline_relative_gap_percent": 4.131208480447317,
+      "first_hit_restart": 11,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 17,
+      "campaign": 18,
+      "restart_rng_seed": 109010017,
+      "global_optimum_bits": 1.970472047677215,
+      "baseline_relative_gap_percent": 4.131208480447317,
+      "first_hit_restart": 4,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "noisy",
+      "graph_seed": 17,
+      "campaign": 19,
+      "restart_rng_seed": 110010017,
+      "global_optimum_bits": 1.970472047677215,
+      "baseline_relative_gap_percent": 4.131208480447317,
+      "first_hit_restart": 15,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "noisy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.5,
+          0.3,
+          0.14
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "weak-hierarchy",
+      "graph_seed": 17,
+      "campaign": 0,
+      "restart_rng_seed": 91040017,
+      "global_optimum_bits": 1.758997247677811,
+      "baseline_relative_gap_percent": 0.09935764223740173,
+      "first_hit_restart": 6,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "weak-hierarchy",
+      "graph_seed": 17,
+      "campaign": 1,
+      "restart_rng_seed": 92040017,
+      "global_optimum_bits": 1.758997247677811,
+      "baseline_relative_gap_percent": 0.09935764223740173,
+      "first_hit_restart": 9,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "weak-hierarchy",
+      "graph_seed": 17,
+      "campaign": 2,
+      "restart_rng_seed": 93040017,
+      "global_optimum_bits": 1.758997247677811,
+      "baseline_relative_gap_percent": 0.09935764223740173,
+      "first_hit_restart": 1,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "weak-hierarchy",
+      "graph_seed": 17,
+      "campaign": 3,
+      "restart_rng_seed": 94040017,
+      "global_optimum_bits": 1.758997247677811,
+      "baseline_relative_gap_percent": 0.09935764223740173,
+      "first_hit_restart": 8,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "weak-hierarchy",
+      "graph_seed": 17,
+      "campaign": 4,
+      "restart_rng_seed": 95040017,
+      "global_optimum_bits": 1.758997247677811,
+      "baseline_relative_gap_percent": 0.09935764223740173,
+      "first_hit_restart": 3,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "weak-hierarchy",
+      "graph_seed": 17,
+      "campaign": 5,
+      "restart_rng_seed": 96040017,
+      "global_optimum_bits": 1.758997247677811,
+      "baseline_relative_gap_percent": 0.09935764223740173,
+      "first_hit_restart": 4,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "weak-hierarchy",
+      "graph_seed": 17,
+      "campaign": 6,
+      "restart_rng_seed": 97040017,
+      "global_optimum_bits": 1.758997247677811,
+      "baseline_relative_gap_percent": 0.09935764223740173,
+      "first_hit_restart": 6,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "weak-hierarchy",
+      "graph_seed": 17,
+      "campaign": 7,
+      "restart_rng_seed": 98040017,
+      "global_optimum_bits": 1.758997247677811,
+      "baseline_relative_gap_percent": 0.09935764223740173,
+      "first_hit_restart": 18,
+      "outcomes": {
+        "16": {
+          "globally_optimal": false,
+          "relative_gap_percent": 0.09935764223740173
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "weak-hierarchy",
+      "graph_seed": 17,
+      "campaign": 8,
+      "restart_rng_seed": 99040017,
+      "global_optimum_bits": 1.758997247677811,
+      "baseline_relative_gap_percent": 0.09935764223740173,
+      "first_hit_restart": 5,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "weak-hierarchy",
+      "graph_seed": 17,
+      "campaign": 9,
+      "restart_rng_seed": 100040017,
+      "global_optimum_bits": 1.758997247677811,
+      "baseline_relative_gap_percent": 0.09935764223740173,
+      "first_hit_restart": 3,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "weak-hierarchy",
+      "graph_seed": 17,
+      "campaign": 10,
+      "restart_rng_seed": 101040017,
+      "global_optimum_bits": 1.758997247677811,
+      "baseline_relative_gap_percent": 0.09935764223740173,
+      "first_hit_restart": 12,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "weak-hierarchy",
+      "graph_seed": 17,
+      "campaign": 11,
+      "restart_rng_seed": 102040017,
+      "global_optimum_bits": 1.758997247677811,
+      "baseline_relative_gap_percent": 0.09935764223740173,
+      "first_hit_restart": 1,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "weak-hierarchy",
+      "graph_seed": 17,
+      "campaign": 12,
+      "restart_rng_seed": 103040017,
+      "global_optimum_bits": 1.758997247677811,
+      "baseline_relative_gap_percent": 0.09935764223740173,
+      "first_hit_restart": 1,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "weak-hierarchy",
+      "graph_seed": 17,
+      "campaign": 13,
+      "restart_rng_seed": 104040017,
+      "global_optimum_bits": 1.758997247677811,
+      "baseline_relative_gap_percent": 0.09935764223740173,
+      "first_hit_restart": 1,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "weak-hierarchy",
+      "graph_seed": 17,
+      "campaign": 14,
+      "restart_rng_seed": 105040017,
+      "global_optimum_bits": 1.758997247677811,
+      "baseline_relative_gap_percent": 0.09935764223740173,
+      "first_hit_restart": 5,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "weak-hierarchy",
+      "graph_seed": 17,
+      "campaign": 15,
+      "restart_rng_seed": 106040017,
+      "global_optimum_bits": 1.758997247677811,
+      "baseline_relative_gap_percent": 0.09935764223740173,
+      "first_hit_restart": 4,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "weak-hierarchy",
+      "graph_seed": 17,
+      "campaign": 16,
+      "restart_rng_seed": 107040017,
+      "global_optimum_bits": 1.758997247677811,
+      "baseline_relative_gap_percent": 0.09935764223740173,
+      "first_hit_restart": 6,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "weak-hierarchy",
+      "graph_seed": 17,
+      "campaign": 17,
+      "restart_rng_seed": 108040017,
+      "global_optimum_bits": 1.758997247677811,
+      "baseline_relative_gap_percent": 0.09935764223740173,
+      "first_hit_restart": 1,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "weak-hierarchy",
+      "graph_seed": 17,
+      "campaign": 18,
+      "restart_rng_seed": 109040017,
+      "global_optimum_bits": 1.758997247677811,
+      "baseline_relative_gap_percent": 0.09935764223740173,
+      "first_hit_restart": 12,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": []
+      }
+    },
+    {
+      "regime": "weak-hierarchy",
+      "graph_seed": 17,
+      "campaign": 19,
+      "restart_rng_seed": 110040017,
+      "global_optimum_bits": 1.758997247677811,
+      "baseline_relative_gap_percent": 0.09935764223740173,
+      "first_hit_restart": 1,
+      "outcomes": {
+        "16": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "32": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "64": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        },
+        "128": {
+          "globally_optimal": true,
+          "relative_gap_percent": 0.0
+        }
+      },
+      "manifest": {
+        "regime": "weak-hierarchy",
+        "sizes": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probabilities": [
+          0.45,
+          0.36,
+          0.1
+        ],
+        "connectors": []
+      }
+    }
+  ],
+  "elapsed_s": 36.633987415989395
+}

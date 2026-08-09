@@ -18,6 +18,7 @@ this produces a far lower-entropy hierarchy.
 """
 from __future__ import annotations
 import math
+import random
 import networkx as nx
 
 LOG2 = math.log(2.0)
@@ -234,6 +235,27 @@ def copy_tree(node):
     if node.is_leaf():
         return TNode(vertex=node.vertex)
     return TNode(children=[copy_tree(c) for c in node.children])
+
+
+def random_coalescent_tree(n, rng):
+    """Construct a randomized rooted binary tree on leaves ``0..n-1``.
+
+    Two current components are selected uniformly at each merge.  The induced
+    distribution is deliberately described as *coalescent*, not uniform over
+    labeled tree topologies.  It is useful as a diverse restart distribution
+    for local tree-space search.
+    """
+    if n <= 0:
+        raise ValueError("n must be positive")
+    pool = [TNode(vertex=vertex) for vertex in range(n)]
+    while len(pool) > 1:
+        first, second = sorted(rng.sample(range(len(pool)), 2), reverse=True)
+        left = pool.pop(first)
+        right = pool.pop(second)
+        if rng.random() < 0.5:
+            left, right = right, left
+        pool.append(TNode(children=[left, right]))
+    return pool[0]
 
 
 def _get(root, path):
@@ -778,6 +800,7 @@ def encoding_tree_nni(G, seed=0, starts=4, do_refine=True,
 def encoding_tree_nni_fast(G, seed=0, starts=4, compound=True,
                            max_nni_rounds=100, compound_rounds=8,
                            beam_width=16, barrier_bits=0.05,
+                           random_restarts=0, restart_seed=None,
                            return_trace=False):
     """Fast multi-start hierarchy construction with exact NNI certification.
 
@@ -785,11 +808,16 @@ def encoding_tree_nni_fast(G, seed=0, starts=4, compound=True,
     collapse/relocation refinement.  It builds three inexpensive candidates
     (SE agglomeration, recursive SE, and Paris when installed), applies exact
     one-step NNI descent and optional bounded two-step escape to each, and
-    returns the lowest-entropy result.  The output is therefore no worse than
+    returns the lowest-entropy result.  Optional randomized coalescent starts
+    increase basin coverage; ``random_restarts=0`` preserves the deterministic
+    candidate pool.  The output is therefore no worse than
     the NNI-refined SE-agglomerative start and is one-NNI-local on all binary
     neighborhoods examined.
     """
     from .se import se_agglomerative
+
+    if not isinstance(random_restarts, int) or random_restarts < 0:
+        raise ValueError("random_restarts must be a non-negative integer")
 
     _, _, n, adj, deg, vol = _graph_arrays(G)
     nodes = list(G.nodes())
@@ -818,6 +846,13 @@ def encoding_tree_nni_fast(G, seed=0, starts=4, compound=True,
             ))
         except Exception:
             pass
+    if random_restarts:
+        rng = random.Random(seed if restart_seed is None else restart_seed)
+        for index in range(random_restarts):
+            candidates.append((
+                f"random-coalescent-{index}",
+                random_coalescent_tree(n, rng),
+            ))
     if not candidates:
         raise RuntimeError("no hierarchy initializer succeeded")
 

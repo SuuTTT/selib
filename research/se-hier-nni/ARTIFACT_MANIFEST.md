@@ -6,7 +6,8 @@ Frozen on 2026-08-10 for the NEST-only TAMC submission candidate.
 
 - Repository: `https://github.com/SuuTTT/selib`
 - Branch: `codex/se-hier-nni-paper`
-- Evidence-and-paper commit: `ee545ff673908eed8e7df96cc3047a2f7621feb0`
+- Evidence baseline commit: `ee545ff673908eed8e7df96cc3047a2f7621feb0`
+- Restart repair and expanded audit: this manifest's containing commit
 - Official HCSE/BBM comparison code commit: `ccf832e`
 - Paper format: A4 Springer LNCS, 12 pages including references
 
@@ -14,20 +15,28 @@ Frozen on 2026-08-10 for the NEST-only TAMC submission candidate.
 
 | Artifact | SHA-256 |
 |---|---|
-| `paper/se-hier-nni/main.pdf` | `41b2ad17b4bfeca03910e04a56f1473fad561c66bf78d241f5617066e70653e1` |
+| `paper/se-hier-nni/main.pdf` | `b0e31d0158b840b98359e490cbcfd25fb9feb7e5f3385d688e8822b46c566d94` |
+| `paper/se-hier-nni/main-with-appendix.pdf` | `6c5806ac6b73fef494cad61777226511f640e54f586562acadd587a915ce3832` |
 | `results/nni_benchmark.json` | `0fafdac19f3c70458b894027dffbdda67172861900812135bd4bb4673ba8345d` |
 | `results/nni_real_benchmark.json` | `7c0c942455cf7b348935912068f0cb3d233b6e690c0a219ac8969e6e3e476d7d` |
 | `results/nni_ablation.json` | `694fd324850573421862fb4697f0a14c28204f30df61cfff0497942cc2e3b71f` |
 | `results/nni_optimality.json` | `ef6489bfe6392267b705150ae4668b9ab84c2bd69f5d34b3461a55da0d4f6dd6` |
+| `results/nni_restart_audit.json` | `f62d825a13ba0092faf210722603c6578baf0c306476973f23f7fe40b57ee027` |
+| `results/nni_restart_confirmation.json` | `aa198030cb7db20050037acbd4eb0ee95d18c51165f5e24af5be37658afbf77f` |
+| `results/nni_restart_independent_confirmation.json` | `a9b470f7ef1f4cf9d132f47f059f77995ffc142f628b487e5faa3978b118feb1` |
+| `results/nni_restart_failure_diagnostics.json` | `0a5a735d8630e6c21f265c3a95b4493115d25e2b6494714cff6257fd507cdc21` |
 | `results/nni_benchmark_repeat.json` | `0f67a2a89dbaed4570de88a4d7f30cbe5f2781ecb8e700eb8375ca9f88f75693` |
 
 ## Verification
 
 - Main verifier: 350 unique paired records, 50 generator manifests, monotone NNI endpoints.
-- Exact-optimum verifier: 50 unique n=12 records, 45 exact NEST optima,
-  0.1181% mean relative gap, and 3.7155% maximum relative gap.
-- Tests: 14 passed, 1 skipped (`pytest -q`).
-- PDF: A4, 12 pages, all fonts embedded, no Type 3 fonts; visually inspected after final compilation.
+- Exact-optimum verifier: standard NEST 685/800; NEST-R32 800/800; final
+  regime-separated confirmation 250/250; original standard-pool gaps were
+  0.1181% mean and 3.7155% maximum.
+- Hard-case stochastic audit: R32 hit the optimum in 60/60 independent campaigns.
+- Tests: 16 passed, 1 skipped (`pytest -q`).
+- PDF: A4; 12-page main-plus-references artifact and 13-page combined artifact
+  with one optional appendix page; visually inspected after final compilation.
 - TAMC double-blind checker: pass with zero mechanical failures; anonymous
   author and affiliation fields are required by the official review policy.
 
@@ -43,5 +52,6 @@ Frozen on 2026-08-10 for the NEST-only TAMC submission candidate.
 - pdfTeX 1.40.29 / LaTeX2e 2025-11-01 / LNCS class 2.26
 
 The frozen JSON files, rather than rounded table values, are the source of
-truth. `scripts/make_nni_paper_artifacts.py` regenerates every reported table,
-macro, and plot from those artifacts.
+truth. `scripts/make_nni_paper_artifacts.py` regenerates the main benchmark
+tables and plots; the restart scripts and verifier regenerate and check the
+exact-audit table.
