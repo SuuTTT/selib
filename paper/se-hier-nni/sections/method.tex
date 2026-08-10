@@ -26,8 +26,10 @@ $P=A\cup B\cup C$.
 \node[module,fill=cyan!13] (a1) at (-1.25,-1.65) {$A$};
 \node[module,fill=orange!18] (b1) at (-0.15,-1.65) {$B$};
 \draw (p1)--(x) (p1)--(c1) (x)--(a1) (x)--(b1);
-\node[text=red!75!black,font=\small\bfseries] at (2.0,-0.72)
-  {$\xrightarrow{\quad\mathrm{exact\ NNI}\quad}$};
+\draw[red!75!black,-{Latex[length=2mm,width=1.25mm]},line width=0.8pt]
+  (1.38,-0.8)--(2.62,-0.8);
+\node[text=red!75!black,font=\scriptsize\bfseries,anchor=south]
+  at (2.0,-0.72) {exact NNI};
 \node[text=black!60,font=\scriptsize] at (-0.7,-2.18) {$X=A\cup B$};
 \node[internal] (p2) at (4,0) {$P$};
 \node[module,fill=cyan!13] (a2) at (3.3,-0.8) {$A$};
