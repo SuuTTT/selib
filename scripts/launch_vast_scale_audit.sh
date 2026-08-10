@@ -31,7 +31,7 @@ launch_window() {
   local command=$*
   local wrapped
   printf -v wrapped \
-    'cd %q; set -o pipefail; export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1; nice -n 15 ionice -c3 taskset -c %q prlimit --as=8589934592 timeout 12h %s > %q 2>&1; rc=$?; echo "$rc" > %q; if [ "$rc" -eq 0 ]; then sha256sum %q > %q; fi; exit "$rc"' \
+    'cd %q; set -o pipefail; export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1; setsid nice -n 15 ionice -c3 taskset -c %q prlimit --as=8589934592 timeout 12h %s > %q 2>&1 & child=$!; cleanup() { kill -TERM -- -"$child" 2>/dev/null || true; sleep 2; kill -KILL -- -"$child" 2>/dev/null || true; }; trap cleanup HUP INT TERM EXIT; wait "$child"; rc=$?; trap - HUP INT TERM EXIT; echo "$rc" > %q; if [ "$rc" -eq 0 ]; then sha256sum %q > %q; fi; exit "$rc"' \
     "$REPO" "$core" "$command" "$LOG_ROOT/$window.log" \
     "$RUN_ROOT/$window.status" "$RUN_ROOT/$window.json" \
     "$RUN_ROOT/$window.sha256"
