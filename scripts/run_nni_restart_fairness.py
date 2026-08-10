@@ -71,6 +71,34 @@ METHODS = (
 )
 
 
+def proportional_sizes(sizes, target_n):
+    """Resize a planted block pattern while preserving its relative imbalance."""
+    sizes = list(sizes)
+    if target_n < len(sizes):
+        raise ValueError("target_n must leave at least one vertex per fine block")
+    scale = target_n / sum(sizes)
+    resized = [max(1, math.floor(size * scale)) for size in sizes]
+    residual_order = sorted(
+        range(len(sizes)),
+        key=lambda index: (-(sizes[index] * scale - resized[index]), index),
+    )
+    while sum(resized) < target_n:
+        for index in residual_order:
+            if sum(resized) >= target_n:
+                break
+            resized[index] += 1
+    while sum(resized) > target_n:
+        candidates = [index for index, size in enumerate(resized) if size > 1]
+        if not candidates:
+            raise ValueError("cannot shrink block pattern to target_n")
+        index = min(
+            candidates,
+            key=lambda item: (sizes[item] * scale - resized[item], item),
+        )
+        resized[index] -= 1
+    return resized
+
+
 def score_tree(root, deg, adj, volume):
     annotate(root, deg, adj, volume)
     return float(hd_se(root, volume))
@@ -163,11 +191,22 @@ def deterministic_baselines(graph, deg, adj, volume, graph_seed):
     return outputs
 
 
-def evaluate_graph(regime, graph_seed, campaign_seed, budget, hcse_api):
+def evaluate_graph(
+    regime,
+    graph_seed,
+    campaign_seed,
+    budget,
+    hcse_api,
+    sizes_override=None,
+    max_nodes=12,
+):
     graph, manifest = small_hierarchical_sbm(
-        regime, graph_seed, independent_regime_seed=True
+        regime,
+        graph_seed,
+        independent_regime_seed=True,
+        sizes_override=sizes_override,
     )
-    optimum = exact_tree_entropy(graph, max_nodes=12)
+    optimum = exact_tree_entropy(graph, max_nodes=max_nodes)
     _, _, n, adj, deg, volume = _graph_arrays(graph)
     fine_k = len(REGIMES[regime][1])
     regime_index = list(REGIMES).index(regime)
@@ -366,11 +405,40 @@ def main():
     parser.add_argument("--seeds", type=int, default=50)
     parser.add_argument("--budget", type=int, default=32)
     parser.add_argument("--campaign-seed", type=int, default=20260810)
+    parser.add_argument(
+        "--sizes",
+        help="comma-separated fine-block sizes; defaults to each regime's n=12 design",
+    )
+    parser.add_argument(
+        "--target-n",
+        type=int,
+        help="proportionally resize each regime's native block pattern to this n",
+    )
+    parser.add_argument("--max-nodes", type=int, default=12)
     parser.add_argument("--max-graphs", type=int)
     parser.add_argument("--resume", action="store_true")
     args = parser.parse_args()
     if args.budget < 4 or args.budget % 4:
         raise ValueError("budget must be a positive multiple of four")
+    sizes_override = None
+    if args.sizes and args.target_n:
+        raise ValueError("use only one of --sizes and --target-n")
+    if args.sizes:
+        sizes_override = [int(value) for value in args.sizes.split(",")]
+        if len(sizes_override) % 2 or any(value <= 0 for value in sizes_override):
+            raise ValueError("--sizes must contain a positive, even-length list")
+        if sum(sizes_override) > args.max_nodes:
+            raise ValueError("sum(--sizes) exceeds --max-nodes")
+    if args.target_n and args.target_n > args.max_nodes:
+        raise ValueError("--target-n exceeds --max-nodes")
+    sizes_by_regime = {
+        regime: (
+            proportional_sizes(REGIMES[regime][1], args.target_n)
+            if args.target_n
+            else sizes_override
+        )
+        for regime in REGIMES
+    }
 
     output = Path(args.output)
     protocol = json.loads(json.dumps({
@@ -379,6 +447,11 @@ def main():
         "graph_seeds": [args.seed_start, args.seed_start + args.seeds - 1],
         "independent_regime_seeds": True,
         "candidate_budget": args.budget,
+        "sizes_override": sizes_override,
+        "target_n": args.target_n,
+        "sizes_by_regime": sizes_by_regime,
+        "n": args.target_n or (sum(sizes_override) if sizes_override else 12),
+        "exact_max_nodes": args.max_nodes,
         "frozen_selected_budget": args.budget,
         "selection": "minimum structural entropy; exact optimum unseen by every method",
         "hcse_schedule": "equal calls at target heights 2,3,4,5",
@@ -405,7 +478,13 @@ def main():
             if key in done:
                 continue
             row = evaluate_graph(
-                regime, graph_seed, args.campaign_seed, args.budget, hcse_api
+                regime,
+                graph_seed,
+                args.campaign_seed,
+                args.budget,
+                hcse_api,
+                sizes_override=sizes_by_regime[regime],
+                max_nodes=args.max_nodes,
             )
             records.append(row)
             completed_this_run += 1

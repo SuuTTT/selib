@@ -55,13 +55,17 @@ PROTOCOL = {
 }
 
 
-def hierarchical_sbm(regime, seed):
+def hierarchical_sbm(regime, seed, size_multiplier=1):
     """Two-level planted hierarchy with four coarse and eight fine blocks."""
+    if size_multiplier < 1 or int(size_multiplier) != size_multiplier:
+        raise ValueError("size_multiplier must be a positive integer")
+    size_multiplier = int(size_multiplier)
     rng = np.random.default_rng(seed)
     if regime == "imbalanced":
         sizes = [4, 12, 6, 10, 5, 11, 7, 9]
     else:
         sizes = [8] * 8
+    sizes = [size_multiplier * size for size in sizes]
     if regime == "clean":
         probs = (0.42, 0.12, 0.015)
     elif regime == "noisy":
@@ -412,8 +416,11 @@ def summarize(records):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--seeds", type=int, default=10)
+    parser.add_argument("--seed-start", type=int, default=0)
+    parser.add_argument("--size-multiplier", type=int, default=1)
     parser.add_argument("--output", default="results/nni_benchmark.json")
     parser.add_argument("--hcse-dir", default="external/HCSE")
+    parser.add_argument("--resume", action="store_true")
     parser.add_argument(
         "--regimes",
         default="clean,noisy,imbalanced,weighted,weak-hierarchy",
@@ -422,11 +429,45 @@ def main():
 
     hcse_api = load_hcse(args.hcse_dir) if args.hcse_dir else None
     regimes = [name.strip() for name in args.regimes.split(",") if name.strip()]
+    protocol = {
+        **PROTOCOL,
+        "actual_seeds": args.seeds,
+        "seed_range": [args.seed_start, args.seed_start + args.seeds - 1],
+        "size_multiplier": args.size_multiplier,
+        "vertices": 64 * args.size_multiplier,
+        "checkpointing": "atomic write after every graph",
+    }
     records = []
     manifests = []
+    if args.resume and os.path.exists(args.output):
+        with open(args.output) as handle:
+            previous = json.load(handle)
+        if previous.get("protocol") != protocol:
+            raise ValueError("existing artifact protocol differs; refuse unsafe resume")
+        records = previous.get("records", [])
+        manifests = previous.get("manifests", [])
+    done = {(row["dataset"], row["seed"]) for row in manifests}
+
+    def checkpoint():
+        output = {
+            "protocol": protocol,
+            "manifests": manifests,
+            "records": records,
+            "summary": summarize(records),
+        }
+        os.makedirs(os.path.dirname(args.output) or ".", exist_ok=True)
+        temporary = args.output + ".tmp"
+        with open(temporary, "w") as handle:
+            json.dump(output, handle, indent=2)
+        os.replace(temporary, args.output)
+
     for regime in regimes:
-        for seed in range(args.seeds):
-            graph, fine, coarse, manifest = hierarchical_sbm(regime, seed)
+        for seed in range(args.seed_start, args.seed_start + args.seeds):
+            if (regime, seed) in done:
+                continue
+            graph, fine, coarse, manifest = hierarchical_sbm(
+                regime, seed, size_multiplier=args.size_multiplier
+            )
             constructors_, deg, adj, vol = constructors(
                 graph, seed, len(set(fine)), hcse_api
             )
@@ -444,16 +485,9 @@ def main():
                 f"[{regime} seed={seed}] best={best['method']} "
                 f"H={best['nni2_h']:.5f}", flush=True
             )
+            checkpoint()
 
-    output = {
-        "protocol": {**PROTOCOL, "actual_seeds": args.seeds},
-        "manifests": manifests,
-        "records": records,
-        "summary": summarize(records),
-    }
-    os.makedirs(os.path.dirname(args.output) or ".", exist_ok=True)
-    with open(args.output, "w") as handle:
-        json.dump(output, handle, indent=2)
+    checkpoint()
     print(f"WROTE {args.output} ({len(records)} records)")
 
 
