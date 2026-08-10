@@ -18,7 +18,8 @@ Status: **UPLOAD-READY REVIEW PDF**.
 - Combined build: run the same command on `paper/se-hier-nni/main-with-appendix.tex`.
 - Upload PDF: `paper/se-hier-nni/main-with-appendix.pdf` when EasyChair accepts
   the optional appendix in the same file; its first 12 pages are the complete
-  main paper and references, and page 13 is the optional proof appendix.
+  main paper and references, and page 13 begins the proof appendix. EasyChair
+  exposes one PDF slot, so this combined artifact is the authoritative upload.
 - Checker-only/main artifact: `paper/se-hier-nni/main.pdf` (12 pages).
 - Branch: `codex/se-hier-nni-paper`
 - Format result: 12 A4 pages; all fonts embedded; no Type 3 fonts.
@@ -29,6 +30,17 @@ Status: **UPLOAD-READY REVIEW PDF**.
 - Evidence: the main and restart verifiers pass; 19 tests pass and 1 is skipped.
 
 The SHA-256 value is frozen in `ARTIFACT_MANIFEST.md` after the final build.
+
+## Accepted-paper layout calibration
+
+- Exemplar: Sunny Atalig and Marek Chrobak, *A Tight Threshold Bound for Search
+  Trees with 2-Way Comparisons*, TAMC 2024, LNCS 14637, pp. 99--110.
+- The published exemplar has 12 pages including references and no appendix.
+- Its publisher-trimmed page size is not the submission template. This review
+  PDF keeps the officially required A4 `llncs` layout without changing margins
+  or font size.
+- The NEST main paper follows the same 12-page main-plus-references boundary.
+  The permitted appendix follows that boundary in the same EasyChair PDF.
 
 ## Human attestations at upload
 

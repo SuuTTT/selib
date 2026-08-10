@@ -6,6 +6,11 @@
 \newcommand{\vol}{\operatorname{vol}}
 \newcommand{\HT}{H^{T}}
 \newcommand{\NEST}{\textsc{Nest}\xspace}
+\ifdefined\withappendix
+  \newcommand{\proofdetails}{Appendix~\ref{app:proofs}}
+\else
+  \newcommand{\proofdetails}{the supplementary proof appendix}
+\fi
 \input{tables/result_macros}
 \emergencystretch=2em
 

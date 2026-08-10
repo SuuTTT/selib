@@ -64,7 +64,7 @@ entropy is
 The symmetric alternative follows by exchanging $A$ and $B$.
 \end{theorem}
 
-\emph{Proof.} Deferred to the optional supplementary appendix.
+\emph{Proof.} Deferred to \proofdetails.
 
 \begin{proposition}[Atomic advantage over merge--compress]
 \label{prop:atomic}
@@ -82,7 +82,7 @@ gain in Eq.~\eqref{eq:merge} exceeds the compression loss in
 Eq.~\eqref{eq:compress}, although neither desired reparenting nor an improving
 compression is available as one primitive.
 \end{proposition}
-\emph{Proof.} Deferred to the optional supplementary appendix.
+\emph{Proof.} Deferred to \proofdetails.
 
 This proves strict separation from monotone single-primitive search, not global
 dominance over a complete HCSE round, which may cross an intermediate increase.
@@ -111,7 +111,7 @@ One-step refinement never increases $\HT(G)$. If it stops before its move
 budget, the returned tree has no improving rooted NNI on any eligible binary
 parent--child edge.
 \end{proposition}
-\emph{Proof.} Deferred to the optional supplementary appendix.
+\emph{Proof.} Deferred to \proofdetails.
 
 Strict one-step descent can stop before a better tree separated by a shallow
 barrier. Algorithm~\ref{alg:nni} therefore keeps a bounded beam of first moves
@@ -122,7 +122,7 @@ the intermediate tree alone.
 The compound stage never worsens its input. It can reach an improving endpoint
 even when every one-step neighbor is non-improving.
 \end{proposition}
-\emph{Proof.} Deferred to the optional supplementary appendix.
+\emph{Proof.} Deferred to \proofdetails.
 
 \subsection{Fast NNI-certified entropy search}
 \NEST applies Algorithm~\ref{alg:nni} independently to SE-agglomerative,
@@ -152,7 +152,7 @@ to make the audit self-contained.
 Every encoding tree has a binary refinement whose structural entropy is no
 greater. Consequently, a global minimum exists among rooted binary trees.
 \end{proposition}
-\emph{Proof.} Included for completeness in the optional supplementary appendix.
+\emph{Proof.} Included for completeness in \proofdetails.
 
 For a nonempty vertex subset $S$, let $F(S)$ be the minimum contribution of a
 binary subtree rooted at $S$, excluding the edge from $S$ to its parent. Then
