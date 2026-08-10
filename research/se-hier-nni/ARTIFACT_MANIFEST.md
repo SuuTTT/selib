@@ -15,8 +15,8 @@ Frozen on 2026-08-10 for the NEST-only TAMC submission candidate.
 
 | Artifact | SHA-256 |
 |---|---|
-| `paper/se-hier-nni/main.pdf` | `a81958c70459b6fb8f10a3e3af7af291ab58b3983fa396295c4e1cbef0244482` |
-| `paper/se-hier-nni/main-with-appendix.pdf` | `d194678aa4cd24ce4dd0a164e7de79acc85dc51e4ad5552029f362606e95bae0` |
+| `paper/se-hier-nni/main.pdf` | `fbcadaf93707fa64709a04dc5eec3bc10492a5105c98a081f2dbb95fde38570e` |
+| `paper/se-hier-nni/main-with-appendix.pdf` | `3b0612228a74233740dcd903d8695f95967bf38ed3b9f5d4ce0a34a20fb9565e` |
 | `results/nni_benchmark.json` | `0fafdac19f3c70458b894027dffbdda67172861900812135bd4bb4673ba8345d` |
 | `results/nni_real_benchmark.json` | `7c0c942455cf7b348935912068f0cb3d233b6e690c0a219ac8969e6e3e476d7d` |
 | `results/nni_ablation.json` | `694fd324850573421862fb4697f0a14c28204f30df61cfff0497942cc2e3b71f` |

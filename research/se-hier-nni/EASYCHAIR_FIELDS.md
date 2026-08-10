@@ -16,10 +16,13 @@ entropy-reducing local topology change. We introduce NNI-certified Entropy
 Search over Trees (NEST), a multi-start optimizer based on rooted
 nearest-neighbor interchange (NNI). For weighted graphs, we derive the exact
 entropy change of one NNI and prove that an improving rotation can be
-inaccessible to a monotone single merge or compression. The identity supports
-best-improvement descent, a checkable one-NNI local-optimality certificate, and
-a bounded two-move search that crosses a controlled intermediate barrier while
-committing only a decreasing endpoint. Using the known binary-sufficiency
+inaccessible to a monotone single merge or compression. The exact formula lets
+NEST score every one-step NNI move without rebuilding the tree and repeatedly
+take the largest entropy decrease. When no improving move remains, the output
+is certified locally optimal under one NNI. A better tree may nevertheless
+require a temporary increase, so NEST also searches a bounded set of two-move
+paths and accepts a path only when its final tree improves the starting tree.
+Using the known binary-sufficiency
 property of structural entropy, we formulate an O(3^n) arbitrary-subset
 specialization of trellis inference and a global-optimum audit on small graphs. Across
 50 graphs from five 64-vertex hierarchical regimes, NEST lowers entropy by
