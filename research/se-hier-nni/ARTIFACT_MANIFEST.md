@@ -15,9 +15,18 @@ Frozen on 2026-08-10 for the NEST-only TAMC submission candidate.
 
 | Artifact | SHA-256 |
 |---|---|
-| `paper/se-hier-nni/main.pdf` | `22ceacaab15eb613371f2e1cc622bbbcbac0d82af818d923303a10cfc3df3731` |
-| `paper/se-hier-nni/main-with-appendix.pdf` | `922a9beab25aa341fc6a5198150a3d9b42b1695df2469e3ee3fa086803405276` |
-| `output/pdf/NEST_TAMC2026_anonymous_with_appendix.pdf` | `922a9beab25aa341fc6a5198150a3d9b42b1695df2469e3ee3fa086803405276` |
+| `paper/se-hier-nni/main.pdf` | `b57708dd55ac39e99614c0bbb648afbef59e9b5965636ffd1ec2388a3f99c574` |
+| `paper/se-hier-nni/main-with-appendix.pdf` | `9048cdfba604bfbcf69106c5b15283866ef3731d8a564f11dbd1434c8667eb8e` |
+| `output/pdf/NEST_TAMC2026_anonymous_with_appendix.pdf` | `9048cdfba604bfbcf69106c5b15283866ef3731d8a564f11dbd1434c8667eb8e` |
+| `output/submission/NEST_TAMC2026_submission_package.zip` | `3355ce394ab53e65a429eb2e7ebe8a9aad3793837ee0bab51945e655254aa740` |
+| `results/scale-audit-20260810/VERIFICATION_REPORT.json` | `0e33d3fba7cb7dbfdfa8c1a031cc1d1384058372aedf26386797c3359b0ea16d` |
+| `results/scale-audit-20260810/n64-clean.json` | `7a639adac78ccb0c9301f7eaa126c72ca76987fc7bfe13e472fec57fb5541be1` |
+| `results/scale-audit-20260810/n64-noisy.json` | `d3e2109f72ec7eb00fb210490e8d369a41fe00278ec33393b671e9f78d937851` |
+| `results/scale-audit-20260810/n64-imbalanced.json` | `5a737ed260cbd1965fd581221fd8d87040ffbeda9b36290dbeaddd5e2baa261b` |
+| `results/scale-audit-20260810/n64-weighted.json` | `c2f72f2d27577c82e50df498f6d239fef76d5544a9d6b60533796786f2a31f9a` |
+| `results/scale-audit-20260810/n64-weak.json` | `e302c8071dfc2c3d334bbe71a5a5adb255d63ec6f6b447ee8db7e40b2dc87cc6` |
+| `results/scale-audit-20260810/exact14.json` | `db9680034a2be3c944c7d464d8d3594407eabda4380ff5b4d8b88984f0892162` |
+| `results/scale-audit-20260810/exact16.json` | `0942421dec5e4cc03a8ba6843009ab2655cd203b2fd5d0d99c94f1c2bac7b45f` |
 | `results/nni_benchmark.json` | `0fafdac19f3c70458b894027dffbdda67172861900812135bd4bb4673ba8345d` |
 | `results/nni_real_benchmark.json` | `7c0c942455cf7b348935912068f0cb3d233b6e690c0a219ac8969e6e3e476d7d` |
 | `results/nni_ablation.json` | `694fd324850573421862fb4697f0a14c28204f30df61cfff0497942cc2e3b71f` |
@@ -33,11 +42,15 @@ Frozen on 2026-08-10 for the NEST-only TAMC submission candidate.
 
 ## Verification
 
-- Main verifier: 350 unique paired records, 50 generator manifests, monotone NNI endpoints.
-- Fair exact-optimum verifier: 250 fresh graphs, independent regime streams,
-  and 32 candidates per restarted method. NEST is exact on 249/250, HCSE on
-  2/250, and both BBM variants on 1/250; oracle BBM has 248 valid instances.
-  The sole NEST gap is 0.07990%.
+- Scaled main verifier: 3,500 unique method records, 500 generator manifests,
+  complete seeds 1000--1099 in each regime, matching SHA-256 seals, finite
+  metrics, and monotone NNI endpoints. NEST wins 500/500 paired comparisons
+  against the better of HCSE and BBM by 0.4239 +/- 0.0086 bits.
+- Fair exact-optimum verifier: 375 sealed graphs across n=12, 14, and 16 with
+  independent regime streams and 32 candidates per restarted method. NEST is
+  exact on 370/375, HCSE on 2/375, and label-free BBM on 1/375. The completed
+  n=14 and n=16 blocks have matching status and hash seals; the interrupted
+  1,000-instance exact12 checkpoint is excluded.
 - Hard-case stochastic audit: R32 hit the optimum in 60/60 independent campaigns.
 - Basin audit: all 146,580 rooted binary starts enumerated across one fixed
   noisy graph at each n=5--8; 80,000 direct starts over eight hard n=12 graphs;
@@ -61,6 +74,7 @@ Frozen on 2026-08-10 for the NEST-only TAMC submission candidate.
 - pdfTeX 1.40.29 / LaTeX2e 2025-11-01 / LNCS class 2.26
 
 The frozen JSON files, rather than rounded table values, are the source of
-truth. `scripts/make_nni_paper_artifacts.py` regenerates the main benchmark
-tables and plots; the fair restart runner, candidate-level verifier, and report
-generator regenerate and check the exact-audit table.
+truth. `scripts/verify_nni_scale_audit.py` validates the scaled evidence, and
+`scripts/make_nni_scale_submission_artifacts.py` regenerates its tables and
+plots. The fair restart runner and candidate-level verifier regenerate and
+check the exact-audit records.

@@ -5,7 +5,7 @@ We ask: (Q1) how often do established constructors leave an improving NNI;
 (Q3) does lower entropy preserve or improve recovery of a planted hierarchy;
 and (Q4) how close is \NEST to the global optimum on exactly solvable graphs?
 
-The frozen main protocol uses ten graph seeds per regime. Every method sees the
+The sealed main protocol uses 100 graph seeds per regime. Every method sees the
 identical weighted graph, and every tree is rescored by the same independent
 implementation of Eq.~\eqref{eq:tree-se}. We report paired means and 95\%
 $t$-intervals, raw per-seed records, wall-clock time, and Python allocation
@@ -55,7 +55,7 @@ our audit to competing trees. \NEST has the lowest mean $\HT$ in all five
 regimes and on \OursWins individual paired graphs. Its paired reduction is
 $\NESTGainVsHCSE\!\pm\!\NESTGainVsHCSECI$ bits relative to HCSE and
 $\NESTGainVsBBM\!\pm\!\NESTGainVsBBMCI$ bits relative to BBM; it is lower on
-all 50 graphs against each method. Figure~\ref{fig:entropy} shows paired
+all 500 graphs against each method. Figure~\ref{fig:entropy} shows paired
 evidence against the stronger of HCSE and BBM on each graph.
 
 \input{tables/main_entropy}
@@ -67,7 +67,7 @@ evidence against the stronger of HCSE and BBM on each graph.
   graph, the reference is the lower-entropy result of HCSE and BBM. (a)
   Regime-level mean reduction and 95\% paired confidence interval. (b)
   Per-seed margins with small vertical jitter for visibility. \NEST has lower
-  entropy on all 50 graphs.}
+  entropy on all 500 graphs.}
   \label{fig:entropy}
 \end{figure}
 
@@ -75,11 +75,11 @@ evidence against the stronger of HCSE and BBM on each graph.
 The constructor audit in Table~\ref{tab:operator} asks whether a returned tree
 can be improved by the exact local operator. One-step NNI improves SE
 agglomeration and oracle BBM on every graph. After one-step descent has
-certified its local neighborhood, bounded compound search still improves 72\%
-of SE-agglomerative trees and 92\% of BBM trees. Paris is closer to local
-optimality but is not immune. For HCSE, one-step NNI lowers the imbalanced
-seed-5 tree by $0.001352$ bits, while compound search lowers the weighted
-seed-2 tree by $0.000637$ bits. These witnesses support the
+certified its local neighborhood, bounded compound search still improves 62\%
+of SE-agglomerative trees and 93\% of BBM trees. Paris is closer to local
+optimality but is not immune: one-step and compound NNI improve 74\% and 41\%
+of its outputs. HCSE is usually locally stable, but still admits one-step and
+compound improvements on 3\% and 4\% of outputs. These observations support the
 neighborhood-separation claim without asserting that HCSE is generally weak.
 
 \input{tables/operator_audit}
@@ -87,7 +87,7 @@ neighborhood-separation claim without asserting that HCSE is generally weak.
 \begin{figure}[t]
   \centering
   \includegraphics[width=0.94\textwidth]{figures/operator_runtime.pdf}
-  \caption{Operator diagnostics pooled over 50 paired graphs. (a) Fraction of
+  \caption{Operator diagnostics pooled over 500 paired graphs. (a) Fraction of
   external constructor outputs improved by one-step NNI and by compound search
   after the one-step certificate. (b) Mean entropy regret versus constructor
   runtime; lower-left is better. Runtime includes Python allocation tracing and
@@ -98,35 +98,33 @@ neighborhood-separation claim without asserting that HCSE is generally weak.
 \subsection{Components and exact optimality}
 \NEST forms a small candidate set from SE agglomeration, recursive SE, and
 Paris, refines each with the same exact operator, and returns the lowest
-independently rescored endpoint. The main benchmark contains 350 method records
-and 50 generator manifests. Its verifier checks schema, paired seeds, unique
-keys, and monotonicity of committed NNI endpoints.
+independently rescored endpoint. The main benchmark contains 3,500 method
+records and 500 generator manifests. Its verifier checks hashes, schema, paired
+seeds, unique keys, and monotonicity of committed NNI endpoints.
 
-Table~\ref{tab:ablation} separates the three algorithmic choices. The
-candidate pool improves 34 of 50 graphs over SE agglomeration; exact one-step
-NNI then improves 45 of 50 paired multi-start outputs; bounded compound search
-adds a smaller but nonzero gain on 30 graphs. Hence neither the initializer
-pool nor the escape stage alone explains the full result.
+On a separate frozen 50-graph subset, Table~\ref{tab:ablation} separates the
+three algorithmic choices. The candidate pool improves 34 of 50 graphs over SE
+agglomeration; exact one-step NNI then improves 45 of 50 paired multi-start
+outputs; bounded compound search adds a smaller but nonzero gain on 30 graphs.
+Hence neither the initializer pool nor the escape stage alone explains the full
+result.
 
 \input{tables/ablation}
 
-For a global audit, we generate five analogous 12-vertex HSBM regimes. Early
-development graphs expose misses by the standard candidate pool and motivate a
-restart study; a disjoint calibration fixes $q=32$. We then seal 250 new graphs
-(seeds 160--209, independent RNG stream per regime) and give every restarted
-constructor 32 candidate calls. Selection uses only structural entropy; the
-exact dynamic program is consulted afterward. \NEST's 32 coalescent starts hit
-$H^*$ on \FairNESTExact{} graphs, with mean relative gap
-\FairNESTMeanGap{} and worst gap \FairNESTWorstGap{}. HCSE hits
-\FairHCSEExact{}; both oracle-$k$ and label-free BBM hit \FairBBMExact{}.
-Oracle BBM returns a valid hierarchy on 248 graphs. The 32 coalescent starts
-select the same endpoints as adding \NEST's three deterministic initializers;
-their reported time conservatively includes that shared overhead. All raw
-candidates and failures are retained and independently verified. This finite
-audit establishes neither a size-independent approximation ratio nor
-guaranteed global optimality beyond the declared instances.
+For the global audit, disjoint calibration fixes $q=32$, after which we seal
+250 graphs at $n=12$, 100 at $n=14$, and 25 at $n=16$ across the same five
+regimes. Every restarted method receives 32 candidates. Selection uses only
+structural entropy; the exact dynamic program is consulted afterward.
+Table~\ref{tab:exact-scale} shows that \NEST reaches \ScaleCombinedExact{}
+optima, versus 2/375 for HCSE and 1/375 for label-free BBM. At $n=16$, the
+22/25 estimate has a wider exact binomial interval, which the table reports
+explicitly. All completed blocks have status zero, matching SHA-256 seals,
+complete seed coverage, finite outcomes, and independently recomputed
+summaries. This finite audit establishes neither a size-independent
+approximation ratio nor guaranteed global optimality beyond the declared
+instances.
 
-\input{tables/optimality}
+\input{tables/exact_scaling}
 
 \subsection{Real networks}
 Table~\ref{tab:real} complements the controlled suites with four networks

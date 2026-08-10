@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering\small
+\caption{Sealed exact-optimum audit with 32 candidates per method. Parentheses give exact 95\% Clopper--Pearson intervals for the \NEST hit rate. Gap is relative to $H^*$.}
+\label{tab:exact-scale}
+\setlength{\tabcolsep}{3.5pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{rrrrrrr}
+\toprule
+$n$ & Graphs & \NEST exact & 95\% CI & HCSE exact & BBM exact & Mean / max gap \\
+\midrule
+12 & 250 & \textbf{249/250} & [97.79, 99.99]\% & 2/250 & 1/250 & 0.00032\% / 0.080\% \\
+14 & 100 & \textbf{99/100} & [94.55, 99.97]\% & 0/100 & 0/100 & 0.00121\% / 0.121\% \\
+16 & 25 & \textbf{22/25} & [68.78, 97.45]\% & 0/25 & 0/25 & 0.03990\% / 0.449\% \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

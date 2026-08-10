@@ -26,22 +26,26 @@ consequently computes the true global optimum over all encoding trees in
 
 The first exact audit uses five 12-vertex HSBM regimes and ten seeds per regime.
 Standard NEST is globally optimal on 45/50; mean relative gap is 0.118% and the
-maximum is 3.72%. Earlier phased restart splits yielded 800/800 hits after
-calibration. A stricter new sealed comparison instead gives NEST, HCSE, and BBM
-the same 32-candidate budget on 250 fresh graphs and retains every candidate.
-NEST reaches 249/250 optima (sole gap 0.07990%), versus 2/250 for HCSE and
-1/250 for either BBM variant. This newer comparison is the manuscript result.
-It is a finite-family certificate, not a general approximation ratio.
+maximum is 3.72%. That historical diagnostic motivated the final, stricter
+protocol: NEST, HCSE, and BBM receive the same 32-candidate budget, the exact
+optimum is hidden until selection, and every candidate is retained. Across the
+completed sealed audits, NEST reaches 249/250 optima at n=12, 99/100 at n=14,
+and 22/25 at n=16, for 370/375 overall. HCSE reaches 2/375 and label-free BBM
+1/375. NEST's only n=14 miss has a 0.121% gap; its three n=16 misses have a
+maximum gap of 0.449%. These are finite-family certificates, not a general
+approximation ratio. An interrupted, unsealed 1,000-instance n=12 checkpoint is
+excluded from every manuscript claim.
 
 ## Frozen external evidence
 
-- Main artifact: 350 method records over 50 paired 64-vertex HSBMs.
-- NEST has lower entropy than HCSE and BBM on all 50 graphs and the lowest mean
+- Scaled main artifact: 3,500 method records over 500 paired 64-vertex HSBMs.
+- NEST has lower entropy than the better of HCSE and BBM on all 500 graphs by
+  0.4239 +/- 0.0086 bits (paired 95% confidence interval), and the lowest mean
   entropy in every regime.
 - Four bundled real networks add 28 records; NEST is the raw-objective winner
   on all four.
-- A 250-record ablation separates candidate-pool, one-step NNI, and compound
-  gains and exactly matches the main artifact.
+- A separate 250-record, 50-graph ablation separates candidate-pool, one-step
+  NNI, and compound gains.
 - The operator audit shows that SE agglomeration, Paris, HCSE, and BBM can leave
   exact NNI or two-step improvements.
 

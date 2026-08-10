@@ -10,29 +10,25 @@ NEST: Locally Certified Search for Structural-Entropy Hierarchies
 ## Abstract
 
 Structural entropy evaluates a graph hierarchy through the description length
-of an encoding tree. Existing methods such as HCSE and BBM construct such
-trees, but do not determine whether a returned hierarchy still admits an
-entropy-reducing local topology change. We introduce NNI-certified Entropy
-Search over Trees (NEST), a multi-start optimizer based on rooted
-nearest-neighbor interchange (NNI). For weighted graphs, we derive the exact
-entropy change of one NNI and prove that an improving rotation can be
-inaccessible to a monotone single merge or compression. The exact formula lets
-NEST score every one-step NNI move without rebuilding the tree and repeatedly
-take the largest entropy decrease. When no improving move remains, the output
-is certified locally optimal under one NNI. A better tree may nevertheless
-require a temporary increase, so NEST also searches a bounded set of two-move
-paths and accepts a path only when its final tree improves the starting tree.
-Using the known binary-sufficiency
-property of structural entropy, we formulate an O(3^n) arbitrary-subset
-specialization of trellis inference and a global-optimum audit on small graphs. Across
-50 graphs from five 64-vertex hierarchical regimes, NEST lowers entropy by
-0.4290 plus or minus 0.0281 bits relative to the better of HCSE and BBM and wins
-all paired comparisons. On a new sealed, candidate-budget-matched audit of 250
-independently generated 12-vertex graphs, 32 coalescent starts reach the exact
-global optimum on 249/250 instances, versus 2/250 for 32 HCSE calls and 1/250
-for either 32-call BBM variant. The sole NEST miss has a 0.07990% relative gap.
-These results certify observed optimality on the declared suite without
-asserting a general approximation ratio.
+of an encoding tree. HCSE and BBM construct such trees but do not determine
+whether the result admits a local entropy-reducing topology change. We
+introduce NNI-certified Entropy Search over Trees (NEST), a multi-start
+optimizer based on rooted nearest-neighbor interchange (NNI). For weighted
+graphs, we derive the exact NNI entropy change and prove that an improving
+rotation can be inaccessible to a monotone merge or compression. The formula
+supports best-improvement descent and a checkable one-NNI local-optimality
+certificate. Because a better tree may require a temporary increase, NEST also
+tests bounded two-move paths but commits only improving endpoints. Using known
+binary sufficiency, we formulate an O(3^n) arbitrary-subset specialization of
+trellis inference and audit global optima on small graphs. Across 500 graphs
+from five 64-vertex hierarchical regimes, NEST lowers entropy by 0.4239 plus or
+minus 0.0086 bits relative to the better of HCSE and BBM and wins all 500 paired
+comparisons. In sealed, candidate-budget-matched audits, 32 coalescent starts
+reach the exact global optimum on 249/250, 99/100, and 22/25 instances at 12,
+14, and 16 vertices, respectively (370/375 overall), whereas 32-call HCSE and
+label-free BBM reach 2/375 and 1/375. These exact-instance results certify
+observed optimality on the declared suites without asserting a general
+approximation ratio.
 
 ## Keywords
 

@@ -20,6 +20,8 @@ Status: **UPLOAD-READY REVIEW PDF**.
   the optional appendix in the same file; its first 12 pages are the complete
   main paper and references, and page 13 begins the proof appendix. EasyChair
   exposes one PDF slot, so this combined artifact is the authoritative upload.
+- Ready-to-upload copy: `output/submission/TAMC2026_NEST/NEST_TAMC2026_anonymous_with_appendix.pdf`.
+- Complete local package: `output/submission/NEST_TAMC2026_submission_package.zip`.
 - Checker-only/main artifact: `paper/se-hier-nni/main.pdf` (12 pages).
 - Branch: `codex/se-hier-nni-paper`
 - Format result: 12 A4 pages; all fonts embedded; no Type 3 fonts.
@@ -27,7 +29,10 @@ Status: **UPLOAD-READY REVIEW PDF**.
 - Visual inspection: all 12 main pages and the optional proof page rendered;
   changed tables, references, headers, and page breaks inspected.
 - Science gate: `ADVERSARIAL_REVIEW.md` passes the manuscript to submission.
-- Evidence: the main and restart verifiers pass; 19 tests pass and 1 is skipped.
+- Evidence: the scaled verifier passes seven completed hash-sealed blocks:
+  500 main graphs and exact audits at n=14 and n=16. Together with the sealed
+  n=12 audit, NEST reaches 370/375 exact optima. The incomplete unsealed exact12
+  checkpoint is excluded. Existing code tests: 19 pass and 1 is skipped.
 
 The SHA-256 value is frozen in `ARTIFACT_MANIFEST.md` after the final build.
 

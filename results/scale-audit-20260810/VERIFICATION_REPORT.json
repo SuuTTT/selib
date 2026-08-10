@@ -1,0 +1,175 @@
+{
+  "status": "PASS",
+  "scope": "seven completed scale blocks; incomplete exact12 checkpoint excluded",
+  "n64": {
+    "graphs": 500,
+    "records": 3500,
+    "manifests": 500,
+    "by_regime": {
+      "clean": {
+        "mean": 0.38461057277752486,
+        "ci95_half_width": 0.0174667801743298,
+        "n": 100,
+        "strict_wins": 100,
+        "minimum_margin": 0.20209448056179546,
+        "maximum_margin": 0.6061095147179065
+      },
+      "noisy": {
+        "mean": 0.43013940664128075,
+        "ci95_half_width": 0.016558577883851962,
+        "n": 100,
+        "strict_wins": 100,
+        "minimum_margin": 0.27505147527753104,
+        "maximum_margin": 0.6490166082673832
+      },
+      "imbalanced": {
+        "mean": 0.43221104241365055,
+        "ci95_half_width": 0.019754283971640522,
+        "n": 100,
+        "strict_wins": 100,
+        "minimum_margin": 0.2472145108120749,
+        "maximum_margin": 0.7100287621464658
+      },
+      "weighted": {
+        "mean": 0.39770681245393885,
+        "ci95_half_width": 0.023207802453743678,
+        "n": 100,
+        "strict_wins": 100,
+        "minimum_margin": 0.18845252142895053,
+        "maximum_margin": 0.7417518830862266
+      },
+      "weak-hierarchy": {
+        "mean": 0.47461128353456866,
+        "ci95_half_width": 0.014141734604405432,
+        "n": 100,
+        "strict_wins": 100,
+        "minimum_margin": 0.3073250749221206,
+        "maximum_margin": 0.6640972152608797
+      }
+    },
+    "pooled": {
+      "mean": 0.42385582356419277,
+      "ci95_half_width": 0.008605058058182216,
+      "n": 500,
+      "strict_wins": 500,
+      "minimum_margin": 0.18845252142895053,
+      "maximum_margin": 0.7417518830862266
+    }
+  },
+  "exact": {
+    "n12": {
+      "NEST-coalescent-B32": {
+        "hits": 249,
+        "instances": 250,
+        "hit_rate_percent": 99.6,
+        "clopper_pearson_95": [
+          0.9779161349993668,
+          0.999898733895821
+        ],
+        "mean_relative_gap_percent": 0.00031958477427644286,
+        "maximum_relative_gap_percent": 0.07989619356862075
+      },
+      "HCSE-B32": {
+        "hits": 2,
+        "instances": 250,
+        "hit_rate_percent": 0.8,
+        "clopper_pearson_95": [
+          0.0009703097230388535,
+          0.028598347244961186
+        ],
+        "mean_relative_gap_percent": 10.90224550582746,
+        "maximum_relative_gap_percent": 41.138287568911444
+      },
+      "BBM-label-free-B32": {
+        "hits": 1,
+        "instances": 250,
+        "hit_rate_percent": 0.4,
+        "clopper_pearson_95": [
+          0.00010126610417909854,
+          0.02208386500063325
+        ],
+        "mean_relative_gap_percent": 10.236506849264059,
+        "maximum_relative_gap_percent": 23.05350564644635
+      }
+    },
+    "n14": {
+      "NEST-coalescent-B32": {
+        "hits": 99,
+        "instances": 100,
+        "hit_rate_percent": 99.0,
+        "clopper_pearson_95": [
+          0.9455406146079193,
+          0.9997468539670227
+        ],
+        "mean_relative_gap_percent": 0.0012059857644429897,
+        "maximum_relative_gap_percent": 0.12059857644411198
+      },
+      "HCSE-B32": {
+        "hits": 0,
+        "instances": 100,
+        "hit_rate_percent": 0.0,
+        "clopper_pearson_95": [
+          0.0,
+          0.03621669264517641
+        ],
+        "mean_relative_gap_percent": 8.192601694884546,
+        "maximum_relative_gap_percent": 27.633116472623257
+      },
+      "BBM-label-free-B32": {
+        "hits": 0,
+        "instances": 100,
+        "hit_rate_percent": 0.0,
+        "clopper_pearson_95": [
+          0.0,
+          0.03621669264517641
+        ],
+        "mean_relative_gap_percent": 10.45968095832347,
+        "maximum_relative_gap_percent": 20.325060708731765
+      }
+    },
+    "n16": {
+      "NEST-coalescent-B32": {
+        "hits": 22,
+        "instances": 25,
+        "hit_rate_percent": 88.0,
+        "clopper_pearson_95": [
+          0.6878096927137645,
+          0.9745346033522668
+        ],
+        "mean_relative_gap_percent": 0.0399017422394021,
+        "maximum_relative_gap_percent": 0.44933811628236636
+      },
+      "HCSE-B32": {
+        "hits": 0,
+        "instances": 25,
+        "hit_rate_percent": 0.0,
+        "clopper_pearson_95": [
+          0.0,
+          0.13718517153071258
+        ],
+        "mean_relative_gap_percent": 9.71445039256415,
+        "maximum_relative_gap_percent": 26.451463199215112
+      },
+      "BBM-label-free-B32": {
+        "hits": 0,
+        "instances": 25,
+        "hit_rate_percent": 0.0,
+        "clopper_pearson_95": [
+          0.0,
+          0.13718517153071258
+        ],
+        "mean_relative_gap_percent": 9.823894016992625,
+        "maximum_relative_gap_percent": 16.864846605284054
+      }
+    }
+  },
+  "combined_nest_exact_hits": {
+    "hits": 370,
+    "instances": 375,
+    "hit_rate_percent": 98.66666666666667,
+    "clopper_pearson_95": [
+      0.9691602932531742,
+      0.9956569084396829
+    ]
+  }
+}

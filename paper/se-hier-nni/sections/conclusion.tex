@@ -5,18 +5,18 @@ encoding trees. Multiway regions must also be resolved by a constructor before
 binary rotations can act on them. Lower structural entropy need not improve
 every external notion of hierarchy, which is why we report planted purity
 alongside the optimized objective. The exact solver is exponential and its
-near-optimality measurements therefore cover only the declared 12-vertex suite.
+near-optimality measurements therefore cover only the declared 12--16-vertex
+suites.
 
 We introduced \NEST, which derives an exact weighted NNI identity and uses it
 for monotone refinement, a local-optimality certificate, and safe bounded
 escape from shallow one-step traps. On the frozen five-regime suite, \NEST
 achieved the lowest mean entropy in every regime and outperformed both HCSE and
-BBM on all 50 paired graphs. Prior binary sufficiency together with our exact
+BBM on all 500 paired graphs. Prior binary sufficiency together with our exact
 arbitrary-subset dynamic program shows that 32-start \NEST reaches the global
-optimum on \FairNESTExact{} sealed instances, versus \FairHCSEExact{} for 32
-HCSE calls and \FairBBMExact{} for either 32-call BBM variant, on the audited
-12-vertex HSBM family. This does not imply global optimality beyond the audited
-suite. The operator audit further shows that hierarchy
+optimum on \ScaleCombinedExact{} sealed instances across $n=12,14,16$, versus
+2/375 for HCSE and 1/375 for label-free BBM. This does not imply global
+optimality beyond the audited suites. The operator audit further shows that hierarchy
 construction, local optimality, and global optimality are distinct concerns.
 The result is a reproducible hierarchy-search framework whose guarantees and
 empirical gains can be checked directly.
