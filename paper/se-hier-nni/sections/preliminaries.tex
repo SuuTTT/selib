@@ -29,9 +29,11 @@ constructors and are evaluated from their official implementation
 \cite{pan2025}.
 
 \paragraph{Rooted NNI.}
-An NNI move acts on a binary parent--child edge. Writing the local topology as
-$((A,B),C)$, the two nontrivial alternatives are $(A,(B,C))$ and
-$(B,(A,C))$. The leaf set, graph, and all modules outside the local parent
-$P=A\cup B\cup C$ remain unchanged. A rooted binary tree with $n$ labeled
+An NNI move acts on a binary parent--child edge. Here $A$, $B$, and $C$ denote
+three disjoint subtrees, and $P=A\cup B\cup C$ denotes their shared local
+parent module: the set of all leaves contained in those three subtrees.
+Writing the local topology as $((A,B),C)$, the two nontrivial alternatives are
+$(A,(B,C))$ and $(B,(A,C))$. The leaf set, graph, and all modules outside $P$
+remain unchanged. A rooted binary tree with $n$ labeled
 leaves has finitely many topologies, namely $(2n-3)!!$, so any strictly
 decreasing local search terminates.

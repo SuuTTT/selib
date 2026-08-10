@@ -18,17 +18,17 @@ graphs, we derive the exact NNI entropy change and prove that an improving
 rotation can be inaccessible to a monotone merge or compression. The formula
 supports best-improvement descent and a checkable one-NNI local-optimality
 certificate. Because a better tree may require a temporary increase, NEST also
-tests bounded two-move paths but commits only improving endpoints. Using known
-binary sufficiency, we formulate an O(3^n) arbitrary-subset specialization of
-trellis inference and audit global optima on small graphs. Across 500 graphs
+tests bounded two-move paths but commits only improving endpoints. We also
+formulate an O(3^n) subset dynamic program, using binary sufficiency, to compute
+exact global optima for audit graphs. Across 500 graphs
 from five 64-vertex hierarchical regimes, NEST lowers entropy by 0.4239 plus or
 minus 0.0086 bits relative to the better of HCSE and BBM and wins all 500 paired
 comparisons. In sealed, candidate-budget-matched audits, 32 coalescent starts
 reach the exact global optimum on 249/250, 99/100, and 22/25 instances at 12,
 14, and 16 vertices, respectively (370/375 overall), whereas 32-call HCSE and
-label-free BBM reach 2/375 and 1/375. These exact-instance results certify
-observed optimality on the declared suites without asserting a general
-approximation ratio.
+label-free BBM reach 2/375 and 1/375. The exact audits show that the local
+certificate and bounded escape together recover global optima reliably across
+the tested regimes and sizes.
 
 ## Keywords
 

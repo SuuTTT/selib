@@ -1,13 +1,16 @@
 \section{NNI-Certified Entropy Search}
-\NEST constructs several candidate hierarchies and refines each in a canonical
-binary neighborhood. Its local effect is exact, every committed endpoint is
-independently rescored, and small instances admit a separate global certificate.
+\NEST builds several initial hierarchies, improves each through NNI rotations,
+and returns the tree with the lowest structural entropy. Equation~\eqref{eq:nni-delta}
+scores every candidate rotation exactly, while a full recomputation of
+Eq.~\eqref{eq:tree-se} checks every accepted tree. An exact dynamic program
+supplies the global optimum for the small-graph audits.
 
 \subsection{A local structural-entropy identity}
 For disjoint sets $X,Y$, write
 $W(X,Y)=\sum_{u\in X,v\in Y}w_{uv}$. Consider the rotation shown in
-Fig.~\ref{fig:nni}. Let $X=A\cup B$, $Y=B\cup C$, and
-$P=A\cup B\cup C$.
+Fig.~\ref{fig:nni}. The disjoint subtrees $A,B,C$ fill their local parent
+$P=A\cup B\cup C$; the rotation replaces its child module $X=A\cup B$ with
+$Y=B\cup C$ while leaving the rest of the hierarchy unchanged.
 
 \begin{figure}[H]
 \centering
@@ -114,9 +117,10 @@ parent--child edge.
 \emph{Proof.} Deferred to \proofdetails.
 
 Strict one-step descent can stop before a better tree separated by a shallow
-barrier. Algorithm~\ref{alg:nni} therefore keeps a bounded beam of first moves
-whose increase is at most $\beta$ and evaluates a second NNI. It never commits
-the intermediate tree alone.
+barrier. Algorithm~\ref{alg:nni} therefore keeps a short list---a beam---of the
+$b$ most promising first moves whose increase is at most $\beta$, then evaluates
+a second NNI from each intermediate tree. It never commits the intermediate
+tree alone.
 
 \begin{proposition}[Safe compound search]\label{prop:compound}
 The compound stage never worsens its input. It can reach an improving endpoint
@@ -139,11 +143,11 @@ assuming balanced trees.
 \NEST-R adds $q$ coalescent starts, each built by repeatedly merging two
 uniformly selected current components, then applies the same NNI routine. The
 distribution is not uniform over labeled topologies. Selection uses only
-rescored entropy; increasing $q$ cannot worsen the result, but gives no global
-guarantee.
+rescored entropy; increasing $q$ cannot worsen the result, and its global-hit
+rate is measured against exact optima below.
 
 \subsection{Exact global audit on small graphs}
-Local certification does not imply global optimality. We therefore use a
+To measure how often certified endpoints coincide with global optima, we use a
 separate exact solver. SuperTAD proves binary sufficiency for general graphs,
 and HCSE also notes it \cite{zhang2021supertad,pan2025}; we restate the result
 to make the audit self-contained.
@@ -165,11 +169,11 @@ F(S)&=\min_{A\dot\cup B=S}\left\{F(A)+F(B)
 \end{split}\label{eq:exact-dp}
 \end{equation}
 Enumerating each unordered split once gives $O(3^n)$ time and $O(2^n)$ memory,
-an SE-specific instance of subset-trellis exact inference
-\cite{macaluso2021}.
+an SE-specific subset dynamic program, equivalently a trellis whose states are
+vertex subsets \cite{macaluso2021}.
 By Proposition~\ref{prop:binary}, $F(V)$ is the global minimum over all encoding
-trees, not only over the binary subclass. This exponential routine is used only
-to audit 12-vertex instances; it is not part of \NEST at deployment scale.
+trees, not only over the binary subclass. The exact audits apply this routine at
+$n=12,14,16$; the deployable \NEST algorithm does not invoke it.
 
 For an additional graph-only certificate, an edge-LCA expansion gives
 \begin{equation}

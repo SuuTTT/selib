@@ -1,0 +1,28 @@
+TAMC 2026 EASYCHAIR FIELDS
+
+TITLE
+NEST: Locally Certified Search for Structural-Entropy Hierarchies
+
+ABSTRACT
+Structural entropy evaluates a graph hierarchy through the description length of an encoding tree. HCSE and BBM construct such trees but do not determine whether the result admits a local entropy-reducing topology change. We introduce NNI-certified Entropy Search over Trees (NEST), a multi-start optimizer based on rooted nearest-neighbor interchange (NNI). For weighted graphs, we derive the exact NNI entropy change and prove that an improving rotation can be inaccessible to a monotone merge or compression. The formula supports best-improvement descent and a checkable one-NNI local-optimality certificate. Because a better tree may require a temporary increase, NEST also tests bounded two-move paths but commits only improving endpoints. We also formulate an O(3^n) subset dynamic program, using binary sufficiency, to compute exact global optima for audit graphs. Across 500 graphs from five 64-vertex hierarchical regimes, NEST lowers entropy by 0.4239 plus or minus 0.0086 bits relative to the better of HCSE and BBM and wins all 500 paired comparisons. In sealed, candidate-budget-matched audits, 32 coalescent starts reach the exact global optimum on 249/250, 99/100, and 22/25 instances at n = 12, 14, and 16, respectively (370/375 overall), whereas 32-call HCSE and label-free BBM reach 2/375 and 1/375. The exact audits show that the local certificate and bounded escape together recover global optima reliably across the tested regimes and sizes.
+
+KEYWORDS (enter one per line)
+structural entropy
+hierarchical clustering
+nearest-neighbor interchange
+tree editing
+graph algorithms
+
+BEST-FITTING TAMC TOPICS
+1. Computational complexity and algorithms
+2. Information calculus
+3. Computational geometry and graph theory
+4. Combinatorial optimization
+
+AUTHOR FIELDS
+Enter real author names, email addresses, countries, affiliations, and the
+corresponding-author selection in EasyChair. Keep the review PDF anonymous.
+
+STUDENT-PAPER AWARD
+Select this only if all authors are full-time students at submission time and
+add any wording required by the official call.

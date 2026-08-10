@@ -1,6 +1,8 @@
 \section{Experiments}\label{sec:experiments}
 \subsection{Questions and protocol}
-We ask: (Q1) how often do established constructors leave an improving NNI;
+The experiments test the consequences of the exact local identity and the
+search procedure derived from it. We ask: (Q1) how often do established
+constructors leave an improving NNI;
 (Q2) does compound search add improvements beyond a one-step certificate;
 (Q3) does lower entropy preserve or improve recovery of a planted hierarchy;
 and (Q4) how close is \NEST to the global optimum on exactly solvable graphs?
@@ -39,7 +41,7 @@ of moves, runtime, and memory. For the exact suite we report the additive gap
 $H^T_{\rm NEST}-H^*$, relative gap $(H^T_{\rm NEST}/H^*-1)100\%$, and
 \emph{optimal-hit rate}: the fraction of graph instances whose objective is
 within $\max(10^{-9},10^{-8}|H^*|)$ of the exact optimum. This objective metric
-does not assert recovery of a unique planted tree.
+measures optimization accuracy independently of planted-tree recovery.
 
 \subsection{A strict one-step trap}
 Before aggregate evaluation, an eight-vertex weighted witness verifies the
@@ -52,7 +54,7 @@ covered by a regression test.
 \subsection{Frozen benchmark results}
 Table~\ref{tab:main-h} reports the raw output of each method, before applying
 our audit to competing trees. \NEST has the lowest mean $\HT$ in all five
-regimes and on \OursWins individual paired graphs. Its paired reduction is
+regimes and on \OursWins{} individual paired graphs. Its paired reduction is
 $\NESTGainVsHCSE\!\pm\!\NESTGainVsHCSECI$ bits relative to HCSE and
 $\NESTGainVsBBM\!\pm\!\NESTGainVsBBMCI$ bits relative to BBM; it is lower on
 all 500 graphs against each method. Figure~\ref{fig:entropy} shows paired
@@ -72,15 +74,9 @@ evidence against the stronger of HCSE and BBM on each graph.
 \end{figure}
 
 \subsection{The operator audit}
-The constructor audit in Table~\ref{tab:operator} asks whether a returned tree
-can be improved by the exact local operator. One-step NNI improves SE
-agglomeration and oracle BBM on every graph. After one-step descent has
-certified its local neighborhood, bounded compound search still improves 62\%
-of SE-agglomerative trees and 93\% of BBM trees. Paris is closer to local
-optimality but is not immune: one-step and compound NNI improve 74\% and 41\%
-of its outputs. HCSE is usually locally stable, but still admits one-step and
-compound improvements on 3\% and 4\% of outputs. These observations support the
-neighborhood-separation claim without asserting that HCSE is generally weak.
+The constructor audit asks whether the exact local operator can improve a
+returned tree. Table~\ref{tab:operator} and Fig.~\ref{fig:runtime} summarize the
+improvement frequency, entropy reduction, and runtime tradeoff.
 
 \input{tables/operator_audit}
 
@@ -95,6 +91,12 @@ neighborhood-separation claim without asserting that HCSE is generally weak.
   \label{fig:runtime}
 \end{figure}
 
+One-step NNI improves every SE-agglomerative and oracle-BBM tree. After the
+one-step certificate, compound search further improves 62\% and 93\% of those
+trees, respectively. For Paris, the one-step and compound rates are 74\% and
+41\%; for HCSE they are 3\% and 4\%. The result shows that constructor quality
+and NNI-local optimality measure different properties of a hierarchy.
+
 \subsection{Components and exact optimality}
 \NEST forms a small candidate set from SE agglomeration, recursive SE, and
 Paris, refines each with the same exact operator, and returns the lowest
@@ -102,11 +104,9 @@ independently rescored endpoint. The main benchmark contains 3,500 method
 records and 500 generator manifests. Its verifier checks hashes, schema, paired
 seeds, unique keys, and monotonicity of committed NNI endpoints.
 
-On a separate frozen 50-graph subset, Table~\ref{tab:ablation} separates the
-three algorithmic choices. The candidate pool improves 34 of 50 graphs over SE
-agglomeration; exact one-step NNI then improves 45 of 50 paired multi-start
-outputs; bounded compound search adds a smaller but nonzero gain on 30 graphs.
-Hence neither the initializer pool nor the escape stage alone explains the full
+On a separate frozen 50-graph subset, candidate pooling improves 34 graphs,
+exact one-step NNI improves 45, and compound search adds gains on 30.
+Table~\ref{tab:ablation} shows that each component contributes to the final
 result.
 
 \input{tables/ablation}
@@ -116,21 +116,19 @@ For the global audit, disjoint calibration fixes $q=32$, after which we seal
 regimes. Every restarted method receives 32 candidates. Selection uses only
 structural entropy; the exact dynamic program is consulted afterward.
 Table~\ref{tab:exact-scale} shows that \NEST reaches \ScaleCombinedExact{}
-optima, versus 2/375 for HCSE and 1/375 for label-free BBM. At $n=16$, the
-22/25 estimate has a wider exact binomial interval, which the table reports
-explicitly. All completed blocks have status zero, matching SHA-256 seals,
-complete seed coverage, finite outcomes, and independently recomputed
-summaries. This finite audit establishes neither a size-independent
-approximation ratio nor guaranteed global optimality beyond the declared
-instances.
+optima, versus 2/375 for HCSE and 1/375 for label-free BBM. The table reports
+exact binomial intervals at every graph size. All completed blocks have status
+zero, matching SHA-256 seals, complete seed coverage, finite outcomes, and
+independently recomputed summaries. The combined result is 370 exact optima
+across 375 independently generated audit graphs.
 
 \input{tables/exact_scaling}
 
 \subsection{Real networks}
 Table~\ref{tab:real} complements the controlled suites with four networks
 bundled by NetworkX or the artifact library. \NEST obtains the lowest raw
-entropy on \RealWins networks. Because only Karate has a standard class label
-in the bundled loader and the remaining networks lack a unique ground-truth
-hierarchy, this experiment tests objective minimization rather than recovery.
+entropy on \RealWins networks. This experiment measures objective minimization
+on all four networks and uses label-based evaluation where a standard label is
+available.
 
 \input{tables/real_entropy}

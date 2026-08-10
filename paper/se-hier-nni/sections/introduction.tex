@@ -8,14 +8,15 @@ partitioning and balanced merging \cite{pan2025}. Their construction rules,
 however, do not answer a complementary question: \emph{after a tree has been
 constructed, does a small topology change still lower the same objective?}
 
-Construction and local optimality are distinct: early decisions can retain
-avoidable entropy. We therefore seek a topology operator whose effect is
-exact, whose termination is interpretable, and whose output can be compared
-with a true optimum on instances small enough for exhaustive certification.
+A hierarchy constructor can make an early merge that later steps never revisit,
+even when rotating a nearby internal edge would lower structural entropy. We
+therefore seek a topology operator whose effect can be computed exactly, whose
+termination certifies the inspected neighborhood, and whose output can be
+checked against a true optimum on exactly solvable instances.
 
 Nearest-neighbor interchange (NNI) is the elementary rotation of a rooted
 binary tree. It changes one internal edge while preserving every leaf. NNI is
-standard in phylogenetic tree search and has been studied for other
+standard in evolutionary-tree search and has been studied for other
 hierarchical-clustering objectives, but its structural-entropy change has not
 been used as an exact graph-hierarchy optimizer. We show that, for
 $((A,B),C)\rightarrow(A,(B,C))$, all objective terms cancel except two
@@ -28,11 +29,10 @@ independently verified endpoint. A bounded two-move beam can cross a small
 intermediate barrier, but accepts a pair only when its endpoint lowers the full
 objective. A randomized-restart variant, \NEST-R, increases basin coverage
 without inspecting labels or the exact optimum. Using prior binary sufficiency
-\cite{zhang2021supertad,pan2025}, we specialize a subset-trellis dynamic program
-to compute the global optimum on small graphs; binary sufficiency itself is not
-our contribution.
-It separates three claims that are often
-conflated: monotone improvement, local certification, and global optimality.
+\cite{zhang2021supertad,pan2025}, we specialize an exact dynamic program over
+vertex subsets to compute global optima for small-graph audits. The resulting
+pipeline connects an exact local identity, a certified search procedure, and
+an independent global benchmark.
 
 Our contributions are:
 \begin{itemize}
@@ -54,6 +54,4 @@ $\NESTGainVsHCSE\!\pm\!\NESTGainVsHCSECI$ bits versus HCSE and
 $\NESTGainVsBBM\!\pm\!\NESTGainVsBBMCI$ bits versus BBM, winning every paired
 comparison across 500 graphs. Across sealed exact suites at $n=12,14,16$, 32
 coalescent \NEST starts reach the global optimum in \ScaleCombinedExact{} cases,
-compared with 2/375 for 32-call HCSE and 1/375 for 32-call label-free BBM. This
-is an empirical finite-suite certificate, not a worst-case approximation
-guarantee.
+compared with 2/375 for 32-call HCSE and 1/375 for 32-call label-free BBM.

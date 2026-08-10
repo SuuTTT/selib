@@ -12,14 +12,13 @@ application literature \cite{su2025survey}.
 rotation and uses the answer as both a diagnostic and an optimizer.
 
 \paragraph{Graph hierarchical clustering.}
-Paris is an agglomerative graph hierarchy related to modularity and provides a
-strong inexpensive initialization \cite{bonald2018paris}. Louvain's multilevel
-aggregation optimizes modularity \cite{blondel2008}; we evaluate its final
-partition as a two-level tree, not as an SE optimizer. Dasgupta-style objectives initiated a complementary
-algorithmic literature \cite{dasgupta2016}; average linkage and divisive local
-search have guarantees for its revenue dual \cite{moseley2017}. This objective
-is a useful neighbor, but its local delta cannot replace
-Eq.~\eqref{eq:tree-se}.
+Paris supplies an inexpensive agglomerative graph hierarchy related to
+modularity \cite{bonald2018paris}. Louvain optimizes modularity
+\cite{blondel2008}; we score its final partition as a two-level tree.
+Dasgupta's cost and its revenue dual have inspired hierarchical algorithms with
+guarantees \cite{dasgupta2016,moseley2017}. Because these objectives differ
+from structural entropy, optimizing Eq.~\eqref{eq:tree-se} requires its own
+local identity.
 
 \paragraph{Exact inference and heuristic accuracy.}
 Cluster trellises support exact hierarchical inference \cite{macaluso2021}.
@@ -29,12 +28,14 @@ our arbitrary-subset formulation differs from SuperTAD's contiguity-constrained
 dynamic programs.
 
 \paragraph{Local search in tree space.}
-NNI is a classical neighborhood for phylogenetic trees; its reconfiguration
-distance is itself nontrivial \cite{litrompzhang1996}. Recent work studies NNI
-local search for hierarchical-clustering costs \cite{jowhari2024}. Our formula
-targets weighted graph structural entropy and exposes the two cross-module
-weights controlling a rotation. Unlike unit-clique landscape analyses, our
-method evaluates the complete objective on arbitrary weighted graphs. Its new
-content is the verified optimizer, compound search, multi-start construction,
-comparative evaluation, and exact global audit; local certification alone is
-not global optimality.
+NNI is a classical neighborhood for evolutionary, or phylogenetic, trees; its
+reconfiguration distance is itself nontrivial \cite{litrompzhang1996}. Recent
+work studies NNI local search for hierarchical-clustering costs
+\cite{jowhari2024}. PERCH uses purity-enhancing rotations during online tree
+construction, while GRINCH combines rotations with longer-range grafts for
+general linkage functions \cite{kobren2017perch,monath2019grinch}. Our formula
+instead targets weighted graph structural entropy and exposes the two
+cross-module weights controlling an NNI rotation. Unlike unit-clique landscape
+analyses, our method evaluates the complete objective on arbitrary weighted
+graphs. Its new content is the verified optimizer, compound search, multi-start
+construction, comparative evaluation, and exact global audit.
