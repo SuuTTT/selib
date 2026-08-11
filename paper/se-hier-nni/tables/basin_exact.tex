@@ -1,20 +1,29 @@
 \begin{table}[H]
 \centering
-\caption{Exact basin mass on one fixed noisy HSBM graph at each size. $p_U$
-uses the uniform measure over unordered rooted binary labeled topologies;
-$p_C$ uses NEST's pairwise-coalescent measure. ``Strict'' requires every
-planted fine and coarse block to occur as a clade.}
+\caption{Exact restart-basin probabilities for one fixed noisy HSBM at each
+size. The All topologies column gives $(2n-3)!!$, the number of unordered
+rooted binary labeled starting trees. Standard pool exact reports whether \NEST's
+deterministic initializer pool reaches the global optimum $H^*$. $p_U$ is the
+fraction of uniformly weighted starts refined to $H^*$; $p_C$ uses \NEST's
+pairwise-coalescent restart distribution. Strict recovery requires every
+planted fine and coarse block to appear as a clade.}
 \label{tab:basin-exact}
 \small
-\setlength{\tabcolsep}{4.2pt}
-\begin{tabular}{rrrrrr}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}rrcccc@{}}
 \toprule
-$n$ & starts & pool hits? & $p_U(H^*)$ & $p_C(H^*)$ & $p_C(\text{strict})$ \\
+& & & \multicolumn{2}{c}{Optimum basin}
+& \shortstack{Strict-recovery\\basin} \\
+\cmidrule(lr){4-5}
+$n$ & \shortstack{All\\topologies}
+& \shortstack{Standard pool\\exact?}
+& \shortstack{Uniform\\$p_U(H^*)$}
+& \shortstack{Coalescent\\$p_C(H^*)$}
+& \shortstack{Coalescent\\$p_C(\mathrm{strict})$} \\
 \midrule
 5 & 105     & yes & 100.000\% & 100.000\% & 0.000\% \\
 6 & 945     & yes & 100.000\% & 100.000\% & 0.000\% \\
 7 & 10,395  & yes & 100.000\% & 100.000\% & 0.000\% \\
 8 & 135,135 & no  &  24.848\% &  25.237\% & 0.000\% \\
 \bottomrule
-\end{tabular}
+\end{tabular*}
 \end{table}

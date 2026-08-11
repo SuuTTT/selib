@@ -28,9 +28,14 @@ model used to study recovery beyond worst-case inputs \cite{cohenaddad2017hsbm}.
 \paragraph{Methods.}
 We compare SE agglomeration, a two-level Louvain tree \cite{blondel2008}, Paris
 \cite{bonald2018paris}, official HCSE, official BBM with oracle $k$
-\cite{pan2025}, and \NEST. We also refine each external constructor independently
-to measure its one-step and compound gap rather than crediting all gains to our
-preferred initializer.
+\cite{pan2025}, and \NEST. In the 500-graph benchmark, the \NEST row uses a
+fixed pool of three initial trees: SE agglomeration, recursive SE, and Paris.
+Each tree is refined independently by exact one-step NNI and bounded two-move
+search, and the lowest independently rescored endpoint is returned. HCSE, BBM,
+and Louvain-2L are not included in this pool; they remain external comparators.
+The NNI operator itself is initializer-agnostic, so the operator audit also
+applies it separately to every external constructor to measure the local and
+compound improvement left in its returned tree.
 
 \paragraph{Metrics.}
 The primary metric is $\HT(G)$. Dendrogram purity is computed for the planted
@@ -43,59 +48,66 @@ $H^T_{\rm NEST}-H^*$, relative gap $(H^T_{\rm NEST}/H^*-1)100\%$, and
 within $\max(10^{-9},10^{-8}|H^*|)$ of the exact optimum. This objective metric
 measures optimization accuracy independently of planted-tree recovery.
 
-\subsection{A strict one-step trap}
-Before aggregate evaluation, an eight-vertex weighted witness verifies the
-purpose of compound search. Exact one-step descent stops at $1.970038$ bits.
-Every one-NNI delta is nonnegative, but a first move crossing a $0.013970$-bit
-barrier followed by a second move and ordinary descent reaches $1.920593$ bits,
-a $0.049445$-bit reduction. This witness is generated from a fixed seed and is
-covered by a regression test.
-
 \subsection{Frozen benchmark results}
-Table~\ref{tab:main-h} reports the raw output of each method, before applying
-our audit to competing trees. \NEST has the lowest mean $\HT$ in all five
-regimes and on \OursWins{} individual paired graphs. Its paired reduction is
+Table~\ref{tab:main-h} reports the tree returned by each standalone baseline
+and the best verified endpoint from \NEST's declared three-initializer pool.
+In particular, the \NEST row does not post-process HCSE or BBM outputs; their
+NNI-refined variants are reserved for the operator audit below. \NEST has the
+lowest mean $\HT$ in all five regimes and on \OursWins{} individual paired
+graphs. Its paired reduction is
 $\NESTGainVsHCSE\!\pm\!\NESTGainVsHCSECI$ bits relative to HCSE and
 $\NESTGainVsBBM\!\pm\!\NESTGainVsBBMCI$ bits relative to BBM; it is lower on
 all 500 graphs against each method. Figure~\ref{fig:entropy} shows paired
-evidence against the stronger of HCSE and BBM on each graph.
+evidence against the stronger of HCSE and BBM on each graph. For graph $g$, we
+define the winning margin
+$M_g=\min(H^T_{\mathrm{HCSE},g},H^T_{\mathrm{BBM},g})-H^T_{\mathrm{NEST},g}$;
+hence $M_g>0$ means that \NEST has lower entropy than both baselines.
 
 \input{tables/main_entropy}
 
-\begin{figure}[t]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{figures/benchmark_entropy.pdf}
-  \caption{Paired advantage over external structural-entropy methods. For each
-  graph, the reference is the lower-entropy result of HCSE and BBM. (a)
-  Regime-level mean reduction and 95\% paired confidence interval. (b)
-  Per-seed margins with small vertical jitter for visibility. \NEST has lower
-  entropy on all 500 graphs.}
+  \caption{Paired advantage over external structural-entropy methods. For graph
+  $g$, the margin is
+  $M_g=\min(H^T_{\mathrm{HCSE},g},H^T_{\mathrm{BBM},g})-H^T_{\mathrm{NEST},g}$,
+  so positive values favor \NEST. (a) Regime mean and paired 95\% confidence
+  interval. (b) Each blue dot is one of 100 sealed graphs per regime; vertical
+  jitter only separates overlapping dots. Red diamonds are regime means and
+  horizontal whiskers are their 95\% confidence intervals. All 500 margins are
+  positive.}
   \label{fig:entropy}
 \end{figure}
 
 \subsection{The operator audit}
-The constructor audit asks whether the exact local operator can improve a
-returned tree. Table~\ref{tab:operator} and Fig.~\ref{fig:runtime} summarize the
-improvement frequency, entropy reduction, and runtime tradeoff.
+The audit has two stages. One-NNI descent repeatedly commits the best
+entropy-decreasing move until none remains. The two-move escape then tests
+bounded pairs that may cross a small intermediate barrier, accepting only a
+lower-entropy endpoint. Table~\ref{tab:operator} and Fig.~\ref{fig:runtime}
+report the entropy removed, fraction of graphs improved, and refinement time.
 
 \input{tables/operator_audit}
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=0.94\textwidth]{figures/operator_runtime.pdf}
-  \caption{Operator diagnostics pooled over 500 paired graphs. (a) Fraction of
-  external constructor outputs improved by one-step NNI and by compound search
-  after the one-step certificate. (b) Mean entropy regret versus constructor
-  runtime; lower-left is better. Runtime includes Python allocation tracing and
-  should be interpreted comparatively.}
+  \caption{NNI refinement over 500 graphs. (a) Blue is the fraction of initial
+  trees improved by repeated best-decreasing NNI moves. After no single move
+  helps, the two-move escape may cross one uphill intermediate tree; orange is
+  the fraction whose final endpoint improves further. (b) Each point is an
+  initializer. Excess entropy is
+  $100(H^T-H^T_{\mathrm{best}})/H^T_{\mathrm{best}}$, where
+  $H^T_{\mathrm{best}}$ is the lowest value on the same graph; thus zero is
+  best. The horizontal axis is mean construction time in log seconds, so
+  lower-left is better. Times include Python allocation tracing.}
   \label{fig:runtime}
 \end{figure}
 
 One-step NNI improves every SE-agglomerative and oracle-BBM tree. After the
-one-step certificate, compound search further improves 62\% and 93\% of those
-trees, respectively. For Paris, the one-step and compound rates are 74\% and
-41\%; for HCSE they are 3\% and 4\%. The result shows that constructor quality
-and NNI-local optimality measure different properties of a hierarchy.
+one-step certificate, the two-move escape further improves 62\% and 93\% of
+those trees, respectively. For Paris, the one-step and two-move rates are 74\%
+and 41\%; for HCSE they are 3\% and 4\%. The result shows that constructor
+quality and NNI-local optimality measure different properties of a hierarchy.
 
 \subsection{Components and exact optimality}
 \NEST forms a small candidate set from SE agglomeration, recursive SE, and
@@ -105,7 +117,7 @@ records and 500 generator manifests. Its verifier checks hashes, schema, paired
 seeds, unique keys, and monotonicity of committed NNI endpoints.
 
 On a separate frozen 50-graph subset, candidate pooling improves 34 graphs,
-exact one-step NNI improves 45, and compound search adds gains on 30.
+one-NNI descent improves 45, and the two-move escape adds gains on 30.
 Table~\ref{tab:ablation} shows that each component contributes to the final
 result.
 
@@ -113,8 +125,11 @@ result.
 
 For the global audit, disjoint calibration fixes $q=32$, after which we seal
 250 graphs at $n=12$, 100 at $n=14$, and 25 at $n=16$ across the same five
-regimes. Every restarted method receives 32 candidates. Selection uses only
-structural entropy; the exact dynamic program is consulted afterward.
+regimes. Every method receives exactly 32 candidates: coalescent starts for
+\NEST, calls over target heights 2--5 for HCSE, and calls over a predeclared
+cluster-count grid for label-free BBM. The deterministic \NEST pool is excluded
+from this matched budget. Selection uses only structural entropy; the exact
+dynamic program is consulted afterward.
 Table~\ref{tab:exact-scale} shows that \NEST reaches \ScaleCombinedExact{}
 optima, versus 2/375 for HCSE and 1/375 for label-free BBM. The table reports
 exact binomial intervals at every graph size. All completed blocks have status

@@ -1,16 +1,21 @@
 \begin{table}[H]
 \centering
-\caption{Direct Monte Carlo basin estimates on the eight preidentified hard
-$n=12$ graphs (10,000 independent coalescent starts each). Intervals are exact
-95\% Clopper--Pearson intervals. $q_{32}=1-(1-\hat p)^{32}$; its lower column
-uses the lower confidence limit for $p$. Strict recovery was observed 0/10,000
-times on every graph (per-graph 95\% upper bound $0.0369\%$).}
+\caption{Restart success on eight hard $n=12$ graphs, using 10,000 independent
+coalescent starts per graph. Graph IDs are regime--seed. $\hat p(H^*)$ is the
+fraction of starts refined to the exact optimum; intervals are exact 95\%
+Clopper--Pearson intervals. $q_{32}=1-(1-\hat p)^{32}$ estimates the chance
+that at least one of 32 independent starts succeeds; lower $q_{32}$ substitutes
+the lower confidence limit for $\hat p$. Strict planted recovery occurred
+0/10,000 times on every graph (per-graph 95\% upper bound $0.0369\%$).}
 \label{tab:basin-mc}
 \small
-\setlength{\tabcolsep}{3.5pt}
-\begin{tabular}{lrrrr}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lcccc@{}}
 \toprule
-Graph & $\hat p(H^*)$ & 95\% CI & $q_{32}$ & lower $q_{32}$ \\
+Graph
+& \shortstack{Successful starts\\$\hat p(H^*)$}
+& \shortstack{95\% interval\\for $\hat p$}
+& \shortstack{Predicted 32-start\\success $q_{32}$}
+& \shortstack{Conservative\\lower $q_{32}$} \\
 \midrule
 noisy-0  & 17.19\% & [16.46, 17.94]\% & 99.761\% & 99.683\% \\
 noisy-8  & 14.61\% & [13.92, 15.32]\% & 99.362\% & 99.175\% \\
@@ -21,5 +26,5 @@ noisy-11 &  8.07\% & [ 7.54,  8.62]\% & 93.229\% & 91.872\% \\
 noisy-17 & 17.75\% & [17.01, 18.51]\% & 99.808\% & 99.743\% \\
 weak-17  & 17.86\% & [17.11, 18.63]\% & 99.816\% & 99.754\% \\
 \bottomrule
-\end{tabular}
+\end{tabular*}
 \end{table}

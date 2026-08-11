@@ -1,15 +1,22 @@
-\begin{table}[t]
+\begin{table}[H]
 \centering\small
-\caption{Component ablation pooled over 50 paired graphs. The gain and improved-run columns compare each row to the preceding row.}
+\caption{Cumulative \NEST ablation on 50 paired HSBMs (10 per regime). Each $+$ row adds one
+component to the preceding row. The candidate pool selects the lowest-entropy
+initial tree among SE agglomeration, recursive SE, and Paris.
+$\Delta H^T=H^T_{\mathrm{previous}}-H^T_{\mathrm{row}}$, so positive values are
+improvements; the final column counts graphs with a strict decrease.}
 \label{tab:ablation}
-\begin{tabular}{lrrr}
+\begin{tabular*}{0.88\textwidth}{@{\extracolsep{\fill}}lccc@{}}
 \toprule
-Variant & Mean $H^T$ & Mean gain & Improved runs \\
+Variant
+& \shortstack{Mean $H^T$\\(bits)}
+& \shortstack{Mean $\Delta H^T$\\(bits)}
+& \shortstack{Graphs\\improved} \\
 \midrule
 SE agglomeration & 3.1435 & -- & -- \\
 + candidate pool & 3.1041 & 0.0394 & 34/50 \\
-+ exact 1-NNI & 3.0794 & 0.0247 & 45/50 \\
-+ compound escape & 3.0759 & 0.0035 & 30/50 \\
++ one-NNI descent & 3.0794 & 0.0247 & 45/50 \\
++ two-move escape & 3.0759 & 0.0035 & 30/50 \\
 \bottomrule
-\end{tabular}
+\end{tabular*}
 \end{table}

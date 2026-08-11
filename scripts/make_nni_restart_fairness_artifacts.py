@@ -26,9 +26,12 @@ def latex_table(artifact: dict) -> str:
         exact = summary["globally_optimal"]
         rate = summary["optimal_hit_rate_percent"]
         gap = summary["mean_relative_gap_percent"]
-        gap_text = rf"${gap['mean']:.5g}\!\pm\!{gap['ci95']:.3g}$"
+        if gap["mean"] < 0.001:
+            gap_text = rf"${gap['mean']:.6f}\!\pm\!{gap['ci95']:.6f}$"
+        else:
+            gap_text = rf"${gap['mean']:.3f}\!\pm\!{gap['ci95']:.3f}$"
         time = summary["mean_total_time_s"]["mean"]
-        time_text = f"{time:.5f}" if time < 0.001 else f"{time:.3f}"
+        time_text = r"$<0.001$" if time < 0.001 else f"{time:.3f}"
         if method == "NEST-coalescent-B32":
             exact_text = rf"\textbf{{{exact} ({rate:.1f}\%)}}"
             gap_text = rf"\textbf{{{gap_text}}}"
@@ -38,22 +41,27 @@ def latex_table(artifact: dict) -> str:
             f"{label} & {calls_text} & {valid}/250 & {exact_text} & {gap_text} & {time_text} \\\\"
         )
     body = "\n".join(rows)
-    return rf"""\begin{{table}}[t]
+    return rf"""\begin{{table}}[H]
 \centering\scriptsize
-\caption{{Sealed, budget-matched exact audit on 250 independently generated
-12-vertex HSBMs. Each restarted constructor receives 32 candidate calls; the
-lowest structural entropy is selected without consulting $H^*$. Valid reports
-successful instances. Exact rates use all 250 graphs as denominator. Gap is
-mean relative entropy gap (\%) $\pm$ 95\% CI over valid instances.}}
+\caption{{Detailed budget-matched audit on 250 independently generated
+12-vertex HSBMs. Candidates/graph is the number proposed before
+structural-entropy-only selection; $H^*$ is revealed afterward. The successful
+graphs column counts completed runs, whereas exact-optimum rates use all 250 graphs.
+Relative gap is $100(H^T-H^*)/H^*$ (mean $\pm$ 95\% CI over successful
+graphs), and zero is best. Time includes all candidates for one graph.}}
 \label{{tab:optimality}}
-\setlength{{\tabcolsep}}{{3.2pt}}
-\begin{{tabular}}{{lrrrrr}}
+\begin{{tabular*}}{{\textwidth}}{{@{{\extracolsep{{\fill}}}}lccccc@{{}}}}
 \toprule
-Method & Calls & Valid & Exact & Gap (\%) & Time (s) \\
+Method
+& \shortstack{{Candidates\\per graph}}
+& \shortstack{{Successful\\graphs}}
+& \shortstack{{Exact optima\\count (rate)}}
+& \shortstack{{Mean relative gap\\$\pm$ 95\% CI (\%)}}
+& \shortstack{{Mean time\\per graph (s)}} \\
 \midrule
 {body}
 \bottomrule
-\end{{tabular}}
+\end{{tabular*}}
 \end{{table}}
 """
 

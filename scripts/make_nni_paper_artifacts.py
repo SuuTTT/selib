@@ -66,15 +66,18 @@ def write_tables(records, output_dir):
             for regime in regimes}
 
     lines = [
-        r"\begin{table}[t]",
+        r"\begin{table}[H]",
         r"\centering\small",
-        r"\caption{Tree structural entropy $H^T$ (mean $\pm$ 95\% CI; lower is better). BBM$^\dagger$ receives the planted fine-cluster count.}",
+        r"\caption{Mean tree structural entropy $H^T$ (bits) on paired graphs per",
+        r"HSBM regime. The $\pm$ value is a 95\% $t$-interval over graph seeds; lower is",
+        r"better, and bold marks the lowest column mean. BBM$^\dagger$ receives the",
+        r"planted fine-cluster count; the other methods do not use labels.}",
         r"\label{tab:main-h}",
         r"\setlength{\tabcolsep}{3.2pt}",
         r"\resizebox{\textwidth}{!}{%",
         r"\begin{tabular}{lccccc}",
         r"\toprule",
-        r"Method & Clean & Noisy & Imbal. & Weighted & Weak \\",
+        r"Method & Clean & Noisy & Imbalanced & Weighted & \shortstack{Weak\\hierarchy} \\",
         r"\midrule",
     ]
     for method in methods:
@@ -194,9 +197,12 @@ def write_complements(real_path, output_dir):
     lines = [
         r"\begin{table}[t]",
         r"\centering\small",
-        r"\caption{Tree entropy on four bundled real networks (lower is better). BBM uses the ground-truth $k$ when labels exist and Louvain's $k$ otherwise.}",
+        r"\caption{Tree structural entropy $H^T$ (bits; lower is better) on four real",
+        r"networks: Zachary karate club, Florentine families, Les Mis\'erables, and",
+        r"Davis Southern women. Bold marks the lowest value per network.",
+        r"BBM$^\dagger$ uses ground-truth $k$ for Karate and Louvain's $k$ otherwise.}",
         r"\label{tab:real}",
-        r"\begin{tabular}{lrrrr}",
+        r"\begin{tabular*}{0.90\textwidth}{@{\extracolsep{\fill}}lrrrr@{}}",
         r"\toprule",
         r"Method & Karate & Florent. & Les Mis. & Davis \\",
         r"\midrule",
@@ -211,8 +217,9 @@ def write_complements(real_path, output_dir):
             cells.append(cell)
         if method == "SE-NNI-fast":
             lines.append(r"\midrule")
-        lines.append(tex_label(method) + " & " + " & ".join(cells) + r" \\")
-    lines.extend([r"\bottomrule", r"\end{tabular}", r"\end{table}"])
+        label = r"BBM$^\dagger$" if method == "BBM" else tex_label(method)
+        lines.append(label + " & " + " & ".join(cells) + r" \\")
+    lines.extend([r"\bottomrule", r"\end{tabular*}", r"\end{table}"])
     (output_dir / "real_entropy.tex").write_text("\n".join(lines) + "\n")
 
     macro_path = output_dir / "result_macros.tex"
@@ -276,17 +283,24 @@ def write_ablation(ablation_path, output_dir):
     variants = [
         ("SE-agglomerative", "SE agglomeration"),
         ("Multi-start", "+ candidate pool"),
-        ("Multi-start+NNI", "+ exact 1-NNI"),
-        ("Multi-start+NNI+compound", "+ compound escape"),
+        ("Multi-start+NNI", "+ one-NNI descent"),
+        ("Multi-start+NNI+compound", "+ two-move escape"),
     ]
     lines = [
-        r"\begin{table}[t]",
+        r"\begin{table}[H]",
         r"\centering\small",
-        r"\caption{Component ablation pooled over 50 paired graphs. The gain and improved-run columns compare each row to the preceding row.}",
+        r"\caption{Cumulative \NEST ablation on 50 paired HSBMs (10 per regime). Each $+$ row adds one",
+        r"component to the preceding row. The candidate pool selects the lowest-entropy",
+        r"initial tree among SE agglomeration, recursive SE, and Paris.",
+        r"$\Delta H^T=H^T_{\mathrm{previous}}-H^T_{\mathrm{row}}$, so positive values are",
+        r"improvements; the final column counts graphs with a strict decrease.}",
         r"\label{tab:ablation}",
-        r"\begin{tabular}{lrrr}",
+        r"\begin{tabular*}{0.88\textwidth}{@{\extracolsep{\fill}}lccc@{}}",
         r"\toprule",
-        r"Variant & Mean $H^T$ & Mean gain & Improved runs \\",
+        r"Variant",
+        r"& \shortstack{Mean $H^T$\\(bits)}",
+        r"& \shortstack{Mean $\Delta H^T$\\(bits)}",
+        r"& \shortstack{Graphs\\improved} \\",
         r"\midrule",
     ]
     previous = None
@@ -303,7 +317,7 @@ def write_ablation(ablation_path, output_dir):
             f"{label} & {np.mean(values):.4f} & {gain} & {wins} \\\\"
         )
         previous = variant
-    lines.extend([r"\bottomrule", r"\end{tabular}", r"\end{table}"])
+    lines.extend([r"\bottomrule", r"\end{tabular*}", r"\end{table}"])
     (output_dir / "ablation.tex").write_text("\n".join(lines) + "\n")
 
 

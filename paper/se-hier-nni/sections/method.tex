@@ -92,7 +92,7 @@ dominance over a complete HCSE round, which may cross an intermediate increase.
 We evaluate Eq.~\eqref{eq:nni-delta} from cached sets and sparse adjacency lists,
 then verify every selected move by fully recomputing Eq.~\eqref{eq:tree-se}.
 
-\subsection{One-step certificate and compound escape}
+\subsection{One-step certificate and compound escape}\label{sec:compound-search}
 \begin{algorithm}[H]
 \caption{Exact NNI refinement of one candidate tree}\label{alg:nni}
 \KwIn{Graph $G$, tree $T$, tolerance $\varepsilon$, barrier $\beta$, beam $b$}
@@ -127,6 +127,18 @@ The compound stage never worsens its input. It can reach an improving endpoint
 even when every one-step neighbor is non-improving.
 \end{proposition}
 \emph{Proof.} Deferred to \proofdetails.
+
+\paragraph{A strict local trap.}
+A one-NNI certificate does not imply global optimality. On a fixed
+eight-vertex weighted instance, one-step descent terminates at a tree with
+entropy $1.970038$ bits because every legal NNI neighbor has a nonnegative
+objective change. Reaching a better tree requires first crossing a
+$0.013970$-bit barrier. A second rotation, followed by ordinary one-step
+descent, then reaches $1.920593$ bits, reducing the original objective by
+$0.049445$ bits. Thus the bounded two-move stage can leave a certified
+one-step local minimum, while the endpoint check ensures that \NEST commits
+only a tree with lower entropy. The complete instance and move sequence are
+included with the artifact and protected by a regression test.
 
 \subsection{Fast NNI-certified entropy search}
 \NEST applies Algorithm~\ref{alg:nni} independently to SE-agglomerative,

@@ -1,21 +1,26 @@
-\begin{table}[t]
+\begin{table}[H]
 \centering\scriptsize
-\caption{Sealed, budget-matched exact audit on 250 independently generated
-12-vertex HSBMs. Each restarted constructor receives 32 candidate calls; the
-lowest structural entropy is selected without consulting $H^*$. Valid reports
-successful instances. Exact rates use all 250 graphs as denominator. Gap is
-mean relative entropy gap (\%) $\pm$ 95\% CI over valid instances.}
+\caption{Detailed budget-matched audit on 250 independently generated
+12-vertex HSBMs. Candidates/graph is the number proposed before
+structural-entropy-only selection; $H^*$ is revealed afterward. The successful
+graphs column counts completed runs, whereas exact-optimum rates use all 250 graphs.
+Relative gap is $100(H^T-H^*)/H^*$ (mean $\pm$ 95\% CI over successful
+graphs), and zero is best. Time includes all candidates for one graph.}
 \label{tab:optimality}
-\setlength{\tabcolsep}{3.2pt}
-\begin{tabular}{lrrrrr}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lccccc@{}}
 \toprule
-Method & Calls & Valid & Exact & Gap (\%) & Time (s) \\
+Method
+& \shortstack{Candidates\\per graph}
+& \shortstack{Successful\\graphs}
+& \shortstack{Exact optima\\count (rate)}
+& \shortstack{Mean relative gap\\$\pm$ 95\% CI (\%)}
+& \shortstack{Mean time\\per graph (s)} \\
 \midrule
-\NEST (coalescent) & 32 & 250/250 & \textbf{249 (99.6\%)} & \textbf{$0.00031958\!\pm\!0.000629$} & 0.171 \\
+\NEST (coalescent) & 32 & 250/250 & \textbf{249 (99.6\%)} & \textbf{$0.000320\!\pm\!0.000629$} & 0.171 \\
 HCSE & 32 & 250/250 & 2 (0.8\%) & $10.902\!\pm\!0.971$ & 0.024 \\
 BBM (oracle $k$) & 32 & 248/250 & 1 (0.4\%) & $15.054\!\pm\!1.13$ & 0.402 \\
 BBM (label-free) & 32 & 250/250 & 1 (0.4\%) & $10.237\!\pm\!0.593$ & 0.299 \\
-SE agglomerative & 1 & 250/250 & 44 (17.6\%) & $1.7636\!\pm\!0.268$ & 0.00027 \\
+SE agglomerative & 1 & 250/250 & 44 (17.6\%) & $1.764\!\pm\!0.268$ & $<0.001$ \\
 \bottomrule
-\end{tabular}
+\end{tabular*}
 \end{table}

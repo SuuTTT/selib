@@ -1,12 +1,15 @@
-\begin{table}[t]
+\begin{table}[H]
 \centering\small
-\caption{Tree structural entropy $H^T$ over 100 graphs per regime (mean $\pm$ 95\% CI; lower is better). BBM$^\dagger$ receives the planted fine-cluster count.}
+\caption{Mean tree structural entropy $H^T$ (bits) on 100 paired graphs per
+HSBM regime. The $\pm$ value is a 95\% $t$-interval over graph seeds; lower is
+better, and bold marks the lowest column mean. BBM$^\dagger$ receives the
+planted fine-cluster count; the other methods do not use labels.}
 \label{tab:main-h}
 \setlength{\tabcolsep}{3.2pt}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{lccccc}
 \toprule
-Method & Clean & Noisy & Imbal. & Weighted & Weak \\
+Method & Clean & Noisy & Imbalanced & Weighted & \shortstack{Weak\\hierarchy} \\
 \midrule
 SE--agglomerative & 2.899 $\pm$ 0.021 & 3.723 $\pm$ 0.017 & 3.162 $\pm$ 0.023 & 2.445 $\pm$ 0.016 & 3.461 $\pm$ 0.022 \\
 Louvain--2L & 4.109 $\pm$ 0.022 & 4.603 $\pm$ 0.013 & 4.241 $\pm$ 0.019 & 3.657 $\pm$ 0.032 & 4.432 $\pm$ 0.018 \\

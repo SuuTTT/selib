@@ -7,6 +7,7 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
+import seaborn as sns
 from scipy import stats
 
 
@@ -65,15 +66,18 @@ def write_main_table(records, output: Path):
     best = {regime: min(means[(regime, method)][0] for method in METHODS)
             for regime in REGIMES}
     lines = [
-        r"\begin{table}[t]",
+        r"\begin{table}[H]",
         r"\centering\small",
-        r"\caption{Tree structural entropy $H^T$ over 100 graphs per regime (mean $\pm$ 95\% CI; lower is better). BBM$^\dagger$ receives the planted fine-cluster count.}",
+        r"\caption{Mean tree structural entropy $H^T$ (bits) on 100 paired graphs per",
+        r"HSBM regime. The $\pm$ value is a 95\% $t$-interval over graph seeds; lower is",
+        r"better, and bold marks the lowest column mean. BBM$^\dagger$ receives the",
+        r"planted fine-cluster count; the other methods do not use labels.}",
         r"\label{tab:main-h}",
         r"\setlength{\tabcolsep}{3.2pt}",
         r"\resizebox{\textwidth}{!}{%",
         r"\begin{tabular}{lccccc}",
         r"\toprule",
-        r"Method & Clean & Noisy & Imbal. & Weighted & Weak \\",
+        r"Method & Clean & Noisy & Imbalanced & Weighted & \shortstack{Weak\\hierarchy} \\",
         r"\midrule",
     ]
     for method in METHODS:
@@ -96,11 +100,23 @@ def write_operator_table(records, output: Path):
     lines = [
         r"\begin{table}[t]",
         r"\centering\small",
-        r"\caption{NNI audit pooled over 500 paired graphs. Reduction is relative to each constructor's raw $H^T$; rates are fractions of runs improved.}",
+        r"\caption{NNI refinement audit over 500 graphs. Drop is mean reduction relative",
+        r"to raw $H^T$; improved is the fraction of graphs with a strict reduction.",
+        r"Two-move values are additional to one-NNI descent, and time excludes initial",
+        r"tree construction.}",
         r"\label{tab:operator}",
-        r"\begin{tabular}{lrrrrr}",
+        r"\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lccccc@{}}",
         r"\toprule",
-        r"Constructor & 1-NNI gain & 1-NNI hit & 2-step gain & 2-step hit & Time \\",
+        r"& \multicolumn{2}{c}{One-NNI descent}",
+        r"& \multicolumn{2}{c}{Two-move escape}",
+        r"& \shortstack{Refinement\\time} \\",
+        r"\cmidrule(lr){2-3}\cmidrule(lr){4-5}",
+        r"Constructor",
+        r"& \shortstack{Entropy\\drop}",
+        r"& \shortstack{Graphs\\improved}",
+        r"& \shortstack{Extra entropy\\drop}",
+        r"& \shortstack{Graphs further\\improved}",
+        r"& (s) \\",
         r"\midrule",
     ]
     for method in methods:
@@ -112,9 +128,9 @@ def write_operator_table(records, output: Path):
         wall = np.mean([row["nni1_time_s"] + row["nni2_time_s"] for row in rows])
         lines.append(
             f"{LABELS[method]} & {one:.2f}\\% & {100*one_hit:.0f}\\% & "
-            f"{two:.2f}\\% & {100*two_hit:.0f}\\% & {wall:.3f}s \\\\"
+            f"{two:.2f}\\% & {100*two_hit:.0f}\\% & {wall:.3f} \\\\"
         )
-    lines.extend([r"\bottomrule", r"\end{tabular}", r"\end{table}"])
+    lines.extend([r"\bottomrule", r"\end{tabular*}", r"\end{table}"])
     output.write_text("\n".join(lines) + "\n")
 
 
@@ -137,15 +153,24 @@ def write_exact_table(legacy_path: Path, root: Path, output: Path):
         (16, json.loads((root / "exact16.json").read_text())),
     ]
     lines = [
-        r"\begin{table}[t]",
+        r"\begin{table}[H]",
         r"\centering\small",
-        r"\caption{Sealed exact-optimum audit with 32 candidates per method. Parentheses give exact 95\% Clopper--Pearson intervals for the \NEST hit rate. Gap is relative to $H^*$.}",
+        r"\caption{Sealed exact-optimum audit on independently generated HSBMs with $n$",
+        r"vertices and 32 candidates per method: coalescent starts for \NEST, target",
+        r"heights for HCSE, and label-free cluster counts for BBM. Exact columns report",
+        r"optimum hits over the listed graphs. The \NEST interval is an exact 95\% Clopper--Pearson",
+        r"interval for its hit rate. Its relative gap is",
+        r"$100(H^T_{\mathrm{NEST}}-H^*)/H^*$, reported as mean/worst; zero is optimal.",
+        r"Candidate selection does not use $H^*$.}",
         r"\label{tab:exact-scale}",
-        r"\setlength{\tabcolsep}{3.5pt}",
-        r"\resizebox{\textwidth}{!}{%",
-        r"\begin{tabular}{rrrrrrr}",
+        r"\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}rrccccc@{}}",
         r"\toprule",
-        r"$n$ & Graphs & \NEST exact & 95\% CI & HCSE exact & BBM exact & Mean / max gap \\",
+        r"& & \multicolumn{3}{c}{Exact optima found}",
+        r"& \multicolumn{2}{c}{\NEST diagnostics} \\",
+        r"\cmidrule(lr){3-5}\cmidrule(lr){6-7}",
+        r"$n$ & Graphs & \NEST & HCSE & BBM",
+        r"& \shortstack{95\% hit-rate\\interval}",
+        r"& \shortstack{Mean / worst\\relative gap} \\",
         r"\midrule",
     ]
     for n, data in blocks:
@@ -157,10 +182,11 @@ def write_exact_table(legacy_path: Path, root: Path, output: Path):
         max_gap = nest["max_relative_gap_percent"]
         lines.append(
             f"{n} & {total} & \\textbf{{{nest_hits}/{total}}} & "
-            f"[{100*lo:.2f}, {100*hi:.2f}]\\% & {hcse_hits}/{total} & "
-            f"{bbm_hits}/{total} & {mean_gap:.5f}\\% / {max_gap:.3f}\\% \\\\"
+            f"{hcse_hits}/{total} & {bbm_hits}/{total} & "
+            f"[{100*lo:.2f}, {100*hi:.2f}]\\% & "
+            f"{mean_gap:.5f}\\% / {max_gap:.5f}\\% \\\\"
         )
-    lines.extend([r"\bottomrule", r"\end{tabular}%", r"}", r"\end{table}"])
+    lines.extend([r"\bottomrule", r"\end{tabular*}", r"\end{table}"])
     output.write_text("\n".join(lines) + "\n")
 
 
@@ -211,12 +237,14 @@ def write_macros(records, legacy_path: Path, root: Path, output: Path):
 
 
 def style_axis(ax):
+    ax.grid(False, axis="y")
     ax.grid(axis="x", color=COLORS["grid"], linewidth=0.6, alpha=0.75)
     ax.spines[["top", "right", "left"]].set_visible(False)
     ax.tick_params(axis="both", length=0, colors=COLORS["grey"], labelsize=7.5)
 
 
 def figure_entropy(records, output_dir: Path):
+    sns.set_theme(font_scale=1.0, style="whitegrid", font="DejaVu Sans")
     by = index_records(records)
     margins = {}
     for regime in REGIMES:
@@ -247,6 +275,8 @@ def figure_entropy(records, output_dir: Path):
 
     rng = np.random.default_rng(20260810)
     axes[1].axvspan(0, 0.8, color=COLORS["blue_light"], alpha=0.55, zorder=0)
+    axes[1].axvline(0, color="#7c848c", linewidth=0.9,
+                    linestyle="--", zorder=1)
     for yi, regime in zip(y, REGIMES):
         values = margins[regime]
         jitter = rng.uniform(-0.20, 0.20, len(values))
@@ -258,13 +288,29 @@ def figure_entropy(records, output_dir: Path):
                          markersize=6, capsize=2.5, linewidth=1.25, zorder=4)
     axes[1].set_yticks(y, [])
     axes[1].invert_yaxis()
-    axes[1].set_xlim(0, 0.78)
-    axes[1].set_xlabel("Per-graph winning margin (bits)", fontsize=8)
-    axes[1].set_title("(b) 100 sealed graphs per regime", loc="left", fontsize=9.5)
+    axes[1].set_xlim(-0.025, 0.78)
+    axes[1].set_xlabel(
+        r"Margin $\min(H_{\mathrm{HCSE}},H_{\mathrm{BBM}})-H_{\mathrm{NEST}}$"
+        r" (bits; positive favors NEST)",
+        fontsize=7.2,
+    )
+    axes[1].set_title("(b) Per-graph margins (100 per regime)",
+                      loc="left", fontsize=9.5)
+    axes[1].scatter([], [], s=14, color=COLORS["blue"], alpha=0.55,
+                    linewidths=0, label="one graph")
+    axes[1].plot([], [], color=COLORS["red"], marker="D", markersize=5,
+                 markeredgecolor="white", markeredgewidth=0.7,
+                 linewidth=1.2, label=r"mean $\pm$ 95% CI")
+    axes[1].legend(
+        frameon=True, facecolor="white", framealpha=0.8,
+        edgecolor="lightgrey", labelcolor="dimgrey", fontsize=6.6,
+        loc="lower left", ncol=1, handletextpad=0.4, columnspacing=0.8,
+    )
     style_axis(axes[1])
 
     fig.suptitle("NEST improves over the stronger external SE baseline on 500/500 graphs",
                  fontsize=11.2, y=0.985)
+    sns.despine(fig=fig, left=True, bottom=True)
     fig.tight_layout(rect=[0, 0.02, 1, 0.93], w_pad=1.3)
     output_dir.mkdir(parents=True, exist_ok=True)
     fig.savefig(output_dir / "benchmark_entropy.pdf", dpi=300, bbox_inches="tight")
@@ -273,6 +319,7 @@ def figure_entropy(records, output_dir: Path):
 
 
 def figure_operator(records, output_dir: Path):
+    sns.set_theme(font_scale=1.0, style="whitegrid", font="DejaVu Sans")
     methods = ["SE-agglomerative", "Paris", "HCSE", "BBM"]
     display = ["SE-agglom.", "Paris", "HCSE", "BBM†"]
     one = []
@@ -281,27 +328,51 @@ def figure_operator(records, output_dir: Path):
         rows = [row for row in records if row["method"] == method]
         one.append(100 * np.mean([row["nni1_gain"] > 1e-10 for row in rows]))
         two.append(100 * np.mean([row["nni2_extra_gain"] > 1e-10 for row in rows]))
-    fig, axes = plt.subplots(1, 2, figsize=(7.2, 3.55), gridspec_kw={"width_ratios": [1.0, 1.15]})
+    fig, axes = plt.subplots(
+        1, 2, figsize=(7.2, 3.50),
+        gridspec_kw={"width_ratios": [1.0, 1.18]},
+    )
     y = np.arange(len(methods))
     height = 0.31
-    axes[0].barh(y - height/2, one, height, color=COLORS["blue"], label="one-step NNI")
-    axes[0].barh(y + height/2, two, height, color=COLORS["orange"], label="compound")
+    axes[0].barh(
+        y - height/2, one, height, color=COLORS["blue"],
+        label="one-NNI descent",
+    )
+    axes[0].barh(
+        y + height/2, two, height, color=COLORS["orange"],
+        label="two-move escape",
+    )
+    for yi, value in zip(y - height/2, one):
+        axes[0].text(
+            value + 1.8, yi, f"{value:.0f}%", va="center", fontsize=6.8,
+            color="dimgrey",
+        )
+    for yi, value in zip(y + height/2, two):
+        axes[0].text(
+            value + 1.8, yi, f"{value:.0f}%", va="center", fontsize=6.8,
+            color="dimgrey",
+        )
     axes[0].set_yticks(y, display)
     axes[0].invert_yaxis()
-    axes[0].set_xlim(0, 105)
-    axes[0].set_xlabel("Graphs improved (%)", fontsize=8)
-    axes[0].set_title("(a) Improvement frequency", loc="left", fontsize=9.5,
+    axes[0].set_xlim(0, 113)
+    axes[0].set_xlabel("Graphs improved by this stage (%)", fontsize=8)
+    axes[0].set_title("(a) How often each refinement stage helps",
+                      loc="left", fontsize=9.5,
                       pad=25)
-    axes[0].legend(frameon=False, fontsize=6.9, loc="lower center",
+    axes[0].legend(frameon=True, facecolor="white", framealpha=0.8,
+                   edgecolor="lightgrey", labelcolor="dimgrey",
+                   fontsize=6.6, loc="lower center",
                    bbox_to_anchor=(0.5, 1.02), ncol=2, columnspacing=1.0,
                    handlelength=1.4)
     style_axis(axes[0])
+    axes[0].grid(False)
+    axes[0].axvline(0, color="lightgrey", linewidth=0.8, zorder=0)
 
     frontier = methods + ["Louvain-2L", "SE-NNI-fast"]
     by = index_records(records)
     label_offsets = {
         "SE-agglomerative": (5, -11),
-        "Louvain-2L": (-36, 5),
+        "Louvain-2L": (-36, -14),
         "Paris": (5, 4),
         "HCSE": (-4, 8),
         "BBM": (6, -12),
@@ -325,11 +396,31 @@ def figure_operator(records, output_dir: Path):
                          xytext=label_offsets[method], textcoords="offset points",
                          fontsize=7.3, color=COLORS["grey"])
     axes[1].set_xscale("log")
-    axes[1].set_xlabel("Constructor time (s, log scale)", fontsize=8)
-    axes[1].set_ylabel("Mean entropy regret (%)", fontsize=8)
-    axes[1].set_title("(b) Objective-runtime frontier", loc="left", fontsize=9.5)
+    axes[1].axhline(0, color="#7c848c", linewidth=0.8,
+                    linestyle="--", zorder=1)
+    axes[1].set_ylim(-2, 42.5)
+    axes[1].set_xlabel("Mean initial-tree construction time (s, log scale)",
+                       fontsize=7.5)
+    axes[1].set_ylabel(
+        "Mean excess entropy\nabove per-graph best (%)", fontsize=7.5,
+    )
+    axes[1].set_title(
+        "(b) Quality-time trade-off (lower-left is better)",
+        loc="left", fontsize=9.0,
+    )
+    axes[1].text(
+        0.97, 0.94, "0% = lowest entropy on every graph",
+        transform=axes[1].transAxes, ha="right", va="top",
+        fontsize=6.6, color="dimgrey",
+    )
     style_axis(axes[1])
-    fig.suptitle("Exact NNI exposes residual optimization gaps", fontsize=11.2, y=0.985)
+    axes[1].patch.set_edgecolor("lightgrey")
+    axes[1].patch.set_linewidth(0.8)
+    fig.suptitle(
+        "What NNI refinement changes, and what initial constructors leave behind",
+        fontsize=11.0, y=0.985,
+    )
+    sns.despine(fig=fig, left=True, bottom=True)
     fig.tight_layout(rect=[0, 0.02, 1, 0.93], w_pad=1.4)
     output_dir.mkdir(parents=True, exist_ok=True)
     fig.savefig(output_dir / "operator_runtime.pdf", dpi=300, bbox_inches="tight")
