@@ -496,6 +496,83 @@ def _do_graft(root, source_path, target_path):
     return copied
 
 
+def _volume_lca_index(root, deg):
+    """Index parent, depth, leaf objects, and degree volumes for LCA queries."""
+    parent = {}
+    depth = {}
+    leaves = {}
+    order = []
+    stack = [(root, None, 0, False)]
+    while stack:
+        node, par, level, expanded = stack.pop()
+        if expanded:
+            order.append(node)
+            continue
+        parent[id(node)] = par
+        depth[id(node)] = level
+        stack.append((node, par, level, True))
+        if node.is_leaf():
+            leaves[node.vertex] = node
+        else:
+            for child in node.children:
+                stack.append((child, node, level + 1, False))
+    volume = {}
+    for node in order:
+        volume[id(node)] = (
+            deg[node.vertex] if node.is_leaf()
+            else sum(volume[id(child)] for child in node.children)
+        )
+
+    def lca(left_vertex, right_vertex):
+        left = leaves[left_vertex]
+        right = leaves[right_vertex]
+        while depth[id(left)] > depth[id(right)]:
+            left = parent[id(left)]
+        while depth[id(right)] > depth[id(left)]:
+            right = parent[id(right)]
+        while left is not right:
+            left = parent[id(left)]
+            right = parent[id(right)]
+        return left
+
+    return leaves, volume, lca
+
+
+def graft_delta(root, source_path, target_path, adj, deg, vol):
+    """Exact structural-entropy change of a legal rooted subtree graft.
+
+    From the edge--LCA expansion, degree-only terms cancel and every undirected
+    edge contributes ``(2w/vol) log2(V_new_lca/V_old_lca)``.  Contributions
+    vanish automatically when the LCA module and its volume are unchanged.
+    The nonzero terms are precisely those assigned to modules changed on the
+    graft's removal and insertion paths.  This correctness-oriented version
+    scans all sparse edges; a path-cached implementation can later visit only
+    the affected LCA buckets.  It does not recompute module cuts or the full
+    tree objective.
+    """
+    candidate = _do_graft(root, source_path, target_path)
+    if candidate is None:
+        return None
+    _, old_volume, old_lca = _volume_lca_index(root, deg)
+    _, new_volume, new_lca = _volume_lca_index(candidate, deg)
+
+    delta = 0.0
+    for left in range(len(adj)):
+        for right, weight in adj[left].items():
+            if right <= left or weight == 0.0:
+                continue
+            old_node = old_lca(left, right)
+            new_node = new_lca(left, right)
+            old_lca_volume = old_volume[id(old_node)]
+            new_lca_volume = new_volume[id(new_node)]
+            if old_lca_volume <= 0.0 or new_lca_volume <= 0.0:
+                raise ValueError("graft delta requires positive LCA volumes")
+            delta += (2.0 * weight / vol) * math.log2(
+                new_lca_volume / old_lca_volume
+            )
+    return delta
+
+
 def refine_graft(root, deg, adj, vol, max_rounds=100, tol=1e-10,
                  post_nni=True, return_trace=False):
     """Best-improvement full-rescore subtree-graft refinement.

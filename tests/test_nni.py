@@ -10,6 +10,7 @@ from selib.htree import (
     _graph_arrays,
     _nni_candidates,
     annotate,
+    graft_delta,
     hd_se,
     nni_delta,
     random_coalescent_tree,
@@ -246,3 +247,25 @@ def test_full_rescore_graft_refinement_is_monotone_and_graft_local():
         assert candidate is not None
         annotate(candidate, deg, adj, vol)
         assert hd_se(candidate, vol) >= after - 1e-10
+
+
+def test_weighted_graft_delta_matches_full_entropy_recomputation():
+    checked = 0
+    for seed in range(8):
+        n = 5 + seed % 4
+        graph = _random_weighted_graph(n, 500 + seed)
+        root = _random_binary_tree(n, 700 + seed)
+        _, _, _, adj, deg, vol = _graph_arrays(graph)
+        annotate(root, deg, adj, vol)
+        before = hd_se(root, vol)
+        for source_path, target_path in _graft_candidates(root):
+            predicted = graft_delta(
+                root, source_path, target_path, adj, deg, vol
+            )
+            candidate = _do_graft(root, source_path, target_path)
+            assert predicted is not None and candidate is not None
+            annotate(candidate, deg, adj, vol)
+            observed = hd_se(candidate, vol) - before
+            assert abs(predicted - observed) < 1e-9
+            checked += 1
+    assert checked >= 500

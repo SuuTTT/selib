@@ -14,6 +14,15 @@ and nonlocal graft neighborhoods.
 
 **Primary tracking issue:** #6
 
+**Current implementation status (2026-08-11):** the correctness-first rooted
+subtree graft and an independent edge--LCA delta evaluator are implemented on
+`codex/nest-entropy-grafting`. Across 1,680 legal random weighted-tree moves,
+the predicted delta agrees with full objective recomputation to at most
+`1.41e-15` bits. Applying exhaustive graft refinement to every one of the 32
+frozen coalescent candidates closes all five previously reported exact-optimum
+misses at `n=12,14,16`. This is a diagnostic result on preidentified failures,
+not the final matched-neighborhood evaluation.
+
 ## TL;DR
 
 The TAMC paper proves an exact structural-entropy change formula for rooted NNI,
@@ -254,6 +263,11 @@ Use issue #5's five residual misses as diagnostics, not as the final test set.
 Recover optimal and returned trees, objective decompositions, shortest feasible
 NNI paths, barrier heights, and best grafts. Freeze the resulting hypothesis
 before generating new evaluation instances.
+
+The first diagnostic gate has passed: the recorded NEST endpoints were
+reconstructed exactly and NNI-plus-graft reaches the exact optimum on all five
+cases. The next gate is to freeze the richer method and test it on a new sealed
+suite, so these five cases cannot serve as confirmatory evidence.
 
 ### 6.2 Matched-neighborhood study
 
