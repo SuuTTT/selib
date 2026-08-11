@@ -1,0 +1,385 @@
+{
+  "counterexamples": [
+    {
+      "balanced_minus_unconstrained_bits": 0.029764769247525358,
+      "balanced_optimal_entropy_bits": 2.6552614282206948,
+      "has_balanced_global_optimum": false,
+      "n": 10,
+      "name": "prism-5",
+      "optimal_cut_weights": [
+        4.0
+      ],
+      "optimal_entropy_bits": 2.6254966589731694,
+      "optimal_smaller_side_sizes": [
+        4
+      ],
+      "partitions": 511
+    },
+    {
+      "balanced_minus_unconstrained_bits": 0.029764769247525358,
+      "balanced_optimal_entropy_bits": 2.6552614282206948,
+      "has_balanced_global_optimum": false,
+      "n": 10,
+      "name": "mobius-ladder-10",
+      "optimal_cut_weights": [
+        4.0
+      ],
+      "optimal_entropy_bits": 2.6254966589731694,
+      "optimal_smaller_side_sizes": [
+        4
+      ],
+      "partitions": 511
+    }
+  ],
+  "graphs": 23,
+  "graphs_without_balanced_global_optimum": 2,
+  "partitions": 13697,
+  "protocol": "unconstrained-two-module-se-balance-check-v1",
+  "records": [
+    {
+      "balanced_minus_unconstrained_bits": 0.0,
+      "balanced_optimal_entropy_bits": 1.5,
+      "has_balanced_global_optimum": true,
+      "n": 4,
+      "name": "cycle-4",
+      "optimal_cut_weights": [
+        2.0
+      ],
+      "optimal_entropy_bits": 1.5,
+      "optimal_smaller_side_sizes": [
+        2
+      ],
+      "partitions": 7
+    },
+    {
+      "balanced_minus_unconstrained_bits": 0.0,
+      "balanced_optimal_entropy_bits": 1.9182958340544898,
+      "has_balanced_global_optimum": true,
+      "n": 6,
+      "name": "cycle-6",
+      "optimal_cut_weights": [
+        2.0
+      ],
+      "optimal_entropy_bits": 1.9182958340544898,
+      "optimal_smaller_side_sizes": [
+        3
+      ],
+      "partitions": 31
+    },
+    {
+      "balanced_minus_unconstrained_bits": 0.0,
+      "balanced_optimal_entropy_bits": 2.25,
+      "has_balanced_global_optimum": true,
+      "n": 8,
+      "name": "cycle-8",
+      "optimal_cut_weights": [
+        2.0
+      ],
+      "optimal_entropy_bits": 2.25,
+      "optimal_smaller_side_sizes": [
+        4
+      ],
+      "partitions": 127
+    },
+    {
+      "balanced_minus_unconstrained_bits": 0.0,
+      "balanced_optimal_entropy_bits": 2.521928094887362,
+      "has_balanced_global_optimum": true,
+      "n": 10,
+      "name": "cycle-10",
+      "optimal_cut_weights": [
+        2.0
+      ],
+      "optimal_entropy_bits": 2.521928094887362,
+      "optimal_smaller_side_sizes": [
+        5
+      ],
+      "partitions": 511
+    },
+    {
+      "balanced_minus_unconstrained_bits": 0.0,
+      "balanced_optimal_entropy_bits": 2.751629167387823,
+      "has_balanced_global_optimum": true,
+      "n": 12,
+      "name": "cycle-12",
+      "optimal_cut_weights": [
+        2.0
+      ],
+      "optimal_entropy_bits": 2.751629167387823,
+      "optimal_smaller_side_sizes": [
+        6
+      ],
+      "partitions": 2047
+    },
+    {
+      "balanced_minus_unconstrained_bits": 0.0,
+      "balanced_optimal_entropy_bits": 1.6666666666666665,
+      "has_balanced_global_optimum": true,
+      "n": 4,
+      "name": "complete-4",
+      "optimal_cut_weights": [
+        4.0
+      ],
+      "optimal_entropy_bits": 1.6666666666666665,
+      "optimal_smaller_side_sizes": [
+        2
+      ],
+      "partitions": 7
+    },
+    {
+      "balanced_minus_unconstrained_bits": 0.0,
+      "balanced_optimal_entropy_bits": 2.184962500721156,
+      "has_balanced_global_optimum": true,
+      "n": 6,
+      "name": "complete-6",
+      "optimal_cut_weights": [
+        9.0
+      ],
+      "optimal_entropy_bits": 2.184962500721156,
+      "optimal_smaller_side_sizes": [
+        3
+      ],
+      "partitions": 31
+    },
+    {
+      "balanced_minus_unconstrained_bits": 0.0,
+      "balanced_optimal_entropy_bits": 2.571428571428571,
+      "has_balanced_global_optimum": true,
+      "n": 8,
+      "name": "complete-8",
+      "optimal_cut_weights": [
+        16.0
+      ],
+      "optimal_entropy_bits": 2.571428571428571,
+      "optimal_smaller_side_sizes": [
+        4
+      ],
+      "partitions": 127
+    },
+    {
+      "balanced_minus_unconstrained_bits": 0.0,
+      "balanced_optimal_entropy_bits": 1.5,
+      "has_balanced_global_optimum": true,
+      "n": 4,
+      "name": "complete-bipartite-2-2",
+      "optimal_cut_weights": [
+        2.0
+      ],
+      "optimal_entropy_bits": 1.5,
+      "optimal_smaller_side_sizes": [
+        2
+      ],
+      "partitions": 7
+    },
+    {
+      "balanced_minus_unconstrained_bits": 0.0,
+      "balanced_optimal_entropy_bits": 2.140518056276712,
+      "has_balanced_global_optimum": true,
+      "n": 6,
+      "name": "complete-bipartite-3-3",
+      "optimal_cut_weights": [
+        5.0
+      ],
+      "optimal_entropy_bits": 2.140518056276712,
+      "optimal_smaller_side_sizes": [
+        3
+      ],
+      "partitions": 31
+    },
+    {
+      "balanced_minus_unconstrained_bits": 0.0,
+      "balanced_optimal_entropy_bits": 2.5,
+      "has_balanced_global_optimum": true,
+      "n": 8,
+      "name": "complete-bipartite-4-4",
+      "optimal_cut_weights": [
+        8.0
+      ],
+      "optimal_entropy_bits": 2.5,
+      "optimal_smaller_side_sizes": [
+        4
+      ],
+      "partitions": 127
+    },
+    {
+      "balanced_minus_unconstrained_bits": 0.0,
+      "balanced_optimal_entropy_bits": 2.8419280948873613,
+      "has_balanced_global_optimum": true,
+      "n": 10,
+      "name": "complete-bipartite-5-5",
+      "optimal_cut_weights": [
+        13.0
+      ],
+      "optimal_entropy_bits": 2.8419280948873613,
+      "optimal_smaller_side_sizes": [
+        5
+      ],
+      "partitions": 511
+    },
+    {
+      "balanced_minus_unconstrained_bits": 0.0,
+      "balanced_optimal_entropy_bits": 3.084962500721156,
+      "has_balanced_global_optimum": true,
+      "n": 12,
+      "name": "complete-bipartite-6-6",
+      "optimal_cut_weights": [
+        18.0
+      ],
+      "optimal_entropy_bits": 3.084962500721156,
+      "optimal_smaller_side_sizes": [
+        6
+      ],
+      "partitions": 2047
+    },
+    {
+      "balanced_minus_unconstrained_bits": 0.0,
+      "balanced_optimal_entropy_bits": 1.9182958340544898,
+      "has_balanced_global_optimum": true,
+      "n": 6,
+      "name": "prism-3",
+      "optimal_cut_weights": [
+        3.0
+      ],
+      "optimal_entropy_bits": 1.9182958340544898,
+      "optimal_smaller_side_sizes": [
+        3
+      ],
+      "partitions": 31
+    },
+    {
+      "balanced_minus_unconstrained_bits": 0.0,
+      "balanced_optimal_entropy_bits": 2.333333333333333,
+      "has_balanced_global_optimum": true,
+      "n": 8,
+      "name": "prism-4",
+      "optimal_cut_weights": [
+        4.0
+      ],
+      "optimal_entropy_bits": 2.333333333333333,
+      "optimal_smaller_side_sizes": [
+        4
+      ],
+      "partitions": 127
+    },
+    {
+      "balanced_minus_unconstrained_bits": 0.029764769247525358,
+      "balanced_optimal_entropy_bits": 2.6552614282206948,
+      "has_balanced_global_optimum": false,
+      "n": 10,
+      "name": "prism-5",
+      "optimal_cut_weights": [
+        4.0
+      ],
+      "optimal_entropy_bits": 2.6254966589731694,
+      "optimal_smaller_side_sizes": [
+        4
+      ],
+      "partitions": 511
+    },
+    {
+      "balanced_minus_unconstrained_bits": 0.0,
+      "balanced_optimal_entropy_bits": 2.8071847229433784,
+      "has_balanced_global_optimum": true,
+      "n": 12,
+      "name": "prism-6",
+      "optimal_cut_weights": [
+        4.0
+      ],
+      "optimal_entropy_bits": 2.8071847229433784,
+      "optimal_smaller_side_sizes": [
+        6
+      ],
+      "partitions": 2047
+    },
+    {
+      "balanced_minus_unconstrained_bits": 0.0,
+      "balanced_optimal_entropy_bits": 2.333333333333333,
+      "has_balanced_global_optimum": true,
+      "n": 8,
+      "name": "mobius-ladder-8",
+      "optimal_cut_weights": [
+        4.0
+      ],
+      "optimal_entropy_bits": 2.333333333333333,
+      "optimal_smaller_side_sizes": [
+        4
+      ],
+      "partitions": 127
+    },
+    {
+      "balanced_minus_unconstrained_bits": 0.0,
+      "balanced_optimal_entropy_bits": 2.375,
+      "has_balanced_global_optimum": true,
+      "n": 8,
+      "name": "circulant-1-2-8",
+      "optimal_cut_weights": [
+        6.0
+      ],
+      "optimal_entropy_bits": 2.375,
+      "optimal_smaller_side_sizes": [
+        4
+      ],
+      "partitions": 127
+    },
+    {
+      "balanced_minus_unconstrained_bits": 0.029764769247525358,
+      "balanced_optimal_entropy_bits": 2.6552614282206948,
+      "has_balanced_global_optimum": false,
+      "n": 10,
+      "name": "mobius-ladder-10",
+      "optimal_cut_weights": [
+        4.0
+      ],
+      "optimal_entropy_bits": 2.6254966589731694,
+      "optimal_smaller_side_sizes": [
+        4
+      ],
+      "partitions": 511
+    },
+    {
+      "balanced_minus_unconstrained_bits": 0.0,
+      "balanced_optimal_entropy_bits": 2.6219280948873616,
+      "has_balanced_global_optimum": true,
+      "n": 10,
+      "name": "circulant-1-2-10",
+      "optimal_cut_weights": [
+        6.0
+      ],
+      "optimal_entropy_bits": 2.6219280948873616,
+      "optimal_smaller_side_sizes": [
+        5
+      ],
+      "partitions": 511
+    },
+    {
+      "balanced_minus_unconstrained_bits": 0.0,
+      "balanced_optimal_entropy_bits": 2.8071847229433784,
+      "has_balanced_global_optimum": true,
+      "n": 12,
+      "name": "mobius-ladder-12",
+      "optimal_cut_weights": [
+        4.0
+      ],
+      "optimal_entropy_bits": 2.8071847229433784,
+      "optimal_smaller_side_sizes": [
+        6
+      ],
+      "partitions": 2047
+    },
+    {
+      "balanced_minus_unconstrained_bits": 0.0,
+      "balanced_optimal_entropy_bits": 2.834962500721156,
+      "has_balanced_global_optimum": true,
+      "n": 12,
+      "name": "circulant-1-2-12",
+      "optimal_cut_weights": [
+        6.0
+      ],
+      "optimal_entropy_bits": 2.834962500721156,
+      "optimal_smaller_side_sizes": [
+        6
+      ],
+      "partitions": 2047
+    }
+  ]
+}

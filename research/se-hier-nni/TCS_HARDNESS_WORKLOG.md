@@ -119,3 +119,26 @@ This supports the algebraic identity at floating-point precision. The next
 proof task is to attach it to a precise regular Minimum Bisection hardness
 theorem and then remove the balance restriction with a forcing construction or
 a direct unconstrained reduction.
+
+## 2026-08-11: balance does not disappear automatically
+
+The companion script
+`scripts/search_unbalanced_se_counterexamples.py` enumerated all 13,697
+unordered nontrivial bipartitions of the same 23 regular graphs. It compared
+the best unconstrained exactly-two-module partition with the best balanced
+partition.
+
+Two counterexamples were found:
+
+| Graph | Order | Best side sizes | Best unconstrained SE | Best balanced SE | Gap |
+|---|---:|---:|---:|---:|---:|
+| pentagonal prism | 10 | 4/6 | 2.625496659 | 2.655261428 | 0.029764769 bits |
+| 10-vertex M\"obius ladder | 10 | 4/6 | 2.625496659 | 2.655261428 | 0.029764769 bits |
+
+Thus regularity plus exactly two nonempty modules does not force a bisection.
+The balanced Minimum-Bisection lemma cannot directly establish hardness of
+unconstrained 2D-SE with `K=2`. A valid next reduction must enforce equal
+volumes through a polynomial gadget, or start from a source problem whose
+objective already matches the volume-sensitive SE expression.
+
+Artifact: `results/tcs_unconstrained_two_module_counterexamples.json`.
