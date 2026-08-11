@@ -1,0 +1,130 @@
+\section{Computational verification and empirical audits}
+\label{sec:experiments}
+
+The evaluation is organized by claim dependency. We first check the algebraic
+identity used in the reduction, then validate the new graft operator, next
+examine the five known rotation-only misses, and finally summarize the frozen
+broad and exact benchmarks inherited from the preliminary study. All
+selections use structural entropy only; exact optima are consulted after
+selection.
+
+\subsection{Finite checks of the balanced identity}
+
+An independent implementation enumerated 3,199 unordered balanced partitions
+across 23 regular graphs drawn from cycles, complete graphs, complete
+bipartite graphs, prisms, M\"obius ladders, and circulant families. The direct
+two-dimensional entropy and Eq.~\eqref{eq:balanced-identity} agreed within
+$1.34\times10^{-15}$ bits. Entropy minimizers and minimum bisections agreed on
+every graph. A separate enumeration of 13,697 unrestricted bipartitions found
+the two 10-vertex counterexamples reported in Section~\ref{sec:hardness}. The
+finite check supports the algebra and guards against an invalid removal of the
+balance constraint; Theorem~\ref{thm:balanced-hardness} is established by the
+proof rather than by enumeration.
+
+\subsection{Independent validation of graft deltas}\label{sec:graft-validation}
+
+We generate 20 connected weighted graphs with five to nine vertices and one
+random binary tree per graph. For every legal graft, we compare three values:
+full recomputation of Eq.~\eqref{eq:tree-se-journal}, the edge--LCA delta in
+Eq.~\eqref{eq:graft-lca-delta}, and the changed-incidence delta in
+Eq.~\eqref{eq:graft-path-delta}. Across 1,680 legal moves, both delta evaluators
+match full recomputation to floating-point precision; the largest absolute
+discrepancy is below $1.5\times10^{-15}$ bits. Every candidate preserves a
+rooted binary topology and exactly one copy of every leaf.
+
+Four additional best-improvement runs check end-to-end behavior. Each accepted
+graft strictly reduces the independently rescored objective, and exhaustive
+enumeration at termination finds no improving legal graft among 88--124 final
+candidates. These tests validate the reference implementation and the stated
+neighborhood certificate separately from the method's optimization quality.
+
+\subsection{Repairing the residual exact misses}\label{sec:graft-audit}
+
+The earlier sealed exact audit contained five instances on which 32
+coalescent starts followed by NNI and bounded two-step search missed the exact
+dynamic-programming optimum. We reconstruct the same graphs and restart
+streams, apply exhaustive best-improvement grafting to each returned tree, and
+consult the exact optimum only after selecting the lowest-entropy endpoint.
+Table~\ref{tab:graft-repair} reports the diagnostic result.
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{Diagnostic graft audit on all five known residual misses. ``Improved
+starts'' counts the original 32 rotation-refined starts whose entropy is
+further reduced by grafting. The final gap is measured against the independent
+subset-DP optimum; lower is better.}
+\label{tab:graft-repair}
+\begin{tabular}{rllrrr}
+\toprule
+$n$ & Regime & Seed & NNI gap (bits) & Improved starts & Graft gap \\
+\midrule
+12 & Clean          & 168  & 0.001323 & 31/32 & 0 \\
+14 & Weak hierarchy & 3004 & 0.002440 & 18/32 & 0 \\
+16 & Noisy          & 4001 & 0.005274 & 23/32 & 0 \\
+16 & Noisy          & 4002 & 0.007208 & 28/32 & 0 \\
+16 & Weak hierarchy & 4002 & 0.010305 & 26/32 & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Grafting reaches the exact optimum on all five cases. It improves between 18
+and 31 of the 32 starts per graph, showing that the outcome is not confined to
+one fortuitous restart. These instances were selected precisely because
+rotation-only search missed them; the result therefore demonstrates the
+mechanism and a strict neighborhood advantage on the diagnosed cases. It is
+not used to estimate the frequency of improvement on unseen graphs.
+
+\subsection{Frozen rotation-only benchmark}
+
+The preliminary study contains 100 graphs from each of five 64-vertex
+hierarchical stochastic block-model regimes: clean, noisy, imbalanced,
+weighted, and weak hierarchy. \NEST uses a fixed pool of SE agglomeration,
+recursive SE, and Paris initial trees, refines each by exact NNI and bounded
+two-move search, and returns the lowest independently rescored endpoint.
+HCSE and BBM are external comparators and are not added to the initializer
+pool. Table~\ref{tab:main-h} reproduces the frozen results.
+
+\input{tables/main_entropy}
+
+Across the 500 paired graphs, rotation-only \NEST lowers entropy by
+$\NESTGainVsBestExternal\!\pm\!\NESTGainVsBestExternalCI$ bits relative to the
+better of HCSE and BBM and wins every paired comparison. Figure~\ref{fig:entropy-journal}
+shows the per-instance margins.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{benchmark_entropy.pdf}
+\caption{Rotation-only \NEST against the stronger of HCSE and BBM on each
+graph. A positive margin means that \NEST has lower structural entropy. The
+left panel reports regime means and paired 95\% confidence intervals. In the
+right panel, each blue point is one graph, red diamonds are regime means, and
+horizontal whiskers are their paired 95\% confidence intervals.}
+\label{fig:entropy-journal}
+\end{figure}
+
+\subsection{Frozen exact-optimum audit}
+
+After disjoint calibration fixed 32 candidates per method, the exact audit
+sealed 250 graphs at $n=12$, 100 at $n=14$, and 25 at $n=16$. The exact subset
+dynamic program is used only for evaluation. Table~\ref{tab:exact-scale}
+reports the rotation-only results that produced the five diagnostic cases
+above.
+
+\begingroup
+\setlength{\tabcolsep}{3pt}
+\input{tables/exact_scaling}
+\endgroup
+
+Rotation-only \NEST reaches 370 of 375 exact optima, compared with 2/375 for
+HCSE and 1/375 for label-free BBM under the declared 32-candidate protocol.
+The graft audit closes these five observed \NEST gaps. A disjoint confirmatory
+protocol has been frozen before execution on graph seeds 500--519 in each of
+the five regimes. It keeps the 32-start rotation-only endpoint as a paired
+control, adds exhaustive graft refinement without label-based selection, and
+computes the exact optimum only after both endpoints have been selected. Its
+primary endpoints are the paired exact-hit difference and the paired entropy
+change; runtime and candidate counts are secondary endpoints. Results from
+that protocol will replace this paragraph only after the frozen artifact
+passes integrity checks.

@@ -1,0 +1,42 @@
+\section{Related work}\label{sec:related}
+
+\paragraph{Structural entropy.}
+Structural information was introduced to measure network organization with an
+encoding tree~\cite{li2016}. HCSE and BBM construct structural-entropy
+hierarchies through partitioning, merging, and balancing operations
+\cite{pan2025}. SuperTAD establishes binary sufficiency and develops
+contiguity-aware dynamic programs for chromatin hierarchies
+\cite{zhang2021supertad}. Our work instead studies the complexity of a balanced
+partitioning restriction and exact topology edits in arbitrary weighted graph
+hierarchies. The broader theory and applications are reviewed in
+\cite{su2025survey}.
+
+\paragraph{Graph hierarchical clustering.}
+Paris constructs graph dendrograms through node-pair sampling
+\cite{bonald2018paris}, while Louvain optimizes a flat modularity objective
+\cite{blondel2008}. Dasgupta's hierarchical cost and the Moseley--Wang revenue
+objective have motivated algorithms and approximation analyses
+\cite{dasgupta2016,moseley2017}. Their objectives differ from structural
+entropy, but they share the principle that an edge contribution depends on a
+cluster associated with its endpoints. Section~\ref{sec:discussion} identifies
+edge--LCA objectives as the natural domain for extending our edit calculus.
+
+\paragraph{Tree rearrangement.}
+NNI is a classical local move in phylogenetic tree space, where even the
+distance between two trees is nontrivial~\cite{litrompzhang1996}. Local NNI
+search has also been studied for hierarchical-clustering costs
+~\cite{jowhari2024}. PERCH uses rotations to preserve purity during online
+construction~\cite{kobren2017perch}. GRINCH adds grafting to repair mistakes
+that cannot be corrected by local rotations alone~\cite{monath2019grinch}.
+Our contribution is an objective-specific exact calculus: both NNI and graft
+are scored against weighted graph structural entropy, every accepted endpoint
+is independently verified, and exhaustive termination certifies the declared
+neighborhood.
+
+\paragraph{Exact hierarchy optimization and graph partitioning.}
+Cluster trellises organize exact inference over subset states
+\cite{macaluso2021}; our dynamic program specializes this principle to
+structural entropy. The hardness argument draws on the established complexity
+of graph bisection in regular graphs~\cite{bui1987graph}
+and uses an exact affine identity rather than an approximation between
+objectives.

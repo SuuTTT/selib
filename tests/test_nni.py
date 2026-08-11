@@ -11,6 +11,7 @@ from selib.htree import (
     _nni_candidates,
     annotate,
     graft_delta,
+    graft_delta_path,
     hd_se,
     nni_delta,
     random_coalescent_tree,
@@ -262,10 +263,15 @@ def test_weighted_graft_delta_matches_full_entropy_recomputation():
             predicted = graft_delta(
                 root, source_path, target_path, adj, deg, vol
             )
+            path_predicted = graft_delta_path(
+                root, source_path, target_path, adj, deg, vol
+            )
             candidate = _do_graft(root, source_path, target_path)
-            assert predicted is not None and candidate is not None
+            assert (predicted is not None and path_predicted is not None
+                    and candidate is not None)
             annotate(candidate, deg, adj, vol)
             observed = hd_se(candidate, vol) - before
             assert abs(predicted - observed) < 1e-9
+            assert abs(path_predicted - observed) < 1e-9
             checked += 1
     assert checked >= 500

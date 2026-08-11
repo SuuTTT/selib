@@ -1,0 +1,80 @@
+\section{A hard balanced partitioning core}\label{sec:hardness}
+
+This section isolates a constrained form of structural entropy that is already
+computationally hard. The result also explains why cut quality alone does not
+characterize a general two-dimensional optimum: module volumes enter the
+objective unless they are controlled.
+
+We use the following decision form. An instance consists of a simple cubic
+graph $G=(V,E)$ with even $n=|V|$ and an integer $b$. The question is whether
+there exists $S\subset V$ with $|S|=n/2$ such that the height-two tree induced
+by $\{S,V\setminus S\}$ has entropy at most
+$\log_2(n/2)+b/|E|$. The threshold is represented by the integer pair
+$(n,b)$; no numerical approximation to the logarithm is part of the input.
+
+For a partition $\mathcal P=\{S_1,\ldots,S_K\}$, let $e_i$ be the internal
+edge weight of $S_i$. Directly expanding Eq.~\eqref{eq:tree-se-journal} gives
+\begin{align}
+ H^{\mathcal P}(G)
+ &= -\frac{1}{M}\sum_{u\in V}d_u\log_2\frac{d_u}{V_{S(u)}}
+    -\frac{1}{M}\sum_{i=1}^{K}g_i\log_2\frac{V_i}{M}\notag\\
+ &= C_G+\frac{1}{M}\sum_{i=1}^{K}
+ \left[2e_i\log_2 V_i+g_i\log_2 M\right],
+ \label{eq:partition-form}
+\end{align}
+where $C_G=-M^{-1}\sum_ud_u\log_2d_u$ does not depend on the partition and
+$V_i-g_i=2e_i$.
+
+\begin{lemma}[Balanced regular identity]\label{lem:bisection-identity}
+Let $G$ be a loop-free $d$-regular graph with even order $n$ and
+$m=|E|=dn/2$. For a balanced bipartition $\mathcal P$ with cut size
+$c(\mathcal P)$,
+\begin{equation}
+ H^{\mathcal P}(G)=\log_2\frac{n}{2}+\frac{c(\mathcal P)}{m}.
+ \label{eq:balanced-identity}
+\end{equation}
+Consequently, for two balanced bipartitions $\mathcal P$ and $\mathcal Q$,
+$H^{\mathcal P}(G)-H^{\mathcal Q}(G)=
+[c(\mathcal P)-c(\mathcal Q)]/m$.
+\end{lemma}
+
+\begin{proof}
+Every vertex has degree $d$, both modules have volume $dn/2=M/2$, and both
+module cuts equal $c(\mathcal P)$. The leaf contribution to the height-two
+tree is
+\[
+ -\frac{1}{M}\sum_{u\in V}d\log_2\frac{d}{M/2}
+ =\log_2(n/2).
+\]
+The two module contributions sum to
+$-2c(\mathcal P)M^{-1}\log_2(1/2)=c(\mathcal P)/m$.
+Adding the terms proves Eq.~\eqref{eq:balanced-identity}.
+\end{proof}
+
+\begin{theorem}[Constrained structural-entropy hardness]
+\label{thm:balanced-hardness}
+The decision form of balanced two-module structural entropy is NP-complete on
+simple unweighted cubic graphs. Consequently, computing an optimal balanced
+two-module encoding tree is NP-hard on the same class.
+\end{theorem}
+
+\begin{proof}
+Minimum Bisection is NP-complete on simple cubic graphs
+\cite{bui1987graph}. Map an instance $(G,b)$ identically to the entropy
+decision instance $(G,b)$. The mapping is polynomial and introduces neither
+weights nor auxiliary vertices. By Lemma~\ref{lem:bisection-identity}, a
+balanced partition $\mathcal P$ satisfies
+$H^{\mathcal P}(G)\leq\log_2(n/2)+b/m$ if and only if
+$c(\mathcal P)\leq b$. This proves NP-hardness. A balanced set $S$ is a
+polynomial certificate, and the equivalent integer comparison
+$c(\mathcal P)\leq b$ verifies it in polynomial time; hence the decision
+problem is in NP. An optimizer would decide the problem by comparing its
+returned cut size with $b$, so the optimization form is NP-hard.
+\end{proof}
+
+The balance constraint cannot simply be discarded. On the 10-vertex
+pentagonal prism and M\"obius ladder, exhaustive enumeration finds a $4/6$
+partition with entropy $2.625497$ bits, below the best balanced value
+$2.655261$. Thus regularity and exactly two nonempty modules do not force a
+bisection. This counterexample delineates the theorem's scope and rules out an
+otherwise tempting transfer to unconstrained two-module optimization.

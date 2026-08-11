@@ -1,0 +1,4 @@
+Balanced two-module structural entropy is NP-complete on cubic graphs.
+Exact graft deltas use only changed LCA or cluster-parent terms.
+Rooted NNI is a restricted graft in binary encoding-tree space.
+Certified graft search repairs all five diagnosed NEST optimum misses.

@@ -1,0 +1,46 @@
+\section{Discussion and extensions}\label{sec:discussion}
+
+The results expose a useful division of labor. The balanced-bisection theorem
+shows that a hard cut problem is already present in a restricted
+two-dimensional objective. The edit theorems then provide exact, auditable
+progress within the much larger encoding-tree space. Hardness motivates
+certified approximation by search; local certificates state precisely what
+that search has exhausted.
+
+Grafting enlarges the neighborhood without changing the objective. One NNI is
+a particular graft, while a long-range graft can relocate a subtree across
+several levels in one committed step. On the five diagnosed cases,
+rotation-only search had reached a one-NNI certificate while the larger graft
+neighborhood still contained decreasing moves. The path formula further
+indicates how to scale the operation. Cached module volumes, cuts, and affected
+LCA buckets can replace full candidate reconstruction, and candidates at a
+fixed tree can be scored in parallel on CPU or GPU.
+
+The edge--LCA derivation also suggests a broader objective class. Any objective
+of the form
+\[
+ F_\phi(T;G)=\sum_{uv\in E}w_{uv}\,
+ \phi\!\left(V_{\lca_T(u,v)},d_u,d_v;G\right)
+\]
+admits a graft difference obtained by subtracting the old and new LCA terms.
+Whether that difference has a compact path cache depends on the sufficient
+statistics used by $\phi$. Dasgupta cost and Moseley--Wang revenue are natural
+test cases, but a general theorem should be claimed only after the formulas and
+implementations are verified for non-equivalent objectives.
+
+The present evidence has two boundaries. The hardness theorem concerns a
+balanced height-two restriction, whereas the search algorithm operates over
+unrestricted binary encoding trees. The exact formulas connect these parts
+through one objective but do not turn the constrained hardness result into a
+hardness theorem for unrestricted tree optimization. In addition, the five
+graft repairs are diagnostic cases; the frozen disjoint suite is needed to
+estimate how often the larger neighborhood helps beyond those cases.
+
+Three theoretical questions remain especially important. First, transferring
+Theorem~\ref{thm:balanced-hardness} to unconstrained two-dimensional or
+unrestricted tree structural entropy requires a valid balance-forcing or
+normal-form construction. Second, the number and barrier profile of NNIs
+needed to simulate a graft should be bounded in terms of source--target tree
+distance. Third, restricted graph families may admit polynomial algorithms or
+stronger optimality certificates. These questions define the next stage of
+the journal analysis rather than changing the proved claims above.

@@ -30,6 +30,7 @@ _graph_arrays = HTREE._graph_arrays
 annotate = HTREE.annotate
 hd_se = HTREE.hd_se
 graft_delta = HTREE.graft_delta
+graft_delta_path = HTREE.graft_delta_path
 refine_graft = HTREE.refine_graft
 
 
@@ -70,6 +71,7 @@ def assert_binary_leaf_bijection(root: TNode, n: int) -> None:
 def main() -> None:
     topology_moves = 0
     max_delta_error = 0.0
+    max_path_delta_error = 0.0
     for seed in range(20):
         n = 5 + seed % 5
         root = random_tree(n, 1000 + seed)
@@ -84,14 +86,27 @@ def main() -> None:
             predicted = graft_delta(
                 root, source_path, target_path, adjacency, degrees, volume
             )
+            path_predicted = graft_delta_path(
+                root, source_path, target_path, adjacency, degrees, volume
+            )
             annotate(candidate, degrees, adjacency, volume)
             observed = hd_se(candidate, volume) - before
             max_delta_error = max(max_delta_error, abs(predicted - observed))
+            max_path_delta_error = max(
+                max_path_delta_error, abs(path_predicted - observed)
+            )
             assert abs(predicted - observed) < 1e-9, {
                 "seed": seed,
                 "source_path": source_path,
                 "target_path": target_path,
                 "predicted": predicted,
+                "observed": observed,
+            }
+            assert abs(path_predicted - observed) < 1e-9, {
+                "seed": seed,
+                "source_path": source_path,
+                "target_path": target_path,
+                "path_predicted": path_predicted,
                 "observed": observed,
             }
             topology_moves += 1
@@ -134,6 +149,7 @@ def main() -> None:
 
     print(json.dumps({
         "max_graft_delta_error": max_delta_error,
+        "max_path_graft_delta_error": max_path_delta_error,
         "topology_moves_checked": topology_moves,
         "optimization_cases": optimization_cases,
     }, indent=2, sort_keys=True))

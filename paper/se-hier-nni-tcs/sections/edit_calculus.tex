@@ -1,0 +1,182 @@
+\section{Exact calculus for local and nonlocal tree edits}
+\label{sec:calculus}
+
+\subsection{Rooted nearest-neighbor interchange}
+
+Consider three disjoint subtrees $A,B,C$ inside a local cluster
+$P=A\cup B\cup C$. A rooted NNI replaces $((A,B),C)$ by
+$(A,(B,C))$. Let $X=A\cup B$ and $Y=B\cup C$.
+
+\begin{proposition}[Exact weighted NNI delta]\label{prop:nni-delta-journal}
+For $V_X,V_Y,V_P>0$, the entropy change is
+\begin{equation}
+ \Delta_{\mathrm{NNI}} H^T=
+ \frac{2}{M}\left[
+ W(A,B)\log_2\frac{V_P}{V_X}+
+ W(B,C)\log_2\frac{V_Y}{V_P}
+ \right].
+ \label{eq:nni-delta-journal}
+\end{equation}
+The other rooted alternative follows by exchanging $A$ and $B$.
+\end{proposition}
+
+\begin{proof}
+Only the code lengths involving $A,B,C,X$, and $Y$ change. Substitute
+$g_X=g_A+g_B-2W(A,B)$ and
+$g_Y=g_B+g_C-2W(B,C)$ into
+Eq.~\eqref{eq:tree-se-journal}. The coefficients of $g_A,g_B,g_C$ telescope,
+leaving Eq.~\eqref{eq:nni-delta-journal}.
+\end{proof}
+
+The identity permits exhaustive best-improvement descent: enumerate every
+eligible internal edge, commit the most negative exact delta, and stop when no
+delta is negative. Termination certifies one-NNI local optimality for the
+returned tree.
+
+\subsection{Rooted subtree prune-and-regraft}
+
+A legal graft chooses a non-root source subtree $S$ and a target subtree $Q$
+that is neither an ancestor nor a descendant of $S$. It detaches $S$,
+suppresses the resulting unary parent, and replaces $Q$ by a new binary parent
+with children $S$ and $Q$. Same-parent choices are omitted because they
+recreate the same unordered hierarchy. Figure~\ref{fig:graft} contrasts the
+short-range and long-range edits.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  node distance=5mm and 9mm,
+  every node/.style={font=\small},
+  internal/.style={circle,draw=black!60,fill=black!5,inner sep=1.6pt},
+  block/.style={rounded corners=2pt,draw=black!55,minimum width=8mm,
+                minimum height=5mm},
+  link/.style={draw=black!65,line width=.6pt}
+]
+\node[internal] (r1) at (0,0) {};
+\node[internal] (u1) at (-1,-.9) {};
+\node[internal] (v1) at (1,-.9) {};
+\node[block,fill=orange!18] (s1) at (-1.6,-1.8) {$S$};
+\node[block] (a1) at (-.4,-1.8) {$A$};
+\node[block] (b1) at (.4,-1.8) {$B$};
+\node[block,fill=cyan!15] (q1) at (1.6,-1.8) {$Q$};
+\draw[link] (r1)--(u1) (r1)--(v1) (u1)--(s1) (u1)--(a1)
+            (v1)--(b1) (v1)--(q1);
+\node[font=\scriptsize,below=2mm of a1] {before};
+
+\draw[-{Latex[length=2mm]},red!70!black,line width=.8pt]
+  (2.25,-1.05)--(3.25,-1.05);
+\node[font=\scriptsize\bfseries,text=red!70!black] at (2.75,-.82) {graft};
+
+\node[internal] (r2) at (4.5,0) {};
+\node[block] (a2) at (3.5,-.9) {$A$};
+\node[internal] (v2) at (5.5,-.9) {};
+\node[block] (b2) at (4.8,-1.8) {$B$};
+\node[internal] (z2) at (6.2,-1.8) {};
+\node[block,fill=orange!18] (s2) at (5.7,-2.7) {$S$};
+\node[block,fill=cyan!15] (q2) at (6.7,-2.7) {$Q$};
+\draw[link] (r2)--(a2) (r2)--(v2) (v2)--(b2) (v2)--(z2)
+            (z2)--(s2) (z2)--(q2);
+\node[font=\scriptsize,below=2mm of b2] {after};
+\end{tikzpicture}
+\caption{A graft detaches the source subtree $S$ and inserts it next to target
+$Q$, suppressing the old unary parent. Unlike one NNI, the source and target
+may be separated by several tree levels.}
+\label{fig:graft}
+\end{figure}
+
+\begin{theorem}[Exact edge--LCA graft delta]\label{thm:graft-lca}
+Let $T'$ be obtained from $T$ by a legal graft. Then
+\begin{equation}
+ H^{T'}(G)-H^T(G)=\frac{2}{M}\sum_{uv\in E}w_{uv}
+ \log_2\frac{V_{\lca_{T'}(u,v)}}{V_{\lca_T(u,v)}}.
+ \label{eq:graft-lca-delta}
+\end{equation}
+Every edge whose LCA cluster and LCA volume are unchanged contributes zero.
+\end{theorem}
+
+\begin{proof}
+Apply Eq.~\eqref{eq:edge-lca-journal} to $T'$ and $T$. The factors $d_ud_v$
+depend only on the graph and cancel. Combining the two logarithms yields
+Eq.~\eqref{eq:graft-lca-delta}.
+\end{proof}
+
+The all-edge sum is a correctness-oriented formula. A second exact form makes
+the locality explicit. Let $\mathcal C(T)$ be the non-root clusters of $T$ and
+$p_T(C)$ the parent cluster of $C$. Define
+\[
+ \psi(C,P)=-\frac{g_C}{M}\log_2\frac{V_C}{V_P}.
+\]
+Let $I(T)=\{(C,p_T(C)):C\in\mathcal C(T)\}$ be the set of non-root
+cluster--parent incidences. For a graft from $T$ to $T'$, define
+$\mathcal A_-=I(T)\setminus I(T')$ and
+$\mathcal A_+=I(T')\setminus I(T)$.
+
+\begin{theorem}[Changed-incidence graft formula]\label{thm:graft-path}
+For a legal graft from $T$ to $T'$ ,
+\begin{equation}
+ H^{T'}(G)-H^T(G)=
+ \sum_{(C,P)\in\mathcal A_+}\psi(C,P)
+ -\sum_{(C,P)\in\mathcal A_-}\psi(C,P).
+ \label{eq:graft-path-delta}
+\end{equation}
+Every incidence in $\mathcal A_-\cup\mathcal A_+$ lies on the source-removal
+path, the target-insertion path, or at the new parent of $S$ and $Q$.
+\end{theorem}
+
+\begin{proof}
+Write Eq.~\eqref{eq:tree-se-journal} as the sum of $\psi(C,p_T(C))$ over
+$C\in\mathcal C(T)$. Detaching $S$ changes only ancestors between the old
+parent of $S$ and the first common ancestor of the source and target paths;
+inserting $S$ changes only the corresponding target ancestors and creates the
+parent $S\cup Q$. Every cluster and parent outside these paths has the same
+leaf set before and after the edit, so its incidence belongs to
+$I(T)\cap I(T')$ and cancels. The noncancelling old and new terms are exactly
+$\mathcal A_-$ and $\mathcal A_+$, which proves both the identity and the path
+support statement.
+\end{proof}
+
+The theorem is stronger than a cut-edge-only shortcut. When $S$ is inserted,
+ancestor clusters on the target path gain its volume; when $S$ is removed,
+clusters on the source path lose it. Therefore an edge with neither endpoint
+in $S$ can still change contribution when its LCA lies on an affected path.
+
+\subsection{Relation between the neighborhoods}
+
+\begin{proposition}[NNI is a restricted graft]\label{prop:nni-is-graft}
+Every rooted NNI neighbor of a binary tree is also a legal rooted graft
+neighbor.
+\end{proposition}
+
+\begin{proof}
+For $((A,B),C)\rightarrow(A,(B,C))$, detach $C$ and graft it next to $B$.
+Suppressing the old parent exposes $(A,B)$, and inserting the new parent of
+$B,C$ produces $(A,(B,C))$. Grafting $C$ next to $A$ gives the symmetric NNI
+alternative.
+\end{proof}
+
+\begin{corollary}\label{cor:graft-cert}
+A tree with no improving legal graft has no improving rooted NNI.
+\end{corollary}
+
+The converse fails on the audited instances in Section~\ref{sec:graft-audit}:
+trees certified against one-step NNI admit an improving graft. Grafting thus
+tests a strictly richer neighborhood on those instances rather than merely
+rescoring the same rotations.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Relation between the two exact edit neighborhoods. Tree distance is
+the maximum source relocation accomplished by one move. A certificate means
+that all legal candidates in the stated neighborhood have nonnegative exact
+entropy change.}
+\label{tab:neighborhoods}
+\begin{tabularx}{\textwidth}{@{}lccX@{}}
+\toprule
+Edit & Candidates & Range & Exhaustive stopping certificate \\
+\midrule
+Rooted NNI & $O(n)$ & one edge & one-NNI local optimum \\
+Rooted graft & $O(n^2)$ & any legal path & graft-local optimum (and therefore one-NNI local) \\
+\bottomrule
+\end{tabularx}
+\end{table}

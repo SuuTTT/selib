@@ -1,0 +1,63 @@
+\section{Introduction}\label{sec:introduction}
+
+Many networks have meaningful organization at several resolutions. Vertices
+form local groups, related groups form larger modules, and the desired output
+is therefore a hierarchy rather than a flat partition. Structural entropy
+expresses this organization as the description length of an encoding
+tree~\cite{li2016}. The objective has motivated hierarchy construction in
+graph clustering~\cite{pan2025}, chromatin-domain detection
+~\cite{zhang2021supertad}, and a growing range of graph-learning
+applications~\cite{su2025survey}.
+
+Optimizing the tree objective raises two different questions. The first is
+global: which restricted forms of structural-entropy minimization already
+contain a hard combinatorial problem? The second is geometric: once a tree has
+been constructed, which topology edits can expose an improvement and which
+certificate is obtained when search terminates? These questions are linked by
+the objective but require different tools. A complexity reduction identifies
+the hard partitioning core; an edit identity explains the local search space.
+
+A preliminary conference manuscript addressed the second question with
+rooted nearest-neighbor interchange (NNI). Its method, \NEST, derived an exact
+NNI entropy change, refined several initial trees, crossed selected two-move
+barriers, and compared the returned trees with exact optima on small graphs.
+NNI modifies one internal edge and is consequently inexpensive and easy to
+certify. Its locality is also a limitation: moving a subtree across several
+levels may require a sequence of rotations whose intermediate trees increase
+the objective and are rejected by monotone descent.
+
+This article develops both questions beyond rotation-only search. For
+complexity, we isolate balanced two-module structural entropy and prove an
+exact equivalence with Minimum Bisection on regular graphs. For tree search,
+we add subtree prune-and-regraft, which relocates an entire subtree in one
+operation. The edge--LCA expansion gives an exact graft change, while a second
+derivation cancels every unchanged cluster--parent incidence. The two formulas
+support independent implementation checks and identify precisely where a
+graft can alter the objective.
+
+Our contributions are as follows.
+\begin{itemize}
+  \item We prove that the decision and optimization forms of balanced
+  two-module structural entropy are NP-hard on simple unweighted cubic graphs
+  through the identity
+  $H^{\mathcal P}(G)=\log_2(n/2)+c(\mathcal P)/|E|$.
+  \item We give exact formulas for weighted NNI and rooted subtree grafting,
+  including a path-supported cancellation theorem and the inclusion of the
+  NNI neighborhood in the graft neighborhood.
+  \item We introduce \GNEST, an exact best-improvement NNI--graft refiner.
+  Exhaustive termination returns a checkable certificate for the declared
+  graft neighborhood and, by inclusion, for the NNI neighborhood.
+  \item We validate two independent graft-delta calculations against full
+  recomputation on 1,680 moves and show, in a diagnostic exact audit, that
+  graft search repairs all five residual failures of rotation-only \NEST.
+  \item We retain the preliminary study's frozen 500-graph constructor study
+  and 375-graph exact audit as the reference rotation-only evaluation, thereby
+  separating inherited evidence from the new graft experiments.
+\end{itemize}
+
+The remainder of the article defines the problem family
+(Section~\ref{sec:preliminaries}), proves the constrained hardness result
+(Section~\ref{sec:hardness}), develops the edit calculus
+(Section~\ref{sec:calculus}), gives the certified algorithm
+(Section~\ref{sec:algorithm}), and reports reproducible audits
+(Section~\ref{sec:experiments}).

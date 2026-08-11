@@ -1,0 +1,54 @@
+\section{Additional derivations and audit details}\label{app:details}
+
+\subsection{Derivation of the partition form}
+
+For a height-two partition, split Eq.~\eqref{eq:tree-se-journal} into leaf and
+module terms:
+\[
+H^{\mathcal P}(G)=
+-\frac{1}{M}\sum_ud_u\log_2\frac{d_u}{V_{S(u)}}
+-\frac{1}{M}\sum_i g_i\log_2\frac{V_i}{M}.
+\]
+Expanding the logarithms and collecting the graph-only term gives
+\[
+C_G+\frac{1}{M}\sum_i[(V_i-g_i)\log_2V_i+g_i\log_2M].
+\]
+Because $V_i=2e_i+g_i$ in an undirected graph, this is
+Eq.~\eqref{eq:partition-form}.
+
+\subsection{Derivation of the edge--LCA expansion}
+
+For one edge $uv$, its weight appears in the cut $g_{S_a}$ precisely when
+$S_a$ contains one endpoint but not the other. Along the $u$ side, the
+corresponding logarithms telescope from $d_u$ to
+$V_{\lca_T(u,v)}$; the $v$ side telescopes analogously. Hence the contribution
+of $uv$ is
+\[
+\frac{w_{uv}}{M}\left[
+\log_2\frac{V_{\lca_T(u,v)}}{d_u}+
+\log_2\frac{V_{\lca_T(u,v)}}{d_v}\right],
+\]
+which equals its term in Eq.~\eqref{eq:edge-lca-journal}.
+
+\subsection{Why a source-cut shortcut is insufficient}
+
+It is tempting to evaluate a graft using only edges crossing the relocated
+subtree $S$. This is incorrect. An ancestor on the insertion path gains the
+volume of $S$, while an ancestor on the removal path loses it. An edge with
+both endpoints outside $S$ may have one of these ancestors as its old or new
+LCA, and its logarithmic contribution can therefore change. The deterministic
+validator contains a counterexample in which the cut-only shortcut predicts
+$-0.119611$ bits while full recomputation gives $+0.106521$ bits. The
+edge--LCA and changed-incidence formulas both return the latter value.
+
+\subsection{Exact-audit protocol for the five repaired cases}
+
+The five graphs are identified by the frozen $n=12,14,16$ manifests. For each
+graph, the diagnostic script reconstructs the original 32 pairwise-coalescent
+starts, runs the same NNI and bounded two-step refinement, and verifies the
+recorded pre-graft minimum. It then applies exhaustive best-improvement graft
+refinement with NNI descent after every accepted graft. Candidate selection is
+based only on structural entropy. The exact dynamic-programming value is
+queried after selecting the best of the 32 endpoints. The per-restart traces,
+accepted graft counts, elapsed times, and before/after objectives are stored in
+the accompanying JSON artifact.

@@ -1,0 +1,25 @@
+\begin{table}[H]
+\centering\small
+\caption{Sealed exact-optimum audit on independently generated HSBMs with $n$
+vertices and 32 candidates per method: coalescent starts for \NEST, target
+heights for HCSE, and label-free cluster counts for BBM. Exact columns report
+optimum hits over the listed graphs. The \NEST interval is an exact 95\% Clopper--Pearson
+interval for its hit rate. Its relative gap is
+$100(H^T_{\mathrm{NEST}}-H^*)/H^*$, reported as mean/worst; zero is optimal.
+Candidate selection does not use $H^*$.}
+\label{tab:exact-scale}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}rrccccc@{}}
+\toprule
+& & \multicolumn{3}{c}{Exact optima found}
+& \multicolumn{2}{c}{\NEST diagnostics} \\
+\cmidrule(lr){3-5}\cmidrule(lr){6-7}
+$n$ & Graphs & \NEST & HCSE & BBM
+& \shortstack{95\% hit-rate\\interval}
+& \shortstack{Mean / worst\\relative gap} \\
+\midrule
+12 & 250 & \textbf{249/250} & 2/250 & 1/250 & [97.79, 99.99]\% & 0.00032\% / 0.07990\% \\
+14 & 100 & \textbf{99/100} & 0/100 & 0/100 & [94.55, 99.97]\% & 0.00121\% / 0.12060\% \\
+16 & 25 & \textbf{22/25} & 0/25 & 0/25 & [68.78, 97.45]\% & 0.03990\% / 0.44934\% \\
+\bottomrule
+\end{tabular*}
+\end{table}

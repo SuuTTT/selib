@@ -1,0 +1,56 @@
+\section{Structural entropy and problem variants}\label{sec:preliminaries}
+
+Let $G=(V,E,w)$ be an undirected graph with nonnegative edge weights. Write
+$d_u=\sum_v w_{uv}$, $M=\vol(V)=\sum_u d_u$, and
+$W(A,B)=\sum_{u\in A,v\in B}w_{uv}$ for disjoint vertex sets. For
+$S\subseteq V$, let $V_S=\sum_{u\in S}d_u$ and let $g_S$ be the weight of
+edges with exactly one endpoint in $S$.
+
+An encoding tree $T$ has one leaf for every vertex. Each tree node $a$
+represents the cluster $S_a$ of descendant leaves, and $a^{-}$ denotes its
+parent. The structural entropy of $G$ under $T$ is
+\begin{equation}
+ H^T(G)=-\sum_{a\neq r}\frac{g_{S_a}}{M}
+ \log_2\frac{V_{S_a}}{V_{S_{a^-}}}.
+ \label{eq:tree-se-journal}
+\end{equation}
+Lower values indicate shorter graph-dependent descriptions. Zero-volume
+components contribute zero and may be attached after optimizing the
+positive-volume part, so the theory below assumes positive volume whenever a
+logarithm is evaluated.
+
+Two equivalent views will be useful. The node view is
+Eq.~\eqref{eq:tree-se-journal}. In the edge view, every edge is charged at the
+least common ancestor of its endpoints:
+\begin{equation}
+ H^T(G)=\sum_{uv\in E}\frac{w_{uv}}{M}
+ \log_2\frac{V_{\lca_T(u,v)}^2}{d_ud_v}.
+ \label{eq:edge-lca-journal}
+\end{equation}
+The equivalence follows by expanding each cut term and telescoping the code
+lengths along the two leaf-to-LCA paths.
+
+We distinguish three optimization problems.
+\begin{problem}[Tree structural entropy]
+Given $G$, find an encoding tree minimizing Eq.~\eqref{eq:tree-se-journal}.
+\end{problem}
+
+\begin{problem}[Two-dimensional structural entropy]
+Given $G$, find a height-two encoding tree, equivalently a nonempty partition
+$\mathcal P=\{S_1,\ldots,S_K\}$, minimizing structural entropy.
+\end{problem}
+
+\begin{problem}[Balanced two-module structural entropy]
+Given a regular graph of even order, minimize two-dimensional structural
+entropy over partitions $\{S,V\setminus S\}$ satisfying $|S|=|V|/2$.
+\end{problem}
+
+The third problem is a restriction of the second. We state it separately
+because its balance constraint is essential to the reduction in
+Section~\ref{sec:hardness}.
+
+For search, we work with rooted binary trees. Prior work establishes that every
+encoding tree admits a binary refinement of no greater structural entropy
+\cite{zhang2021supertad,pan2025}. Thus a global optimum exists in the binary
+class, although constructors may initially return multiway trees and refine
+them before search.

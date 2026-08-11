@@ -1,5 +1,6 @@
 {
   "max_graft_delta_error": 1.4016565685892601e-15,
+  "max_path_graft_delta_error": 1.3322676295501878e-15,
   "optimization_cases": [
     {
       "accepted_grafts": 2,

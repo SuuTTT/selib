@@ -1,0 +1,80 @@
+\documentclass[preprint,12pt]{elsarticle}
+
+\usepackage{amsmath,amssymb,amsthm,booktabs,graphicx,microtype,url,xspace,float,tabularx}
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit}
+\graphicspath{{figures/}}
+
+\journal{Theoretical Computer Science}
+
+\newcommand{\vol}{\operatorname{vol}}
+\newcommand{\HT}{H^{T}}
+\newcommand{\NEST}{\textsc{Nest}\xspace}
+\newcommand{\GNEST}{\textsc{Nest-G}\xspace}
+\newcommand{\lca}{\operatorname{lca}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{problem}[theorem]{Problem}
+
+\input{tables/result_macros}
+\emergencystretch=3em
+\widowpenalty=10000
+\clubpenalty=10000
+\displaywidowpenalty=10000
+
+\begin{document}
+
+\begin{frontmatter}
+\title{Complexity and Certified Tree-Rearrangement Search for
+Structural-Entropy Hierarchies}
+
+% HUMAN METADATA GATE: replace with the approved author list, affiliations,
+% ORCIDs, and corresponding-author details before journal upload.
+\author{Anonymous Authors}
+\address{Affiliation withheld for review}
+
+\input{sections/abstract}
+
+\begin{keyword}
+structural entropy \sep hierarchical clustering \sep tree search \sep
+nearest-neighbor interchange \sep subtree grafting \sep graph bisection
+\end{keyword}
+\end{frontmatter}
+
+\input{sections/introduction}
+\input{sections/preliminaries}
+\input{sections/hardness}
+\input{sections/edit_calculus}
+\input{sections/algorithm}
+\input{sections/experiments}
+\input{sections/related_work}
+\input{sections/discussion}
+\input{sections/conclusion}
+
+\section*{Data and code availability}
+The implementation, deterministic validators, frozen manifests, and raw
+per-instance records are maintained in the project repository. Each numerical
+claim in this article is generated from a versioned JSON artifact and can be
+recomputed by the accompanying verification scripts. A permanent archival
+identifier will be added to the accepted version.
+
+\section*{Declaration of generative AI and AI-assisted technologies in the
+writing process}
+During manuscript preparation, the authors used OpenAI Codex to assist with
+manuscript organization, language editing, code review, and mechanical
+consistency checks. The authors reviewed and edited all generated material,
+independently checked the proofs, references, code, and numerical results, and
+take full responsibility for the content of the article.
+
+\bibliographystyle{elsarticle-num}
+\bibliography{base_refs,references}
+
+\appendix
+\input{sections/appendix}
+
+\end{document}

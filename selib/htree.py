@@ -573,6 +573,87 @@ def graft_delta(root, source_path, target_path, adj, deg, vol):
     return delta
 
 
+def _cluster_parent_map(root):
+    """Map every descendant leaf set to its parent leaf set (root to ``None``)."""
+    clusters = {}
+
+    def rec(node):
+        if node.is_leaf():
+            vertices = frozenset((node.vertex,))
+        else:
+            vertices = frozenset().union(*(rec(child) for child in node.children))
+        clusters[id(node)] = vertices
+        return vertices
+
+    rec(root)
+    parents = {}
+    stack = [(root, None)]
+    while stack:
+        node, parent = stack.pop()
+        key = clusters[id(node)]
+        parents[key] = None if parent is None else clusters[id(parent)]
+        if not node.is_leaf():
+            stack.extend((child, node) for child in node.children)
+    return parents
+
+
+def graft_delta_path(root, source_path, target_path, adj, deg, vol):
+    """Exact graft delta after canceling unchanged cluster--parent terms.
+
+    A legal graft changes only clusters on its removal and insertion paths,
+    plus the new source--target parent.  Representing a hierarchy by each
+    cluster's leaf set and its parent leaf set lets all other node terms cancel
+    without any LCA queries.  This reference path evaluator recomputes volume
+    and cut only for the surviving changed terms; later caching can replace
+    those set scans without changing the identity.
+    """
+    candidate = _do_graft(root, source_path, target_path)
+    if candidate is None:
+        return None
+    old_parents = _cluster_parent_map(root)
+    new_parents = _cluster_parent_map(candidate)
+    old_changed = {
+        cluster for cluster, parent in old_parents.items()
+        if cluster not in new_parents or new_parents[cluster] != parent
+    }
+    new_changed = {
+        cluster for cluster, parent in new_parents.items()
+        if cluster not in old_parents or old_parents[cluster] != parent
+    }
+    stats = {}
+
+    def volume_cut(cluster):
+        if cluster not in stats:
+            module_volume = sum(deg[vertex] for vertex in cluster)
+            module_cut = sum(
+                weight
+                for vertex in cluster
+                for neighbor, weight in adj[vertex].items()
+                if neighbor not in cluster
+            )
+            stats[cluster] = (module_volume, module_cut)
+        return stats[cluster]
+
+    def contribution(cluster, parent):
+        if parent is None:
+            return 0.0
+        module_volume, module_cut = volume_cut(cluster)
+        parent_volume, _ = volume_cut(parent)
+        if module_volume <= 0.0 or module_cut <= 0.0 or parent_volume <= 0.0:
+            return 0.0
+        return -(module_cut / vol) * math.log2(module_volume / parent_volume)
+
+    old_total = sum(
+        contribution(cluster, old_parents[cluster])
+        for cluster in old_changed
+    )
+    new_total = sum(
+        contribution(cluster, new_parents[cluster])
+        for cluster in new_changed
+    )
+    return new_total - old_total
+
+
 def refine_graft(root, deg, adj, vol, max_rounds=100, tol=1e-10,
                  post_nni=True, return_trace=False):
     """Best-improvement full-rescore subtree-graft refinement.

@@ -1,0 +1,21 @@
+\begin{abstract}
+Structural entropy scores a graph hierarchy by the description length induced
+by its encoding tree. Existing constructors return low-entropy trees, but two
+basic questions remain: which restricted optimization problem is already
+computationally hard, and how can a constructed tree be improved beyond local
+rotations without sacrificing exact scoring? We prove that balanced
+two-module structural-entropy minimization is NP-hard on simple unweighted
+cubic graphs through an exact affine equivalence with Minimum Bisection. We
+then derive exact entropy changes for rooted nearest-neighbor interchange
+(NNI) and subtree prune-and-regraft. The graft change has equivalent edge--LCA
+and changed-incidence forms; these identities show that NNI is a restricted
+graft and yield checkable certificates for the declared neighborhoods. They
+lead to \GNEST, which alternates exact NNI descent with exhaustive
+best-improvement grafting and fully rescores every accepted endpoint. Two
+independent graft evaluators agree with full entropy recomputation on 1,680
+legal weighted-tree moves to within $1.5\times10^{-15}$ bits. On five exact
+diagnostic instances where rotation-only search stopped above the optimum,
+grafting reaches the optimum in every case. Together, the complexity result,
+edit calculus, and certified search connect the global combinatorial obstacle
+to an auditable optimization procedure in encoding-tree space.
+\end{abstract}

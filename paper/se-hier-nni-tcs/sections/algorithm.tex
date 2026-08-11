@@ -1,0 +1,80 @@
+\section{Certified NNI--graft search}\label{sec:algorithm}
+
+\GNEST separates tree construction from topology refinement. It accepts any
+rooted binary initializer, performs exact NNI descent, searches the complete
+legal graft neighborhood, and reruns NNI descent after each accepted graft.
+Every committed endpoint is independently rescored with
+Eq.~\eqref{eq:tree-se-journal}.
+
+\begin{algorithm}[t]
+\caption{Exact certified NNI--graft refinement}\label{alg:graft-nest}
+\KwIn{Graph $G$, binary tree $T$, tolerance $\varepsilon$}
+fully rescore $T$ and set $h\leftarrow H^T(G)$\;
+\Repeat{no accepted graft exists}{
+  repeatedly commit the most negative exact NNI delta until none is below
+  $-\varepsilon$; fully verify every committed tree\;
+  enumerate every legal ordered source--target graft of the current tree\;
+  evaluate each candidate by Eq.~\eqref{eq:graft-lca-delta} or
+  Eq.~\eqref{eq:graft-path-delta}\;
+  \eIf{the best fully rescored graft endpoint is below $h-\varepsilon$}{
+    commit it and update $h$\;
+  }{
+    \textbf{break}\;
+  }
+}
+\Return{$T$, $h$, and the final neighborhood audit}
+\end{algorithm}
+
+\begin{proposition}[Monotonicity and termination]\label{prop:termination}
+Algorithm~\ref{alg:graft-nest} monotonically decreases structural entropy and
+terminates after finitely many accepted moves.
+\end{proposition}
+
+\begin{proof}
+The algorithm commits a move only after its independently recomputed endpoint
+is at least $\varepsilon$ below the current objective. The number of rooted
+binary trees on a fixed labeled leaf set is finite, and strict decrease
+prevents revisiting a tree.
+\end{proof}
+
+\begin{proposition}[Declared-neighborhood certificate]\label{prop:union-cert}
+If Algorithm~\ref{alg:graft-nest} reaches its natural stopping condition, its
+output has neither an improving rooted NNI nor an improving legal graft under
+the stated tolerance.
+\end{proposition}
+
+\begin{proof}
+The final NNI descent exhausts all rooted NNI candidates. The subsequent graft
+sweep exhausts all legal ordered source--target pairs and finds none whose
+verified endpoint improves the objective. Proposition~\ref{prop:nni-is-graft}
+also implies the NNI part of the certificate from exhaustive graft locality,
+but we retain the explicit NNI sweep because its closed-form candidates are
+cheaper to evaluate.
+\end{proof}
+
+For $n$ leaves there are $O(n)$ rooted NNI candidates and $O(n^2)$ ordered
+graft candidates per sweep. A correctness-first graft candidate is rebuilt
+and rescored in $O(n+|E|)$ time, giving
+$O(n^2(n+|E|))$ time for one exhaustive reference sweep. The independent
+changed-incidence evaluator instead recomputes only terms whose
+cluster--parent relation changes. Cached volumes, cuts, and LCA buckets can
+replace both reference scans without changing the identities. Candidate
+grafts are independent at a fixed tree, so a sweep can also be evaluated in
+parallel. The present implementation uses the slower reference path so that
+the certificate does not depend on an unvalidated cache.
+
+For small graphs, the final endpoint is compared with an independent exact
+subset dynamic program. For every nonempty $S\subseteq V$, let $F(S)$ be the
+minimum contribution below a binary node representing $S$. Then
+\begin{equation}
+\begin{split}
+F(\{v\})&=0,\\
+F(S)&=\min_{A\mathbin{\dot\cup}B=S}\left\{F(A)+F(B)
+-\frac{g_A}{M}\log_2\frac{V_A}{V_S}
+-\frac{g_B}{M}\log_2\frac{V_B}{V_S}\right\}.
+\end{split}
+\label{eq:journal-dp}
+\end{equation}
+Enumerating unordered splits gives $O(3^n)$ time and $O(2^n)$ memory. Binary
+sufficiency makes $F(V)$ a global structural-entropy optimum
+\cite{zhang2021supertad,pan2025}.
