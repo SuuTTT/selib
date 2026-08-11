@@ -1,0 +1,1268 @@
+{
+  "cases": [
+    {
+      "best_after_graft_bits": 1.6562989941425017,
+      "elapsed_s": 1.976175332965795,
+      "exact_after_graft": true,
+      "exact_before": false,
+      "gap_after_graft_bits": 0.0,
+      "gap_before_bits": 0.0013233198504352117,
+      "graph_seed": 168,
+      "m": 12,
+      "n": 12,
+      "optimum_bits": 1.656298994142502,
+      "reconstructed_best_before_bits": 1.6576223139929371,
+      "regime": "clean",
+      "restart_seed": 202608100000168,
+      "restarts": [
+        {
+          "accepted_grafts": 3,
+          "after_graft_bits": 1.6562989941425017,
+          "before_bits": 1.700042819379861,
+          "graft_improvement_bits": 0.0437438252373592,
+          "restart": 0
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 1.6562989941425017,
+          "before_bits": 1.65772993692632,
+          "graft_improvement_bits": 0.0014309427838183897,
+          "restart": 1
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 1.6562989941425017,
+          "before_bits": 1.6992448710524126,
+          "graft_improvement_bits": 0.04294587690991092,
+          "restart": 2
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 1.6563349490786372,
+          "before_bits": 1.6577299369263203,
+          "graft_improvement_bits": 0.0013949878476831046,
+          "restart": 3
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 1.6562989941425017,
+          "before_bits": 1.6577299369263203,
+          "graft_improvement_bits": 0.0014309427838186117,
+          "restart": 4
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 1.6562989941425017,
+          "before_bits": 1.6577299369263203,
+          "graft_improvement_bits": 0.0014309427838186117,
+          "restart": 5
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 1.6562989941425017,
+          "before_bits": 1.65772993692632,
+          "graft_improvement_bits": 0.0014309427838183897,
+          "restart": 6
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 1.6992448710524126,
+          "before_bits": 1.7000428193798611,
+          "graft_improvement_bits": 0.0007979483274485055,
+          "restart": 7
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 1.6562989941425017,
+          "before_bits": 1.6577299369263203,
+          "graft_improvement_bits": 0.0014309427838186117,
+          "restart": 8
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 1.6992448710524126,
+          "before_bits": 1.7000428193798611,
+          "graft_improvement_bits": 0.0007979483274485055,
+          "restart": 9
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 1.6992448710524126,
+          "before_bits": 1.7000428193798611,
+          "graft_improvement_bits": 0.0007979483274485055,
+          "restart": 10
+        },
+        {
+          "accepted_grafts": 3,
+          "after_graft_bits": 1.6562989941425017,
+          "before_bits": 1.7000428193798611,
+          "graft_improvement_bits": 0.043743825237359424,
+          "restart": 11
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 1.6992448710524128,
+          "before_bits": 1.7156440867845657,
+          "graft_improvement_bits": 0.01639921573215286,
+          "restart": 12
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 1.6563349490786372,
+          "before_bits": 1.6577299369263203,
+          "graft_improvement_bits": 0.0013949878476831046,
+          "restart": 13
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 1.6562989941425017,
+          "before_bits": 1.6576223139929374,
+          "graft_improvement_bits": 0.0013233198504356558,
+          "restart": 14
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 1.6562989941425017,
+          "before_bits": 1.6576223139929371,
+          "graft_improvement_bits": 0.0013233198504354338,
+          "restart": 15
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 1.6562989941425017,
+          "before_bits": 1.6576223139929371,
+          "graft_improvement_bits": 0.0013233198504354338,
+          "restart": 16
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 1.6992448710524128,
+          "before_bits": 1.715644086784566,
+          "graft_improvement_bits": 0.016399215732153083,
+          "restart": 17
+        },
+        {
+          "accepted_grafts": 3,
+          "after_graft_bits": 1.6562989941425017,
+          "before_bits": 1.700042819379861,
+          "graft_improvement_bits": 0.0437438252373592,
+          "restart": 18
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 1.6562989941425017,
+          "before_bits": 1.65772993692632,
+          "graft_improvement_bits": 0.0014309427838183897,
+          "restart": 19
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 1.6562989941425017,
+          "before_bits": 1.6577299369263203,
+          "graft_improvement_bits": 0.0014309427838186117,
+          "restart": 20
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 1.6992448710524126,
+          "before_bits": 1.7000428193798611,
+          "graft_improvement_bits": 0.0007979483274485055,
+          "restart": 21
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 1.6992448710524126,
+          "before_bits": 1.7000428193798611,
+          "graft_improvement_bits": 0.0007979483274485055,
+          "restart": 22
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 1.6992448710524126,
+          "before_bits": 1.6992448710524126,
+          "graft_improvement_bits": 0.0,
+          "restart": 23
+        },
+        {
+          "accepted_grafts": 3,
+          "after_graft_bits": 1.6562989941425017,
+          "before_bits": 1.700042819379861,
+          "graft_improvement_bits": 0.0437438252373592,
+          "restart": 24
+        },
+        {
+          "accepted_grafts": 3,
+          "after_graft_bits": 1.6562989941425017,
+          "before_bits": 1.700042819379861,
+          "graft_improvement_bits": 0.0437438252373592,
+          "restart": 25
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 1.6992448710524128,
+          "before_bits": 1.7000428193798611,
+          "graft_improvement_bits": 0.0007979483274482835,
+          "restart": 26
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 1.6992448710524126,
+          "before_bits": 1.7000428193798611,
+          "graft_improvement_bits": 0.0007979483274485055,
+          "restart": 27
+        },
+        {
+          "accepted_grafts": 3,
+          "after_graft_bits": 1.6562989941425017,
+          "before_bits": 1.7000428193798611,
+          "graft_improvement_bits": 0.043743825237359424,
+          "restart": 28
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 1.6562989941425017,
+          "before_bits": 1.7150335958053535,
+          "graft_improvement_bits": 0.058734601662851826,
+          "restart": 29
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 1.6562989941425017,
+          "before_bits": 1.7150335958053535,
+          "graft_improvement_bits": 0.058734601662851826,
+          "restart": 30
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 1.6562989941425017,
+          "before_bits": 1.65772993692632,
+          "graft_improvement_bits": 0.0014309427838183897,
+          "restart": 31
+        }
+      ],
+      "restarts_improved_by_graft": 31,
+      "sizes": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ]
+    },
+    {
+      "best_after_graft_bits": 2.023108297936261,
+      "elapsed_s": 2.4516712080221623,
+      "exact_after_graft": true,
+      "exact_before": false,
+      "gap_after_graft_bits": 0.0,
+      "gap_before_bits": 0.0024398398072338345,
+      "graph_seed": 3004,
+      "m": 18,
+      "n": 14,
+      "optimum_bits": 2.023108297936261,
+      "reconstructed_best_before_bits": 2.025548137743495,
+      "regime": "weak-hierarchy",
+      "restart_seed": 202608120403004,
+      "restarts": [
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.0255481377434954,
+          "before_bits": 2.0464665410282445,
+          "graft_improvement_bits": 0.020918403284749143,
+          "restart": 0
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.0331721556642925,
+          "before_bits": 2.045808921831784,
+          "graft_improvement_bits": 0.01263676616749132,
+          "restart": 1
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.0504915829346717,
+          "before_bits": 2.0504915829346717,
+          "graft_improvement_bits": 0.0,
+          "restart": 2
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.054592231056535,
+          "before_bits": 2.0970054424747238,
+          "graft_improvement_bits": 0.042413211418188546,
+          "restart": 3
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.048872341509143,
+          "before_bits": 2.048872341509143,
+          "graft_improvement_bits": 0.0,
+          "restart": 4
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.0331721556642925,
+          "before_bits": 2.0331721556642925,
+          "graft_improvement_bits": 0.0,
+          "restart": 5
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.0545922310565357,
+          "before_bits": 2.0545922310565357,
+          "graft_improvement_bits": 0.0,
+          "restart": 6
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.0331721556642925,
+          "before_bits": 2.045808921831784,
+          "graft_improvement_bits": 0.01263676616749132,
+          "restart": 7
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.023108297936261,
+          "before_bits": 2.0549512910466317,
+          "graft_improvement_bits": 0.03184299311037053,
+          "restart": 8
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.048872341509143,
+          "before_bits": 2.048872341509143,
+          "graft_improvement_bits": 0.0,
+          "restart": 9
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.023108297936261,
+          "before_bits": 2.0549512910466317,
+          "graft_improvement_bits": 0.03184299311037053,
+          "restart": 10
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.0521442131232304,
+          "before_bits": 2.0806584319017007,
+          "graft_improvement_bits": 0.02851421877847038,
+          "restart": 11
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.044644344457027,
+          "before_bits": 2.0549702636409903,
+          "graft_improvement_bits": 0.010325919183963528,
+          "restart": 12
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.0331721556642925,
+          "before_bits": 2.0331721556642925,
+          "graft_improvement_bits": 0.0,
+          "restart": 13
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.048872341509143,
+          "before_bits": 2.048872341509143,
+          "graft_improvement_bits": 0.0,
+          "restart": 14
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.054592231056536,
+          "before_bits": 2.130056203453049,
+          "graft_improvement_bits": 0.0754639723965127,
+          "restart": 15
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.048872341509143,
+          "before_bits": 2.048872341509143,
+          "graft_improvement_bits": 0.0,
+          "restart": 16
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.023108297936261,
+          "before_bits": 2.0549512910466317,
+          "graft_improvement_bits": 0.03184299311037053,
+          "restart": 17
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.044644344457027,
+          "before_bits": 2.044644344457027,
+          "graft_improvement_bits": 0.0,
+          "restart": 18
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.051695696426803,
+          "before_bits": 2.064507525767993,
+          "graft_improvement_bits": 0.012811829341190073,
+          "restart": 19
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.0504915829346717,
+          "before_bits": 2.0504915829346717,
+          "graft_improvement_bits": 0.0,
+          "restart": 20
+        },
+        {
+          "accepted_grafts": 3,
+          "after_graft_bits": 2.0231082979362616,
+          "before_bits": 2.0651046054809936,
+          "graft_improvement_bits": 0.04199630754473205,
+          "restart": 21
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.0521442131232304,
+          "before_bits": 2.0521442131232304,
+          "graft_improvement_bits": 0.0,
+          "restart": 22
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.0516956964268034,
+          "before_bits": 2.0516956964268034,
+          "graft_improvement_bits": 0.0,
+          "restart": 23
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.0255481377434954,
+          "before_bits": 2.044038289742976,
+          "graft_improvement_bits": 0.018490151999480453,
+          "restart": 24
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.0504915829346717,
+          "before_bits": 2.0504915829346717,
+          "graft_improvement_bits": 0.0,
+          "restart": 25
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.0231082979362616,
+          "before_bits": 2.0537451325177054,
+          "graft_improvement_bits": 0.03063683458144384,
+          "restart": 26
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.025548137743495,
+          "before_bits": 2.025548137743495,
+          "graft_improvement_bits": 0.0,
+          "restart": 27
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.051695696426803,
+          "before_bits": 2.065917067094979,
+          "graft_improvement_bits": 0.014221370668176192,
+          "restart": 28
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.031893652197806,
+          "before_bits": 2.065917067094979,
+          "graft_improvement_bits": 0.03402341489717298,
+          "restart": 29
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.025548137743495,
+          "before_bits": 2.046466541028244,
+          "graft_improvement_bits": 0.020918403284749143,
+          "restart": 30
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.0255481377434954,
+          "before_bits": 2.044038289742976,
+          "graft_improvement_bits": 0.018490151999480453,
+          "restart": 31
+        }
+      ],
+      "restarts_improved_by_graft": 18,
+      "sizes": [
+        3,
+        3,
+        2,
+        2,
+        2,
+        2
+      ]
+    },
+    {
+      "best_after_graft_bits": 2.273864438329438,
+      "elapsed_s": 5.435143707960378,
+      "exact_after_graft": true,
+      "exact_before": false,
+      "gap_after_graft_bits": 0.0,
+      "gap_before_bits": 0.005273866865592058,
+      "graph_seed": 4001,
+      "m": 26,
+      "n": 16,
+      "optimum_bits": 2.273864438329438,
+      "reconstructed_best_before_bits": 2.2791383051950302,
+      "regime": "noisy",
+      "restart_seed": 202608130104001,
+      "restarts": [
+        {
+          "accepted_grafts": 3,
+          "after_graft_bits": 2.2794482206027697,
+          "before_bits": 2.357239699710331,
+          "graft_improvement_bits": 0.07779147910756112,
+          "restart": 0
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.273864438329438,
+          "before_bits": 2.3157978298578197,
+          "graft_improvement_bits": 0.04193339152838149,
+          "restart": 1
+        },
+        {
+          "accepted_grafts": 4,
+          "after_graft_bits": 2.3046057730994693,
+          "before_bits": 2.337854247622564,
+          "graft_improvement_bits": 0.03324847452309454,
+          "restart": 2
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.283714264236386,
+          "before_bits": 2.3259009891794418,
+          "graft_improvement_bits": 0.042186724943055864,
+          "restart": 3
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.2794482206027706,
+          "before_bits": 2.286464540715202,
+          "graft_improvement_bits": 0.007016320112431362,
+          "restart": 4
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.2837142642363863,
+          "before_bits": 2.2837142642363863,
+          "graft_improvement_bits": 0.0,
+          "restart": 5
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.2781304819630543,
+          "before_bits": 2.4337201449866126,
+          "graft_improvement_bits": 0.15558966302355826,
+          "restart": 6
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.273864438329438,
+          "before_bits": 2.325040119262529,
+          "graft_improvement_bits": 0.051175680933090995,
+          "restart": 7
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.273864438329438,
+          "before_bits": 2.292402307744136,
+          "graft_improvement_bits": 0.018537869414697816,
+          "restart": 8
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.2791383051950302,
+          "before_bits": 2.2791383051950302,
+          "graft_improvement_bits": 0.0,
+          "restart": 9
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.304605773099469,
+          "before_bits": 2.304605773099469,
+          "graft_improvement_bits": 0.0,
+          "restart": 10
+        },
+        {
+          "accepted_grafts": 3,
+          "after_graft_bits": 2.3046057730994693,
+          "before_bits": 2.414222026686159,
+          "graft_improvement_bits": 0.1096162535866898,
+          "restart": 11
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.3161948548769185,
+          "before_bits": 2.3418537411193023,
+          "graft_improvement_bits": 0.025658886242383883,
+          "restart": 12
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.2791383051950302,
+          "before_bits": 2.2791383051950302,
+          "graft_improvement_bits": 0.0,
+          "restart": 13
+        },
+        {
+          "accepted_grafts": 3,
+          "after_graft_bits": 2.31280406296719,
+          "before_bits": 2.3721699902408795,
+          "graft_improvement_bits": 0.0593659272736895,
+          "restart": 14
+        },
+        {
+          "accepted_grafts": 3,
+          "after_graft_bits": 2.3128040629671904,
+          "before_bits": 2.3404285737003088,
+          "graft_improvement_bits": 0.027624510733118335,
+          "restart": 15
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.27944822060277,
+          "before_bits": 2.27944822060277,
+          "graft_improvement_bits": 0.0,
+          "restart": 16
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.278130481963054,
+          "before_bits": 2.2871432525264375,
+          "graft_improvement_bits": 0.009012770563383565,
+          "restart": 17
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.27913830519503,
+          "before_bits": 2.3260035551832634,
+          "graft_improvement_bits": 0.046865249988233604,
+          "restart": 18
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.2871201372289556,
+          "before_bits": 2.324133293470263,
+          "graft_improvement_bits": 0.03701315624130741,
+          "restart": 19
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.3128040629671904,
+          "before_bits": 2.335755304415679,
+          "graft_improvement_bits": 0.022951241448488702,
+          "restart": 20
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.273864438329438,
+          "before_bits": 2.3054734617012365,
+          "graft_improvement_bits": 0.03160902337179827,
+          "restart": 21
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.3046057730994685,
+          "before_bits": 2.3046057730994685,
+          "graft_improvement_bits": 0.0,
+          "restart": 22
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.2837142642363855,
+          "before_bits": 2.3247568605873625,
+          "graft_improvement_bits": 0.04104259635097707,
+          "restart": 23
+        },
+        {
+          "accepted_grafts": 3,
+          "after_graft_bits": 2.2871201372289556,
+          "before_bits": 2.3259370836561684,
+          "graft_improvement_bits": 0.038816946427212784,
+          "restart": 24
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.3161948548769193,
+          "before_bits": 2.3161948548769193,
+          "graft_improvement_bits": 0.0,
+          "restart": 25
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.292703919502287,
+          "before_bits": 2.292703919502287,
+          "graft_improvement_bits": 0.0,
+          "restart": 26
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.27913830519503,
+          "before_bits": 2.303324485850335,
+          "graft_improvement_bits": 0.0241861806553052,
+          "restart": 27
+        },
+        {
+          "accepted_grafts": 3,
+          "after_graft_bits": 2.2794482206027697,
+          "before_bits": 2.355256992552143,
+          "graft_improvement_bits": 0.07580877194937319,
+          "restart": 28
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.31280406296719,
+          "before_bits": 2.3473485040809106,
+          "graft_improvement_bits": 0.03454444111372057,
+          "restart": 29
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.31280406296719,
+          "before_bits": 2.3268552395660644,
+          "graft_improvement_bits": 0.014051176598874449,
+          "restart": 30
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.3161948548769185,
+          "before_bits": 2.3161948548769185,
+          "graft_improvement_bits": 0.0,
+          "restart": 31
+        }
+      ],
+      "restarts_improved_by_graft": 23,
+      "sizes": [
+        3,
+        3,
+        3,
+        3,
+        2,
+        2
+      ]
+    },
+    {
+      "best_after_graft_bits": 2.2790598389951184,
+      "elapsed_s": 7.111834165989421,
+      "exact_after_graft": true,
+      "exact_before": false,
+      "gap_after_graft_bits": 0.0,
+      "gap_before_bits": 0.007208013240433964,
+      "graph_seed": 4002,
+      "m": 27,
+      "n": 16,
+      "optimum_bits": 2.2790598389951193,
+      "reconstructed_best_before_bits": 2.2862678522355533,
+      "regime": "noisy",
+      "restart_seed": 202608130104002,
+      "restarts": [
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.286267852235554,
+          "before_bits": 2.289881348309686,
+          "graft_improvement_bits": 0.003613496074131639,
+          "restart": 0
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.2887795948506464,
+          "before_bits": 2.2887795948506464,
+          "graft_improvement_bits": 0.0,
+          "restart": 1
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.2862678522355533,
+          "before_bits": 2.2862678522355533,
+          "graft_improvement_bits": 0.0,
+          "restart": 2
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.279059838995119,
+          "before_bits": 2.310102163095397,
+          "graft_improvement_bits": 0.031042324100277963,
+          "restart": 3
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.2887795948506464,
+          "before_bits": 2.3272339980732064,
+          "graft_improvement_bits": 0.038454403222559996,
+          "restart": 4
+        },
+        {
+          "accepted_grafts": 5,
+          "after_graft_bits": 2.2862678522355537,
+          "before_bits": 2.3676544214933974,
+          "graft_improvement_bits": 0.08138656925784371,
+          "restart": 5
+        },
+        {
+          "accepted_grafts": 3,
+          "after_graft_bits": 2.3252006416983435,
+          "before_bits": 2.364315465245836,
+          "graft_improvement_bits": 0.03911482354749252,
+          "restart": 6
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.3245368673280744,
+          "before_bits": 2.352547843650989,
+          "graft_improvement_bits": 0.028010976322914605,
+          "restart": 7
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.2887795948506464,
+          "before_bits": 2.3590748770444803,
+          "graft_improvement_bits": 0.07029528219383385,
+          "restart": 8
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.279059838995119,
+          "before_bits": 2.310102163095397,
+          "graft_improvement_bits": 0.031042324100277963,
+          "restart": 9
+        },
+        {
+          "accepted_grafts": 4,
+          "after_graft_bits": 2.2862678522355533,
+          "before_bits": 2.366138602262361,
+          "graft_improvement_bits": 0.07987075002680788,
+          "restart": 10
+        },
+        {
+          "accepted_grafts": 3,
+          "after_graft_bits": 2.286267852235554,
+          "before_bits": 2.366323812671931,
+          "graft_improvement_bits": 0.08005596043637686,
+          "restart": 11
+        },
+        {
+          "accepted_grafts": 6,
+          "after_graft_bits": 2.2862678522355537,
+          "before_bits": 2.4414455737797987,
+          "graft_improvement_bits": 0.15517772154424492,
+          "restart": 12
+        },
+        {
+          "accepted_grafts": 3,
+          "after_graft_bits": 2.2862678522355537,
+          "before_bits": 2.367334986503537,
+          "graft_improvement_bits": 0.0810671342679834,
+          "restart": 13
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.2887795948506464,
+          "before_bits": 2.3590748770444803,
+          "graft_improvement_bits": 0.07029528219383385,
+          "restart": 14
+        },
+        {
+          "accepted_grafts": 4,
+          "after_graft_bits": 2.2862678522355533,
+          "before_bits": 2.3686737744639847,
+          "graft_improvement_bits": 0.08240592222843146,
+          "restart": 15
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.327217226291765,
+          "before_bits": 2.3504489646983733,
+          "graft_improvement_bits": 0.023231738406608304,
+          "restart": 16
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.3361956321458024,
+          "before_bits": 2.360257751358253,
+          "graft_improvement_bits": 0.024062119212450828,
+          "restart": 17
+        },
+        {
+          "accepted_grafts": 3,
+          "after_graft_bits": 2.286267852235554,
+          "before_bits": 2.3478851746157203,
+          "graft_improvement_bits": 0.06161732238016615,
+          "restart": 18
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.286267852235554,
+          "before_bits": 2.286267852235554,
+          "graft_improvement_bits": 0.0,
+          "restart": 19
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.2887795948506464,
+          "before_bits": 2.2887795948506464,
+          "graft_improvement_bits": 0.0,
+          "restart": 20
+        },
+        {
+          "accepted_grafts": 3,
+          "after_graft_bits": 2.286267852235554,
+          "before_bits": 2.3478851746157203,
+          "graft_improvement_bits": 0.06161732238016615,
+          "restart": 21
+        },
+        {
+          "accepted_grafts": 3,
+          "after_graft_bits": 2.2862678522355533,
+          "before_bits": 2.366072149016231,
+          "graft_improvement_bits": 0.07980429678067757,
+          "restart": 22
+        },
+        {
+          "accepted_grafts": 3,
+          "after_graft_bits": 2.2790598389951184,
+          "before_bits": 2.3319064088577024,
+          "graft_improvement_bits": 0.05284656986258396,
+          "restart": 23
+        },
+        {
+          "accepted_grafts": 4,
+          "after_graft_bits": 2.2862678522355533,
+          "before_bits": 2.3504078763327345,
+          "graft_improvement_bits": 0.06414002409718123,
+          "restart": 24
+        },
+        {
+          "accepted_grafts": 3,
+          "after_graft_bits": 2.279059838995119,
+          "before_bits": 2.341793252879157,
+          "graft_improvement_bits": 0.0627334138840383,
+          "restart": 25
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.3245368673280744,
+          "before_bits": 2.34196434430529,
+          "graft_improvement_bits": 0.017427476977215584,
+          "restart": 26
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.2862678522355537,
+          "before_bits": 2.2979308458649377,
+          "graft_improvement_bits": 0.011662993629383944,
+          "restart": 27
+        },
+        {
+          "accepted_grafts": 3,
+          "after_graft_bits": 2.279059838995119,
+          "before_bits": 2.312106003632331,
+          "graft_improvement_bits": 0.033046164637211994,
+          "restart": 28
+        },
+        {
+          "accepted_grafts": 3,
+          "after_graft_bits": 2.2862678522355533,
+          "before_bits": 2.3482531682788412,
+          "graft_improvement_bits": 0.06198531604328794,
+          "restart": 29
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.279059838995119,
+          "before_bits": 2.294176781167495,
+          "graft_improvement_bits": 0.015116942172376024,
+          "restart": 30
+        },
+        {
+          "accepted_grafts": 3,
+          "after_graft_bits": 2.279059838995119,
+          "before_bits": 2.364545215235446,
+          "graft_improvement_bits": 0.08548537624032715,
+          "restart": 31
+        }
+      ],
+      "restarts_improved_by_graft": 28,
+      "sizes": [
+        3,
+        3,
+        3,
+        3,
+        2,
+        2
+      ]
+    },
+    {
+      "best_after_graft_bits": 2.293390642473512,
+      "elapsed_s": 6.076772874977905,
+      "exact_after_graft": true,
+      "exact_before": false,
+      "gap_after_graft_bits": 0.0,
+      "gap_before_bits": 0.01030507831188654,
+      "graph_seed": 4002,
+      "m": 27,
+      "n": 16,
+      "optimum_bits": 2.293390642473512,
+      "reconstructed_best_before_bits": 2.3036957207853987,
+      "regime": "weak-hierarchy",
+      "restart_seed": 202608130404002,
+      "restarts": [
+        {
+          "accepted_grafts": 6,
+          "after_graft_bits": 2.293390642473512,
+          "before_bits": 2.3726199243141015,
+          "graft_improvement_bits": 0.0792292818405893,
+          "restart": 0
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.354202616198171,
+          "before_bits": 2.360735680459698,
+          "graft_improvement_bits": 0.006533064261526889,
+          "restart": 1
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.3474850779457634,
+          "before_bits": 2.3630618153386256,
+          "graft_improvement_bits": 0.015576737392862139,
+          "restart": 2
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.3716800270379226,
+          "before_bits": 2.3716800270379226,
+          "graft_improvement_bits": 0.0,
+          "restart": 3
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.3502456708635644,
+          "before_bits": 2.3615743199278345,
+          "graft_improvement_bits": 0.011328649064270113,
+          "restart": 4
+        },
+        {
+          "accepted_grafts": 4,
+          "after_graft_bits": 2.2933906424735127,
+          "before_bits": 2.4312889369870905,
+          "graft_improvement_bits": 0.13789829451357782,
+          "restart": 5
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.347485077945763,
+          "before_bits": 2.36643206131565,
+          "graft_improvement_bits": 0.018946983369886983,
+          "restart": 6
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.3502456708635644,
+          "before_bits": 2.3502456708635644,
+          "graft_improvement_bits": 0.0,
+          "restart": 7
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.3443520606212087,
+          "before_bits": 2.3683115443733547,
+          "graft_improvement_bits": 0.02395948375214596,
+          "restart": 8
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.3542026161981715,
+          "before_bits": 2.3607356804596984,
+          "graft_improvement_bits": 0.006533064261526889,
+          "restart": 9
+        },
+        {
+          "accepted_grafts": 5,
+          "after_graft_bits": 2.293390642473513,
+          "before_bits": 2.3804108406867326,
+          "graft_improvement_bits": 0.08702019821321949,
+          "restart": 10
+        },
+        {
+          "accepted_grafts": 3,
+          "after_graft_bits": 2.2933906424735127,
+          "before_bits": 2.358310545791032,
+          "graft_improvement_bits": 0.06491990331751918,
+          "restart": 11
+        },
+        {
+          "accepted_grafts": 3,
+          "after_graft_bits": 2.3476653480700795,
+          "before_bits": 2.3834105751889116,
+          "graft_improvement_bits": 0.0357452271188321,
+          "restart": 12
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.3598757883175354,
+          "before_bits": 2.3598757883175354,
+          "graft_improvement_bits": 0.0,
+          "restart": 13
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.3503558246599465,
+          "before_bits": 2.3594384139354116,
+          "graft_improvement_bits": 0.009082589275465125,
+          "restart": 14
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.3312161250146737,
+          "before_bits": 2.3582781509921475,
+          "graft_improvement_bits": 0.02706202597747387,
+          "restart": 15
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.2933906424735127,
+          "before_bits": 2.3089908190556963,
+          "graft_improvement_bits": 0.0156001765821836,
+          "restart": 16
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.2933906424735127,
+          "before_bits": 2.324049366890872,
+          "graft_improvement_bits": 0.030658724417359284,
+          "restart": 17
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.3529615071620307,
+          "before_bits": 2.3529615071620307,
+          "graft_improvement_bits": 0.0,
+          "restart": 18
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.2933906424735127,
+          "before_bits": 2.3584165032530024,
+          "graft_improvement_bits": 0.0650258607794898,
+          "restart": 19
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.3474850779457634,
+          "before_bits": 2.3474850779457634,
+          "graft_improvement_bits": 0.0,
+          "restart": 20
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.347485077945763,
+          "before_bits": 2.363061815338625,
+          "graft_improvement_bits": 0.015576737392862139,
+          "restart": 21
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.3598757883175363,
+          "before_bits": 2.4415001773645373,
+          "graft_improvement_bits": 0.08162438904700098,
+          "restart": 22
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.2933906424735127,
+          "before_bits": 2.3312958026035178,
+          "graft_improvement_bits": 0.03790516013000511,
+          "restart": 23
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.3588003950621736,
+          "before_bits": 2.3599584439940826,
+          "graft_improvement_bits": 0.0011580489319089615,
+          "restart": 24
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.3588003950621736,
+          "before_bits": 2.3599584439940826,
+          "graft_improvement_bits": 0.0011580489319089615,
+          "restart": 25
+        },
+        {
+          "accepted_grafts": 3,
+          "after_graft_bits": 2.2933906424735127,
+          "before_bits": 2.3782582143755917,
+          "graft_improvement_bits": 0.08486757190207905,
+          "restart": 26
+        },
+        {
+          "accepted_grafts": 0,
+          "after_graft_bits": 2.359439690046091,
+          "before_bits": 2.359439690046091,
+          "graft_improvement_bits": 0.0,
+          "restart": 27
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.2933906424735127,
+          "before_bits": 2.3036957207853987,
+          "graft_improvement_bits": 0.010305078311886096,
+          "restart": 28
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.2933906424735127,
+          "before_bits": 2.3475875435307776,
+          "graft_improvement_bits": 0.054196901057264935,
+          "restart": 29
+        },
+        {
+          "accepted_grafts": 1,
+          "after_graft_bits": 2.2933906424735127,
+          "before_bits": 2.3089908190556963,
+          "graft_improvement_bits": 0.0156001765821836,
+          "restart": 30
+        },
+        {
+          "accepted_grafts": 2,
+          "after_graft_bits": 2.2933906424735127,
+          "before_bits": 2.326748726886926,
+          "graft_improvement_bits": 0.03335808441341337,
+          "restart": 31
+        }
+      ],
+      "restarts_improved_by_graft": 26,
+      "sizes": [
+        3,
+        3,
+        3,
+        3,
+        2,
+        2
+      ]
+    }
+  ],
+  "protocol": {
+    "baseline_refinement": "exact one-NNI descent plus bounded two-step search",
+    "candidate_budget": 32,
+    "cases": "five misses declared by sealed n=12/n=14/n=16 audits",
+    "extension": "best-improvement full-rescore rooted subtree graft; exact NNI after each accepted graft",
+    "initializer": "pairwise random coalescent",
+    "selection": "structural entropy only; exact optimum consulted after selection"
+  },
+  "summary": {
+    "cases": 5,
+    "elapsed_s": 64.90132091700798,
+    "exact_after_graft": 5,
+    "exact_before": 0
+  }
+}

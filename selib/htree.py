@@ -403,6 +403,163 @@ def _do_nni(root, child_path, promoted_child):
     return r
 
 
+# ------------------------ binary subtree grafting --------------------------
+def _graft_candidates(root):
+    """Enumerate legal ordered ``(source_path, target_path)`` graft proposals.
+
+    A graft detaches the source subtree, suppresses its binary parent, and
+    creates a new binary parent joining the source to a non-ancestral target.
+    Source and target may be leaves or internal subtrees.  Same-parent pairs
+    are excluded because suppressing and immediately recreating that pair is a
+    no-op up to child order.
+    """
+    paths = _all_paths(root)
+    out = []
+    for source_path in paths:
+        if not source_path:
+            continue
+        for target_path in paths:
+            if not target_path or source_path == target_path:
+                continue
+            if target_path[:len(source_path)] == source_path:
+                continue  # target is inside source
+            if source_path[:len(target_path)] == target_path:
+                continue  # target is an ancestor of source
+            if source_path[:-1] == target_path[:-1]:
+                continue  # siblings: topology would be unchanged
+            out.append((source_path, target_path))
+    return out
+
+
+def _find_parent_and_index(root, target):
+    """Return the current parent and child index of ``target`` by identity."""
+    stack = [root]
+    while stack:
+        node = stack.pop()
+        if node.is_leaf():
+            continue
+        for index, child in enumerate(node.children):
+            if child is target:
+                return node, index
+            stack.append(child)
+    return None, None
+
+
+def _do_graft(root, source_path, target_path):
+    """Return a copied binary tree after one rooted subtree graft.
+
+    The operation is a rooted subtree prune-and-regraft: detach ``S`` at
+    ``source_path``; suppress the resulting unary parent; then replace the
+    target ``Q`` by a new binary node with children ``S`` and ``Q``.  Illegal
+    ancestor/descendant, root, nonbinary, and same-parent proposals return
+    ``None``.  Paths are resolved before editing, so removal-side index shifts
+    cannot redirect the target.
+    """
+    if not source_path or not target_path or source_path == target_path:
+        return None
+    if target_path[:len(source_path)] == source_path:
+        return None
+    if source_path[:len(target_path)] == target_path:
+        return None
+    if source_path[:-1] == target_path[:-1]:
+        return None
+
+    copied = copy_tree(root)
+    try:
+        source = _get(copied, source_path)
+        target = _get(copied, target_path)
+        source_parent = _get(copied, source_path[:-1])
+    except (IndexError, AttributeError):
+        return None
+    if source_parent.is_leaf() or len(source_parent.children) != 2:
+        return None
+
+    source_index = source_path[-1]
+    if source_index not in (0, 1) or source_parent.children[source_index] is not source:
+        return None
+    sibling = source_parent.children[1 - source_index]
+
+    if source_parent is copied:
+        copied = sibling
+    else:
+        grandparent, parent_index = _find_parent_and_index(copied, source_parent)
+        if grandparent is None:
+            return None
+        grandparent.children[parent_index] = sibling
+
+    target_parent, target_index = _find_parent_and_index(copied, target)
+    if target_parent is None:
+        # The only way the target can become the root is the excluded sibling
+        # case.  Reject defensively rather than silently rebuilding a no-op.
+        return None
+    target_parent.children[target_index] = TNode(children=[source, target])
+    return copied
+
+
+def refine_graft(root, deg, adj, vol, max_rounds=100, tol=1e-10,
+                 post_nni=True, return_trace=False):
+    """Best-improvement full-rescore subtree-graft refinement.
+
+    This is the correctness-first reference implementation.  It exhaustively
+    evaluates every legal ordered graft by recomputing the complete tree
+    structural entropy and commits only a strictly improving endpoint.  When
+    ``post_nni`` is true, exact NNI descent runs after every accepted graft.
+    If the search stops because no improving candidate remains, it certifies
+    the enumerated graft neighborhood of the returned tree; with ``post_nni``
+    the same tree is also one-NNI-local.  A caller-supplied round cap may stop
+    earlier and therefore carries no such graft-local certificate.
+    """
+    if max_rounds < 0:
+        raise ValueError("max_rounds must be non-negative")
+    annotate(root, deg, adj, vol)
+    current = hd_se(root, vol)
+    trace = []
+
+    for round_index in range(max_rounds):
+        best = None
+        candidate_count = 0
+        for source_path, target_path in _graft_candidates(root):
+            candidate = _do_graft(root, source_path, target_path)
+            if candidate is None:
+                continue
+            candidate_count += 1
+            annotate(candidate, deg, adj, vol)
+            candidate_h = hd_se(candidate, vol)
+            if candidate_h < current - tol:
+                item = (candidate_h, candidate, source_path, target_path)
+                if best is None or candidate_h < best[0]:
+                    best = item
+
+        if best is None:
+            break
+
+        candidate_h, candidate, source_path, target_path = best
+        before = current
+        root, current = candidate, candidate_h
+        trace.append({
+            "kind": "graft",
+            "round": round_index,
+            "source_path": source_path,
+            "target_path": target_path,
+            "candidates": candidate_count,
+            "before": before,
+            "after": current,
+            "delta": current - before,
+        })
+
+        if post_nni:
+            root, nni_trace = refine_nni(
+                root, deg, adj, vol, tol=tol, return_trace=True
+            )
+            trace.extend({**step, "kind": "post-graft-nni"} for step in nni_trace)
+            annotate(root, deg, adj, vol)
+            current = hd_se(root, vol)
+
+    if return_trace:
+        return root, trace
+    return root
+
+
 def nni_delta(root, child_path, promoted_child, adj, vol, leaves=None):
     """Exact change in tree structural entropy for one rooted NNI.
 
@@ -897,6 +1054,7 @@ def _external_inits(G, n):
     lowest-H^T classical trees, so refining it lets se_hier dominate it."""
     out = []
     try:                                   # Paris — modularity-based, low H^T
+        import numpy as np
         from sknetwork.hierarchy import Paris
         import scipy.sparse as sp
         A = nx.to_scipy_sparse_array(G, nodelist=list(range(n)), weight="weight", format="csr")
@@ -906,9 +1064,6 @@ def _external_inits(G, n):
     except Exception:
         pass
     return out
-
-
-import numpy as np  # noqa: E402  (used by _external_inits)
 
 
 def linkage_to_tree(Z, n):

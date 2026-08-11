@@ -4,13 +4,16 @@ import networkx as nx
 
 from selib.htree import (
     TNode,
+    _do_graft,
     _do_nni,
+    _graft_candidates,
     _graph_arrays,
     _nni_candidates,
     annotate,
     hd_se,
     nni_delta,
     random_coalescent_tree,
+    refine_graft,
     refine_nni,
     refine_nni_compound,
 )
@@ -184,3 +187,62 @@ def test_random_coalescent_tree_contains_each_leaf_once():
             assert len(node.children) == 2
             stack.extend(node.children)
     assert sorted(leaves) == list(range(17))
+
+
+def _tree_signature(root):
+    if root.is_leaf():
+        return root.vertex
+    return tuple(_tree_signature(child) for child in root.children)
+
+
+def test_graft_preserves_binary_topology_and_leaf_set():
+    root = TNode(children=[
+        TNode(children=[TNode(vertex=0), TNode(vertex=1)]),
+        TNode(children=[
+            TNode(children=[TNode(vertex=2), TNode(vertex=3)]),
+            TNode(vertex=4),
+        ]),
+    ])
+    candidates = _graft_candidates(root)
+    assert candidates
+
+    grafted = _do_graft(root, (0, 0), (1, 0, 1))
+    assert grafted is not None
+    assert _tree_signature(root) == ((0, 1), ((2, 3), 4))
+
+    leaves = []
+    stack = [grafted]
+    while stack:
+        node = stack.pop()
+        if node.is_leaf():
+            leaves.append(node.vertex)
+        else:
+            assert len(node.children) == 2
+            stack.extend(node.children)
+    assert sorted(leaves) == [0, 1, 2, 3, 4]
+
+
+def test_full_rescore_graft_refinement_is_monotone_and_graft_local():
+    graph = _random_weighted_graph(9, 311)
+    root = _random_binary_tree(9, 912)
+    _, _, _, adj, deg, vol = _graph_arrays(graph)
+    annotate(root, deg, adj, vol)
+    before = hd_se(root, vol)
+
+    refined, trace = refine_graft(
+        root, deg, adj, vol, max_rounds=100, post_nni=True, return_trace=True
+    )
+    annotate(refined, deg, adj, vol)
+    after = hd_se(refined, vol)
+    assert after <= before + 1e-10
+    assert all(
+        step["after"] < step["before"]
+        for step in trace
+        if step["kind"] == "graft"
+    )
+
+    for source_path, target_path in _graft_candidates(refined):
+        candidate = _do_graft(refined, source_path, target_path)
+        assert candidate is not None
+        annotate(candidate, deg, adj, vol)
+        assert hd_se(candidate, vol) >= after - 1e-10

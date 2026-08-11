@@ -1,0 +1,37 @@
+{
+  "optimization_cases": [
+    {
+      "accepted_grafts": 2,
+      "after_bits": 1.7508960623342311,
+      "before_bits": 2.3245130733219606,
+      "certified_candidates": 88,
+      "n": 7,
+      "seed": 0
+    },
+    {
+      "accepted_grafts": 3,
+      "after_bits": 1.9258934884854768,
+      "before_bits": 2.52327702982509,
+      "certified_candidates": 124,
+      "n": 8,
+      "seed": 1
+    },
+    {
+      "accepted_grafts": 1,
+      "after_bits": 1.7619374174019586,
+      "before_bits": 2.2541039425962635,
+      "certified_candidates": 88,
+      "n": 7,
+      "seed": 2
+    },
+    {
+      "accepted_grafts": 2,
+      "after_bits": 1.952532337320003,
+      "before_bits": 2.3619602599428036,
+      "certified_candidates": 124,
+      "n": 8,
+      "seed": 3
+    }
+  ],
+  "topology_moves_checked": 1680
+}
