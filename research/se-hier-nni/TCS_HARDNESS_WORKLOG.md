@@ -58,9 +58,33 @@ approximation.
 
 ### Implication and remaining proof obligations
 
-Minimum Bisection is known to be NP-hard, including on regular graph classes.
-After fixing the exact source theorem and citation, the identity above gives a
-short reduction to the following **constrained** problem:
+The source theorem is now identified. Bui, Chaudhuri, Leighton, and Sipser
+(`Combinatorica` 7(2), 1987, DOI `10.1007/BF02579448`) establish the regular
+graph bisection result; D\'iaz et al. (`JCSS` 144, 2024, Article 103550)
+explicitly restate that Minimum Edge Bisection remains NP-complete for
+`d=3` and cite Bui et al. for that statement.
+
+Together with the identity above, this gives the following **constrained
+hardness theorem**:
+
+> Minimizing two-dimensional structural entropy over balanced two-module
+> partitions is NP-hard even for simple unweighted cubic graphs.
+
+Indeed, a cubic graph on even `n` vertices has `m=3n/2` edges, and every
+balanced side has volume `m`. For a balanced partition `P` with cut size
+`c(P)`, the objective simplifies further to
+
+```text
+H^P(G) = log_2(n/2) + c(P)/m.
+```
+
+The first term is fixed for the input graph, so an entropy minimizer is exactly
+a minimum bisection. A polynomial optimizer for the constrained SE problem
+would therefore solve cubic Minimum Bisection. We presently claim NP-hardness
+of the optimization problem, not NP-completeness of a logarithmic-threshold
+decision encoding.
+
+Equivalently, the constrained problem is:
 
 > Given a regular graph, find a height-2, two-module structural-entropy
 > partition whose modules contain equally many vertices.
