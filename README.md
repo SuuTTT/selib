@@ -114,6 +114,26 @@ python scripts/run_core_benchmark.py --output results/core_benchmark.json
 See [the release benchmark protocol](docs/RELEASE_BENCHMARK.md) for what this
 small benchmark does and does not establish.
 
+### Latest audited core result
+
+The completed five-seed, CPU-only remote release gate is archived with raw
+records, command envelope, and checksum in
+[`docs/CORE_BENCHMARK_REMOTE_20260816.md`](docs/CORE_BENCHMARK_REMOTE_20260816.md).
+For the hierarchical objective $H^T$ (bits; lower is better), the fast NNI
+variant was no worse than the other native hierarchy constructors on all four
+release graphs while taking substantially less wall-clock time:
+
+| Dataset | `se_hier` | `se_hier_nni` | `se_nni_fast` |
+| --- | ---: | ---: | ---: |
+| Karate | 2.5217 / 0.9408 s | 2.5145 / 0.9644 s | **2.4605 / 0.1239 s** |
+| SBM-Clean | 3.8185 / 5.9412 s | 3.8086 / 6.0500 s | **3.6865 / 0.3136 s** |
+| SBM-Moderate | 3.7732 / 6.1585 s | 3.7477 / 6.2020 s | **3.7414 / 0.2809 s** |
+| SBM-Noisy | 3.8343 / 5.7701 s | 3.8107 / 5.8527 s | **3.8107 / 0.2147 s** |
+
+These are a native regression and performance check, not a cross-paper SOTA
+claim.  The full Paper B comparison is intentionally separate and uses its
+own no-label, five-dataset protocol.
+
 ## Guarantees and limits
 
 - 2D-SE and tree-SE are evaluated by the same exact scoring routines used by
