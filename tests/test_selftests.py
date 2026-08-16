@@ -22,7 +22,11 @@ def test_htree_selftest():
 def test_segnn_selftest():
     if importlib.util.find_spec("jax") is None:
         pytest.skip("jax not installed (optional [gnn] extra)")
-    from selib import segnn
+    try:
+        from selib import segnn
+        segnn._require_jax()
+    except RuntimeError as exc:
+        pytest.skip(f"jax optional extra is unusable: {exc}")
     segnn._selftest()
 
 
