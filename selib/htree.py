@@ -18,6 +18,7 @@ this produces a far lower-entropy hierarchy.
 """
 from __future__ import annotations
 import math
+import random
 import networkx as nx
 
 LOG2 = math.log(2.0)
@@ -236,6 +237,27 @@ def copy_tree(node):
     return TNode(children=[copy_tree(c) for c in node.children])
 
 
+def random_coalescent_tree(n, rng):
+    """Construct a randomized rooted binary tree on leaves ``0..n-1``.
+
+    Two current components are selected uniformly at each merge.  The induced
+    distribution is deliberately described as *coalescent*, not uniform over
+    labeled tree topologies.  It is useful as a diverse restart distribution
+    for local tree-space search.
+    """
+    if n <= 0:
+        raise ValueError("n must be positive")
+    pool = [TNode(vertex=vertex) for vertex in range(n)]
+    while len(pool) > 1:
+        first, second = sorted(rng.sample(range(len(pool)), 2), reverse=True)
+        left = pool.pop(first)
+        right = pool.pop(second)
+        if rng.random() < 0.5:
+            left, right = right, left
+        pool.append(TNode(children=[left, right]))
+    return pool[0]
+
+
 def _get(root, path):
     n = root
     for i in path:
@@ -305,6 +327,600 @@ def _do_relocate(root, src_path, dst_path):
     sp_parent.children.pop(src_path[-1])             # detach (object refs stay valid)
     target.children.append(src)
     return r
+
+
+# -------------------------- binary NNI refinement ---------------------------
+def _descendant_vertices(root):
+    """Return the leaf set below every node, keyed by object identity."""
+    leaves = {}
+
+    def rec(node):
+        if node.is_leaf():
+            out = {node.vertex}
+        else:
+            out = set()
+            for child in node.children:
+                out.update(rec(child))
+        leaves[id(node)] = out
+        return out
+
+    rec(root)
+    return leaves
+
+
+def _cross_weight(left, right, adj):
+    """Total undirected edge weight between two disjoint vertex sets."""
+    if len(left) > len(right):
+        left, right = right, left
+    return sum(weight for u in left for v, weight in adj[u].items()
+               if v in right)
+
+
+def _nni_candidates(root):
+    """Enumerate rooted-NNI moves as ``(internal_child_path, promoted_child)``.
+
+    A candidate exists on a binary parent--child edge.  If the current local
+    topology is ``((A, B), C)``, promoting child 0 produces ``(A, (B, C))``
+    and promoting child 1 produces ``(B, (A, C))``.
+    """
+    out = []
+
+    def rec(node, path):
+        if node.is_leaf():
+            return
+        if len(node.children) == 2:
+            for child_index, child in enumerate(node.children):
+                if not child.is_leaf() and len(child.children) == 2:
+                    child_path = path + (child_index,)
+                    out.append((child_path, 0))
+                    out.append((child_path, 1))
+        for index, child in enumerate(node.children):
+            rec(child, path + (index,))
+
+    rec(root, ())
+    return out
+
+
+def _do_nni(root, child_path, promoted_child):
+    """Return a copy after one rooted NNI, or ``None`` if the move is illegal."""
+    if not child_path or promoted_child not in (0, 1):
+        return None
+    r = copy_tree(root)
+    try:
+        parent = _get(r, child_path[:-1])
+        child_index = child_path[-1]
+        internal = parent.children[child_index]
+    except (IndexError, AttributeError):
+        return None
+    if (len(parent.children) != 2 or internal.is_leaf()
+            or len(internal.children) != 2):
+        return None
+    sibling = parent.children[1 - child_index]
+    promoted = internal.children[promoted_child]
+    retained = internal.children[1 - promoted_child]
+    internal.children = [retained, sibling]
+    parent.children = [promoted, internal]
+    return r
+
+
+# ------------------------ binary subtree grafting --------------------------
+def _graft_candidates(root):
+    """Enumerate legal ordered ``(source_path, target_path)`` graft proposals.
+
+    A graft detaches the source subtree, suppresses its binary parent, and
+    creates a new binary parent joining the source to a non-ancestral target.
+    Source and target may be leaves or internal subtrees.  Same-parent pairs
+    are excluded because suppressing and immediately recreating that pair is a
+    no-op up to child order.
+    """
+    paths = _all_paths(root)
+    out = []
+    for source_path in paths:
+        if not source_path:
+            continue
+        for target_path in paths:
+            if not target_path or source_path == target_path:
+                continue
+            if target_path[:len(source_path)] == source_path:
+                continue  # target is inside source
+            if source_path[:len(target_path)] == target_path:
+                continue  # target is an ancestor of source
+            if source_path[:-1] == target_path[:-1]:
+                continue  # siblings: topology would be unchanged
+            out.append((source_path, target_path))
+    return out
+
+
+def _find_parent_and_index(root, target):
+    """Return the current parent and child index of ``target`` by identity."""
+    stack = [root]
+    while stack:
+        node = stack.pop()
+        if node.is_leaf():
+            continue
+        for index, child in enumerate(node.children):
+            if child is target:
+                return node, index
+            stack.append(child)
+    return None, None
+
+
+def _do_graft(root, source_path, target_path):
+    """Return a copied binary tree after one rooted subtree graft.
+
+    The operation is a rooted subtree prune-and-regraft: detach ``S`` at
+    ``source_path``; suppress the resulting unary parent; then replace the
+    target ``Q`` by a new binary node with children ``S`` and ``Q``.  Illegal
+    ancestor/descendant, root, nonbinary, and same-parent proposals return
+    ``None``.  Paths are resolved before editing, so removal-side index shifts
+    cannot redirect the target.
+    """
+    if not source_path or not target_path or source_path == target_path:
+        return None
+    if target_path[:len(source_path)] == source_path:
+        return None
+    if source_path[:len(target_path)] == target_path:
+        return None
+    if source_path[:-1] == target_path[:-1]:
+        return None
+
+    copied = copy_tree(root)
+    try:
+        source = _get(copied, source_path)
+        target = _get(copied, target_path)
+        source_parent = _get(copied, source_path[:-1])
+    except (IndexError, AttributeError):
+        return None
+    if source_parent.is_leaf() or len(source_parent.children) != 2:
+        return None
+
+    source_index = source_path[-1]
+    if source_index not in (0, 1) or source_parent.children[source_index] is not source:
+        return None
+    sibling = source_parent.children[1 - source_index]
+
+    if source_parent is copied:
+        copied = sibling
+    else:
+        grandparent, parent_index = _find_parent_and_index(copied, source_parent)
+        if grandparent is None:
+            return None
+        grandparent.children[parent_index] = sibling
+
+    target_parent, target_index = _find_parent_and_index(copied, target)
+    if target_parent is None:
+        # The only way the target can become the root is the excluded sibling
+        # case.  Reject defensively rather than silently rebuilding a no-op.
+        return None
+    target_parent.children[target_index] = TNode(children=[source, target])
+    return copied
+
+
+def _volume_lca_index(root, deg):
+    """Index parent, depth, leaf objects, and degree volumes for LCA queries."""
+    parent = {}
+    depth = {}
+    leaves = {}
+    order = []
+    stack = [(root, None, 0, False)]
+    while stack:
+        node, par, level, expanded = stack.pop()
+        if expanded:
+            order.append(node)
+            continue
+        parent[id(node)] = par
+        depth[id(node)] = level
+        stack.append((node, par, level, True))
+        if node.is_leaf():
+            leaves[node.vertex] = node
+        else:
+            for child in node.children:
+                stack.append((child, node, level + 1, False))
+    volume = {}
+    for node in order:
+        volume[id(node)] = (
+            deg[node.vertex] if node.is_leaf()
+            else sum(volume[id(child)] for child in node.children)
+        )
+
+    def lca(left_vertex, right_vertex):
+        left = leaves[left_vertex]
+        right = leaves[right_vertex]
+        while depth[id(left)] > depth[id(right)]:
+            left = parent[id(left)]
+        while depth[id(right)] > depth[id(left)]:
+            right = parent[id(right)]
+        while left is not right:
+            left = parent[id(left)]
+            right = parent[id(right)]
+        return left
+
+    return leaves, volume, lca
+
+
+def graft_delta(root, source_path, target_path, adj, deg, vol):
+    """Exact structural-entropy change of a legal rooted subtree graft.
+
+    From the edge--LCA expansion, degree-only terms cancel and every undirected
+    edge contributes ``(2w/vol) log2(V_new_lca/V_old_lca)``.  Contributions
+    vanish automatically when the LCA module and its volume are unchanged.
+    The nonzero terms are precisely those assigned to modules changed on the
+    graft's removal and insertion paths.  This correctness-oriented version
+    scans all sparse edges; a path-cached implementation can later visit only
+    the affected LCA buckets.  It does not recompute module cuts or the full
+    tree objective.
+    """
+    candidate = _do_graft(root, source_path, target_path)
+    if candidate is None:
+        return None
+    _, old_volume, old_lca = _volume_lca_index(root, deg)
+    _, new_volume, new_lca = _volume_lca_index(candidate, deg)
+
+    delta = 0.0
+    for left in range(len(adj)):
+        for right, weight in adj[left].items():
+            if right <= left or weight == 0.0:
+                continue
+            old_node = old_lca(left, right)
+            new_node = new_lca(left, right)
+            old_lca_volume = old_volume[id(old_node)]
+            new_lca_volume = new_volume[id(new_node)]
+            if old_lca_volume <= 0.0 or new_lca_volume <= 0.0:
+                raise ValueError("graft delta requires positive LCA volumes")
+            delta += (2.0 * weight / vol) * math.log2(
+                new_lca_volume / old_lca_volume
+            )
+    return delta
+
+
+def _cluster_parent_map(root):
+    """Map every descendant leaf set to its parent leaf set (root to ``None``)."""
+    clusters = {}
+
+    def rec(node):
+        if node.is_leaf():
+            vertices = frozenset((node.vertex,))
+        else:
+            vertices = frozenset().union(*(rec(child) for child in node.children))
+        clusters[id(node)] = vertices
+        return vertices
+
+    rec(root)
+    parents = {}
+    stack = [(root, None)]
+    while stack:
+        node, parent = stack.pop()
+        key = clusters[id(node)]
+        parents[key] = None if parent is None else clusters[id(parent)]
+        if not node.is_leaf():
+            stack.extend((child, node) for child in node.children)
+    return parents
+
+
+def graft_delta_path(root, source_path, target_path, adj, deg, vol):
+    """Exact graft delta after canceling unchanged cluster--parent terms.
+
+    A legal graft changes only clusters on its removal and insertion paths,
+    plus the new source--target parent.  Representing a hierarchy by each
+    cluster's leaf set and its parent leaf set lets all other node terms cancel
+    without any LCA queries.  This reference path evaluator recomputes volume
+    and cut only for the surviving changed terms; later caching can replace
+    those set scans without changing the identity.
+    """
+    candidate = _do_graft(root, source_path, target_path)
+    if candidate is None:
+        return None
+    old_parents = _cluster_parent_map(root)
+    new_parents = _cluster_parent_map(candidate)
+    old_changed = {
+        cluster for cluster, parent in old_parents.items()
+        if cluster not in new_parents or new_parents[cluster] != parent
+    }
+    new_changed = {
+        cluster for cluster, parent in new_parents.items()
+        if cluster not in old_parents or old_parents[cluster] != parent
+    }
+    stats = {}
+
+    def volume_cut(cluster):
+        if cluster not in stats:
+            module_volume = sum(deg[vertex] for vertex in cluster)
+            module_cut = sum(
+                weight
+                for vertex in cluster
+                for neighbor, weight in adj[vertex].items()
+                if neighbor not in cluster
+            )
+            stats[cluster] = (module_volume, module_cut)
+        return stats[cluster]
+
+    def contribution(cluster, parent):
+        if parent is None:
+            return 0.0
+        module_volume, module_cut = volume_cut(cluster)
+        parent_volume, _ = volume_cut(parent)
+        if module_volume <= 0.0 or module_cut <= 0.0 or parent_volume <= 0.0:
+            return 0.0
+        return -(module_cut / vol) * math.log2(module_volume / parent_volume)
+
+    old_total = sum(
+        contribution(cluster, old_parents[cluster])
+        for cluster in old_changed
+    )
+    new_total = sum(
+        contribution(cluster, new_parents[cluster])
+        for cluster in new_changed
+    )
+    return new_total - old_total
+
+
+def refine_graft(root, deg, adj, vol, max_rounds=100, tol=1e-10,
+                 post_nni=True, return_trace=False):
+    """Best-improvement full-rescore subtree-graft refinement.
+
+    This is the correctness-first reference implementation.  It exhaustively
+    evaluates every legal ordered graft by recomputing the complete tree
+    structural entropy and commits only a strictly improving endpoint.  When
+    ``post_nni`` is true, exact NNI descent runs after every accepted graft.
+    If the search stops because no improving candidate remains, it certifies
+    the enumerated graft neighborhood of the returned tree; with ``post_nni``
+    the same tree is also one-NNI-local.  A caller-supplied round cap may stop
+    earlier and therefore carries no such graft-local certificate.
+    """
+    if max_rounds < 0:
+        raise ValueError("max_rounds must be non-negative")
+    annotate(root, deg, adj, vol)
+    current = hd_se(root, vol)
+    trace = []
+
+    for round_index in range(max_rounds):
+        best = None
+        candidate_count = 0
+        for source_path, target_path in _graft_candidates(root):
+            candidate = _do_graft(root, source_path, target_path)
+            if candidate is None:
+                continue
+            candidate_count += 1
+            annotate(candidate, deg, adj, vol)
+            candidate_h = hd_se(candidate, vol)
+            if candidate_h < current - tol:
+                item = (candidate_h, candidate, source_path, target_path)
+                if best is None or candidate_h < best[0]:
+                    best = item
+
+        if best is None:
+            break
+
+        candidate_h, candidate, source_path, target_path = best
+        before = current
+        root, current = candidate, candidate_h
+        trace.append({
+            "kind": "graft",
+            "round": round_index,
+            "source_path": source_path,
+            "target_path": target_path,
+            "candidates": candidate_count,
+            "before": before,
+            "after": current,
+            "delta": current - before,
+        })
+
+        if post_nni:
+            root, nni_trace = refine_nni(
+                root, deg, adj, vol, tol=tol, return_trace=True
+            )
+            trace.extend({**step, "kind": "post-graft-nni"} for step in nni_trace)
+            annotate(root, deg, adj, vol)
+            current = hd_se(root, vol)
+
+    if return_trace:
+        return root, trace
+    return root
+
+
+def nni_delta(root, child_path, promoted_child, adj, vol, leaves=None):
+    """Exact change in tree structural entropy for one rooted NNI.
+
+    For ``((A,B),C) -> (A,(B,C))`` only A--B and B--C graph edges change
+    their LCA.  With ``vol = 2m`` the identity is
+
+        2/vol * [w(A,B) log2(V_P/V_AB)
+                 + w(B,C) log2(V_BC/V_P)].
+
+    ``annotate`` must have been called on ``root`` so node volumes are current.
+    """
+    if vol <= 0 or not child_path or promoted_child not in (0, 1):
+        return None
+    try:
+        parent = _get(root, child_path[:-1])
+        child_index = child_path[-1]
+        internal = parent.children[child_index]
+    except (IndexError, AttributeError):
+        return None
+    if (len(parent.children) != 2 or internal.is_leaf()
+            or len(internal.children) != 2):
+        return None
+    sibling = parent.children[1 - child_index]
+    promoted = internal.children[promoted_child]
+    retained = internal.children[1 - promoted_child]
+    if internal.V <= 0 or parent.V <= 0 or retained.V + sibling.V <= 0:
+        return None
+
+    if leaves is None:
+        leaves = _descendant_vertices(root)
+    w_ab = _cross_weight(leaves[id(promoted)], leaves[id(retained)], adj)
+    w_bc = _cross_weight(leaves[id(retained)], leaves[id(sibling)], adj)
+    return (2.0 / vol) * (
+        w_ab * math.log(parent.V / internal.V, 2)
+        + w_bc * math.log((retained.V + sibling.V) / parent.V, 2)
+    )
+
+
+def refine_nni(root, deg, adj, vol, max_rounds=100, tol=1e-10,
+               return_trace=False):
+    """Best-improvement rooted-NNI descent with exact delta verification.
+
+    The routine only edits binary parent--child neighborhoods; multiway parts
+    are left intact.  Each selected move is predicted by :func:`nni_delta` and
+    independently checked by a full ``H^T`` recomputation before acceptance.
+    Consequently the returned tree is never worse than the input and is
+    one-NNI-local within the neighborhoods examined when the routine stops.
+    """
+    annotate(root, deg, adj, vol)
+    current = hd_se(root, vol)
+    trace = []
+    for round_index in range(max_rounds):
+        best = None
+        leaves = _descendant_vertices(root)
+        for child_path, promoted_child in _nni_candidates(root):
+            delta = nni_delta(
+                root, child_path, promoted_child, adj, vol, leaves=leaves
+            )
+            if delta is not None and delta < -tol:
+                if best is None or delta < best[0]:
+                    best = (delta, child_path, promoted_child)
+        if best is None:
+            break
+
+        predicted, child_path, promoted_child = best
+        candidate = _do_nni(root, child_path, promoted_child)
+        if candidate is None:
+            break
+        annotate(candidate, deg, adj, vol)
+        candidate_h = hd_se(candidate, vol)
+        observed = candidate_h - current
+        if abs(observed - predicted) > 1e-8:
+            raise AssertionError(
+                f"NNI delta mismatch: predicted={predicted:.12g}, "
+                f"observed={observed:.12g}"
+            )
+        if observed >= -tol:
+            break
+        trace.append({
+            "round": round_index,
+            "child_path": child_path,
+            "promoted_child": promoted_child,
+            "delta": observed,
+            "before": current,
+            "after": candidate_h,
+        })
+        root, current = candidate, candidate_h
+
+    if return_trace:
+        return root, trace
+    return root
+
+
+def refine_nni_compound(root, deg, adj, vol, max_rounds=8, beam_width=16,
+                        barrier_bits=0.05, tol=1e-10, return_trace=False):
+    """Escape one-NNI local optima with bounded two-move lookahead.
+
+    The first NNI may raise ``H^T`` by at most ``barrier_bits``.  Up to
+    ``beam_width`` first moves with the smallest exact deltas are expanded, and
+    every legal second move is evaluated.  A pair is committed only when its
+    final, fully recomputed entropy is strictly below the entropy before the
+    pair.  Thus compound search can cross a shallow barrier without weakening
+    the monotone-output guarantee.
+
+    After each accepted pair, ordinary exact NNI descent is rerun.  The method
+    stops when neither a one-step move nor an admissible two-step sequence
+    improves the tree, or when ``max_rounds`` compound moves have been used.
+    """
+    if beam_width <= 0:
+        raise ValueError("beam_width must be positive")
+    if barrier_bits < 0:
+        raise ValueError("barrier_bits must be non-negative")
+
+    annotate(root, deg, adj, vol)
+    root, descent_trace = refine_nni(
+        root, deg, adj, vol, tol=tol, return_trace=True
+    )
+    annotate(root, deg, adj, vol)
+    current = hd_se(root, vol)
+    trace = [{**step, "kind": "descent"} for step in descent_trace]
+
+    for round_index in range(max_rounds):
+        first_leaves = _descendant_vertices(root)
+        first_moves = []
+        for child_path, promoted_child in _nni_candidates(root):
+            delta = nni_delta(
+                root, child_path, promoted_child, adj, vol,
+                leaves=first_leaves,
+            )
+            if delta is not None and delta <= barrier_bits + tol:
+                first_moves.append((delta, child_path, promoted_child))
+        first_moves.sort(key=lambda item: item[0])
+
+        best = None
+        for delta1, path1, promoted1 in first_moves[:beam_width]:
+            middle = _do_nni(root, path1, promoted1)
+            if middle is None:
+                continue
+            annotate(middle, deg, adj, vol)
+            middle_h = hd_se(middle, vol)
+            if abs((middle_h - current) - delta1) > 1e-8:
+                raise AssertionError(
+                    "compound NNI first-step delta disagrees with full entropy"
+                )
+
+            second_leaves = _descendant_vertices(middle)
+            for path2, promoted2 in _nni_candidates(middle):
+                delta2 = nni_delta(
+                    middle, path2, promoted2, adj, vol,
+                    leaves=second_leaves,
+                )
+                if delta2 is None:
+                    continue
+                predicted_final = middle_h + delta2
+                if predicted_final >= current - tol:
+                    continue
+                candidate = _do_nni(middle, path2, promoted2)
+                if candidate is None:
+                    continue
+                annotate(candidate, deg, adj, vol)
+                candidate_h = hd_se(candidate, vol)
+                if abs((candidate_h - middle_h) - delta2) > 1e-8:
+                    raise AssertionError(
+                        "compound NNI second-step delta disagrees with full entropy"
+                    )
+                if candidate_h < current - tol:
+                    item = (candidate_h, candidate, delta1, delta2,
+                            path1, promoted1, path2, promoted2, middle_h)
+                    if best is None or candidate_h < best[0]:
+                        best = item
+
+        if best is None:
+            break
+
+        (candidate_h, candidate, delta1, delta2, path1, promoted1,
+         path2, promoted2, middle_h) = best
+        before = current
+        root, current = candidate, candidate_h
+        trace.append({
+            "kind": "compound",
+            "round": round_index,
+            "first_child_path": path1,
+            "first_promoted_child": promoted1,
+            "second_child_path": path2,
+            "second_promoted_child": promoted2,
+            "first_delta": delta1,
+            "second_delta": delta2,
+            "barrier": max(0.0, middle_h - before),
+            "before": before,
+            "after": current,
+            "delta": current - before,
+        })
+
+        root, post_trace = refine_nni(
+            root, deg, adj, vol, tol=tol, return_trace=True
+        )
+        trace.extend({**step, "kind": "descent"} for step in post_trace)
+        annotate(root, deg, adj, vol)
+        current = hd_se(root, vol)
+
+    if return_trace:
+        return root, trace
+    return root
 
 
 def _reloc_targets(root, sp):
@@ -461,12 +1077,142 @@ def encoding_tree(G, seed=0, starts=4, do_refine=True):
     return best, deg, adj, vol
 
 
+def encoding_tree_nni(G, seed=0, starts=4, do_refine=True,
+                      max_nni_rounds=100, compound=True,
+                      compound_rounds=8, beam_width=16,
+                      barrier_bits=0.05, return_trace=False):
+    """Refine :func:`encoding_tree` with exact rooted-NNI search.
+
+    The original ``se_hier`` output is the initializer and only strictly
+    decreasing, independently verified NNI moves are accepted.  The returned
+    tree therefore has ``H^T`` no greater than the corresponding ``se_hier``
+    tree.  NNI acts on binary neighborhoods and leaves multiway regions intact.
+    By default, bounded two-move lookahead is applied after exact one-step
+    descent; set ``compound=False`` for the one-NNI-local variant only.
+    """
+    root, deg, adj, vol = encoding_tree(
+        G, seed=seed, starts=starts, do_refine=do_refine
+    )
+    root, trace = refine_nni(
+        root, deg, adj, vol,
+        max_rounds=max_nni_rounds,
+        return_trace=True,
+    )
+    if compound:
+        root, compound_trace = refine_nni_compound(
+            root, deg, adj, vol,
+            max_rounds=compound_rounds,
+            beam_width=beam_width,
+            barrier_bits=barrier_bits,
+            return_trace=True,
+        )
+        trace.extend(compound_trace)
+    if return_trace:
+        return root, deg, adj, vol, trace
+    return root, deg, adj, vol
+
+
+def encoding_tree_nni_fast(G, seed=0, starts=4, compound=True,
+                           max_nni_rounds=100, compound_rounds=8,
+                           beam_width=16, barrier_bits=0.05,
+                           random_restarts=0, restart_seed=None,
+                           return_trace=False):
+    """Fast multi-start hierarchy construction with exact NNI certification.
+
+    Unlike :func:`encoding_tree`, this variant does not run exhaustive generic
+    collapse/relocation refinement.  It builds three inexpensive candidates
+    (SE agglomeration, recursive SE, and Paris when installed), applies exact
+    one-step NNI descent and optional bounded two-step escape to each, and
+    returns the lowest-entropy result.  Optional randomized coalescent starts
+    increase basin coverage; ``random_restarts=0`` preserves the deterministic
+    candidate pool.  The output is therefore no worse than
+    the NNI-refined SE-agglomerative start and is one-NNI-local on all binary
+    neighborhoods examined.
+    """
+    from .se import se_agglomerative
+
+    if not isinstance(random_restarts, int) or random_restarts < 0:
+        raise ValueError("random_restarts must be a non-negative integer")
+
+    _, _, n, adj, deg, vol = _graph_arrays(G)
+    nodes = list(G.nodes())
+    pos = {node: index for index, node in enumerate(nodes)}
+    graph = nx.relabel_nodes(G, pos, copy=True)
+    candidates = []
+
+    try:
+        candidates.append((
+            "SE-agglomerative",
+            linkage_to_tree(se_agglomerative(graph), n),
+        ))
+    except Exception:
+        pass
+    try:
+        candidates.append((
+            "recursive-SE",
+            build_tree(graph, seed=seed, starts=starts),
+        ))
+    except Exception:
+        pass
+    for index, linkage in enumerate(_external_inits(graph, n)):
+        try:
+            candidates.append((
+                f"external-{index}", linkage_to_tree(linkage, n)
+            ))
+        except Exception:
+            pass
+    if random_restarts:
+        rng = random.Random(seed if restart_seed is None else restart_seed)
+        for index in range(random_restarts):
+            candidates.append((
+                f"random-coalescent-{index}",
+                random_coalescent_tree(n, rng),
+            ))
+    if not candidates:
+        raise RuntimeError("no hierarchy initializer succeeded")
+
+    results = []
+    for name, root in candidates:
+        annotate(root, deg, adj, vol)
+        root, trace = refine_nni(
+            root, deg, adj, vol,
+            max_rounds=max_nni_rounds,
+            return_trace=True,
+        )
+        if compound:
+            root, extra_trace = refine_nni_compound(
+                root, deg, adj, vol,
+                max_rounds=compound_rounds,
+                beam_width=beam_width,
+                barrier_bits=barrier_bits,
+                return_trace=True,
+            )
+            trace.extend(extra_trace)
+        annotate(root, deg, adj, vol)
+        results.append((hd_se(root, vol), name, root, trace))
+
+    entropy, selected, root, trace = min(results, key=lambda item: item[0])
+    annotate(root, deg, adj, vol)
+    if return_trace:
+        audit = {
+            "selected_initializer": selected,
+            "selected_entropy": entropy,
+            "selected_trace": trace,
+            "candidate_entropies": {
+                name: value for value, name, _, _ in results
+            },
+        }
+        return root, deg, adj, vol, audit
+    return root, deg, adj, vol
+
+
 def _external_inits(G, n):
     """Linkage matrices from strong hierarchical heuristics to warm-start refinement.
     Optional deps; silently skipped if unavailable. Paris (scikit-network) gives the
     lowest-H^T classical trees, so refining it lets se_hier dominate it."""
     out = []
     try:                                   # Paris — modularity-based, low H^T
+        import numpy as np
         from sknetwork.hierarchy import Paris
         import scipy.sparse as sp
         A = nx.to_scipy_sparse_array(G, nodelist=list(range(n)), weight="weight", format="csr")
@@ -476,9 +1222,6 @@ def _external_inits(G, n):
     except Exception:
         pass
     return out
-
-
-import numpy as np  # noqa: E402  (used by _external_inits)
 
 
 def linkage_to_tree(Z, n):

@@ -1,174 +1,149 @@
 # selib
 
-**A standardized library for structural entropy** — compute it, optimize it, and
-benchmark SE methods against classical baselines under one API. Built so that
-"does SE actually help?" can be answered on equal footing
-([benchmark](https://github.com/SuuTTT/structural-entropy-benchmark) ·
-[survey](https://github.com/SuuTTT/structural-entropy-survey-paper)).
+`selib` is a small, dependency-light Python library for computing and optimizing
+structural entropy (SE) on undirected weighted graphs.  It includes flat 2D-SE
+optimization, encoding-tree construction, exact local tree-edit verification,
+shared evaluation metrics, and baseline adapters.
 
-> **New to SE, or deciding whether it fits your problem?** Read
-> **[A Practitioner's Guide to Structural Entropy: What Works, What Doesn't](docs/USING_SE.md)** —
-> a regime-by-regime decision table plus the expensive lessons (controls to run, traps to
-> avoid) distilled from a decade of SE work and our own re-runs.
+The library deliberately distinguishes three tasks:
 
-**Optimizers** (validated to machine precision against independent code, and
-ranked first among SE minimizers on attained entropy in the survey benchmark):
+| Task | Entry point | What is optimized / certified |
+| --- | --- | --- |
+| Flat partition | `selib.optimal_2d` or registered `se_louvain` | a local search of the exact 2D-SE objective |
+| Fixed number of modules | `selib.se_optimize_fixed_k` | local search within the specified `K`-partition space |
+| Encoding tree | `selib.optimal_tree_nni_fast` | tree structural entropy with exact NNI move checks |
 
-- `se_louvain` / `optimal_2d` — multilevel **2D-SE minimizer** (free-resolution).
-- `se_hier` / `optimal_tree` — **encoding-tree** optimizer (arbitrary depth).
-- `se_optimize_fixed_k` — **K-constrained SE** (`selib.seopt`): searches within the
-  fixed-K subspace instead of merging down from the over-segmented free-k optimum;
-  recovers communities where free-k SE over-segments (e.g. karate ARI 0.29→0.88).
-- `se_gnn` — differentiable soft-2D-SE GNN with a balanced (Sinkhorn) head.
-- `sepi` — bring-your-own-π SE (exogenous stationary distribution; e.g. PPR).
-
-## learn/ — clean-RL-style single-file SE learning methods
-
-[`learn/`](learn/) — one file = one method, each importing the selib core, runnable
-in one command: `min_se_uq` (SeSE-style LLM UQ), `min_sep_pooling` (SEP),
-`min_se_exploration` (SI2E-style), `min_se_gsl` (SE-GSL), `min_se_contrastive`
-(SEGA), plus `min_se_clustering` / `min_se_hierarchy` / `min_se_resolution`
-head-to-heads. See [learn/README.md](learn/README.md).
-
-## SE calculator
-
-A first-class entry point for *computing* structural entropy (separate from the
-optimizers), plus a [gallery](https://suuttt.github.io/selib/gallery.html) of
-SE-optimal partitions on classical graphs:
-
-```python
-import selib, networkx as nx
-G = nx.karate_club_graph()
-
-selib.se_report(G)                     # {n, m, se_1d, se_2d_optimal, num_communities, se_tree_optimal, ...}
-selib.structural_entropy(G, dim=1)     # 1D structural entropy (partition-free upper bound)
-selib.structural_entropy(G)            # optimal 2D structural entropy (minimized over partitions)
-labels, h2 = selib.optimal_2d(G)       # the SE-optimal partition and its 2D-SE
-selib.structural_entropy(G, labels)    # 2D-SE of any given partition
-tree, hT = selib.optimal_tree(G)       # the SE-optimal encoding tree and its H^T
-selib.structural_entropy(G, tree=tree) # H^T of any encoding tree
-```
-
-## What's in v0.1
-
-- **Uniform method registry.** Every algorithm — SE or baseline — is a `Method`
-  with metadata (`is_se`, `native`, `paper`, `repo`) and a single `fit_predict`.
-- **Native SE core** (`selib.se`): greedy 2D-structural-entropy encoding tree
-  (`se_agglomerative`) + Dasgupta cost. Dependency-light; the seed of a fuller
-  encoding-tree + differentiable-SE engine.
-- **`se_louvain` — the recommended SE minimizer** (`selib.seopt`): a Louvain-style
-  multilevel optimizer of the *same* 2D-SE objective (local node moves + community
-  aggregation + multistart, exact O(degree) move delta). The merge-only
-  `se_agglomerative` gets stuck in poor local optima; `se_louvain` reaches lower
-  structural entropy on every benchmark graph and substantially higher community-
-  detection accuracy. Validated against the canonical metric and brute-force
-  exhaustive optima (gap 0.000 on small graphs). See the
-  [benchmark page](https://suuttt.github.io/selib/).
-- **`se_hier` — hierarchical (encoding-tree) SE optimizer** (`selib.htree`):
-  structural entropy is defined over an *encoding tree*, not just a flat partition.
-  `se_hier` builds a multilevel tree (binary dendrogram + recursive `se_louvain`
-  inits) and refines it with exact-guarded local moves (collapse a level, relocate a
-  subtree), accepting only moves that strictly lower the exact tree structural
-  entropy H^T. Result is ≤ the naive binary dendrogram by construction, and strictly
-  lower on every benchmark graph. Validated: a 2-level tree's H^T equals the
-  canonical 2D-SE exactly, and refinement is monotone. It warm-starts from several
-  constructions — including Paris (scikit-network) when available — and refines the
-  best, so it is ≤ each of them by construction.
-
-- **`se_gnn` — attribute-aware SE** (`selib.segnn`, ported from the author's glass-jax
-  prototype): a small GCN trained end-to-end to minimize a **differentiable soft 2D
-  structural entropy**, with a **balanced Sinkhorn assignment head** (default) that
-  prevents the cluster collapse a plain softmax suffers under pure SE minimization.
-  The soft objective at a hard (one-hot) assignment equals the canonical 2D-SE exactly
-  (validated). Needs `jax` (CPU is fine: `pip install jax "numpy<2"`); node features are
-  read from `G.graph["X"]` (the bundled `Cora`/`Citeseer` Planetoid loaders attach them).
-  Cora: NMI 0.487 / ARI 0.387 / ACC 0.592 at k = 7 — beats every topology-only method on
-  all three metrics and matches LSENet, with a far smaller model. A config sweep
-  (`scripts/sweep_segnn.py`) shows the default (2-layer, hidden 64) is best on Cora;
-  width + feature `dropout` helps the sparser-feature Citeseer (NMI 0.262→0.316). The
-  residual gap to DeSE (0.579 on Cora) is architectural — deeper/hyperbolic encoders —
-  not a matter of tuning; `dropout=`/`layers=`/`hidden=` are exposed for experimentation.
-
-**Comparison with existing work** (see the [benchmark page](https://suuttt.github.io/selib/),
-section 0c): on identical graphs, `se_louvain` reaches the lowest 2D structural
-entropy of all methods including the published **CoDeSEG** (its original C++ code, run
-through selib's wrapper); `se_hier` reaches the lowest encoding-tree structural entropy
-of all, including Paris and the binary SE dendrogram. On attributed graphs (Cora/Citeseer/
-Photo) feature-aware SE methods (DeSE/LSENet) are shown vs. topology baselines — selib
-v0.1 is topology-only, which motivates attribute-aware SE as future work.
-- **Baselines** (native): Louvain, Leiden, Infomap, spectral clustering.
-- **Drop-in wrappers** over published SE methods' *original* code (deDoc jar,
-  CoDeSEG binary, …). selib doesn't vendor upstream code; point it at the artifact
-  via an env var and the wrapper runs the paper's real implementation. If unset it
-  raises a clear `ExternalNotConfigured` with the repo URL — the API stays uniform
-  whether or not the upstream is installed.
-- **Shared datasets & metrics**: LFR/SBM generators, Karate/Football, plus ARI/NMI
-  *and* cross-objective scores (modularity, map-equation codelength, 2D-SE) so
-  methods optimizing different objectives are still comparable.
-- **One-call benchmark**: `selib.benchmark(methods, datasets) -> tidy records`.
+`NEST` refers here to the hierarchical encoding-tree search machinery: exact
+NNI deltas, bounded two-step NNI escape, subtree-graft diagnostics, and small
+graph exact certificates.  These are local-search algorithms and certificates;
+they do **not** claim a global optimum or state-of-the-art performance on every
+dataset.
 
 ## Install
 
 ```bash
-pip install -e .              # core (networkx/numpy/scipy/scikit-learn)
-pip install -e ".[extra]"     # + leidenalg/igraph/infomap for those baselines
+git clone https://github.com/SuuTTT/selib.git
+cd selib
+python -m pip install -e ".[dev]"
+```
+
+Optional classical baselines and the differentiable GNN require their respective
+extras:
+
+```bash
+python -m pip install -e ".[extra]"  # Leiden, Infomap, Paris warm start
+python -m pip install -e ".[gnn]"    # JAX-based se_gnn
 ```
 
 ## Quick start
 
+All values below are in bits.  `labels` are aligned with `list(G.nodes())`.
+
+```python
+import networkx as nx
+import selib
+
+G = nx.karate_club_graph()
+
+# Compute SE.
+print(selib.one_dimensional(G))              # H^1(G)
+labels, h2 = selib.optimal_2d(G, seed=0)     # flat 2D-SE local optimum
+print(h2, len(set(labels)))
+
+# Build a hierarchy and refine it with exact NNI deltas.
+tree, h_tree = selib.optimal_tree_nni_fast(G, seed=0)
+print(h_tree)
+
+# A compact report for exploratory use.
+print(selib.se_report(G))
+```
+
+### Known-K comparison
+
+Use this only when `K` is part of the experimental condition (for example, a
+controlled synthetic benchmark).  Do not obtain `K` from test labels in an
+unsupervised benchmark.
+
+```python
+from selib.seopt import se_optimize_fixed_k
+from selib import two_dimensional
+
+labels = se_optimize_fixed_k(G, k=2, seed=0, starts=8)
+print(two_dimensional(G, labels))
+```
+
+### Hierarchical audit trace
+
+```python
+from selib.htree import encoding_tree_nni_fast
+
+tree, degree, adjacency, volume, audit = encoding_tree_nni_fast(
+    G, seed=0, random_restarts=4, restart_seed=17, return_trace=True
+)
+print(audit["selected_initializer"])
+print(audit["candidate_entropies"])
+```
+
+The lower-level `refine_graft`, `graft_delta`, and `graft_delta_path` APIs are
+provided for research and audit use.  They check a candidate tree edit against
+the exact tree objective; see `tests/test_nni.py` for executable examples.
+
+## Built-in methods and evaluation
+
 ```python
 import selib
 
-selib.list_methods()                      # ['infomap','leiden','louvain','se_agglomerative','spectral', ...]
-selib.info("se_agglomerative")            # metadata: paper, is_se, native, ...
-
-recs = selib.benchmark(
-    ["louvain", "leiden", "se_agglomerative"],
+print(selib.list_methods())
+records = selib.benchmark(
+    ["louvain", "spectral", "se_louvain", "se_hier_nni"],
     ["Karate", "SBM-Clean", "SBM-Noisy"],
+    seeds=range(5),
 )
-selib.summarize(recs, "nmi")                   # {dataset: {method: mean NMI}}
-selib.summarize(recs, "structural_entropy_2d") # same, on the 2D structural-entropy objective
+print(selib.summarize(records, "structural_entropy_2d"))
 ```
 
-### Running a wrapped SE method on its original code
+`selib.benchmark` is convenient for exploratory comparisons.  It supplies the
+dataset's declared module count to methods that require `K` (such as spectral
+clustering), so it is not by itself a no-label paper benchmark.  For the release
+gate and its protocol, run:
 
 ```bash
-export SELIB_DEDOC_JAR=/path/to/deDoc.jar          # github.com/yinxc/structural-information-minimisation
-export SELIB_CODESEG_BIN=/path/to/codeseg          # github.com/SELGroup/CoDeSEG
-```
-```python
-selib.benchmark(["dedoc", "codeseg", "louvain"], ["SBM-Clean"])
+python scripts/run_core_benchmark.py --output results/core_benchmark.json
 ```
 
-## Registering your own method
+See [the release benchmark protocol](docs/RELEASE_BENCHMARK.md) for what this
+small benchmark does and does not establish.
 
-```python
-import selib
+## Guarantees and limits
 
-@selib.method("my_se", family="community_detection", is_se=True, native=True,
-              paper="...", note="my encoding-tree variant")
-def my_se(G, k=None, seed=0):
-    ...                                    # return a list[int] of node labels
-    return labels
+- 2D-SE and tree-SE are evaluated by the same exact scoring routines used by
+  the optimizers.
+- Accepted NNI and graft moves are independently rescored; tests cover weighted
+  graphs and compare move deltas to complete tree re-evaluation.
+- The exact dynamic program is a verifier for small graphs only (default limit:
+  18 vertices), not a scalable optimizer.
+- Random restarts improve local-search coverage; they are not uniform samples
+  of labelled tree topologies.
+- Published deep methods such as DeSE and LSENet are **not** reimplemented in
+  this core package.  Their fair end-to-end comparison belongs to the separate
+  Paper B protocol rather than this library release.
+
+## Reproducibility
+
+```bash
+pytest
+python scripts/run_core_benchmark.py --output results/core_benchmark.json
 ```
 
-## API surface
+The first command is the algebra and regression gate.  The second is a compact
+internal comparison across topology-only methods and synthetic regimes; it is a
+merge gate, not a substitute for the planned 8–10-method × 5-dataset study.
 
-| call | purpose |
-|------|---------|
-| `selib.list_methods(family=, se_only=, native_only=)` | available algorithms |
-| `selib.get(name)` / `selib.info(name)` | the `Method` / its metadata |
-| `selib.method(...)` / `selib.register(...)` | add your own |
-| `selib.benchmark(methods, datasets, seeds=, cross_objective=)` | run the grid |
-| `selib.summarize(records, metric)` | `{dataset: {method: mean}}` |
-| `selib.se`, `selib.metrics`, `selib.datasets` | core + shared utilities |
+## Related work
 
-## Status & roadmap
-
-v0.1 standardizes the *interface* and ships the native SE core + community-detection
-methods. Next: a full encoding-tree data structure with $k$-D structural entropy, a
-differentiable SE objective for structure learning, and first-class wrappers for the
-deep SE methods (SEP, SE-GSL, SEGA, LSENet, DeSE) over their pinned environments.
+- Survey and broad benchmark context: [structural-entropy-survey-paper](https://github.com/SuuTTT/structural-entropy-survey-paper)
+- NEST theoretical/audit manuscript: [nest-tcs-journal](https://github.com/SuuTTT/nest-tcs-journal)
+- Paper B fair-comparison plan is maintained with the manuscript materials.
 
 ## License
 
