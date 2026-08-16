@@ -139,6 +139,9 @@ The first command is the algebra and regression gate.  The second is a compact
 internal comparison across topology-only methods and synthetic regimes; it is a
 merge gate, not a substitute for the planned 8–10-method × 5-dataset study.
 
+The completed remote five-seed release run, including raw records and checksum,
+is archived in [the remote core-benchmark report](docs/CORE_BENCHMARK_REMOTE_20260816.md).
+
 ## Related work
 
 - Survey and broad benchmark context: [structural-entropy-survey-paper](https://github.com/SuuTTT/structural-entropy-survey-paper)
