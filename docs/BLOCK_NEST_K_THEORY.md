@@ -62,6 +62,32 @@ No other community term changes.
 The certificate is relative to the finite supplied proposal family. It is not a
 claim of global optimality or a certificate over every vertex subset.
 
+## Pairwise merge-split neighborhood
+
+For two existing communities `A` and `B`, the experimental merge-split operator
+forms `U = A union B`, proposes a nonempty bipartition `(U_1, U_2)` from sparse
+spectral cuts of the declared unlabeled views, and substitutes `U_1, U_2` for
+`A, B`. It then applies exact singleton refinements restricted to this union.
+
+- **Exact score:** each candidate partition is rebuilt with the same weighted
+  degree, volume, and cut definitions as the canonical H2 implementation. Its
+  delta is the fully recomputed candidate objective minus the current objective;
+  no surrogate spectral score is used for acceptance.
+- **Fixed-K:** two nonempty communities are replaced by two nonempty
+  communities. Restricted singleton refinement forbids emptying either side.
+- **Monotonicity and termination:** the best candidate is accepted only for a
+  delta below `-epsilon`. The fixed-K partition space is finite, so strict
+  descent prevents cycles and terminates.
+- **Certificate boundary:** `certified_pairwise_local` means that a complete
+  pass found no improving candidate among all current community pairs, declared
+  views, deterministic spectral seeds, and restricted refinements. It is not a
+  certificate over every possible bipartition of every merged pair.
+
+The current implementation rebuilds full candidate state and runs a sparse
+eigensolve for each pair/view. This is deliberately an auditable prototype, not
+the claimed incremental or scalable final algorithm; its measured overhead is
+part of the failed empirical gate reported below.
+
 ## Mechanical evidence
 
 - `block_delta_100k_seed20260825.json`: 100,000 random weighted moves,
