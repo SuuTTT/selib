@@ -56,9 +56,11 @@ class _State:
         self.comm = comm[:]     # node -> community id
         self.V = {}
         self.g = {}
+        self.size = {}
         for v in range(n):
             c = self.comm[v]
             self.V[c] = self.V.get(c, 0.0) + deg[v]
+            self.size[c] = self.size.get(c, 0) + 1
         for v in range(n):
             for u, w in adj[v].items():
                 if self.comm[u] != self.comm[v]:
@@ -119,8 +121,10 @@ class _State:
         gB2 = gB + (dv - 2 * slv - wvB) - wvB
         self.obj += (_term(VA2, gA2, self.two_m) - _term(VA, gA, self.two_m))
         self.obj += (_term(VB2, gB2, self.two_m) - _term(VB, gB, self.two_m))
-        if VA2 <= 0:
-            self.V.pop(A, None); self.g.pop(A, None)
+        self.size[A] -= 1
+        self.size[B] = self.size.get(B, 0) + 1
+        if self.size[A] == 0:
+            self.V.pop(A, None); self.g.pop(A, None); self.size.pop(A, None)
         else:
             self.V[A] = VA2; self.g[A] = gA2
         self.V[B] = VB2; self.g[B] = gB2
@@ -404,21 +408,50 @@ if __name__ == "__main__":
 # have to merge down from. Addresses SE's over-resolution at free k.
 
 def _spectral_seed_labels(G, k, seed=0):
-    """Top-k normalized-Laplacian eigenvectors + tiny Lloyd k-means (numpy only)."""
+    """Sparse regularized spectral seed with deterministic Lloyd refinement.
+
+    Earlier releases formed a dense ``n x n`` adjacency matrix and therefore
+    silently disabled the spectral restart above 3,000 vertices. This version
+    computes leading eigenvectors of the sparse normalized adjacency.
+    """
     import numpy as _np
+    from scipy import sparse as _sp
+    from scipy.sparse.linalg import eigsh as _eigsh
+
     nodes = list(G.nodes())
     n = len(nodes)
+    if k < 1 or k > n:
+        raise ValueError("k out of range")
+    if k == 1:
+        return [0] * n
     idx = {u: i for i, u in enumerate(nodes)}
-    A = _np.zeros((n, n))
+    rows, cols, data = [], [], []
     for u, v, d in G.edges(data=True):
-        w = d.get("weight", 1.0)
-        A[idx[u], idx[v]] = A[idx[v], idx[u]] = w
-    deg = A.sum(1)
+        a, b = idx[u], idx[v]
+        w = float(d.get("weight", 1.0))
+        if a == b:
+            rows.append(a); cols.append(a); data.append(2.0 * w)
+        else:
+            rows.extend((a, b)); cols.extend((b, a)); data.extend((w, w))
+    A = _sp.csr_matrix((data, (rows, cols)), shape=(n, n), dtype=float)
+    deg = _np.asarray(A.sum(axis=1)).ravel()
+    if not _np.any(deg > 0):
+        return [i % k for i in range(n)]
     reg = 0.5 * deg.mean()                      # regularized Laplacian (HybridK recipe)
     dinv = 1.0 / _np.sqrt(deg + reg)
-    L = _np.eye(n) - dinv[:, None] * A * dinv[None, :]
-    vals, vecs = _np.linalg.eigh(L)
-    X = vecs[:, :k]
+    normalized = _sp.diags(dinv) @ A @ _sp.diags(dinv)
+    if k >= n - 1 or n <= max(32, 2 * k + 1):
+        _, vecs = _np.linalg.eigh(normalized.toarray())
+        X = vecs[:, -k:]
+    else:
+        rng = _np.random.default_rng(seed)
+        _, X = _eigsh(
+            normalized,
+            k=k,
+            which="LA",
+            v0=rng.normal(size=n),
+            tol=1e-7,
+        )
     X /= _np.linalg.norm(X, axis=1, keepdims=True).clip(min=1e-12)
     rng = _np.random.default_rng(seed)
     C = X[rng.permutation(n)[:k]].copy()
@@ -429,19 +462,20 @@ def _spectral_seed_labels(G, k, seed=0):
             m = lab == j
             if m.any():
                 C[j] = X[m].mean(0)
-    # ensure exactly k non-empty clusters
+    # Ensure exactly k non-empty clusters without emptying a donor cluster.
     for j in range(k):
         if not (lab == j).any():
-            lab[rng.integers(0, n)] = j
+            counts = _np.bincount(lab, minlength=k)
+            donor = int(counts.argmax())
+            choices = _np.flatnonzero(lab == donor)
+            lab[int(choices[rng.integers(0, len(choices))])] = j
     return list(lab)
 
 
 def _local_moves_fixed_k(state, order_rng, max_passes=20):
     """Local moves restricted to existing communities; never empties a source."""
     n = state.n
-    members = {}
-    for v in range(n):
-        members[state.comm[v]] = members.get(state.comm[v], 0) + 1
+    members = state.size
     order = list(range(n))
     for _ in range(max_passes):
         order_rng.shuffle(order)
@@ -472,8 +506,6 @@ def _local_moves_fixed_k(state, order_rng, max_passes=20):
                     best_d, best_t = delta, B
             if best_t != A:
                 state.apply(v, best_t, wt)
-                members[A] -= 1
-                members[best_t] = members.get(best_t, 0) + 1
                 moved = True
         if not moved:
             break
@@ -501,7 +533,7 @@ def se_optimize_fixed_k(G, k, starts=8, max_passes=20, seed=0, spectral_init=Tru
         return [int(x) for x in lab]
 
     inits = []
-    if spectral_init and k >= 2 and n <= 3000:
+    if spectral_init and k >= 2:
         try:
             inits.append([int(x) for x in _spectral_seed_labels(G, k, seed=seed)])
         except Exception:
