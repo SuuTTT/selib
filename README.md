@@ -72,6 +72,26 @@ labels = se_optimize_fixed_k(G, k=2, seed=0, starts=8)
 print(two_dimensional(G, labels))
 ```
 
+Experimental exact block refinement is available for research on fixed-K local
+optima. Candidate blocks are proposals only; exact 2D structural entropy selects
+every accepted move and restart:
+
+```python
+from selib.blockopt import se_optimize_block_fixed_k
+
+labels, audit = se_optimize_block_fixed_k(
+    G,
+    k=2,
+    blocks=[(1, 3), (8, 9)],  # positions in list(G.nodes())
+    seed=0,
+    return_audit=True,
+)
+assert len(set(labels)) == 2
+```
+
+See [`docs/BLOCK_NEST_K_THEORY.md`](docs/BLOCK_NEST_K_THEORY.md) and
+[`docs/BLOCK_NEST_K_PREREGISTRATION.md`](docs/BLOCK_NEST_K_PREREGISTRATION.md).
+
 ### Hierarchical audit trace
 
 ```python

@@ -1,0 +1,91 @@
+{
+  "cases": [
+    {
+      "k": 2,
+      "moves": 6,
+      "n": 3,
+      "partitions": 3
+    },
+    {
+      "k": 2,
+      "moves": 36,
+      "n": 4,
+      "partitions": 7
+    },
+    {
+      "k": 3,
+      "moves": 48,
+      "n": 4,
+      "partitions": 12
+    },
+    {
+      "k": 2,
+      "moves": 150,
+      "n": 5,
+      "partitions": 15
+    },
+    {
+      "k": 3,
+      "moves": 480,
+      "n": 5,
+      "partitions": 50
+    },
+    {
+      "k": 2,
+      "moves": 540,
+      "n": 6,
+      "partitions": 31
+    },
+    {
+      "k": 3,
+      "moves": 3120,
+      "n": 6,
+      "partitions": 180
+    },
+    {
+      "k": 2,
+      "moves": 1806,
+      "n": 7,
+      "partitions": 63
+    },
+    {
+      "k": 3,
+      "moves": 16800,
+      "n": 7,
+      "partitions": 602
+    },
+    {
+      "k": 2,
+      "moves": 5796,
+      "n": 8,
+      "partitions": 127
+    },
+    {
+      "k": 3,
+      "moves": 81648,
+      "n": 8,
+      "partitions": 1932
+    },
+    {
+      "k": 2,
+      "moves": 18150,
+      "n": 9,
+      "partitions": 255
+    },
+    {
+      "k": 2,
+      "moves": 55980,
+      "n": 10,
+      "partitions": 511
+    }
+  ],
+  "coverage": "all canonical K=2 partitions/moves through n=10; K=3 through n=8",
+  "max_k": 3,
+  "max_n": 10,
+  "maximum_absolute_error": 3.1086244689504383e-15,
+  "moves": 184560,
+  "passed": true,
+  "schema": "selib.block_delta_exhaustive.v1",
+  "threshold": 1e-12,
+  "wall_seconds": 9.980696487007663
+}

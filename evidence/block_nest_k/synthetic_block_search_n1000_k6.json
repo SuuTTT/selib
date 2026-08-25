@@ -1,0 +1,630 @@
+{
+  "results": [
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": 1.0,
+        "best_joint_certificate": true,
+        "h2": 8.0380301832597,
+        "k": 6,
+        "nmi": 1.0,
+        "wall_seconds": 1.323253617156297
+      },
+      "config": {
+        "alignment": "aligned",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.5,
+        "k": 6,
+        "n": 1000,
+        "seed": 0,
+        "topology_signal": "medium"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.0,
+        "block_vs_sparse_h2": 0.0,
+        "block_vs_sparse_nmi": 0.0,
+        "wall_ratio": 3.504553600623427
+      },
+      "graph": {
+        "feature_edges": 9658,
+        "fused_edges": 18252,
+        "proposal_count": 9,
+        "topology_edges": 9195
+      },
+      "sparse_init_nest": {
+        "ari": 1.0,
+        "h2": 8.0380301832597,
+        "k": 6,
+        "nmi": 1.0,
+        "wall_seconds": 0.3775812180247158
+      },
+      "view_diverse_node": {
+        "ari": 1.0,
+        "best_joint_certificate": true,
+        "h2": 8.0380301832597,
+        "k": 6,
+        "nmi": 1.0,
+        "wall_seconds": 1.1268199291080236
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": 1.0,
+        "best_joint_certificate": true,
+        "h2": 8.025241937757206,
+        "k": 6,
+        "nmi": 1.0,
+        "wall_seconds": 0.9682256430387497
+      },
+      "config": {
+        "alignment": "aligned",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.5,
+        "k": 6,
+        "n": 1000,
+        "seed": 1,
+        "topology_signal": "medium"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.0,
+        "block_vs_sparse_h2": 0.0,
+        "block_vs_sparse_nmi": 0.0,
+        "wall_ratio": 4.476742297420684
+      },
+      "graph": {
+        "feature_edges": 9643,
+        "fused_edges": 18240,
+        "proposal_count": 6,
+        "topology_edges": 9188
+      },
+      "sparse_init_nest": {
+        "ari": 1.0,
+        "h2": 8.025241937757206,
+        "k": 6,
+        "nmi": 1.0,
+        "wall_seconds": 0.2162790660513565
+      },
+      "view_diverse_node": {
+        "ari": 1.0,
+        "best_joint_certificate": true,
+        "h2": 8.025241937757206,
+        "k": 6,
+        "nmi": 1.0,
+        "wall_seconds": 0.964524417067878
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": 1.0,
+        "best_joint_certificate": true,
+        "h2": 8.05453476353489,
+        "k": 6,
+        "nmi": 1.0,
+        "wall_seconds": 1.1592414530459791
+      },
+      "config": {
+        "alignment": "aligned",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.75,
+        "k": 6,
+        "n": 1000,
+        "seed": 0,
+        "topology_signal": "medium"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.0,
+        "block_vs_sparse_h2": 0.0,
+        "block_vs_sparse_nmi": 0.0,
+        "wall_ratio": 3.5683933299994646
+      },
+      "graph": {
+        "feature_edges": 9658,
+        "fused_edges": 17883,
+        "proposal_count": 15,
+        "topology_edges": 8764
+      },
+      "sparse_init_nest": {
+        "ari": 1.0,
+        "h2": 8.05453476353489,
+        "k": 6,
+        "nmi": 1.0,
+        "wall_seconds": 0.32486369798425585
+      },
+      "view_diverse_node": {
+        "ari": 1.0,
+        "best_joint_certificate": true,
+        "h2": 8.05453476353489,
+        "k": 6,
+        "nmi": 1.0,
+        "wall_seconds": 1.004434679984115
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": 1.0,
+        "best_joint_certificate": true,
+        "h2": 8.042577261212502,
+        "k": 6,
+        "nmi": 1.0,
+        "wall_seconds": 1.0017742748605087
+      },
+      "config": {
+        "alignment": "aligned",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.75,
+        "k": 6,
+        "n": 1000,
+        "seed": 1,
+        "topology_signal": "medium"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.0,
+        "block_vs_sparse_h2": 0.0,
+        "block_vs_sparse_nmi": 0.0,
+        "wall_ratio": 4.061405500147771
+      },
+      "graph": {
+        "feature_edges": 9643,
+        "fused_edges": 17787,
+        "proposal_count": 6,
+        "topology_edges": 8727
+      },
+      "sparse_init_nest": {
+        "ari": 1.0,
+        "h2": 8.042577261212502,
+        "k": 6,
+        "nmi": 1.0,
+        "wall_seconds": 0.24665704392828047
+      },
+      "view_diverse_node": {
+        "ari": 1.0,
+        "best_joint_certificate": true,
+        "h2": 8.042577261212502,
+        "k": 6,
+        "nmi": 1.0,
+        "wall_seconds": 0.9978421567939222
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": 1.0,
+        "best_joint_certificate": true,
+        "h2": 8.773966274038177,
+        "k": 6,
+        "nmi": 1.0,
+        "wall_seconds": 1.8126375511055812
+      },
+      "config": {
+        "alignment": "feature_only",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.5,
+        "k": 6,
+        "n": 1000,
+        "seed": 0,
+        "topology_signal": "weak"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.0,
+        "block_vs_sparse_h2": 0.0,
+        "block_vs_sparse_nmi": 0.0,
+        "wall_ratio": 2.8411376558533292
+      },
+      "graph": {
+        "feature_edges": 9649,
+        "fused_edges": 18945,
+        "proposal_count": 66,
+        "topology_edges": 9474
+      },
+      "sparse_init_nest": {
+        "ari": 1.0,
+        "h2": 8.773966274038177,
+        "k": 6,
+        "nmi": 1.0,
+        "wall_seconds": 0.6379970880225301
+      },
+      "view_diverse_node": {
+        "ari": 1.0,
+        "best_joint_certificate": true,
+        "h2": 8.773966274038177,
+        "k": 6,
+        "nmi": 1.0,
+        "wall_seconds": 1.5158613140229136
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": 0.9975976145832001,
+        "best_joint_certificate": true,
+        "h2": 8.775056792105838,
+        "k": 6,
+        "nmi": 0.9965871479775359,
+        "wall_seconds": 1.7437178939580917
+      },
+      "config": {
+        "alignment": "feature_only",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.5,
+        "k": 6,
+        "n": 1000,
+        "seed": 1,
+        "topology_signal": "weak"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.0,
+        "block_vs_sparse_h2": 0.0,
+        "block_vs_sparse_nmi": 0.0,
+        "wall_ratio": 3.2081388984827033
+      },
+      "graph": {
+        "feature_edges": 9632,
+        "fused_edges": 18950,
+        "proposal_count": 61,
+        "topology_edges": 9482
+      },
+      "sparse_init_nest": {
+        "ari": 0.9975976145832001,
+        "h2": 8.775056792105838,
+        "k": 6,
+        "nmi": 0.9965871479775359,
+        "wall_seconds": 0.5435294259805232
+      },
+      "view_diverse_node": {
+        "ari": 0.9975976145832001,
+        "best_joint_certificate": true,
+        "h2": 8.775056792105838,
+        "k": 6,
+        "nmi": 0.9965871479775359,
+        "wall_seconds": 1.525568605051376
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": 1.0,
+        "best_joint_certificate": true,
+        "h2": 8.773035487428322,
+        "k": 6,
+        "nmi": 1.0,
+        "wall_seconds": 1.7427838211879134
+      },
+      "config": {
+        "alignment": "feature_only",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.75,
+        "k": 6,
+        "n": 1000,
+        "seed": 0,
+        "topology_signal": "weak"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.0,
+        "block_vs_sparse_h2": 0.0,
+        "block_vs_sparse_nmi": 0.0,
+        "wall_ratio": 3.3415888053794585
+      },
+      "graph": {
+        "feature_edges": 9649,
+        "fused_edges": 18664,
+        "proposal_count": 62,
+        "topology_edges": 9185
+      },
+      "sparse_init_nest": {
+        "ari": 1.0,
+        "h2": 8.773035487428322,
+        "k": 6,
+        "nmi": 1.0,
+        "wall_seconds": 0.5215434700949118
+      },
+      "view_diverse_node": {
+        "ari": 1.0,
+        "best_joint_certificate": true,
+        "h2": 8.773035487428322,
+        "k": 6,
+        "nmi": 1.0,
+        "wall_seconds": 1.5848823031410575
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": 0.990376172299438,
+        "best_joint_certificate": true,
+        "h2": 8.774542528648004,
+        "k": 6,
+        "nmi": 0.9863451484342525,
+        "wall_seconds": 1.4496319439494982
+      },
+      "config": {
+        "alignment": "feature_only",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.75,
+        "k": 6,
+        "n": 1000,
+        "seed": 1,
+        "topology_signal": "weak"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.0,
+        "block_vs_sparse_h2": 0.0,
+        "block_vs_sparse_nmi": 0.0,
+        "wall_ratio": 3.4532200649428058
+      },
+      "graph": {
+        "feature_edges": 9632,
+        "fused_edges": 18660,
+        "proposal_count": 46,
+        "topology_edges": 9184
+      },
+      "sparse_init_nest": {
+        "ari": 0.990376172299438,
+        "h2": 8.774542528648004,
+        "k": 6,
+        "nmi": 0.9863451484342525,
+        "wall_seconds": 0.4197913589887321
+      },
+      "view_diverse_node": {
+        "ari": 0.990376172299438,
+        "best_joint_certificate": true,
+        "h2": 8.774542528648004,
+        "k": 6,
+        "nmi": 0.9863451484342525,
+        "wall_seconds": 1.2012295860331506
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": 0.9951879697941916,
+        "best_joint_certificate": true,
+        "h2": 8.773307489412899,
+        "k": 6,
+        "nmi": 0.9931726162903163,
+        "wall_seconds": 1.697819457971491
+      },
+      "config": {
+        "alignment": "conflict",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.5,
+        "k": 6,
+        "n": 1000,
+        "seed": 0,
+        "topology_signal": "medium"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.0,
+        "block_vs_sparse_h2": 0.0,
+        "block_vs_sparse_nmi": 0.0,
+        "wall_ratio": 2.5308147960304246
+      },
+      "graph": {
+        "feature_edges": 9658,
+        "fused_edges": 18688,
+        "proposal_count": 70,
+        "topology_edges": 9202
+      },
+      "sparse_init_nest": {
+        "ari": 0.9951879697941916,
+        "h2": 8.773307489412899,
+        "k": 6,
+        "nmi": 0.9931726162903163,
+        "wall_seconds": 0.6708588319597766
+      },
+      "view_diverse_node": {
+        "ari": 0.9951879697941916,
+        "best_joint_certificate": true,
+        "h2": 8.773307489412899,
+        "k": 6,
+        "nmi": 0.9931726162903163,
+        "wall_seconds": 1.4782703638775274
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": 0.9975976145832001,
+        "best_joint_certificate": true,
+        "h2": 8.778943073848641,
+        "k": 6,
+        "nmi": 0.9965871479775359,
+        "wall_seconds": 1.563998039928265
+      },
+      "config": {
+        "alignment": "conflict",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.5,
+        "k": 6,
+        "n": 1000,
+        "seed": 1,
+        "topology_signal": "medium"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.0,
+        "block_vs_sparse_h2": 0.0,
+        "block_vs_sparse_nmi": 0.0,
+        "wall_ratio": 2.7341962139929796
+      },
+      "graph": {
+        "feature_edges": 9643,
+        "fused_edges": 18640,
+        "proposal_count": 76,
+        "topology_edges": 9164
+      },
+      "sparse_init_nest": {
+        "ari": 0.9975976145832001,
+        "h2": 8.778943073848641,
+        "k": 6,
+        "nmi": 0.9965871479775359,
+        "wall_seconds": 0.5720138269243762
+      },
+      "view_diverse_node": {
+        "ari": 0.9975976145832001,
+        "best_joint_certificate": true,
+        "h2": 8.778943073848641,
+        "k": 6,
+        "nmi": 0.9965871479775359,
+        "wall_seconds": 1.2988519839709625
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": 0.9951879697941916,
+        "best_joint_certificate": true,
+        "h2": 8.772026442223964,
+        "k": 6,
+        "nmi": 0.9931726162903163,
+        "wall_seconds": 1.8497770969988778
+      },
+      "config": {
+        "alignment": "conflict",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.75,
+        "k": 6,
+        "n": 1000,
+        "seed": 0,
+        "topology_signal": "medium"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.0,
+        "block_vs_sparse_h2": 0.0,
+        "block_vs_sparse_nmi": 0.0,
+        "wall_ratio": 2.3601489332172423
+      },
+      "graph": {
+        "feature_edges": 9658,
+        "fused_edges": 18237,
+        "proposal_count": 64,
+        "topology_edges": 8738
+      },
+      "sparse_init_nest": {
+        "ari": 0.9951879697941916,
+        "h2": 8.772026442223964,
+        "k": 6,
+        "nmi": 0.9931726162903163,
+        "wall_seconds": 0.783754394040443
+      },
+      "view_diverse_node": {
+        "ari": 0.9951879697941916,
+        "best_joint_certificate": true,
+        "h2": 8.772026442223964,
+        "k": 6,
+        "nmi": 0.9931726162903163,
+        "wall_seconds": 1.6265313919866458
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": 0.9975976145832001,
+        "best_joint_certificate": true,
+        "h2": 8.773568639462153,
+        "k": 6,
+        "nmi": 0.9965871479775359,
+        "wall_seconds": 1.6495753837516531
+      },
+      "config": {
+        "alignment": "conflict",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.75,
+        "k": 6,
+        "n": 1000,
+        "seed": 1,
+        "topology_signal": "medium"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.0,
+        "block_vs_sparse_h2": 0.0,
+        "block_vs_sparse_nmi": 0.0,
+        "wall_ratio": 2.4230457071522418
+      },
+      "graph": {
+        "feature_edges": 9643,
+        "fused_edges": 18210,
+        "proposal_count": 74,
+        "topology_edges": 8722
+      },
+      "sparse_init_nest": {
+        "ari": 0.9975976145832001,
+        "h2": 8.773568639462153,
+        "k": 6,
+        "nmi": 0.9965871479775359,
+        "wall_seconds": 0.6807859129039571
+      },
+      "view_diverse_node": {
+        "ari": 0.9975976145832001,
+        "best_joint_certificate": true,
+        "h2": 8.773568639462153,
+        "k": 6,
+        "nmi": 0.9965871479775359,
+        "wall_seconds": 1.3963650318328291
+      }
+    }
+  ],
+  "schema": "selib.block_nest_synthetic.v1",
+  "selection_uses_truth": false
+}

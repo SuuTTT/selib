@@ -1,0 +1,70 @@
+{
+  "results": [
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": 0.8992023965980576,
+        "best_joint_certificate": true,
+        "h2": 8.989708323854241,
+        "k": 6,
+        "nmi": 0.8743488340734166,
+        "wall_seconds": 2.048893238999881
+      },
+      "block_nest_k_merge_split": {
+        "accepted_merge_splits": 2,
+        "ari": 0.8900711374630613,
+        "certified_pairwise_local": false,
+        "h2": 8.989429527025395,
+        "k": 6,
+        "nmi": 0.8649161360907132,
+        "wall_seconds": 5.574992764974013
+      },
+      "config": {
+        "alignment": "conflict",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "weak",
+        "fragmentation": 0.75,
+        "k": 6,
+        "n": 1000,
+        "seed": 0,
+        "topology_signal": "weak"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.480936769333718,
+        "block_vs_sparse_h2": -0.04611791584391334,
+        "block_vs_sparse_nmi": 0.44254710099823114,
+        "merge_split_vs_block_ari": -0.009131259134996239,
+        "merge_split_vs_block_h2": -0.00027879682884623946,
+        "merge_split_vs_block_nmi": -0.009432697982703409,
+        "wall_ratio": 6.141681409565115
+      },
+      "graph": {
+        "feature_edges": 9745,
+        "fused_edges": 18728,
+        "proposal_count": 104,
+        "topology_edges": 9185
+      },
+      "sparse_init_nest": {
+        "ari": 0.4182656272643396,
+        "h2": 9.035826239698155,
+        "k": 6,
+        "nmi": 0.43180173307518543,
+        "wall_seconds": 0.9077306999824941
+      },
+      "view_diverse_node": {
+        "ari": 0.8992023965980576,
+        "best_joint_certificate": true,
+        "h2": 8.989708323854241,
+        "k": 6,
+        "nmi": 0.8743488340734166,
+        "wall_seconds": 1.9478705308865756
+      }
+    }
+  ],
+  "schema": "selib.block_nest_synthetic.v1",
+  "selection_uses_truth": false
+}

@@ -1,0 +1,58 @@
+{
+  "results": [
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": 0.9468218720525043,
+        "best_joint_certificate": true,
+        "h2": 9.092089483786044,
+        "k": 3,
+        "nmi": 0.9107665357310921,
+        "wall_seconds": 1.316918887081556
+      },
+      "config": {
+        "alignment": "conflict",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.75,
+        "k": 3,
+        "n": 1000,
+        "seed": 0,
+        "topology_signal": "medium"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.9141630682079804,
+        "block_vs_sparse_h2": -0.03865576375452662,
+        "block_vs_sparse_nmi": 0.8765488621727221,
+        "wall_ratio": 2.218046506400498
+      },
+      "graph": {
+        "feature_edges": 9826,
+        "fused_edges": 19265,
+        "proposal_count": 25,
+        "topology_edges": 9601
+      },
+      "sparse_init_nest": {
+        "ari": 0.03265880384452387,
+        "h2": 9.13074524754057,
+        "k": 3,
+        "nmi": 0.034217673558369986,
+        "wall_seconds": 0.5937291590962559
+      },
+      "view_diverse_node": {
+        "ari": 0.9468218720525043,
+        "best_joint_certificate": true,
+        "h2": 9.092089483786044,
+        "k": 3,
+        "nmi": 0.9107665357310921,
+        "wall_seconds": 1.2830071680946276
+      }
+    }
+  ],
+  "schema": "selib.block_nest_synthetic.v1",
+  "selection_uses_truth": false
+}

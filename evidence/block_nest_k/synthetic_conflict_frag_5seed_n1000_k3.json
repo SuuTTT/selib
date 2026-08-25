@@ -1,0 +1,1286 @@
+{
+  "results": [
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": -0.0005189278695431556,
+        "best_joint_certificate": true,
+        "h2": 9.087710795953804,
+        "k": 3,
+        "nmi": 0.0013681999127331615,
+        "wall_seconds": 1.347026132978499
+      },
+      "block_nest_k_merge_split": {
+        "accepted_merge_splits": 0,
+        "ari": -0.0005189278695431556,
+        "certified_pairwise_local": true,
+        "h2": 9.087710795953804,
+        "k": 3,
+        "nmi": 0.0013681999127331615,
+        "wall_seconds": 2.017121629905887
+      },
+      "config": {
+        "alignment": "conflict",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.0,
+        "k": 3,
+        "n": 1000,
+        "seed": 0,
+        "topology_signal": "medium"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 9.299002882001619e-05,
+        "block_vs_sparse_h2": -4.104807580596059e-05,
+        "block_vs_sparse_nmi": 8.0539898556892e-05,
+        "merge_split_vs_block_ari": 0.0,
+        "merge_split_vs_block_h2": 0.0,
+        "merge_split_vs_block_nmi": 0.0,
+        "wall_ratio": 2.8930529123590802
+      },
+      "graph": {
+        "feature_edges": 9826,
+        "fused_edges": 19463,
+        "proposal_count": 22,
+        "topology_edges": 9830
+      },
+      "sparse_init_nest": {
+        "ari": -0.0006119178983631717,
+        "h2": 9.08775184402961,
+        "k": 3,
+        "nmi": 0.0012876600141762695,
+        "wall_seconds": 0.6972294289153069
+      },
+      "view_diverse_node": {
+        "ari": -0.0005189278695431556,
+        "best_joint_certificate": true,
+        "h2": 9.087710795953804,
+        "k": 3,
+        "nmi": 0.0013681999127331615,
+        "wall_seconds": 1.3098231219919398
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": 0.9731354058331165,
+        "best_joint_certificate": true,
+        "h2": 9.08967229128701,
+        "k": 3,
+        "nmi": 0.9497733743891188,
+        "wall_seconds": 1.1962680210126564
+      },
+      "block_nest_k_merge_split": {
+        "accepted_merge_splits": 0,
+        "ari": 0.9731354058331165,
+        "certified_pairwise_local": true,
+        "h2": 9.08967229128701,
+        "k": 3,
+        "nmi": 0.9497733743891188,
+        "wall_seconds": 1.959350059973076
+      },
+      "config": {
+        "alignment": "conflict",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.0,
+        "k": 3,
+        "n": 1000,
+        "seed": 1,
+        "topology_signal": "medium"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.0,
+        "block_vs_sparse_h2": 0.0,
+        "block_vs_sparse_nmi": 0.0,
+        "merge_split_vs_block_ari": 0.0,
+        "merge_split_vs_block_h2": 0.0,
+        "merge_split_vs_block_nmi": 0.0,
+        "wall_ratio": 3.6630931912799447
+      },
+      "graph": {
+        "feature_edges": 9810,
+        "fused_edges": 19407,
+        "proposal_count": 21,
+        "topology_edges": 9791
+      },
+      "sparse_init_nest": {
+        "ari": 0.9731354058331165,
+        "h2": 9.08967229128701,
+        "k": 3,
+        "nmi": 0.9497733743891188,
+        "wall_seconds": 0.5348894930211827
+      },
+      "view_diverse_node": {
+        "ari": 0.9731354058331165,
+        "best_joint_certificate": true,
+        "h2": 9.08967229128701,
+        "k": 3,
+        "nmi": 0.9497733743891188,
+        "wall_seconds": 1.1266423159977421
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": 0.9554602785674157,
+        "best_joint_certificate": true,
+        "h2": 9.086755516729355,
+        "k": 3,
+        "nmi": 0.9217170644680155,
+        "wall_seconds": 1.1112978680757806
+      },
+      "block_nest_k_merge_split": {
+        "accepted_merge_splits": 0,
+        "ari": 0.9554602785674157,
+        "certified_pairwise_local": true,
+        "h2": 9.086755516729355,
+        "k": 3,
+        "nmi": 0.9217170644680155,
+        "wall_seconds": 1.766861119074747
+      },
+      "config": {
+        "alignment": "conflict",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.0,
+        "k": 3,
+        "n": 1000,
+        "seed": 2,
+        "topology_signal": "medium"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.0,
+        "block_vs_sparse_h2": 0.0,
+        "block_vs_sparse_nmi": 0.0,
+        "merge_split_vs_block_ari": 0.0,
+        "merge_split_vs_block_h2": 0.0,
+        "merge_split_vs_block_nmi": 0.0,
+        "wall_ratio": 3.7155763049885495
+      },
+      "graph": {
+        "feature_edges": 9811,
+        "fused_edges": 19404,
+        "proposal_count": 20,
+        "topology_edges": 9806
+      },
+      "sparse_init_nest": {
+        "ari": 0.9554602785674157,
+        "h2": 9.086755516729355,
+        "k": 3,
+        "nmi": 0.9217170644680155,
+        "wall_seconds": 0.47552814800292253
+      },
+      "view_diverse_node": {
+        "ari": 0.9554602785674157,
+        "best_joint_certificate": true,
+        "h2": 9.086755516729355,
+        "k": 3,
+        "nmi": 0.9217170644680155,
+        "wall_seconds": 1.0663615880766883
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": 0.0014408852084202785,
+        "best_joint_certificate": true,
+        "h2": 9.081640266004841,
+        "k": 3,
+        "nmi": 0.0031224936780987972,
+        "wall_seconds": 1.2687047821236774
+      },
+      "block_nest_k_merge_split": {
+        "accepted_merge_splits": 0,
+        "ari": 0.0014408852084202785,
+        "certified_pairwise_local": true,
+        "h2": 9.081640266004841,
+        "k": 3,
+        "nmi": 0.0031224936780987972,
+        "wall_seconds": 1.9320023910840973
+      },
+      "config": {
+        "alignment": "conflict",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.0,
+        "k": 3,
+        "n": 1000,
+        "seed": 3,
+        "topology_signal": "medium"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.0,
+        "block_vs_sparse_h2": 0.0,
+        "block_vs_sparse_nmi": 0.0,
+        "merge_split_vs_block_ari": 0.0,
+        "merge_split_vs_block_h2": 0.0,
+        "merge_split_vs_block_nmi": 0.0,
+        "wall_ratio": 3.6326219418873933
+      },
+      "graph": {
+        "feature_edges": 9805,
+        "fused_edges": 19422,
+        "proposal_count": 20,
+        "topology_edges": 9807
+      },
+      "sparse_init_nest": {
+        "ari": 0.0014408852084202785,
+        "h2": 9.081640266004841,
+        "k": 3,
+        "nmi": 0.0031224936780987972,
+        "wall_seconds": 0.5318479109555483
+      },
+      "view_diverse_node": {
+        "ari": 0.0014408852084202785,
+        "best_joint_certificate": true,
+        "h2": 9.081640266004841,
+        "k": 3,
+        "nmi": 0.0031224936780987972,
+        "wall_seconds": 1.1879399690078571
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": -0.0007533913809277389,
+        "best_joint_certificate": true,
+        "h2": 9.093350161561093,
+        "k": 3,
+        "nmi": 0.0011386166195548977,
+        "wall_seconds": 1.2331099649891257
+      },
+      "block_nest_k_merge_split": {
+        "accepted_merge_splits": 0,
+        "ari": -0.0007533913809277389,
+        "certified_pairwise_local": true,
+        "h2": 9.093350161561093,
+        "k": 3,
+        "nmi": 0.0011386166195548977,
+        "wall_seconds": 1.8920348139945418
+      },
+      "config": {
+        "alignment": "conflict",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.0,
+        "k": 3,
+        "n": 1000,
+        "seed": 4,
+        "topology_signal": "medium"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.0,
+        "block_vs_sparse_h2": 0.0,
+        "block_vs_sparse_nmi": 0.0,
+        "merge_split_vs_block_ari": 0.0,
+        "merge_split_vs_block_h2": 0.0,
+        "merge_split_vs_block_nmi": 0.0,
+        "wall_ratio": 3.3049146483734977
+      },
+      "graph": {
+        "feature_edges": 9810,
+        "fused_edges": 19432,
+        "proposal_count": 21,
+        "topology_edges": 9807
+      },
+      "sparse_init_nest": {
+        "ari": -0.0007533913809277389,
+        "h2": 9.093350161561093,
+        "k": 3,
+        "nmi": 0.0011386166195548977,
+        "wall_seconds": 0.5724912789883092
+      },
+      "view_diverse_node": {
+        "ari": -0.0007533913809277389,
+        "best_joint_certificate": true,
+        "h2": 9.093350161561093,
+        "k": 3,
+        "nmi": 0.0011386166195548977,
+        "wall_seconds": 1.1807873930083588
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": -0.0007715346774152144,
+        "best_joint_certificate": true,
+        "h2": 9.088414873228931,
+        "k": 3,
+        "nmi": 0.0011279351613161337,
+        "wall_seconds": 1.206885767984204
+      },
+      "block_nest_k_merge_split": {
+        "accepted_merge_splits": 0,
+        "ari": -0.0007715346774152144,
+        "certified_pairwise_local": true,
+        "h2": 9.088414873228931,
+        "k": 3,
+        "nmi": 0.0011279351613161337,
+        "wall_seconds": 1.8712961279088631
+      },
+      "config": {
+        "alignment": "conflict",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.25,
+        "k": 3,
+        "n": 1000,
+        "seed": 0,
+        "topology_signal": "medium"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.0,
+        "block_vs_sparse_h2": 0.0,
+        "block_vs_sparse_nmi": 0.0,
+        "merge_split_vs_block_ari": 0.0,
+        "merge_split_vs_block_h2": 0.0,
+        "merge_split_vs_block_nmi": 0.0,
+        "wall_ratio": 3.291210306219267
+      },
+      "graph": {
+        "feature_edges": 9826,
+        "fused_edges": 19422,
+        "proposal_count": 23,
+        "topology_edges": 9780
+      },
+      "sparse_init_nest": {
+        "ari": -0.0007715346774152144,
+        "h2": 9.088414873228931,
+        "k": 3,
+        "nmi": 0.0011279351613161337,
+        "wall_seconds": 0.5685738539323211
+      },
+      "view_diverse_node": {
+        "ari": -0.0007715346774152144,
+        "best_joint_certificate": true,
+        "h2": 9.088414873228931,
+        "k": 3,
+        "nmi": 0.0011279351613161337,
+        "wall_seconds": 1.1595804990502074
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": 0.0013928046089819993,
+        "best_joint_certificate": true,
+        "h2": 9.091820534273431,
+        "k": 3,
+        "nmi": 0.0031213069896068027,
+        "wall_seconds": 1.1340256748953834
+      },
+      "block_nest_k_merge_split": {
+        "accepted_merge_splits": 0,
+        "ari": 0.0013928046089819993,
+        "certified_pairwise_local": true,
+        "h2": 9.091820534273431,
+        "k": 3,
+        "nmi": 0.0031213069896068027,
+        "wall_seconds": 1.7626495298463851
+      },
+      "config": {
+        "alignment": "conflict",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.25,
+        "k": 3,
+        "n": 1000,
+        "seed": 1,
+        "topology_signal": "medium"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.0,
+        "block_vs_sparse_h2": 0.0,
+        "block_vs_sparse_nmi": 0.0,
+        "merge_split_vs_block_ari": 0.0,
+        "merge_split_vs_block_h2": 0.0,
+        "merge_split_vs_block_nmi": 0.0,
+        "wall_ratio": 3.793546670990497
+      },
+      "graph": {
+        "feature_edges": 9810,
+        "fused_edges": 19415,
+        "proposal_count": 21,
+        "topology_edges": 9786
+      },
+      "sparse_init_nest": {
+        "ari": 0.0013928046089819993,
+        "h2": 9.091820534273431,
+        "k": 3,
+        "nmi": 0.0031213069896068027,
+        "wall_seconds": 0.46464421891141683
+      },
+      "view_diverse_node": {
+        "ari": 0.0013928046089819993,
+        "best_joint_certificate": true,
+        "h2": 9.091820534273431,
+        "k": 3,
+        "nmi": 0.0031213069896068027,
+        "wall_seconds": 1.0692251509753987
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": 0.9761292346462687,
+        "best_joint_certificate": true,
+        "h2": 9.08709694631783,
+        "k": 3,
+        "nmi": 0.9547101894655613,
+        "wall_seconds": 1.2468631018418819
+      },
+      "block_nest_k_merge_split": {
+        "accepted_merge_splits": 0,
+        "ari": 0.9761292346462687,
+        "certified_pairwise_local": true,
+        "h2": 9.08709694631783,
+        "k": 3,
+        "nmi": 0.9547101894655613,
+        "wall_seconds": 1.8867522268556058
+      },
+      "config": {
+        "alignment": "conflict",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.25,
+        "k": 3,
+        "n": 1000,
+        "seed": 2,
+        "topology_signal": "medium"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.0,
+        "block_vs_sparse_h2": 0.0,
+        "block_vs_sparse_nmi": 0.0,
+        "merge_split_vs_block_ari": 0.0,
+        "merge_split_vs_block_h2": 0.0,
+        "merge_split_vs_block_nmi": 0.0,
+        "wall_ratio": 3.5975058686547854
+      },
+      "graph": {
+        "feature_edges": 9811,
+        "fused_edges": 19365,
+        "proposal_count": 20,
+        "topology_edges": 9761
+      },
+      "sparse_init_nest": {
+        "ari": 0.9761292346462687,
+        "h2": 9.08709694631783,
+        "k": 3,
+        "nmi": 0.9547101894655613,
+        "wall_seconds": 0.5244611949892715
+      },
+      "view_diverse_node": {
+        "ari": 0.9761292346462687,
+        "best_joint_certificate": true,
+        "h2": 9.08709694631783,
+        "k": 3,
+        "nmi": 0.9547101894655613,
+        "wall_seconds": 1.1754857669584453
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": 0.002580200918573747,
+        "best_joint_certificate": true,
+        "h2": 9.081767287186873,
+        "k": 3,
+        "nmi": 0.004110569442921771,
+        "wall_seconds": 1.225363829988055
+      },
+      "block_nest_k_merge_split": {
+        "accepted_merge_splits": 0,
+        "ari": 0.002580200918573747,
+        "certified_pairwise_local": true,
+        "h2": 9.081767287186873,
+        "k": 3,
+        "nmi": 0.004110569442921771,
+        "wall_seconds": 1.8597269069869071
+      },
+      "config": {
+        "alignment": "conflict",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.25,
+        "k": 3,
+        "n": 1000,
+        "seed": 3,
+        "topology_signal": "medium"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.0,
+        "block_vs_sparse_h2": 0.0,
+        "block_vs_sparse_nmi": 0.0,
+        "merge_split_vs_block_ari": 0.0,
+        "merge_split_vs_block_h2": 0.0,
+        "merge_split_vs_block_nmi": 0.0,
+        "wall_ratio": 3.6783653186286993
+      },
+      "graph": {
+        "feature_edges": 9805,
+        "fused_edges": 19413,
+        "proposal_count": 21,
+        "topology_edges": 9801
+      },
+      "sparse_init_nest": {
+        "ari": 0.002580200918573747,
+        "h2": 9.081767287186873,
+        "k": 3,
+        "nmi": 0.004110569442921771,
+        "wall_seconds": 0.5055851569632068
+      },
+      "view_diverse_node": {
+        "ari": 0.002580200918573747,
+        "best_joint_certificate": true,
+        "h2": 9.081767287186873,
+        "k": 3,
+        "nmi": 0.004110569442921771,
+        "wall_seconds": 1.1522814109921455
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": -0.0004465846774462859,
+        "best_joint_certificate": true,
+        "h2": 9.093393751723637,
+        "k": 3,
+        "nmi": 0.0014217135600802543,
+        "wall_seconds": 1.2543560818303376
+      },
+      "block_nest_k_merge_split": {
+        "accepted_merge_splits": 0,
+        "ari": -0.0004465846774462859,
+        "certified_pairwise_local": true,
+        "h2": 9.093393751723637,
+        "k": 3,
+        "nmi": 0.0014217135600802543,
+        "wall_seconds": 1.9808399839093909
+      },
+      "config": {
+        "alignment": "conflict",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.25,
+        "k": 3,
+        "n": 1000,
+        "seed": 4,
+        "topology_signal": "medium"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.0,
+        "block_vs_sparse_h2": 0.0,
+        "block_vs_sparse_nmi": 0.0,
+        "merge_split_vs_block_ari": 0.0,
+        "merge_split_vs_block_h2": 0.0,
+        "merge_split_vs_block_nmi": 0.0,
+        "wall_ratio": 3.2085540505804007
+      },
+      "graph": {
+        "feature_edges": 9810,
+        "fused_edges": 19392,
+        "proposal_count": 21,
+        "topology_edges": 9781
+      },
+      "sparse_init_nest": {
+        "ari": -0.0004465846774462859,
+        "h2": 9.093393751723637,
+        "k": 3,
+        "nmi": 0.0014217135600802543,
+        "wall_seconds": 0.6173621988855302
+      },
+      "view_diverse_node": {
+        "ari": -0.0004465846774462859,
+        "best_joint_certificate": true,
+        "h2": 9.093393751723637,
+        "k": 3,
+        "nmi": 0.0014217135600802543,
+        "wall_seconds": 1.2190467797918245
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": -0.0007775538837663086,
+        "best_joint_certificate": true,
+        "h2": 9.090203124732383,
+        "k": 3,
+        "nmi": 0.001121487167854534,
+        "wall_seconds": 1.3897789409384131
+      },
+      "block_nest_k_merge_split": {
+        "accepted_merge_splits": 2,
+        "ari": -0.0007835515249771831,
+        "certified_pairwise_local": false,
+        "h2": 9.090064128661743,
+        "k": 3,
+        "nmi": 0.001119646546317563,
+        "wall_seconds": 2.7503198608756065
+      },
+      "config": {
+        "alignment": "conflict",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.5,
+        "k": 3,
+        "n": 1000,
+        "seed": 0,
+        "topology_signal": "medium"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": -0.0002164742344258491,
+        "block_vs_sparse_h2": -2.910834629332726e-06,
+        "block_vs_sparse_nmi": -0.00019613444624176223,
+        "merge_split_vs_block_ari": -5.997641210874535e-06,
+        "merge_split_vs_block_h2": -0.00013899607064082886,
+        "merge_split_vs_block_nmi": -1.8406215369711106e-06,
+        "wall_ratio": 4.168147219837788
+      },
+      "graph": {
+        "feature_edges": 9826,
+        "fused_edges": 19363,
+        "proposal_count": 21,
+        "topology_edges": 9725
+      },
+      "sparse_init_nest": {
+        "ari": -0.0005610796493404595,
+        "h2": 9.090206035567013,
+        "k": 3,
+        "nmi": 0.0013176216140962963,
+        "wall_seconds": 0.6598423030227423
+      },
+      "view_diverse_node": {
+        "ari": -0.0007775538837663086,
+        "best_joint_certificate": true,
+        "h2": 9.090203124732383,
+        "k": 3,
+        "nmi": 0.001121487167854534,
+        "wall_seconds": 1.3324855528771877
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": 0.00033166566232698495,
+        "best_joint_certificate": true,
+        "h2": 9.092916239446744,
+        "k": 3,
+        "nmi": 0.002155335145295028,
+        "wall_seconds": 1.21507975703571
+      },
+      "block_nest_k_merge_split": {
+        "accepted_merge_splits": 0,
+        "ari": 0.00033166566232698495,
+        "certified_pairwise_local": true,
+        "h2": 9.092916239446744,
+        "k": 3,
+        "nmi": 0.002155335145295028,
+        "wall_seconds": 1.9597393540898338
+      },
+      "config": {
+        "alignment": "conflict",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.5,
+        "k": 3,
+        "n": 1000,
+        "seed": 1,
+        "topology_signal": "medium"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.0003305775078747508,
+        "block_vs_sparse_h2": -0.00012151529929838034,
+        "block_vs_sparse_nmi": 0.0003084782031359276,
+        "merge_split_vs_block_ari": 0.0,
+        "merge_split_vs_block_h2": 0.0,
+        "merge_split_vs_block_nmi": 0.0,
+        "wall_ratio": 3.719371358745394
+      },
+      "graph": {
+        "feature_edges": 9810,
+        "fused_edges": 19352,
+        "proposal_count": 21,
+        "topology_edges": 9724
+      },
+      "sparse_init_nest": {
+        "ari": 1.0881544522341406e-06,
+        "h2": 9.093037754746042,
+        "k": 3,
+        "nmi": 0.0018468569421591005,
+        "wall_seconds": 0.5269006950547919
+      },
+      "view_diverse_node": {
+        "ari": 0.00033166566232698495,
+        "best_joint_certificate": true,
+        "h2": 9.092916239446744,
+        "k": 3,
+        "nmi": 0.002155335145295028,
+        "wall_seconds": 1.1582711349474266
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": 0.946632336616119,
+        "best_joint_certificate": true,
+        "h2": 9.08679293924369,
+        "k": 3,
+        "nmi": 0.9087405370101471,
+        "wall_seconds": 1.3336463208543137
+      },
+      "block_nest_k_merge_split": {
+        "accepted_merge_splits": 0,
+        "ari": 0.946632336616119,
+        "certified_pairwise_local": true,
+        "h2": 9.08679293924369,
+        "k": 3,
+        "nmi": 0.9087405370101471,
+        "wall_seconds": 2.0170535488286987
+      },
+      "config": {
+        "alignment": "conflict",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.5,
+        "k": 3,
+        "n": 1000,
+        "seed": 2,
+        "topology_signal": "medium"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.011624995280344996,
+        "block_vs_sparse_h2": -0.0002841173015006859,
+        "block_vs_sparse_nmi": 0.01772987758554756,
+        "merge_split_vs_block_ari": 0.0,
+        "merge_split_vs_block_h2": 0.0,
+        "merge_split_vs_block_nmi": 0.0,
+        "wall_ratio": 3.172860635464313
+      },
+      "graph": {
+        "feature_edges": 9811,
+        "fused_edges": 19315,
+        "proposal_count": 20,
+        "topology_edges": 9696
+      },
+      "sparse_init_nest": {
+        "ari": 0.935007341335774,
+        "h2": 9.08707705654519,
+        "k": 3,
+        "nmi": 0.8910106594245996,
+        "wall_seconds": 0.6357208149274811
+      },
+      "view_diverse_node": {
+        "ari": 0.946632336616119,
+        "best_joint_certificate": true,
+        "h2": 9.08679293924369,
+        "k": 3,
+        "nmi": 0.9087405370101471,
+        "wall_seconds": 1.2840332278283313
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": 0.0020511179269351696,
+        "best_joint_certificate": true,
+        "h2": 9.083437879582434,
+        "k": 3,
+        "nmi": 0.00366958542927579,
+        "wall_seconds": 1.228117075865157
+      },
+      "block_nest_k_merge_split": {
+        "accepted_merge_splits": 0,
+        "ari": 0.0020511179269351696,
+        "certified_pairwise_local": true,
+        "h2": 9.083437879582434,
+        "k": 3,
+        "nmi": 0.00366958542927579,
+        "wall_seconds": 1.975151666905731
+      },
+      "config": {
+        "alignment": "conflict",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.5,
+        "k": 3,
+        "n": 1000,
+        "seed": 3,
+        "topology_signal": "medium"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.0,
+        "block_vs_sparse_h2": 0.0,
+        "block_vs_sparse_nmi": 0.0,
+        "merge_split_vs_block_ari": 0.0,
+        "merge_split_vs_block_h2": 0.0,
+        "merge_split_vs_block_nmi": 0.0,
+        "wall_ratio": 3.6861356350294856
+      },
+      "graph": {
+        "feature_edges": 9805,
+        "fused_edges": 19353,
+        "proposal_count": 21,
+        "topology_edges": 9732
+      },
+      "sparse_init_nest": {
+        "ari": 0.0020511179269351696,
+        "h2": 9.083437879582434,
+        "k": 3,
+        "nmi": 0.00366958542927579,
+        "wall_seconds": 0.5358326069545001
+      },
+      "view_diverse_node": {
+        "ari": 0.0020511179269351696,
+        "best_joint_certificate": true,
+        "h2": 9.083437879582434,
+        "k": 3,
+        "nmi": 0.00366958542927579,
+        "wall_seconds": 1.1620087519986555
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": -0.00040133876894095155,
+        "best_joint_certificate": true,
+        "h2": 9.094258703713706,
+        "k": 3,
+        "nmi": 0.0014617248828367293,
+        "wall_seconds": 1.2289959429763258
+      },
+      "block_nest_k_merge_split": {
+        "accepted_merge_splits": 0,
+        "ari": -0.00040133876894095155,
+        "certified_pairwise_local": true,
+        "h2": 9.094258703713706,
+        "k": 3,
+        "nmi": 0.0014617248828367293,
+        "wall_seconds": 1.891464437940158
+      },
+      "config": {
+        "alignment": "conflict",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.5,
+        "k": 3,
+        "n": 1000,
+        "seed": 4,
+        "topology_signal": "medium"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.0,
+        "block_vs_sparse_h2": 0.0,
+        "block_vs_sparse_nmi": 0.0,
+        "merge_split_vs_block_ari": 0.0,
+        "merge_split_vs_block_h2": 0.0,
+        "merge_split_vs_block_nmi": 0.0,
+        "wall_ratio": 3.404814048025531
+      },
+      "graph": {
+        "feature_edges": 9810,
+        "fused_edges": 19359,
+        "proposal_count": 23,
+        "topology_edges": 9741
+      },
+      "sparse_init_nest": {
+        "ari": -0.00040133876894095155,
+        "h2": 9.094258703713706,
+        "k": 3,
+        "nmi": 0.0014617248828367293,
+        "wall_seconds": 0.5555265019647777
+      },
+      "view_diverse_node": {
+        "ari": -0.00040133876894095155,
+        "best_joint_certificate": true,
+        "h2": 9.094258703713706,
+        "k": 3,
+        "nmi": 0.0014617248828367293,
+        "wall_seconds": 1.1704145870171487
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": 0.9468218720525043,
+        "best_joint_certificate": true,
+        "h2": 9.092089483786044,
+        "k": 3,
+        "nmi": 0.9107665357310921,
+        "wall_seconds": 1.2834392490331084
+      },
+      "block_nest_k_merge_split": {
+        "accepted_merge_splits": 2,
+        "ari": 0.9263135535680626,
+        "certified_pairwise_local": false,
+        "h2": 9.091780550911412,
+        "k": 3,
+        "nmi": 0.8790845160609484,
+        "wall_seconds": 2.6725030520465225
+      },
+      "config": {
+        "alignment": "conflict",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.75,
+        "k": 3,
+        "n": 1000,
+        "seed": 0,
+        "topology_signal": "medium"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.9141630682079804,
+        "block_vs_sparse_h2": -0.03865576375452662,
+        "block_vs_sparse_nmi": 0.8765488621727221,
+        "merge_split_vs_block_ari": -0.02050831848444179,
+        "merge_split_vs_block_h2": -0.0003089328746312958,
+        "merge_split_vs_block_nmi": -0.031682019670143724,
+        "wall_ratio": 4.534805546134799
+      },
+      "graph": {
+        "feature_edges": 9826,
+        "fused_edges": 19265,
+        "proposal_count": 25,
+        "topology_edges": 9601
+      },
+      "sparse_init_nest": {
+        "ari": 0.03265880384452387,
+        "h2": 9.13074524754057,
+        "k": 3,
+        "nmi": 0.034217673558369986,
+        "wall_seconds": 0.5893313450505957
+      },
+      "view_diverse_node": {
+        "ari": 0.9468218720525043,
+        "best_joint_certificate": true,
+        "h2": 9.092089483786044,
+        "k": 3,
+        "nmi": 0.9107665357310921,
+        "wall_seconds": 1.251763221109286
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": 0.9671674778029997,
+        "best_joint_certificate": true,
+        "h2": 9.094118024826006,
+        "k": 3,
+        "nmi": 0.943423329849336,
+        "wall_seconds": 1.3078322811052203
+      },
+      "block_nest_k_merge_split": {
+        "accepted_merge_splits": 1,
+        "ari": 0.9731092445866183,
+        "certified_pairwise_local": true,
+        "h2": 9.094063544796876,
+        "k": 3,
+        "nmi": 0.9514966304013143,
+        "wall_seconds": 2.708810919080861
+      },
+      "config": {
+        "alignment": "conflict",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.75,
+        "k": 3,
+        "n": 1000,
+        "seed": 1,
+        "topology_signal": "medium"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.0,
+        "block_vs_sparse_h2": 0.0,
+        "block_vs_sparse_nmi": 0.0,
+        "merge_split_vs_block_ari": 0.005941766783618574,
+        "merge_split_vs_block_h2": -5.448002912977756e-05,
+        "merge_split_vs_block_nmi": 0.008073300551978302,
+        "wall_ratio": 4.352288364177332
+      },
+      "graph": {
+        "feature_edges": 9810,
+        "fused_edges": 19234,
+        "proposal_count": 26,
+        "topology_edges": 9607
+      },
+      "sparse_init_nest": {
+        "ari": 0.9671674778029997,
+        "h2": 9.094118024826006,
+        "k": 3,
+        "nmi": 0.943423329849336,
+        "wall_seconds": 0.6223877400625497
+      },
+      "view_diverse_node": {
+        "ari": 0.9671674778029997,
+        "best_joint_certificate": true,
+        "h2": 9.094118024826006,
+        "k": 3,
+        "nmi": 0.943423329849336,
+        "wall_seconds": 1.2442408190108836
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": 0.9583462782912171,
+        "best_joint_certificate": true,
+        "h2": 9.086184643248435,
+        "k": 3,
+        "nmi": 0.9251394136440068,
+        "wall_seconds": 1.3053014999022707
+      },
+      "block_nest_k_merge_split": {
+        "accepted_merge_splits": 0,
+        "ari": 0.9583462782912171,
+        "certified_pairwise_local": true,
+        "h2": 9.086184643248435,
+        "k": 3,
+        "nmi": 0.9251394136440068,
+        "wall_seconds": 2.008109056856483
+      },
+      "config": {
+        "alignment": "conflict",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.75,
+        "k": 3,
+        "n": 1000,
+        "seed": 2,
+        "topology_signal": "medium"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.011714746998708336,
+        "block_vs_sparse_h2": -0.00023546624258052873,
+        "block_vs_sparse_nmi": 0.017938808327398803,
+        "merge_split_vs_block_ari": 0.0,
+        "merge_split_vs_block_h2": 0.0,
+        "merge_split_vs_block_nmi": 0.0,
+        "wall_ratio": 3.1121653794509605
+      },
+      "graph": {
+        "feature_edges": 9811,
+        "fused_edges": 19197,
+        "proposal_count": 23,
+        "topology_edges": 9577
+      },
+      "sparse_init_nest": {
+        "ari": 0.9466315312925088,
+        "h2": 9.086420109491016,
+        "k": 3,
+        "nmi": 0.907200605316608,
+        "wall_seconds": 0.6452449699863791
+      },
+      "view_diverse_node": {
+        "ari": 0.9583462782912171,
+        "best_joint_certificate": true,
+        "h2": 9.086184643248435,
+        "k": 3,
+        "nmi": 0.9251394136440068,
+        "wall_seconds": 1.2496817309875041
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": 0.0023547260710714466,
+        "best_joint_certificate": true,
+        "h2": 9.084623991191322,
+        "k": 3,
+        "nmi": 0.0039124340947403165,
+        "wall_seconds": 1.353906785021536
+      },
+      "block_nest_k_merge_split": {
+        "accepted_merge_splits": 0,
+        "ari": 0.0023547260710714466,
+        "certified_pairwise_local": true,
+        "h2": 9.084623991191322,
+        "k": 3,
+        "nmi": 0.0039124340947403165,
+        "wall_seconds": 2.2142244529677555
+      },
+      "config": {
+        "alignment": "conflict",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.75,
+        "k": 3,
+        "n": 1000,
+        "seed": 3,
+        "topology_signal": "medium"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": 0.0,
+        "block_vs_sparse_h2": 0.0,
+        "block_vs_sparse_nmi": 0.0,
+        "merge_split_vs_block_ari": 0.0,
+        "merge_split_vs_block_h2": 0.0,
+        "merge_split_vs_block_nmi": 0.0,
+        "wall_ratio": 3.5606406620200044
+      },
+      "graph": {
+        "feature_edges": 9805,
+        "fused_edges": 19215,
+        "proposal_count": 23,
+        "topology_edges": 9594
+      },
+      "sparse_init_nest": {
+        "ari": 0.0023547260710714466,
+        "h2": 9.084623991191322,
+        "k": 3,
+        "nmi": 0.0039124340947403165,
+        "wall_seconds": 0.6218612500233576
+      },
+      "view_diverse_node": {
+        "ari": 0.0023547260710714466,
+        "best_joint_certificate": true,
+        "h2": 9.084623991191322,
+        "k": 3,
+        "nmi": 0.0039124340947403165,
+        "wall_seconds": 1.314680574927479
+      }
+    },
+    {
+      "block_nest_k": {
+        "accepted_block_moves_in_best_restart": 0,
+        "ari": -0.0002631599924384785,
+        "best_joint_certificate": true,
+        "h2": 9.097447605707313,
+        "k": 3,
+        "nmi": 0.001594042846915764,
+        "wall_seconds": 1.1858087420696393
+      },
+      "block_nest_k_merge_split": {
+        "accepted_merge_splits": 0,
+        "ari": -0.0002631599924384785,
+        "certified_pairwise_local": true,
+        "h2": 9.097447605707313,
+        "k": 3,
+        "nmi": 0.001594042846915764,
+        "wall_seconds": 1.9648504611104727
+      },
+      "config": {
+        "alignment": "conflict",
+        "balance": "balanced",
+        "degree": "homogeneous",
+        "feature_signal": "medium",
+        "fragmentation": 0.75,
+        "k": 3,
+        "n": 1000,
+        "seed": 4,
+        "topology_signal": "medium"
+      },
+      "delta": {
+        "block_vs_diverse_ari": 0.0,
+        "block_vs_diverse_h2": 0.0,
+        "block_vs_diverse_nmi": 0.0,
+        "block_vs_sparse_ari": -0.9410701411951922,
+        "block_vs_sparse_h2": -0.001054087516678237,
+        "block_vs_sparse_nmi": -0.8979768012475529,
+        "merge_split_vs_block_ari": 0.0,
+        "merge_split_vs_block_h2": 0.0,
+        "merge_split_vs_block_nmi": 0.0,
+        "wall_ratio": 3.6423894598416364
+      },
+      "graph": {
+        "feature_edges": 9810,
+        "fused_edges": 19223,
+        "proposal_count": 23,
+        "topology_edges": 9606
+      },
+      "sparse_init_nest": {
+        "ari": 0.9408069812027536,
+        "h2": 9.09850169322399,
+        "k": 3,
+        "nmi": 0.8995708440944686,
+        "wall_seconds": 0.5394399700453505
+      },
+      "view_diverse_node": {
+        "ari": -0.0002631599924384785,
+        "best_joint_certificate": true,
+        "h2": 9.097447605707313,
+        "k": 3,
+        "nmi": 0.001594042846915764,
+        "wall_seconds": 1.1431568140396848
+      }
+    }
+  ],
+  "schema": "selib.block_nest_synthetic.v1",
+  "selection_uses_truth": false
+}

@@ -22,6 +22,11 @@ from .calc import (structural_entropy, one_dimensional, two_dimensional,  # noqa
                    optimal_tree_nni_fast,
                    se_report)
 from .seopt import se_optimize, se_optimize_fixed_k                       # noqa: F401
+from .blockopt import (                                                   # noqa: F401
+    refine_blocks_fixed_k,
+    refine_pairwise_merge_split_fixed_k,
+    se_optimize_block_fixed_k,
+)
 from . import methods                                                 # noqa: F401  (self-registers algorithms)
 
 # friendly aliases for the SE calculator

@@ -1,0 +1,9 @@
+{
+  "maximum_absolute_error": 6.217248937900877e-15,
+  "passed": true,
+  "schema": "selib.block_delta_verification.v1",
+  "seed": 20260825,
+  "threshold": 1e-12,
+  "trials": 100000,
+  "wall_seconds": 22.754850193974562
+}
