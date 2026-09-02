@@ -171,3 +171,54 @@ is archived in [the remote core-benchmark report](docs/CORE_BENCHMARK_REMOTE_202
 ## License
 
 MIT.
+
+## Gap audit (2026-09-02) — what is solved, what is open, before the world-model project
+
+Audit of [issue #10](https://github.com/SuuTTT/selib/issues/10) (six gaps between SE and world
+models), [issue #12](https://github.com/SuuTTT/selib/issues/12), the six follow-up research
+packages, and `main` at `68ab285`. "Verified" = the package's own self-test / fixture or a
+reproduction script was run on 2026-09-02 (Python 3.14, numpy 2.5, networkx 3.6).
+
+### Gaps from issue #10
+
+| # | Gap | Status | Where | Verified 2026-09-02 |
+|---|---|---|---|---|
+| G1 | Tree depth unidentifiable (SE indifferent to binary refinement) | **Solved in package.** MDL tree cost `L = vol·H^T + U + C`; exact collapse condition; depth recovered exactly at d = 1–3, resolution limit at d = 4. Prop 3: degree-matched nulls always keep one spurious level, so depth must be reported null-calibrated. | `SuuTTT/se-depth-mdl` (private) | `code/mdl_tree.py` selftests: ALL PASSED |
+| G2 | No null model in the definition | **Solved in package.** Closed-form `E_null[H]` (exact linearity in the cut vector; exact configuration-model moments); calibrated SE = code-length-weighted modularity under Chung–Lu; `se_report()` with null mean / CI / gap / z / hashes. Boundary: fixed-partition calibration does **not** remove partition-optimization bias — cross-graph comparisons need the sampled *optimized* null. Label-tracking gate G4b FAILED (calibration ≠ margin). | `SuuTTT/se-null-calibration` (private) | `gap2_smoke.py`: ALL SMOKE TESTS PASSED, incl. `se_report` end-to-end |
+| G3 | Undirected only; self-loops undefined | **Solved in package.** Flow-based directed 2D/tree SE with exact reduction to Li–Pan on undirected graphs; jump/dwell self-loop convention; directed degree-preserving null; flow-Louvain; in-repo map equation for Infomap positioning. 15/15 SE-JEPA latent graphs (79–91 % self-loop mass) give coherent modules under the jump convention. | `SuuTTT/se-directed` (private) | `code/test_dirse.py`: ALL PASS |
+| G4 | Requires a discrete graph | **Partially solved.** Theory of the soft relaxation: the deployed bilinear objective (`selib.segnn.soft_se2d`, DeSE, LSEnet, DMoN-style) is **provably loose**; the multilinear extension is exact; bits-back identity links them. Two gates FAILED verbatim; the `H_code ≥ H_mul ≥ H_bil` sandwich is a conjecture. The latent → graph discretisation confound for world models remains an experimental issue. | `SuuTTT/se-soft` (private) | `code/selftest.py`: ALL PASS |
+| G5 | No timescale semantics | **Solved in package.** SE spectrum of `P^k` with a margin-preserving flow null; exact persistence identity; knees at `k ~ 1/(1−λ)`; metastable partition unique iff block volumes < ½ (sharp). Gates G1/G2/G2b/G3 PASS 5/5. On SE-JEPA latents stride 1 is **not** significant; the spectrum peaks at `k* = 11–16`; the partition path coarsens smoothly (a continuum of scales, no plateau). | `SuuTTT/se-spectrum` (private) | `fixtures/multiscale_fixture.py`: FIXTURE PASS (9 s) |
+| G6 | Disconnected from control | **Half solved.** Blindness theorem: passive SE cannot see control. Control gain `dH_ctrl = I(A; m(S′) | m(S))` tracks a controllability knob at ρ = 0.981, calibrated. The quotient-planning gate **FAILED**: neither control-aware nor plain-SE nor an ideal partition preserved plans — reward-awareness appears necessary for plan-preserving abstraction. | `SuuTTT/se-control` (private) | `fixtures/fixture_control.py`: FIXTURE PASS |
+
+### Gaps from issue #12 and integration gaps on `main`
+
+| # | Gap | Status | Where | Verified |
+|---|---|---|---|---|
+| B1 | `se_optimize(G, k=K)` silently returns fewer than `K` communities when `K` exceeds its natural optimum | **Open bug.** | `selib/seopt.py` (`_merge_down_to_k` cannot split) | Reproduced on `main`: `ring_of_cliques(4,6)`, `k=9` → 4 communities, **0 warnings** |
+| B2 | Comparing SE with resolution-parameterised baselines at self-selected `k` confounds criterion with resolution (retracted a world-model result) | **Open.** No matched-`k` sweep helper in `selib.benchmark`. | `selib/benchmark.py` | grep: none |
+| I1 | None of the six packages is merged; `se_report()` on `main` reports no null; the validation fixtures live only in the private repos | **Open.** | `selib/calc.py`, PRs #7–#11 only | `pytest`: 24 passed, 1 skipped on `main` |
+| I2 | `python selib/calc.py` fails (relative import) when run as a script; the selftest only works via `python -m` | Minor | `selib/calc.py` | Reproduced |
+
+### New gaps found while preparing the world-model project (toy scale, uncalibrated)
+
+| # | Gap | Status |
+|---|---|---|
+| N1 | **Size dominance at stride 1.** The entering term is O(cut/vol) (≈ 0.003 bits for a one-edge door) while the locating term is O(1) and shrinks with community size, so 2D SE prefers ~12-node patches to 4 rooms on a lattice (5.61 vs 4.32 bits); Infomap agrees. Going one tree level deeper gains ~0.001 bits. | Explained; **mitigated by G5**: at Markov time k ≈ 16 rooms overtake patches and the optimizer's partition aligns with rooms at NMI 0.82 — but settles on half-rooms, consistent with G5's "continuum of scales". |
+| N2 | **Task-flow (betweenness) edge reweighting makes it worse** (31 communities; heavily used doors get merged across). Flow-coding objectives find traps, not highways. | Negative result, recorded. Task-conditioning must enter via horizon (→ Markov time) or a reference partition, not edge weights. Consistent with G6's blindness theorem. |
+| N3 | **SE of a partially observed graph is biased**: a half-revealed lattice is tree-like and *more* compressible than the full one, so "reduction in SE" used as a learning-progress reward is sign-confounded during exploration. No theory for SE under missing edges / online smoothing (cf. survey O2, incremental SE). | **Open.** Progress must be defined on a fixed state set with a smoothed transition estimate. |
+| N4 | **Structural progress as an exploration reward** has no theory, and its noise-robustness is already owned by learning-progress methods (LPM, 2025). Novelty can only be organization-vs-predictability, untested. | **Open.** |
+| N5 | **Encoding-tree waypoints / boundary criteria for hierarchical world models** (the paused paper's use) require G5 + B2 + G2 first. | **Open**, prerequisites now exist. |
+| N6 | All toy δ values above are **uncalibrated** (no degree-matched null). | **Action:** rerun through `se-null-calibration`'s `se_report` before quoting any of them. |
+
+### Before starting the world-model project — checklist
+
+1. Latent transition graphs: use the **directed jump/dwell convention** (G3) and the **flow-margin null** (G5); never symmetrise and never keep naive self-loops.
+2. Never report δ or H without `E_null` (G2). Cross-graph comparisons need the *optimized* null.
+3. Never compare SE against modularity/Infomap at self-selected `k`; sweep `k` for every method (B2).
+4. After any `se_optimize(G, k=K)`, check `len(set(labels)) == K` (B1).
+5. Depth claims only via the MDL tree cost with null-calibrated depth (G1); pure-SE depth is not identifiable.
+6. Soft objectives: report the bilinear value against its floor, or use the multilinear extension (G4).
+7. Any planning/control claim needs a **reward-aware arm**; reward-free SE quotients failed the planning gate (G6).
+8. Time scale first: compute the SE spectrum and work at its significant `k` range; stride-1 results on latents evaporate (G5).
+9. Exploration-progress rewards: fixed state set + smoothed transitions (N3); baselines must include LPM/VIME (N4).
+10. Preregister gates (`GATE.md` pattern of the six packages) and report failures verbatim.
